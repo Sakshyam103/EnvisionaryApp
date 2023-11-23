@@ -1,0 +1,25 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .notification-bar {
+    background-color: #4caf50;
+    color: white;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 1em;
+  }
+  
+  .big-button {
+    font-size: 1.5em;
+    padding: 1em 2em;
+  }
+  
