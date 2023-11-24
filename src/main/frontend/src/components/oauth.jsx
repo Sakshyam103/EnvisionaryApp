@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import React from 'react';
 //import Home from './Home';
 // import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 function SignIn() {
 
@@ -15,8 +15,34 @@ function SignIn() {
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
     setUser(decodedToken);
+    // axios.post('http://localhost:8080/whee/example', {idToken: decodedToken},{
+    //   headers: {
+    //     'Content-Type': 'application/json',},
+    // }).then(response=>{
+    //   console.log('Backend response: ', response.data);
+    // }).catch(error=>{
+    //   console.error("Error", error);
+    // })
     document.getElementById("signInDiv").hidden = true;
   }
+
+
+  // const sendDataToJava = async () => {
+  //   try {
+  //     // Make a POST request to your Java backend
+  //     const response = await axios.post('http://localhost:8080/whee/example', {
+  //       key: 'value', // Add your data here
+  //       anotherKey: 'anotherValue',
+  //       // ...
+  //     });
+
+  //     // Handle the response from the backend
+  //     console.log('Response from Java:', response.data);
+  //   } catch (error) {
+  //     // Handle errors
+  //     console.error('Error sending data to Java:', error);
+  //   }
+  // };
 
   useEffect(() => {
     /*global google*/
@@ -35,33 +61,36 @@ function SignIn() {
           width: "500px",        // Set the desired width
           height: "100px"         // Set the desired height
         }
+
       };
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
        buttonOptions
-     
     );
 
     google.accounts.id.prompt();
+
   }, []);
+
+  // useEffect(()=> {
+
+  //   axios.get('http://localhost:8080/whee/example').then(response = setUser(response.data))
+  //   .catch(error = console.error('Error', error));
+      
+
+  // },[]);
 
   return (
     <div className="SignIn">
       <div id="signInDiv"></div>
-      {/* {
-        Object.keys(user).length !=0 &&(
-        <div>
-        <button onClick={() => navigate('/Home.jsx')}>
-        </button>
-        </div>
-        )
-} */}
+
       {Object.keys(user).length !=0 &&(
           <div>
           <img src = {user.picture}></img>
           <h3>{user.name }</h3>  
           <h4>Hey {user.given_name}! Go <a href="./Home">make predictions!</a></h4> 
           </div> 
+          
       )
       }
     </div>
