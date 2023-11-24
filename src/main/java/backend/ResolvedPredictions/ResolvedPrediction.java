@@ -23,7 +23,7 @@ public class ResolvedPrediction {
     @SerializedName("predictionEndDate")
     private String predictionEndDate; 	    // Date of the prediction ending (null if not set)
     @SerializedName("resolution")
-    public boolean resolution; 			// Boolean value of the resolution of the prediction
+    public boolean resolution; 			    // Boolean value of the resolution of the prediction
     @SerializedName("resolvedDate")
     private String resolvedDate; 			// Date of the resolution of the prediction
 
