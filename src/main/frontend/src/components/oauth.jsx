@@ -4,6 +4,7 @@ import React from 'react';
 //import Home from './Home';
 // import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+//import UserService from './UserService';
 
 function SignIn() {
 
@@ -15,7 +16,30 @@ function SignIn() {
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
     setUser(decodedToken);
-    // axios.post('http://localhost:8080/whee/example', {idToken: decodedToken},{
+    let data = {idString: decodedToken};
+    fetch("http://localhost:8080/example", {
+      method:"POST",
+      body: JSON.stringify(data),
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
+    //console.log(res);)
+
+    // axios.put('http://localhost:8080/whee/example', {idToken: decodedToken},{
     //   headers: {
     //     'Content-Type': 'application/json',},
     // }).then(response=>{
@@ -23,6 +47,17 @@ function SignIn() {
     // }).catch(error=>{
     //   console.error("Error", error);
     // })
+    // const handleClick = async () => {
+    //   try{
+    //     const response = await axios.get('http://localhost:8080/example',{
+    //       headers:{
+    //         'signInRequest': decodedToken, },});
+    //     console.log("PUT request successful: ", response.data);
+    //     }catch(error){
+    //       console.error('Error: ', error);
+    //     }
+    //   }
+  
     document.getElementById("signInDiv").hidden = true;
   }
 
