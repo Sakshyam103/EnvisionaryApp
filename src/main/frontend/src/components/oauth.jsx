@@ -10,6 +10,7 @@ function SignIn() {
   const navigate = useNavigate();
 
   function handleCallbackResponse(response) {
+    //document.getElementById("signInDiv").hidden = true;
     console.log(response.credential);
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
@@ -60,7 +61,7 @@ function SignIn() {
       };
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
-       buttonOptions
+       buttonOptions,
     );
 
     google.accounts.id.prompt();
@@ -82,6 +83,7 @@ function SignIn() {
         make predictions!
       </a>
     </h4>
+    
   </div>
 )}
     </div>
