@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { jwtDecode } from "jwt-decode";
 import React from 'react';
-import Home from '../Home';
-import {useNavigate} from 'react-router-dom'
+//import Home from './Home';
+// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+//import UserService from './UserService';
 
 function SignIn({ onUserLogin }) {
 
@@ -15,8 +17,6 @@ function SignIn({ onUserLogin }) {
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
     setUser(decodedToken);
-    onUserLogin(decodedToken);
-    document.getElementById("signInDiv").hidden=true;
     let data = {idString: decodedToken};
     fetch("http://localhost:8080/example", {
       method:"POST",
@@ -38,8 +38,47 @@ function SignIn({ onUserLogin }) {
       })
      
      ;
-    //<Home/>
+    //console.log(res);)
+
+    // axios.put('http://localhost:8080/whee/example', {idToken: decodedToken},{
+    //   headers: {
+    //     'Content-Type': 'application/json',},
+    // }).then(response=>{
+    //   console.log('Backend response: ', response.data);
+    // }).catch(error=>{
+    //   console.error("Error", error);
+    // })
+    // const handleClick = async () => {
+    //   try{
+    //     const response = await axios.get('http://localhost:8080/example',{
+    //       headers:{
+    //         'signInRequest': decodedToken, },});
+    //     console.log("PUT request successful: ", response.data);
+    //     }catch(error){
+    //       console.error('Error: ', error);
+    //     }
+    //   }
+  
+    document.getElementById("signInDiv").hidden = true;
   }
+
+
+  // const sendDataToJava = async () => {
+  //   try {
+  //     // Make a POST request to your Java backend
+  //     const response = await axios.post('http://localhost:8080/whee/example', {
+  //       key: 'value', // Add your data here
+  //       anotherKey: 'anotherValue',
+  //       // ...
+  //     });
+
+  //     // Handle the response from the backend
+  //     console.log('Response from Java:', response.data);
+  //   } catch (error) {
+  //     // Handle errors
+  //     console.error('Error sending data to Java:', error);
+  //   }
+  // };
 
   useEffect(() => {
     /*global google*/
