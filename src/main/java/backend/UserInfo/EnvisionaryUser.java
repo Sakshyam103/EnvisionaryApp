@@ -2,6 +2,7 @@ package backend.UserInfo;
 
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
+import backend.EntertainmentPredictions.EntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.Notifications.Notification;
 import backend.ResolvedPredictions.ResolvedPrediction;
@@ -32,8 +33,8 @@ public class EnvisionaryUser {
     private String email;			                                        // UserInfo.User's email address
     @SerializedName("customPredictions")
     private ArrayList<CustomPrediction> customPredictions;		            // List of user's custom predictions
-    //    @SerializedName("entertainmentPredictions")
-//    private ArrayList<EntertainmentPrediction> entertainmentPredictions;    // List of user's entertainment predictions
+    @SerializedName("entertainmentPredictions")
+    private ArrayList<EntertainmentPrediction> entertainmentPredictions;    // List of user's entertainment predictions
     @SerializedName("footballMatchPredictions")
     private ArrayList<FootballMatchPrediction> footballMatchPredictions;	// List of user's football match predictions (Sports)
     @SerializedName("celestialBodyPredictions")
@@ -77,12 +78,12 @@ public class EnvisionaryUser {
     public void setCustomPredictions(ArrayList<CustomPrediction> customPredictions) {
         this.customPredictions = customPredictions;
     }
-    //    public ArrayList<EntertainmentPrediction> getEntertainmentPredictions() {
-//        return entertainmentPredictions;
-//    }
-//    public void setEntertainmentPredictions(ArrayList<EntertainmentPrediction> entertainmentPredictions) {
-//        this.entertainmentPredictions = entertainmentPredictions;
-//    }
+        public ArrayList<EntertainmentPrediction> getEntertainmentPredictions() {
+        return entertainmentPredictions;
+    }
+    public void setEntertainmentPredictions(ArrayList<EntertainmentPrediction> entertainmentPredictions) {
+        this.entertainmentPredictions = entertainmentPredictions;
+    }
     public ArrayList<FootballMatchPrediction> getFootballMatchPredictions() {
         return footballMatchPredictions;
     }
@@ -142,8 +143,8 @@ public class EnvisionaryUser {
         this.email = email;
         ArrayList<CustomPrediction> emptyCustomPredictions = new ArrayList<>();
         this.customPredictions = emptyCustomPredictions;
-//        ArrayList<EntertainmentPrediction> emptyEntertainmentPredictions = new ArrayList<>();
-//        this.entertainmentPredictions = emptyEntertainmentPredictions;
+        ArrayList<EntertainmentPrediction> emptyEntertainmentPredictions = new ArrayList<>();
+        this.entertainmentPredictions = emptyEntertainmentPredictions;
         ArrayList<FootballMatchPrediction> emptyFootballMatchPredictions = new ArrayList<>();
         this.footballMatchPredictions = emptyFootballMatchPredictions;
         ArrayList<CelestialBodyPrediction> emptyCelestialBodyPredictions = new ArrayList<>();
@@ -164,7 +165,7 @@ public class EnvisionaryUser {
     //
     public EnvisionaryUser(String userID, String password, String email,
                            ArrayList<CustomPrediction> customPredictions,
-//                           ArrayList<EntertainmentPrediction> entertainmentPredictions,
+                           ArrayList<EntertainmentPrediction> entertainmentPredictions,
                            ArrayList<FootballMatchPrediction> footballMatchPredictions,
                            ArrayList<CelestialBodyPrediction> celestialBodyPredictions,
 //                           ArrayList<WeatherPrediction> weatherPredictions,
@@ -175,7 +176,7 @@ public class EnvisionaryUser {
         this.password = password;
         this.email = email;
         this.customPredictions = customPredictions;
-//        this.entertainmentPredictions = entertainmentPredictions;
+        this.entertainmentPredictions = entertainmentPredictions;
         this.footballMatchPredictions = footballMatchPredictions;
         this.celestialBodyPredictions = celestialBodyPredictions;
 //        this.weatherPredictions = weatherPredictions;
@@ -192,7 +193,7 @@ public class EnvisionaryUser {
         System.out.println("UserInfo.User ID: " + userID + "\n" +
                 "Email: " + email + "\n" +
                 "Number of Custom Predictions: " + customPredictions.size() + "\n" +
-//                           "Number of Entertainment Predictions: " + entertainmentPredictions.size() + "\n" +
+                "Number of Entertainment Predictions: " + entertainmentPredictions.size() + "\n" +
                 "Number of Football Match Predictions: " + footballMatchPredictions.size() + "\n" +
                 "Number of Science Predictions: " + celestialBodyPredictions.size() + "\n" +
 //                           "Number of Weather Predictions: " + weatherPredictions.size() + "\n" +
