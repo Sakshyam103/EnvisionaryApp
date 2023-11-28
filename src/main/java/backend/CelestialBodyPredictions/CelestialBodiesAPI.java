@@ -1,10 +1,8 @@
 package backend.CelestialBodyPredictions;
 
 import org.json.JSONArray;
+//import org.json.JSONObject;
 import org.json.JSONObject;
-
-import com.google.gson.JsonObject;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ public class CelestialBodiesAPI {
         ArrayList<CelestialBody> celestialBodyList = new ArrayList<>();
 
         try {
-            JsonObject jsonObject = new JsonObject(spaceData);
+            JSONObject jsonObject = new JsonObject(spaceData);
             JSONArray knownCountArray = jsonObject.getJSONArray("knowncount");
 
             for (int i = 0; i < knownCountArray.length(); i++) {
