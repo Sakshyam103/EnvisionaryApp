@@ -16,7 +16,8 @@ public class CelestialBodiesAPI {
         ArrayList<CelestialBody> celestialBodyList = new ArrayList<>();
 
         try {
-            JSONObject jsonObject = new JsonObject(spaceData);
+
+            JSONObject jsonObject = new JSONObject(spaceData);
             JSONArray knownCountArray = jsonObject.getJSONArray("knowncount");
 
             for (int i = 0; i < knownCountArray.length(); i++) {
