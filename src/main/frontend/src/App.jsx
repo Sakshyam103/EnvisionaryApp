@@ -6,6 +6,11 @@ import SignIn from './components/oauth'
 import Home from './Home'
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const handleUserLogin = (user) => {
+    setCurrentUser(user);
+  };
 
   return (
     <>
@@ -18,10 +23,10 @@ function App() {
       <div >
         <Routes>
         {/* <Route path="/" element={<SignIn />}/>  */}
-        <Route path="/Home" element={<Home />}/>          
+        <Route path="/Home" element={<Home user={currentUser} />} />         
         </Routes>
       </div>
-      <div className="card"><SignIn/></div>
+      <div className="card"><SignIn onUserLogin={handleUserLogin} /></div>
       </div>
       </Router>
     </>

@@ -4,7 +4,7 @@ import React from 'react';
 import Home from '../Home';
 import {useNavigate} from 'react-router-dom'
 
-function SignIn() {
+function SignIn({ onUserLogin }) {
 
   const [user, setUser] = useState({});
   const navigate = useNavigate();
@@ -15,6 +15,8 @@ function SignIn() {
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
     setUser(decodedToken);
+    onUserLogin(decodedToken);
+    document.getElementById("signInDiv").hidden=true;
     let data = {idString: decodedToken};
     fetch("http://localhost:8080/example", {
       method:"POST",
@@ -36,7 +38,6 @@ function SignIn() {
       })
      
      ;
-    document.getElementById("signInDiv").hidden = true;
     //<Home/>
   }
 
