@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
+import myLogo from './assets/myLogo.png'
 import './App.css'
+import SignIn from './components/oauth'
+import Home from './Home'
+import PredictionOptions from './components/PredictionOptions'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const handleUserLogin = (user) => {
+    try {
+      setLoading(true);
+      setCurrentUser(user);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+    <div className="app-container">
+    {!currentUser && (
+      <div className='header-container'>
+         <div className='logo'> <img src={myLogo} className="logo" alt="My logo" /></div>
+          <h3>nvisionary</h3>
+      </div>)}
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className='card'>
+        <Routes>
+      <Route path="/login" element = {<SignIn onUserLogin={handleUserLogin}/>} />
+      </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      {!currentUser && (
+      <div >
+          <h1>Sign in to make predictions!</h1>
+      </div>)}
+      <Routes>
+      <Route
+      path="/Home"
+      element={
+      currentUser ? (
+        <Home user={currentUser} />
+      ) : (
+        <>
+        <Navigate to="/login" replace />
+        <SignIn onUserLogin={handleUserLogin} /> 
+        </>
+      )}
+      />
+     <Route path="/Home/MakePredictions" element={
+     currentUser ? (
+      <>
+      <PredictionOptions user={currentUser}/></>
+     ) : (
+      <>
+      <Navigate to="/login" replace />
+      <SignIn onUserLogin={handleUserLogin} /> 
+      </>
+      )
+      }/>
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      
+      </Router>
+  );
 }
 
 export default App
