@@ -27,7 +27,6 @@ public final class EntertainmentPrediction {
 
     // set those variables
 
-
     public void setPrediction(Prediction prediction) {this.prediction = prediction;}
 
     public void setMovieTitle(String movieTitle) {this.movieTitle = movieTitle;}

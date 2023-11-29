@@ -53,7 +53,7 @@ public class MongoDBEnvisionaryUsers {
     //
     private static MongoClient connectToMongoDB() {
         Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
-        ConnectionString mongoUri = new ConnectionString("mongodb+srv://BrandonLaPointe:" + System.getenv("MONGO_DB_PASSWORD") + "@envisionarycluster.19uobkz.mongodb.net/?retryWrites=true&w=majority");
+        ConnectionString mongoUri = new ConnectionString("mongodb+srv://MONGO_USER:" + System.getenv("MONGO_PASSWORD") + "@envisionarycluster.19uobkz.mongodb.net/?retryWrites=true&w=majority");
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
         MongoClientSettings settings = MongoClientSettings.builder()

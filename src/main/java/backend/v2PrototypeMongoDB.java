@@ -4,6 +4,7 @@ import backend.CelestialBodyPredictions.CelestialBodyPredictionInitializer;
 import backend.CelestialBodyPredictions.CelestialBodyUpdater;
 import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
 import backend.CustomPredictions.CustomPredictionInitializer;
+import backend.EntertainmentPredictions.runEntertainment;
 import backend.FootballMatchPredictions.FootballMatchPredictionInitializer;
 import backend.FootballMatchPredictions.FootballMatchUpdater;
 import backend.FootballMatchPredictions.FootballTeamInitializer;
@@ -153,6 +154,7 @@ public class v2PrototypeMongoDB {
     public static int celestialBodyPredictionMenuSelection = 0;
     public static int footballPredictionMenuSelection = 0;
     public static int footballMatchMenuSelection = 0;
+    public static int entertainmentPredictionMenuSelection = 0;
     public static int statisticsMenuSelection = 0;
     public static String userFilePath = System.getProperty("user.home") + File.separator + "EnvisionaryApp" + File.separator + "Users" + File.separator + "user_data.json";
 
@@ -374,13 +376,14 @@ public class v2PrototypeMongoDB {
                     "║                                   1. Custom prediction menu                                      ║\n" +
                     "║                                   2. Celestial body prediction menu                              ║\n" +
                     "║                                   3. Football match prediction menu                              ║\n" +
-                    "║                                   4. View all active predictions                                 ║\n" +
-                    "║                                   5. View all resolved predictions                               ║\n" +
-                    "║                                   6. View notifications                                          ║\n" +
-                    "║                                   7. Remove notifications                                        ║\n" +
-                    "║                                   8. Remove all notifications                                    ║\n" +
-                    "║                                   9. Statistics menu                                             ║\n" +
-                    "║                                  10. Log out                                                     ║\n" +
+                    "║                                   4. Entertainment prediction menu                               ║\n" +
+                    "║                                   5. View all active predictions                                 ║\n" +
+                    "║                                   6. View all resolved predictions                               ║\n" +
+                    "║                                   7. View notifications                                          ║\n" +
+                    "║                                   8. Remove notifications                                        ║\n" +
+                    "║                                   9. Remove all notifications                                    ║\n" +
+                    "║                                   10. Statistics menu                                             ║\n" +
+                    "║                                  11. Log out                                                     ║\n" +
                     "║                                                                                                  ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -406,6 +409,10 @@ public class v2PrototypeMongoDB {
                             userMenuSelection = 0;
                             break;
                         case 4:
+                            EntertainmentPredictionMenu();
+                            userMenuSelection = 0;
+                            break;
+                        case 5:
                             MongoDBEnvisionaryUsers.retrieveAndDisplayCustomPredictionsForUser(userID);
                             MongoDBEnvisionaryUsers.retrieveAndDisplayCelestialBodyPredictionsForUser(userID);
                             MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
@@ -413,27 +420,27 @@ public class v2PrototypeMongoDB {
                             //UserInfo.MongoDBEnvisionaryUsers.retrieveAndDisplayWeatherPredictionsForUser(userID);
                             userMenuSelection = 0;
                             break;
-                        case 5:
+                        case 6:
                             MongoDBEnvisionaryUsers.retrieveAndDisplayResolvedPredictionsForUser(userID);
                             userMenuSelection = 0;
                             break;
-                        case 6:
+                        case 7:
                             MongoDBEnvisionaryUsers.retrieveAndDisplayNotificationsForUser(userID);
                             userMenuSelection = 0;
                             break;
-                        case 7:
+                        case 8:
                             NotificationUpdater.removeUserNotificationMongoDB(userID);
                             userMenuSelection = 0;
                             break;
-                        case 8:
+                        case 9:
                             NotificationUpdater.removeAllUserNotificationsMongoDB(userID);
                             userMenuSelection = 0;
                             break;
-                        case 9:
+                        case 10:
                             statisticsMenu();
                             userMenuSelection = 0;
                             break;
-                        case 10:
+                        case 11:
                             System.out.println("                                  Successful log out...");
                             break;
                     }
@@ -736,6 +743,62 @@ public class v2PrototypeMongoDB {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid menu option (1-7).");
+                scan.next(); // Clear the invalid input
+            }
+        }
+    }
+
+    public static void EntertainmentPredictionMenu() {
+        entertainmentPredictionMenuSelection = 0;
+        while(entertainmentPredictionMenuSelection != 6) {
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                 ENTERTAINMENT PREDICTION MENU                                    ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                     1. Make new prediction on the release date of a movie                        ║\n" +
+                    "║                     2. Remove entertainment prediction                                           ║\n" +
+                    "║                     3. View active entertainment predictions                                     ║\n" +
+                    "║                     4. View resolved entertainment predictions                                   ║\n" +
+                    "║                     5. Return to main menu                                                       ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print(  "                                    Selection: ");
+            // Menu logic
+            try {
+                int input = scan.nextInt();
+
+                if (input >= 1 && input <= 5) {
+                    entertainmentPredictionMenuSelection = input;
+                    switch (entertainmentPredictionMenuSelection) {
+                        case 1:
+                            runEntertainment.runEntertainmentPrediction(userID);
+                            entertainmentPredictionMenuSelection = 0;
+                            break;
+                        case 2:
+//                            CelestialBodyPredictionInitializer.removeCelestialBodyPredictionMongoDB(userID);
+                            entertainmentPredictionMenuSelection = 0;
+                            break;
+                        case 3:
+                            MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
+                            entertainmentPredictionMenuSelection = 0;
+                            break;
+                        case 4:
+                            ResolvedPredictionInitializer.printResolvedEntertainmentPredictionsMongoDB(userID);
+                            entertainmentPredictionMenuSelection = 0;
+                            break;
+                        case 5:
+                            System.out.println("Returning back to main menu...");
+                            break;
+                    }
+                } else {
+                    System.out.println("Invalid selection. Please enter a valid menu option (1-6).");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid menu option (1-6).");
                 scan.next(); // Clear the invalid input
             }
         }

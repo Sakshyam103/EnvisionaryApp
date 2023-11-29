@@ -53,6 +53,6 @@ public class movieAPI{
     // array is null, therefore api returned nothing
     private static void movieNotFound(){
         System.out.println("Sorry but we could not find that movie \n Please try again");
-        runEntertainment.runEntertainmentPrediction();
+//        runEntertainment.runEntertainmentPrediction();
     }
 }
