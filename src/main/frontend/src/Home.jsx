@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import './Home.css';
 import NavigationBar from './components/NavigationBar';
-
+import {Link, useNavigate} from 'react-router-dom';
 function Home() {
   const [notification, setNotification] = useState('');
+  const navigate = useNavigate();
 
   const handleMakePredictions = () => {
-    // Logic for 'Make Prediction' button
-    console.log("Make Prediction clicked");
+    navigate('/Home/MakePredictions');
   };
 
   const handleViewPredictions = () => {

@@ -80,7 +80,7 @@ function SignIn({ onUserLogin }) {
     <img src={user.picture} alt={user.name} />
     <h3>{user.name}</h3>
     <h4>
-      Hey {user.given_name}! Go{' '}
+      Hey {user.given_name}! You are logged in. Go{' '}
       <Link to="/Home"> make predictions!</Link>
     </h4>
     
