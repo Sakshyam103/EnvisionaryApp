@@ -2,6 +2,8 @@ import React from 'react';
 import Home from '../Home';
 
 const PredictionOptions = () => {
+
+  
   return (
     <>
    
@@ -15,6 +17,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
+        onClick={handleFootballPredictions}
       >
         Football Matches
       </button>
@@ -26,6 +29,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
+        onClick={handleMoviesPredictions}
       >
         Movies
       </button>
@@ -37,6 +41,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
+        onClick={handleAstronomyPredictions}
       >
         Astronomy
       </button>
@@ -48,6 +53,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
+        onClick={handleWeatherPredictions}
       >
         Weather
       </button>

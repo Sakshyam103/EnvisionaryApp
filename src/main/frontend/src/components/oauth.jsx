@@ -15,7 +15,7 @@ function SignIn({ onUserLogin }) {
     setUser(decodedToken);
 
     let data = {idString: decodedToken};
-    fetch("http://localhost:8080/example", {
+    fetch("http://localhost:8080/login", {
       method:"POST",
       body: JSON.stringify(data),
       headers:{
@@ -52,12 +52,12 @@ function SignIn({ onUserLogin }) {
         theme: "outline",
         size: "large",
         style: {
-          position: "center", // Set the desired CSS position, e.g., relative, absolute, etc.
-          top: "50%",           // Adjust the top position as needed
-          left: "50%",          // Adjust the left position as needed
+          position: "center", 
+          top: "50%",           
+          left: "50%",          
           transform: "translate(-50%, -50%)",
-          width: "500px",        // Set the desired width
-          height: "100px"         // Set the desired height
+          width: "500px",       
+          height: "100px"         
         }
 
       };

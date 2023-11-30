@@ -44,6 +44,15 @@ public class Controller {
 
     }
 
+    // @RequestMapping(value = "/example")
+    // public @ResponseBody String handleSignIn(@RequestBody(required = false)
+    // String idString) {
+    // System.out.println("---test");
+    // SignInRequest signInRequest1 = new SignInRequest();
+    // signInRequest1.setIdToken(idString);
+    // System.out.println(signInRequest1.getIdToken());
+    // return "hello World";
+
     @Component
     static class SignInRequest {
         private String idToken;

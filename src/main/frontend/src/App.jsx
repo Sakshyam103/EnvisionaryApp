@@ -34,7 +34,7 @@ function App() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className='card'>
         <Routes>
-      <Route path="/login" element = {<SignIn onUserLogin={handleUserLogin}/>} />
+      <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
       </Routes>
       </div>
       {!currentUser && (
@@ -49,7 +49,7 @@ function App() {
         <Home user={currentUser} />
       ) : (
         <>
-        <Navigate to="/login" replace />
+        <Navigate to="/" replace />
         <SignIn onUserLogin={handleUserLogin} /> 
         </>
       )}
@@ -60,7 +60,7 @@ function App() {
       <PredictionOptions user={currentUser}/></>
      ) : (
       <>
-      <Navigate to="/login" replace />
+      <Navigate to="/" replace />
       <SignIn onUserLogin={handleUserLogin} /> 
       </>
       )
