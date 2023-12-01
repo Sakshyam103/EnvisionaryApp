@@ -43,6 +43,14 @@ public class FunctionExamples {
 
         CelestialBodyPredictionInitializer.removeCelestialBodyPredictionMongoDB("bLapointe");
 
+        // Create method for Entertainment Prediction
+
+        // Remove method for Entertainment Prediction
+
+        // Create method for Weather Prediction
+
+        // Remove method for Weather Prediction
+
         NotificationUpdater.removeUserNotificationMongoDB("bLapointe");
 
         NotificationUpdater.removeAllUserNotificationsMongoDB("bLapointe");
@@ -50,7 +58,6 @@ public class FunctionExamples {
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ALL METHODS USED TO RETURN DATA FROM MONGO DB THAT FETCH DATA FOR VIEWING
         //
-
         // Returns ArrayList<CustomPrediction>
         MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("bLapointe");
 
