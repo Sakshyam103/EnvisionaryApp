@@ -8,8 +8,9 @@ import java.util.Scanner;
 
 import static backend.EntertainmentPredictions.buildEntertainmentPrediction.buildMoviePrediction;
 import static backend.EntertainmentPredictions.checkGuess.checkUserPrediction;
+import static backend.EntertainmentPredictions.entertainmentAmountCheck.EntertainmentTrigger;
+import static backend.EntertainmentPredictions.entertainmentAmountCheck.makeOrBreak;
 import static backend.EntertainmentPredictions.makeMovieGuess.getPredictionFromUser;
-import static backend.EntertainmentPredictions.entertainmentAmountCheck.amountMade;
 
 public class runEntertainment {
 
@@ -17,7 +18,7 @@ public class runEntertainment {
     public static int year;
 
     public static void runEntertainmentPrediction(String userID){
-        if (amountMade(userID)) {
+        if (makeOrBreak()) {
            checkGood(userID);
         }
         else{
@@ -26,12 +27,14 @@ public class runEntertainment {
     }
 
     private static void checkGood(String userID){
+        EntertainmentTrigger();
         getPredictionFromUser();
         JsonArray array = movieAPI.connectToMovie();
         JsonValue movieInfo = parseMovieArray.getCorrectMovie(array);
         checkUserPrediction(movieInfo);
         EntertainmentPrediction moviePrediction = buildMoviePrediction();
         EntertainmentPredictionInitializer.saveEntertainmentPredictionMongoDB(userID, moviePrediction);
+        EntertainmentTrigger();
     }
 
     private static void checkBad(String userID) {
