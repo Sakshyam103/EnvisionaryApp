@@ -17,14 +17,19 @@ function FootballPrediction() {
       } else {
         alert('Please select Team and Result before submitting predictions.');
       }
-    // Handle the selected predictions, you can log them or send them to the backend
-    console.log(`Selected Predictions: Match - ${match}, Team - ${team}, Result - ${result}`);
+    
+    const footballData = {
+      match,
+      team,
+      result,
+    }
+
+    const footballMatchPrediction = JSON.stringify(footballData, null, 2);
+    console.log(footballMatchPrediction);
   };
   
   const handleSubmitMatch = () => {
-    // {match &&(
-    // setButtonPressed(true)
-    // )}
+
     if (match) {
         setButtonPressed(true);
       } else {
