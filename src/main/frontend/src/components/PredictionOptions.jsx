@@ -7,7 +7,8 @@ function PredictionOptions ({user}) {
 
   const handleFootballPredictions = () => {
     // Handle football predictions logic here
-    console.log('Handling Football Predictions');
+    console.log('Handling Custom Predictions');
+    navigate('/Home/MakePredictions/Football');
 
   };
 

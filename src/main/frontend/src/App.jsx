@@ -6,6 +6,7 @@ import SignIn from './components/oauth'
 import Home from './Home'
 import PredictionOptions from './components/PredictionOptions'
 import CustomPrediction from './components/CustomPrediction'
+import FootballPrediction from './components/FootballPrediction'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -69,6 +70,17 @@ function App() {
      currentUser ? (
       <>
       <CustomPrediction user={currentUser}/></>
+     ) : (
+      <>
+      <Navigate to="/" replace />
+      <SignIn onUserLogin={handleUserLogin} /> 
+      </>
+      )
+      }/>
+      <Route path="/Home/MakePredictions/Football" element={
+     currentUser ? (
+      <>
+      <FootballPrediction user={currentUser}/></>
      ) : (
       <>
       <Navigate to="/" replace />
