@@ -18,7 +18,7 @@ public class Prediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     @SerializedName("predictionType")
-    private String predictionType;         // Custom, Entertainment, FootballMatchPredictions.FootballMatch, Science, Weather
+    private String predictionType;         // Custom, Entertainment, FootballMatch, Science, Weather
     @SerializedName("predictionContent")
     private String predictionContent;      // The text content of the prediction
     @SerializedName("predictionMadeDate")

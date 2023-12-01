@@ -287,6 +287,23 @@ public class v2PrototypeMongoDB {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // login
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Gathers input from the user to login as an existing Envisionary user. If a valid UserInfo.User is found
+    // within the UserInfo.User file, the application will go to the userMenu using the entered UserID as the
+    // userIdentifier for saving and loading the user's prediction, notifications, and statistics JSON
+    // files.
+    //
+    public static void loginLogic(String userIdentifier) {
+        boolean isValidUser = false;
+        while (!isValidUser) {
+            password = scan.next();
+            isValidUser = UserInitializer.loginMongoDB(userID, password);
+        }
+        userMenu();
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // createNewAccount
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Gathers input from the user to create a new Envisionary user account or cancels the process at any

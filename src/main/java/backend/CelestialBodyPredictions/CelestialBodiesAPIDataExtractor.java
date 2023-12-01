@@ -14,6 +14,7 @@ public class CelestialBodiesAPIDataExtractor {
         }
         return list;
     }
+
     //Returns the list of number of objects as an arraylist of Integer's
     public static ArrayList<Integer> getListofCounts(ArrayList<CelestialBody> sortedData) {
         ArrayList<Integer> list = new ArrayList<>();
@@ -33,6 +34,7 @@ public class CelestialBodiesAPIDataExtractor {
             System.out.println("The total number of " + x.getCelestialBodyType() + " known by " + x.getUpdatedDate() + " is " + x.getKnownCount() + ".");
         }
     }
+
     // EXAMPLE OUTPUT OF printData(SpaceAPI.getSortedData(SpaceAPI.getSpaceData()));
     //The total number of planet known by 24/08/2006 is 8.
     //The total number of dwarfPlanet known by 24/08/2006 is 5.

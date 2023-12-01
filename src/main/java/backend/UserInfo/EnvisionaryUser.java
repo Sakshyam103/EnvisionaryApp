@@ -3,6 +3,7 @@ package backend.UserInfo;
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
+//import backend.WeatherPredictions.WeatherPrediction;
 import backend.Notifications.Notification;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserStatistics.UserDescriptiveStatistics;
@@ -38,8 +39,8 @@ public class EnvisionaryUser {
     private ArrayList<FootballMatchPrediction> footballMatchPredictions;	// List of user's football match predictions (Sports)
     @SerializedName("celestialBodyPredictions")
     private ArrayList<CelestialBodyPrediction> celestialBodyPredictions;    // List of user's celestial body predictions (Science)
-    //    @SerializedName("weatherPredictions")
-//    private ArrayList<WeatherPrediction> weatherPredictions;		        // List of user's weather predictions
+    //@SerializedName("weatherPredictions")
+    //private ArrayList<WeatherPrediction> weatherPredictions;		        // List of user's weather predictions
     @SerializedName("resolvedPredictions")
     private ArrayList<ResolvedPrediction> resolvedPredictions;		        // List of user's resolved predictions
     @SerializedName("notifications")
@@ -95,7 +96,7 @@ public class EnvisionaryUser {
     public void setCelestialBodyPredictions(ArrayList<CelestialBodyPrediction> celestialBodyPredictions) {
         this.celestialBodyPredictions = celestialBodyPredictions;
     }
-    //    public ArrayList<WeatherPrediction> getWeatherPredictions() {
+//    public ArrayList<WeatherPrediction> getWeatherPredictions() {
 //        return weatherPredictions;
 //    }
 //    public void setWeatherPredictions(ArrayList<WeatherPrediction> weatherPredictions) {
@@ -167,7 +168,7 @@ public class EnvisionaryUser {
 //                           ArrayList<EntertainmentPrediction> entertainmentPredictions,
                            ArrayList<FootballMatchPrediction> footballMatchPredictions,
                            ArrayList<CelestialBodyPrediction> celestialBodyPredictions,
-//                           ArrayList<WeatherPrediction> weatherPredictions,
+                           //ArrayList<WeatherPrediction> weatherPredictions,
                            UserDescriptiveStatistics userDescriptiveStatistics,
                            UserInferentialStatistics userInferentialStatistics,
                            ArrayList<Notification> notifications) {
@@ -178,7 +179,7 @@ public class EnvisionaryUser {
 //        this.entertainmentPredictions = entertainmentPredictions;
         this.footballMatchPredictions = footballMatchPredictions;
         this.celestialBodyPredictions = celestialBodyPredictions;
-//        this.weatherPredictions = weatherPredictions;
+        //this.weatherPredictions = weatherPredictions;
         this.userDescriptiveStatistics = userDescriptiveStatistics;
         this.userInferentialStatistics = userInferentialStatistics;
         this.notifications = notifications;
@@ -192,10 +193,10 @@ public class EnvisionaryUser {
         System.out.println("UserInfo.User ID: " + userID + "\n" +
                 "Email: " + email + "\n" +
                 "Number of Custom Predictions: " + customPredictions.size() + "\n" +
-//                           "Number of Entertainment Predictions: " + entertainmentPredictions.size() + "\n" +
+//                "Number of Entertainment Predictions: " + entertainmentPredictions.size() + "\n" +
                 "Number of Football Match Predictions: " + footballMatchPredictions.size() + "\n" +
-                "Number of Science Predictions: " + celestialBodyPredictions.size() + "\n" +
-//                           "Number of Weather Predictions: " + weatherPredictions.size() + "\n" +
+                "Number of Celestial Body Predictions: " + celestialBodyPredictions.size() + "\n" +
+                //"Number of Weather Predictions: " + weatherPredictions.size() + "\n" +
                 "UserInfo.User Descriptive Statistics: " + "\n" +
                 "   BasePredictionsObject.Prediction Count: " + userDescriptiveStatistics.getPredictionCount() + "\n" +
                 "   Number of Correct Predictions: " + userDescriptiveStatistics.getCorrectPredictions() + "\n" +

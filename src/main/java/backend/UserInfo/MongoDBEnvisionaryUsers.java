@@ -3,8 +3,9 @@ package backend.UserInfo;
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
-import backend.Notifications.Notification;
+//import backend.WeatherPredictions.WeatherPrediction;
 import backend.ResolvedPredictions.ResolvedPrediction;
+import backend.Notifications.Notification;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
 
@@ -365,23 +366,23 @@ public class MongoDBEnvisionaryUsers {
         mongoClient.close();
     }
 
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    // retrieveAndDisplayWeatherPredictionsForUser
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    //
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveAndDisplayWeatherPredictionsForUser
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
 //    public static void retrieveAndDisplayWeatherPredictionsForUser(String userID) {
 //        // Connect to MongoDB EnvisionaryUsers collection
 //        MongoClient mongoClient = connectToMongoDB();
 //        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<UserInfo.EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, UserInfo.EnvisionaryUser.class);
+//        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 //
 //        // Set filter for the specified user
 //        Bson userFilter = Filters.eq("userID", userID);
 //
 //        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<UserInfo.EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+//        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
 //            while (cursor.hasNext()) {
-//                UserInfo.EnvisionaryUser currentEnvisionaryUser = cursor.next();
+//                EnvisionaryUser currentEnvisionaryUser = cursor.next();
 //
 //                // Retrieve and print WeatherPredictions
 //                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
@@ -748,15 +749,15 @@ public class MongoDBEnvisionaryUsers {
         return celestialBodyPredictionsList;
     }
 
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    // retrieveUserWeatherPredictions
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    //
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserWeatherPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
 //    public static ArrayList<WeatherPrediction> retrieveUserWeatherPredictions(String userID) {
 //        // Connect to MongoDB EnvisionaryUsers collection
 //        MongoClient mongoClient = connectToMongoDB();
 //        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<UserInfo.EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, UserInfo.EnvisionaryUser.class);
+//        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 //
 //        // Set filter for the specified user
 //        Bson userFilter = Filters.eq("userID", userID);
@@ -765,9 +766,9 @@ public class MongoDBEnvisionaryUsers {
 //        ArrayList<WeatherPrediction> weatherPredictionsList = new ArrayList<>();
 //
 //        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<UserInfo.EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+//        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
 //            while (cursor.hasNext()) {
-//                UserInfo.EnvisionaryUser currentEnvisionaryUser = cursor.next();
+//                EnvisionaryUser currentEnvisionaryUser = cursor.next();
 //
 //                // Retrieve and add WeatherPredictions to the list
 //                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();

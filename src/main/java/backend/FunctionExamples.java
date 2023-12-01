@@ -68,7 +68,7 @@ public class FunctionExamples {
         MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("bLapointe");
 
         // Returns ArrayList<WeatherPrediction>
-        MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("bLapointe");
+        //MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("bLapointe");
 
         // Returns ArrayList<ResolvedPrediction>
         MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
