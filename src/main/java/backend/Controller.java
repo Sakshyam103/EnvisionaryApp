@@ -59,6 +59,7 @@ public class Controller {
     @RequestMapping(value = "/viewPrediction")
     public ArrayList<ResolvedPrediction> viewPrediction() {
         System.out.println("view prediction");
+        // TODO: Make each category's view prediction and use correct retrieve methods.
         ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         return a;
     }
