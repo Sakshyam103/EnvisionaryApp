@@ -6,11 +6,11 @@
 }
 
 .logo {
-  height: 15em;
-  width: 15em;
-  padding: 0.0em;
+  padding: 0.5em;
   will-change: filter;
   transition: filter 300ms;
+  height: max-content;
+  width: max-content;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #e039aeaa);
@@ -19,20 +19,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   display: flex;
@@ -55,4 +41,9 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+.header-container {
+  display: flex;
+  align-items: center; 
 }
