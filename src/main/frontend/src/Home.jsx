@@ -15,16 +15,74 @@ function Home() {
   const handleViewPredictions = () => {
     // Logic for 'View Prediction' button
     console.log("View Prediction clicked");
+    fetch("http://localhost:8080/viewPrediction", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
+
   };
 
   const handleViewStatistics = () => {
     // Logic for 'View Statistics' button
     console.log("View Statistics clicked");
+    fetch("http://localhost:8080/viewStatistics", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
   };
 
   const handleNotifications = () => {
     // Logic for 'Notifications' button
     console.log("Notifications clicked");
+    fetch("http://localhost:8080/viewNotification", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
   };
 
   return (
