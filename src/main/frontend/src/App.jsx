@@ -5,7 +5,7 @@ import './App.css'
 import SignIn from './components/oauth'
 import Home from './Home'
 import PredictionOptions from './components/PredictionOptions'
-
+import CustomPrediction from './components/CustomPrediction'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -35,6 +35,7 @@ function App() {
       <div className='card'>
         <Routes>
       <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
+      <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
       </Routes>
       </div>
       {!currentUser && (
@@ -50,6 +51,7 @@ function App() {
       ) : (
         <>
         <Navigate to="/" replace />
+        <Navigate to="/" replace />
         <SignIn onUserLogin={handleUserLogin} /> 
         </>
       )}
@@ -58,6 +60,18 @@ function App() {
      currentUser ? (
       <>
       <PredictionOptions user={currentUser}/></>
+     ) : (
+      <>
+      <Navigate to="/" replace />
+      <Navigate to="/" replace />
+      <SignIn onUserLogin={handleUserLogin} /> 
+      </>
+      )
+      }/>
+      <Route path="/Home/MakePredictions/Custom" element={
+     currentUser ? (
+      <>
+      <CustomPrediction user={currentUser}/></>
      ) : (
       <>
       <Navigate to="/" replace />

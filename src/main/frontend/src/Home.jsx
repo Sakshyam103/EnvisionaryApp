@@ -4,7 +4,12 @@ import React, { useState } from 'react';
 import './Home.css';
 import NavigationBar from './components/NavigationBar';
 import {Link, useNavigate} from 'react-router-dom';
-function Home() {
+// import {Choice} from './components/Choice';
+
+
+//const [choice, setChoice] = useState(null);
+
+function Home({user}) {
   const [notification, setNotification] = useState('');
   const navigate = useNavigate();
 
