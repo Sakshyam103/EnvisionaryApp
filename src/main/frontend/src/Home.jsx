@@ -18,49 +18,76 @@ function Home({user}) {
   };
 
   const handleViewPredictions = () => {
-    // Ensure user.sub is available
-    if (!user.sub) {
-      console.error('User.sub is not available');
-      return;
-    }
-  
-    const data = { idString: user.sub };
-  
-    fetch("http://localhost:8080/view-predictions", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
+    // Logic for 'View Prediction' button
+    console.log("View Prediction clicked");
+    fetch("http://localhost:8080/viewPrediction", {
+      method:"GET",
+      headers:{
         "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.error('Request failed with status:', res.status);
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
           return res.text();
         }
         return res.text();
       })
-      .then((data) => {
+      .then(data => {
         console.log(data);
-        // Add any additional logic here based on the response from the backend
+      }).catch(error=>{
+        console.error('Error: ', error);
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+     
+     ;
+
   };
-  
 
   const handleViewStatistics = () => {
     // Logic for 'View Statistics' button
     console.log("View Statistics clicked");
-    // <Choice choice = "ViewStatistics"/>
-
+    fetch("http://localhost:8080/viewStatistics", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
   };
 
   const handleNotifications = () => {
     // Logic for 'Notifications' button
     console.log("Notifications clicked");
-    // <Choice choice = "ViewNotifications"/>
+    fetch("http://localhost:8080/viewNotification", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
   };
 
   return (
