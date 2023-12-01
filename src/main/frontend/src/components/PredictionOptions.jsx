@@ -1,12 +1,49 @@
 import React from 'react';
 import Home from '../Home';
+import {Link, useNavigate} from 'react-router-dom';
 
-const PredictionOptions = () => {
+function PredictionOptions ({user}) {
+  const navigate = useNavigate();
 
-  
+  const handleFootballPredictions = () => {
+    // Handle football predictions logic here
+    console.log('Handling Football Predictions');
+
+  };
+
+  const handleMoviesPredictions = () => {
+    // Handle movies predictions logic here
+    console.log('Handling Movies Predictions');
+  };
+
+  const handleAstronomyPredictions = () => {
+    // Handle astronomy predictions logic here
+    console.log('Handling Astronomy Predictions');
+  };
+
+  const handleWeatherPredictions = () => {
+    // Handle weather predictions logic here
+    console.log('Handling Weather Predictions');
+  };
+
+  const handleCustomPredictions = () => {
+    // Handle custom predictions logic here
+    console.log('Handling Custom Predictions');
+    navigate('/Home/MakePredictions/Custom');
+  };
+
   return (
     <>
-   
+   {/* <div>
+    {
+      Object.keys(user).length != 0 && (
+        <div>
+          <p>User Information:</p>
+          <pre>{user.sub}</pre>
+        </div>
+      )
+    }
+   </div> */}
    <h1>What type of predictions would you like to make?</h1>
     <div style={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
       <button
@@ -29,7 +66,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
-        onClick={handleMoviesPredictions}
+        //onClick={handleMoviesPredictions}
       >
         Movies
       </button>
@@ -41,7 +78,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
-        onClick={handleAstronomyPredictions}
+        // onClick={handleAstronomyPredictions}
       >
         Astronomy
       </button>
@@ -53,7 +90,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
-        onClick={handleWeatherPredictions}
+        // onClick={handleWeatherPredictions}
       >
         Weather
       </button>
@@ -65,6 +102,7 @@ const PredictionOptions = () => {
           color: 'white',
           border: 'pink',
         }}
+        onClick={handleCustomPredictions}
       >
         Custom
       </button>

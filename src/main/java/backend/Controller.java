@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.stereotype.Component;
 // import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,14 +45,14 @@ public class Controller {
 
     }
 
-    // @RequestMapping(value = "/example")
-    // public @ResponseBody String handleSignIn(@RequestBody(required = false)
-    // String idString) {
-    // System.out.println("---test");
-    // SignInRequest signInRequest1 = new SignInRequest();
-    // signInRequest1.setIdToken(idString);
-    // System.out.println(signInRequest1.getIdToken());
-    // return "hello World";
+    @PostMapping("/view-predictions")
+    public @ResponseBody String handleViewPredictions(@RequestBody(required = false) String idString) {
+        System.out.println("---view-predictions");
+        // Add your logic to handle the idString (user.sub) for predictions
+        System.out.println("Received idString for predictions: " + idString);
+        return "Predictions Logic Placeholder";
+
+    }
 
     @Component
     static class SignInRequest {

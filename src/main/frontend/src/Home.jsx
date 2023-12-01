@@ -9,7 +9,7 @@ import {Link, useNavigate} from 'react-router-dom';
 
 //const [choice, setChoice] = useState(null);
 
-function Home() {
+function Home({user}) {
   const [notification, setNotification] = useState('');
   const navigate = useNavigate();
 
@@ -18,10 +18,37 @@ function Home() {
   };
 
   const handleViewPredictions = () => {
-    // Logic for 'View Prediction' button
-    console.log("View Prediction clicked");
-    // <Choice choice = "ViewPredictions"/>
+    // Ensure user.sub is available
+    if (!user.sub) {
+      console.error('User.sub is not available');
+      return;
+    }
+  
+    const data = { idString: user.sub };
+  
+    fetch("http://localhost:8080/view-predictions", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.error('Request failed with status:', res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then((data) => {
+        console.log(data);
+        // Add any additional logic here based on the response from the backend
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+  
 
   const handleViewStatistics = () => {
     // Logic for 'View Statistics' button

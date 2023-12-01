@@ -13,7 +13,7 @@ function SignIn({ onUserLogin }) {
     var decodedToken = jwtDecode(response.credential);
     console.log(decodedToken);
     setUser(decodedToken);
-
+    onUserLogin(decodedToken)
     let data = {idString: decodedToken};
     fetch("http://localhost:8080/login", {
       method:"POST",
@@ -37,7 +37,7 @@ function SignIn({ onUserLogin }) {
      ;
 
     document.getElementById("signInDiv").hidden = true;
-    onUserLogin(decodedToken);
+    
   }
 
 
