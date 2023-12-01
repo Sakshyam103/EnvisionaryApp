@@ -45,7 +45,7 @@ function PredictionOptions ({user}) {
     }
    </div> */}
    <h1>What type of predictions would you like to make?</h1>
-    <div style={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '50vh' }}>
       <button
         style={{
           flex: 1,
