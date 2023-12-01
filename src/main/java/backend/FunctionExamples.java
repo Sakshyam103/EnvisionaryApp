@@ -1,96 +1,33 @@
 package backend;
 
+import backend.CelestialBodyPredictions.CelestialBodyPredictionInitializer;
 import backend.CustomPredictions.CustomPredictionInitializer;
 import backend.FootballMatchPredictions.FootballMatchPredictionInitializer;
-import backend.FootballMatchPredictions.FootballMatchUpdater;
-import backend.FootballMatchPredictions.FootballTeamInitializer;
 import backend.Notifications.NotificationUpdater;
-import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
-import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
-import backend.ResolvedPredictions.ResolvedPredictionInitializer;
-import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
-import backend.UserStatistics.UserInferentialStatisticsUpdater;
+import backend.UserInfo.MongoDBEnvisionaryUsers;
+
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // FunctionExamples class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// Provides functionality examples of all the classes.
+// Provides functionality examples of all the classes needed for Frontend/Backend interaction.
 //
 public class FunctionExamples {
-
-    public static void initializeFilePaths() {
-        FootballTeamInitializer.initializeFilePath();
-        FootballMatchUpdater.initializeFilePath();
-        CustomPredictionInitializer.initializeFilePath();
-        FootballMatchPredictionInitializer.initializeFilePath();
-        ResolvedPredictionInitializer.initializeFilePath();
-        UserDescriptiveStatisticsUpdater.initializeFilePath();
-        UserInferentialStatisticsUpdater.initializeFilePath();
-        OverallDescriptiveStatisticsUpdater.initializeFilePath();
-        OverallInferentialStatisticsUpdater.initializeFilePath();
-        NotificationUpdater.initializeFilePath();
-    }
-
     public static void main(String[] args) {
-        // Initialize all file paths
-        initializeFilePaths();
-
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Football Team Updater Function Examples
+        // METHODS USED TO RETURN DATA FROM MONGO DB THAT WILL HAVE TO BE MODIFIED FOR UI INPUT
         //
-
-        FootballTeamInitializer.initializeFilePath();
-
-        FootballTeamInitializer.updateTeams();
-
-        FootballTeamInitializer.readFileAndPrintTeams();
-
-
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Custom BasePredictionsObject.Prediction Initializer Function Examples
-        //
-
-		CustomPredictionInitializer.initializeFilePath();
-
-        CustomPredictionInitializer.createNewCustomPrediction("bLapointe");
-
-        CustomPredictionInitializer.printAllCustomPredictions("bLapointe");
-
-        CustomPredictionInitializer.removeCustomPrediction("bLapointe");
-
-        CustomPredictionInitializer.resolveCustomPrediction("bLapointe");
-
         CustomPredictionInitializer.createNewCustomPredictionMongoDB("bLapointe");
 
         CustomPredictionInitializer.removeCustomPredictionMongoDB("bLapointe");
 
         CustomPredictionInitializer.resolveCustomPredictionMongoDB("bLapointe");
 
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Football Match BasePredictionsObject.Prediction Initializer Function Examples
-        //
+        // For testing
+        //FootballMatchPredictionInitializer.createNewFootballMatchYesterdayPredictionMongoDB("bLapointe");
 
-		FootballMatchPredictionInitializer.initializeFilePath();
-
-        FootballMatchPredictionInitializer.createNewFootballMatchYesterdayPrediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchTodayPrediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchTomorrowPrediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek1Prediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek2Prediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek3Prediction("bLapointe");
-
-        FootballMatchPredictionInitializer.printAllFootballMatchPredictions("bLapointe");
-
-        FootballMatchPredictionInitializer.removeFootballMatchPrediction("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchYesterdayPredictionMongoDB("bLapointe");
-
-        FootballMatchPredictionInitializer.createNewFootballMatchTodayPredictionMongoDB("bLapointe");
+        // For testing
+        //FootballMatchPredictionInitializer.createNewFootballMatchTodayPredictionMongoDB("bLapointe");
 
         FootballMatchPredictionInitializer.createNewFootballMatchTomorrowPredictionMongoDB("bLapointe");
 
@@ -100,101 +37,49 @@ public class FunctionExamples {
 
         FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek3PredictionMongoDB("bLapointe");
 
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Resolved BasePredictionsObject.Prediction Initializer Function Examples
-        //
+        FootballMatchPredictionInitializer.removeFootballMatchPredictionMongoDB("bLapointe");
 
-    	ResolvedPredictionInitializer.initializeFilePath();
+        CelestialBodyPredictionInitializer.createNewCelestialBodyPredictionMongoDB("bLapointe");
 
-        ResolvedPredictionInitializer.printResolvedCustomPredictions("bLapointe");
+        CelestialBodyPredictionInitializer.removeCelestialBodyPredictionMongoDB("bLapointe");
 
-        ResolvedPredictionInitializer.printResolvedFootballMatchPredictions("bLapointe");
+        // Create method for Entertainment Prediction
 
-        ResolvedPredictionInitializer.printAllResolvedPredictions("bLapointe");
+        // Remove method for Entertainment Prediction
 
-        ResolvedPredictionInitializer.printResolvedCustomPredictionsMongoDB("bLapointe");
+        // Create method for Weather Prediction
 
-        ResolvedPredictionInitializer.printResolvedSciencePredictions("bLapointe");
-
-        ResolvedPredictionInitializer.printResolvedFootballMatchPredictions("bLapointe");
-
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // UserInfo.User Descriptive Statistics Updater Function Examples
-        //
-
-        UserDescriptiveStatisticsUpdater.initializeFilePath();
-
-        // Calculate user statistics
-        UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatistics("bLapointe");
-
-        // Load and display user statistics
-        UserDescriptiveStatisticsUpdater.loadAndDisplayUserDescriptiveStatistics("bLapointe");
-
-        UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB("bLapointe");
-
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Overall Descriptive Statistics Updater Function Examples
-        //
-
-        // Initialize folder / file path
-        OverallDescriptiveStatisticsUpdater.initializeFilePath();
-
-        // Calculate and save overall statistics
-        OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatistics();
-
-        // Load and display overall statistics
-        OverallDescriptiveStatisticsUpdater.loadAndDisplayOverallDescriptiveStatistics();
-
-        OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
-
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Notifications.Notification Updater Function Examples
-        //
-
-        NotificationUpdater.initializeFilePath();
-
-        // Done within the footballMatchPredictionUpdater automatically when a football match
-        // prediction is cancelled because of a match status of CANCELLED, POSTPONED, or SUSPENDED
-        //
-        //Notifications.NotificationUpdater.newFootballMatchPredictionCancelledNotification(FootballMatchPredictions.FootballMatchPrediction matchPrediction, String userIdentifier);
-
-        // Done within the footballMatchPredictionUpdater automatically when a football match
-        // prediction is resolved successfully with a match status of FINISHED
-        //
-        //Notifications.NotificationUpdater.newFootballMatchPredictionResolvedNotification(FootballMatchPredictions.FootballMatchPrediction matchPrediction, String userIdentifier, Boolean outcome)
-
-        NotificationUpdater.loadAndDisplayUserNotifications("bLapointe");
-
-        NotificationUpdater.removeUserNotification("bLapointe");
-
-        NotificationUpdater.removeAllUserNotifications("bLapointe");
+        // Remove method for Weather Prediction
 
         NotificationUpdater.removeUserNotificationMongoDB("bLapointe");
 
         NotificationUpdater.removeAllUserNotificationsMongoDB("bLapointe");
 
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // UserInfo.User Inferential Statistics Updater Function Examples
+        // ALL METHODS USED TO RETURN DATA FROM MONGO DB THAT FETCH DATA FOR VIEWING
         //
+        // Returns ArrayList<CustomPrediction>
+        MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("bLapointe");
 
-        UserInferentialStatisticsUpdater.initializeFilePath();
+        // Returns ArrayList<CelestialBodyPrediction>
+        MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("bLapointe");
 
-        UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatistics("bLapointe");
+        // Returns ArrayList<FootballMatchPrediction>
+        MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("bLapointe");
 
-        UserInferentialStatisticsUpdater.loadAndDisplayUserInferentialStatistics("bLapointe");
+        // Returns ArrayList<WeatherPrediction>
+        MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("bLapointe");
 
-        UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB("bLapointe");
+        // Returns ArrayList<ResolvedPrediction>
+        MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
 
-        //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // Overall Inferential Statistics Updater Function Examples
-        //
+        // Returns ArrayList<Notification>
+        MongoDBEnvisionaryUsers.retrieveUserNotifications("bLapointe");
 
-        OverallInferentialStatisticsUpdater.initializeFilePath();
+        // Returns UserDescriptiveStatistics Object
+        MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics("bLapointe");
 
-        OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatistics();
-
-        OverallInferentialStatisticsUpdater.loadAndDisplayOverallInferentialStatistics();
-
-        OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
+        // Returns UserInferentialStatistics Object
+        MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("bLapointe");
     }
 }
