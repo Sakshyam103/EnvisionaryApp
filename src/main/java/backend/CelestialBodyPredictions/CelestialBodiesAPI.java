@@ -1,6 +1,7 @@
 package backend.CelestialBodyPredictions;
 
 import org.json.JSONArray;
+//import org.json.JSONObject;
 import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -8,12 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CelestialBodiesAPI {
-    //*****************************************************************************
-    // Parsed the data and the string received from the api is parsed into an arraylist of space objects
+    // *****************************************************************************
+    // Parsed the data and the string received from the api is parsed into an
+    // arraylist of space objects
     public static ArrayList<CelestialBody> getSortedData(String spaceData) {
         ArrayList<CelestialBody> celestialBodyList = new ArrayList<>();
 
         try {
+
             JSONObject jsonObject = new JSONObject(spaceData);
             JSONArray knownCountArray = jsonObject.getJSONArray("knowncount");
 
@@ -37,7 +40,7 @@ public class CelestialBodiesAPI {
         return celestialBodyList;
     }
 
-    //*****************************************************************************
+    // *****************************************************************************
     // This is where the api reads the data and returns the data as a String
     public static String getSpaceData() {
         URL url;
