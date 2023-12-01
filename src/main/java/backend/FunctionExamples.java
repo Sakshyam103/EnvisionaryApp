@@ -10,7 +10,7 @@ import backend.UserInfo.MongoDBEnvisionaryUsers;
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // FunctionExamples class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// Provides functionality examples of all the classes.
+// Provides functionality examples of all the classes needed for Frontend/Backend interaction.
 //
 public class FunctionExamples {
     public static void main(String[] args) {
