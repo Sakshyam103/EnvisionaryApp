@@ -15,7 +15,10 @@ import backend.ResolvedPredictions.ResolvedPredictionInitializer;
 import backend.UserInfo.UserInitializer;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
+import backend.WeatherPredictions.WeatherPredictionUpdater;
+import backend.WeatherPredictions.WeatherUpdater;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -28,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 // new football match predictions and automatically resolve football match predictions already made.
 //
 public class BackgroundUpdaters {
-    static final int X = 1;                                 // Minutes between football match file updates
+    static final int X = 10;                                 // Minutes between football match file updates
 
     public static void LocalBackgroundUpdater() {
         // Initialize the file paths
@@ -105,8 +108,9 @@ public class BackgroundUpdaters {
 
     public static void MongoDBBackgroundUpdater() {
         // Create a ScheduledExecutorService with a single thread
-        ScheduledExecutorService hourlyExecutor = Executors.newSingleThreadScheduledExecutor();
         ScheduledExecutorService xMinutesExecutor = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService hourlyExecutor = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService dailyExecutor = Executors.newSingleThreadScheduledExecutor();
 
         // Define the task to be executed every X minutes
         Runnable updateEveryXMinutes = () -> {
@@ -144,16 +148,38 @@ public class BackgroundUpdaters {
             } else {
                 System.out.println("No updates to today's match file. Skipping FootballMatchPredictions.FootballMatchPrediction file updates.");
             }
+        };
 
-            // Call the CelestialBodyPredictions.CelestialBodyUpdater to update the saved list of CelestialBodyPredictions.CelestialBody objects
+        // Define the task to be executed every hour
+        Runnable updateHourly = () -> {
+
+        };
+
+        // Define the task to be executed every day
+        Runnable updateDaily = () -> {
+            // Call the CelestialBodyUpdater to update the saved list of CelestialBody objects
             CelestialBodyUpdater.updateCelestialBodiesMongoDB();
 
-            // Call the CelestialBodyPredictions.CelestialBodyPredictionUpdater to update all users' celestial body predictions
+            // Call the CelestialBodyPredictionUpdater to update all users' celestial body predictions
             CelestialBodyPredictionUpdater.updateCelestialBodyPredictionsMongoDB();
+
+            // Call the WeatherUpdater to update today's DailyForecast data
+            try {
+                WeatherUpdater.updateWeatherMongoDB();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Call the WeatherPredictionUpdater to update all users' weather predictions
+            WeatherPredictionUpdater.updateWeatherPredictionsMongoDB();
         };
 
         // Schedule the task to run every X minutes with an initial delay of 0
         xMinutesExecutor.scheduleAtFixedRate(updateEveryXMinutes, 0, X, TimeUnit.MINUTES);
+        // Schedule the task to run every hour with an initial delay of 0
+        hourlyExecutor.scheduleAtFixedRate(updateHourly, 0, 1, TimeUnit.HOURS);
+        // Schedule the task to run every day with an initial delay of 0
+        dailyExecutor.scheduleAtFixedRate(updateDaily, 0, 1, TimeUnit.DAYS);
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

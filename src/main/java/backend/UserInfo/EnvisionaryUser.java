@@ -8,6 +8,7 @@ import backend.Notifications.Notification;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
+import backend.WeatherPredictions.WeatherPrediction;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
@@ -39,8 +40,8 @@ public class EnvisionaryUser {
     private ArrayList<FootballMatchPrediction> footballMatchPredictions;	// List of user's football match predictions (Sports)
     @SerializedName("celestialBodyPredictions")
     private ArrayList<CelestialBodyPrediction> celestialBodyPredictions;    // List of user's celestial body predictions (Science)
-    //@SerializedName("weatherPredictions")
-    //private ArrayList<WeatherPrediction> weatherPredictions;		        // List of user's weather predictions
+    @SerializedName("weatherPredictions")
+    private ArrayList<WeatherPrediction> weatherPredictions;		        // List of user's weather predictions
     @SerializedName("resolvedPredictions")
     private ArrayList<ResolvedPrediction> resolvedPredictions;		        // List of user's resolved predictions
     @SerializedName("notifications")
@@ -96,12 +97,12 @@ public class EnvisionaryUser {
     public void setCelestialBodyPredictions(ArrayList<CelestialBodyPrediction> celestialBodyPredictions) {
         this.celestialBodyPredictions = celestialBodyPredictions;
     }
-//    public ArrayList<WeatherPrediction> getWeatherPredictions() {
-//        return weatherPredictions;
-//    }
-//    public void setWeatherPredictions(ArrayList<WeatherPrediction> weatherPredictions) {
-//        this.weatherPredictions = weatherPredictions;
-//    }
+    public ArrayList<WeatherPrediction> getWeatherPredictions() {
+        return weatherPredictions;
+    }
+    public void setWeatherPredictions(ArrayList<WeatherPrediction> weatherPredictions) {
+        this.weatherPredictions = weatherPredictions;
+    }
     public ArrayList<ResolvedPrediction> getResolvedPredictions() {
         return resolvedPredictions;
     }
@@ -149,8 +150,8 @@ public class EnvisionaryUser {
         this.footballMatchPredictions = emptyFootballMatchPredictions;
         ArrayList<CelestialBodyPrediction> emptyCelestialBodyPredictions = new ArrayList<>();
         this.celestialBodyPredictions = emptyCelestialBodyPredictions;
-//        ArrayList<WeatherPrediction> emptyWeatherPredictions = new ArrayList<>();
-//        this.weatherPredictions = emptyWeatherPredictions;
+        ArrayList<WeatherPrediction> emptyWeatherPredictions = new ArrayList<>();
+        this.weatherPredictions = emptyWeatherPredictions;
         ArrayList<ResolvedPrediction> emptyResolvedPredictions = new ArrayList<>();
         this.resolvedPredictions = emptyResolvedPredictions;
         ArrayList<Notification> emptyNotifications = new ArrayList<>();
@@ -168,7 +169,7 @@ public class EnvisionaryUser {
 //                           ArrayList<EntertainmentPrediction> entertainmentPredictions,
                            ArrayList<FootballMatchPrediction> footballMatchPredictions,
                            ArrayList<CelestialBodyPrediction> celestialBodyPredictions,
-                           //ArrayList<WeatherPrediction> weatherPredictions,
+                           ArrayList<WeatherPrediction> weatherPredictions,
                            UserDescriptiveStatistics userDescriptiveStatistics,
                            UserInferentialStatistics userInferentialStatistics,
                            ArrayList<Notification> notifications) {
@@ -179,7 +180,7 @@ public class EnvisionaryUser {
 //        this.entertainmentPredictions = entertainmentPredictions;
         this.footballMatchPredictions = footballMatchPredictions;
         this.celestialBodyPredictions = celestialBodyPredictions;
-        //this.weatherPredictions = weatherPredictions;
+        this.weatherPredictions = weatherPredictions;
         this.userDescriptiveStatistics = userDescriptiveStatistics;
         this.userInferentialStatistics = userInferentialStatistics;
         this.notifications = notifications;
@@ -196,7 +197,7 @@ public class EnvisionaryUser {
 //                "Number of Entertainment Predictions: " + entertainmentPredictions.size() + "\n" +
                 "Number of Football Match Predictions: " + footballMatchPredictions.size() + "\n" +
                 "Number of Celestial Body Predictions: " + celestialBodyPredictions.size() + "\n" +
-                //"Number of Weather Predictions: " + weatherPredictions.size() + "\n" +
+                "Number of Weather Predictions: " + weatherPredictions.size() + "\n" +
                 "UserInfo.User Descriptive Statistics: " + "\n" +
                 "   BasePredictionsObject.Prediction Count: " + userDescriptiveStatistics.getPredictionCount() + "\n" +
                 "   Number of Correct Predictions: " + userDescriptiveStatistics.getCorrectPredictions() + "\n" +

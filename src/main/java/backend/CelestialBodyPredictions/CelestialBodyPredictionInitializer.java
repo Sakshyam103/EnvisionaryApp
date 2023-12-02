@@ -161,7 +161,7 @@ public class CelestialBodyPredictionInitializer {
         // Set prediction made date
         userCelestialBodyPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
 
-        // Initialize new list of CelestialBodyPredictions.CelestialBodyPrediction to load into and save from
+        // Initialize new list of CelestialBodyPrediction to load into and save from
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -205,7 +205,7 @@ public class CelestialBodyPredictionInitializer {
         // Set prediction made date
         userCelestialBodyPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
 
-        // Initialize new list of CelestialBodyPredictions.CelestialBodyPrediction to load into and save from
+        // Initialize new list of CelestialBodyPrediction to load into and save from
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userIdentifier);
         if (loadedCelestialBodyPredictions == null) {
             loadedCelestialBodyPredictions = new ArrayList<>();
@@ -285,7 +285,7 @@ public class CelestialBodyPredictionInitializer {
     public static void removeCelestialBodyPrediction(String userIdentifier) {
         Scanner scan = new Scanner(System.in);
 
-        // Initialize new array list of CelestialBodyPredictions.CelestialBodyPrediction to load into and save from
+        // Initialize new array list of CelestialBodyPrediction to load into and save from
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = new ArrayList<>();
 
         // Load the list of user predictions from the file
@@ -363,7 +363,7 @@ public class CelestialBodyPredictionInitializer {
     public static void removeCelestialBodyPredictionMongoDB(String userIdentifier) {
         Scanner scan = new Scanner(System.in);
 
-        // Initialize new array list of CelestialBodyPredictions.CelestialBodyPrediction to update
+        // Initialize new array list of CelestialBodyPrediction to update
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userIdentifier);
 
         if (loadedCelestialBodyPredictions == null) {
@@ -417,7 +417,7 @@ public class CelestialBodyPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static void printAllUserCelestialBodyPredictions(String userIdentifier) {
-        // Initialize new array list of CelestialBodyPredictions.CelestialBodyPrediction to load file data into
+        // Initialize new array list of CelestialBodyPrediction to load file data into
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -434,7 +434,7 @@ public class CelestialBodyPredictionInitializer {
                 loadedCelestialBodyPredictions = gson.fromJson(json, listType);
                 System.out.println("\n====================================================================================================");
                 System.out.println("                                 " + userIdentifier + "'s Celestial Body Predictions");
-                // For each CelestialBodyPredictions.CelestialBody prediction within the array list of loaded CelestialBodyPredictions.CelestialBody predictions
+                // For each CelestialBody prediction within the array list of loaded CelestialBody predictions
                 for (CelestialBodyPrediction celestialBodyPrediction : loadedCelestialBodyPredictions) {
                     System.out.println(celestialBodyPrediction.getPrediction().getPredictionContent() + " by " + celestialBodyPrediction.getPrediction().getPredictionEndDate());
                 }
@@ -452,7 +452,7 @@ public class CelestialBodyPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static void printAllUserCelestialBodyPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of CelestialBodyPredictions.CelestialBodyPrediction to load file data into
+        // Initialize new array list of CelestialBodyPrediction to load file data into
         ArrayList<CelestialBodyPrediction> loadedCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userIdentifier);
 
         if (loadedCelestialBodyPredictions == null) {
@@ -460,7 +460,7 @@ public class CelestialBodyPredictionInitializer {
         }
         System.out.println("\n====================================================================================================");
         System.out.println("                                 " + userIdentifier + "'s Celestial Body Predictions");
-        // For each CelestialBodyPredictions.CelestialBody prediction within the array list of loaded CelestialBodyPredictions.CelestialBody predictions
+        // For each CelestialBody prediction within the array list of loaded CelestialBody predictions
         for (CelestialBodyPrediction celestialBodyPrediction : loadedCelestialBodyPredictions) {
             System.out.println(celestialBodyPrediction.getPrediction().getPredictionContent() + " by " + celestialBodyPrediction.getPrediction().getPredictionEndDate());
         }

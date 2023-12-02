@@ -4,6 +4,7 @@ import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 
+import backend.WeatherPredictions.WeatherPrediction;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
@@ -370,6 +371,14 @@ public class NotificationUpdater {
 
         // Save notification to user's notification file
         MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
+    }
+
+    public static void newWeatherPredictionResolvedFalseNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
+        // TODO
+    }
+
+    public static void newWeatherPredictionResolvedTrueNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
+        // TODO
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

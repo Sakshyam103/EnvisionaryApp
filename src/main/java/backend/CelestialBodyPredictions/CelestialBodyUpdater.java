@@ -155,10 +155,4 @@ public class CelestialBodyUpdater {
             return true;
         }
     }
-
-    public static void main(String[] args) {
-        initializeFilePath();
-        updateCelestialBodiesFile();
-        readAndDisplayCelestialBodiesFile();
-    }
 }

@@ -43,6 +43,8 @@ public class Temp {
         return morn;
     }
 
+    public Temp() {}
+
     public static Temp fromJson(JSONObject json) {
         int day = (int) Math.round(json.getDouble("day"));
         int min = (int) Math.round(json.getDouble("min"));

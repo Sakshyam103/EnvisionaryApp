@@ -14,6 +14,8 @@ public class DailyForecast {
     private Temp temp;
     private double pop;
 
+    public DailyForecast(){}
+
     public DailyForecast(long dt, long sunrise, long sunset, Temp temp, double pop) {
         this.dt = dt;
         this.sunrise = sunrise;
