@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a single user's inferential statistics within the Envisionary web app.
 //
-public class   UserInferentialStatistics {
+public class UserInferentialStatistics {
     // UserStatistics.UserInferentialStatistics object variables
     @SerializedName("customPredictionCount")
     protected int customPredictionCount;                    // Number of custom type predictions made by the user
