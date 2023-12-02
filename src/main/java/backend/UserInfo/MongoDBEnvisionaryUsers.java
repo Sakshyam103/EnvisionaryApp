@@ -66,6 +66,33 @@ public class MongoDBEnvisionaryUsers {
     // insertIndividualEnvisionaryUser
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
+    public static void insertIndividualEnvisionaryUser(String userId, String userEmail) {
+        // Create new EnvisionaryUser using userId
+        EnvisionaryUser envisionaryUser = new EnvisionaryUser(userId, userEmail);
+
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Try inserting UserInfo.EnvisionaryUser
+        try {
+            System.out.println("Inserting UserInfo.EnvisionaryUser: " + envisionaryUser);
+            collection.insertOne(envisionaryUser);
+            System.out.println("Inserted Envisionary UserInfo.User.\n");
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to insert UserInfo.EnvisionaryUser into MongoDB due to an error: " + me);
+            // System.exit(1);
+        }
+
+        // Close the connection when done working with the client
+        mongoClient.close();
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // insertIndividualEnvisionaryUser
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
     public static void insertIndividualEnvisionaryUser(EnvisionaryUser envisionaryUser) {
         // Connect to MongoDB EnvisionaryUsers collection
         MongoClient mongoClient = connectToMongoDB();
@@ -1377,6 +1404,29 @@ public class MongoDBEnvisionaryUsers {
 
         // Close the connection when done working with the client
         mongoClient.close();
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // userIdExists
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static boolean userIdExists(String userId) {
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Check if the userId exists in the collection
+        try {
+            long count = collection.countDocuments(Filters.eq("userId", userId));
+            return count > 0;
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to check if userId exists in MongoDB due to an error: " + me);
+            return false;
+        } finally {
+            // Close the connection when done working with the client
+            mongoClient.close();
+        }
     }
 
     public static void main(String[] args) {

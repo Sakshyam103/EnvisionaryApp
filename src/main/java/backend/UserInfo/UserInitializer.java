@@ -320,10 +320,10 @@ public class UserInitializer {
     // Creates a new UserInfo.User object using the parameter String userID, String password, and String emailAddress
     // before loading the users file and adding the new user to the list and saving the updated users file.
     //
-    public static void createNewAccountMongoDB(String userID, String password, String emailAddress) {
+    public static void createNewAccountMongoDB(String userID, String emailAddress) {
 
         // Initialize the new user to save
-        EnvisionaryUser newUser = new EnvisionaryUser(userID, password, emailAddress);
+        EnvisionaryUser newUser = new EnvisionaryUser(userID, emailAddress);
 
         // Add newUser to MongoDB
         MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(newUser);
@@ -363,12 +363,9 @@ public class UserInitializer {
         }
 
         for (User user : loadedUsers) {
-            if (userID.equals(user.getUserID()) && password.equals(user.getPassword())) {
+            if (userID.equals(user.getUserID())) {
                 System.out.println("Login success.");
                 return true;
-            } else if (userID.equals(user.getUserID()) && !password.equals(user.getPassword())) {
-                System.out.println("ERROR - Incorrect password.");
-                return false;
             }
         }
         System.out.println("ERROR - UserID does not exist.");
@@ -383,17 +380,14 @@ public class UserInitializer {
     // objects within the loaded users file. If a match is found the login will return true, else it will
     // return false.
     //
-    public static boolean loginMongoDB(String userID, String password) {
+    public static boolean loginMongoDB(String userID) {
         // Initialize a new UserInfo.EnvisionaryUser array list and load the users from MongoDB
         ArrayList<EnvisionaryUser> envisionaryUsers = MongoDBEnvisionaryUsers.retrieveCollection();
 
         for (EnvisionaryUser user : envisionaryUsers) {
-            if (userID.equals(user.getUserID()) && password.equals(user.getPassword())) {
+            if (userID.equals(user.getUserID())) {
                 System.out.println("Login success.");
                 return true;
-            } else if (userID.equals(user.getUserID()) && !password.equals(user.getPassword())) {
-                System.out.println("ERROR - Incorrect password.");
-                return false;
             }
         }
         System.out.println("ERROR - UserID does not exist.");

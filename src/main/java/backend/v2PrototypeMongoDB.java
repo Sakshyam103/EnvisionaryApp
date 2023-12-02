@@ -14,6 +14,7 @@ import backend.OverallStatistics.MongoDBOverallInferentialStatistics;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.ResolvedPredictions.ResolvedPredictionInitializer;
+import backend.UserInfo.EnvisionaryUser;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserInfo.UserInitializer;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
@@ -270,7 +271,7 @@ public class v2PrototypeMongoDB {
                     "║                                              LOGIN                                               ║\n" +
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
-                    "║                               Please enter your UserID and Password                              ║\n" +
+                    "║                               Please enter your UserID                                           ║\n" +
                     "║                         Enter \"CANCEL\" to return back to the home screen                         ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -279,26 +280,7 @@ public class v2PrototypeMongoDB {
             if (userID.equalsIgnoreCase("CANCEL")){
                 return;
             }
-            System.out.print(  "                                     Password: ");
-            password = scan.next();
-            isValidUser = UserInitializer.loginMongoDB(userID, password);
-        }
-        userMenu();
-    }
-
-    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // login
-    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Gathers input from the user to login as an existing Envisionary user. If a valid UserInfo.User is found
-    // within the UserInfo.User file, the application will go to the userMenu using the entered UserID as the
-    // userIdentifier for saving and loading the user's prediction, notifications, and statistics JSON
-    // files.
-    //
-    public static void loginLogic(String userIdentifier) {
-        boolean isValidUser = false;
-        while (!isValidUser) {
-            password = scan.next();
-            isValidUser = UserInitializer.loginMongoDB(userID, password);
+            isValidUser = UserInitializer.loginMongoDB(userID);
         }
         userMenu();
     }
@@ -324,7 +306,7 @@ public class v2PrototypeMongoDB {
                     "║                                       NEW ENVISIONARY USER                                       ║\n" +
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
-                    "║                     Please enter your desired UserID, Password, and Email                        ║\n" +
+                    "║                     Please enter your desired UserID and Email                                   ║\n" +
                     "║                        Enter \"CANCEL\" to return back to the home screen                          ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -338,20 +320,6 @@ public class v2PrototypeMongoDB {
                     return;
                 }
                 validUserID = UserInitializer.isUserIdValidMongoDB(userID);
-            }
-            while (!validPassword) {
-                System.out.println("                           Enter your choice of password:\n" +
-                        "                       Password must be 7 or more characters long.\n" +
-                        "        Must contain at least 1 lowercase, uppercase, number, and special character.");
-                System.out.print("                                   Password: ");
-                password = scan.next();
-                if (password.equalsIgnoreCase("CANCEL")) {
-                    return;
-                }
-                validPassword = UserInitializer.isPasswordValid(password);
-                if (!validPassword) {
-                    System.out.println("ERROR - Password not valid.");
-                }
             }
             while (!validEmail) {
                 System.out.println("                           Enter your email address:\n" +
@@ -367,7 +335,7 @@ public class v2PrototypeMongoDB {
                 }
             }
         }
-        UserInitializer.createNewAccountMongoDB(userID, password, email);
+        UserInitializer.createNewAccountMongoDB(userID, email);
         System.out.println("New Envisionary user successfully created. Login using your account credentials.");
     }
 

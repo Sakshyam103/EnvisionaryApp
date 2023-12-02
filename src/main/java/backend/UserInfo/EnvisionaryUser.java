@@ -27,14 +27,12 @@ public class EnvisionaryUser {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     @SerializedName("userID")
-    private String userID;                                                  // UserInfo.User identifier
-    @SerializedName("password")
-    private String password;                                                // UserInfo.User's password
+    private String userID;                                                  // User identifier
     @SerializedName("email")
-    private String email;			                                        // UserInfo.User's email address
+    private String email;			                                        // User's email address
     @SerializedName("customPredictions")
     private ArrayList<CustomPrediction> customPredictions;		            // List of user's custom predictions
-    //    @SerializedName("entertainmentPredictions")
+//    @SerializedName("entertainmentPredictions")
 //    private ArrayList<EntertainmentPrediction> entertainmentPredictions;    // List of user's entertainment predictions
     @SerializedName("footballMatchPredictions")
     private ArrayList<FootballMatchPrediction> footballMatchPredictions;	// List of user's football match predictions (Sports)
@@ -61,12 +59,12 @@ public class EnvisionaryUser {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
     public String getEmail() {
         return email;
     }
@@ -138,9 +136,8 @@ public class EnvisionaryUser {
     // Constructor with Base Parameters
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
-    public EnvisionaryUser(String userID, String password, String email) {
+    public EnvisionaryUser(String userID, String email) {
         this.userID = userID;
-        this.password = password;
         this.email = email;
         ArrayList<CustomPrediction> emptyCustomPredictions = new ArrayList<>();
         this.customPredictions = emptyCustomPredictions;
@@ -164,7 +161,7 @@ public class EnvisionaryUser {
     // Constructor with Parameters
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
-    public EnvisionaryUser(String userID, String password, String email,
+    public EnvisionaryUser(String userID, String email,
                            ArrayList<CustomPrediction> customPredictions,
 //                           ArrayList<EntertainmentPrediction> entertainmentPredictions,
                            ArrayList<FootballMatchPrediction> footballMatchPredictions,
@@ -174,7 +171,6 @@ public class EnvisionaryUser {
                            UserInferentialStatistics userInferentialStatistics,
                            ArrayList<Notification> notifications) {
         this.userID = userID;
-        this.password = password;
         this.email = email;
         this.customPredictions = customPredictions;
 //        this.entertainmentPredictions = entertainmentPredictions;

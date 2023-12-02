@@ -155,4 +155,22 @@ public class FunctionExamples {
         }
         System.out.println();
     }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // loginLogic
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static void loginLogic(String userIdentifier, String userEmail) {
+        // if userId exists within MongoDB EnvisionaryUsers, set the userId
+        if (MongoDBEnvisionaryUsers.userIdExists(userIdentifier)) {
+            // TODO: Set the userId within the frontend/backend for the application to interact with the methods
+            String userId = userIdentifier;
+        }
+        // else create a new EnvisionaryUser using the userId
+        else {
+            MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userIdentifier, userEmail);
+            // TODO: Set the userId within the frontend/backend for the application to interact with the methods
+            String userId = userIdentifier;
+        }
+    }
 }
