@@ -516,6 +516,26 @@ public class CustomPredictionInitializer {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // removeCustomPredictionMongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Removes the given user's custom prediction at the given index within the array list.
+    //
+    public static void removeCustomPredictionMongoDB(int index, String userIdentifier) {
+        // Load custom predictions from MongoDB
+        ArrayList<CustomPrediction> userCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userIdentifier);
+
+        if (userCustomPredictions == null) {
+            System.out.println("ERROR - No custom predictions available to remove - Create a new custom prediction and try again.\n");
+            return;
+        }
+
+        userCustomPredictions.remove(index);
+
+        // Save the updated list of custom predictions to the JSON file
+        MongoDBEnvisionaryUsers.updateUserCustomPredictions(userIdentifier, userCustomPredictions);
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // resolveCustomPrediction
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays all the given userIdentifier's custom predictions with indexes starting at 1 before asking

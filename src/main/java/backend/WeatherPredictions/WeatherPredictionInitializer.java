@@ -153,6 +153,8 @@ public class WeatherPredictionInitializer {
         MongoDBEnvisionaryUsers.updateUserWeatherPredictions(userIdentifier, loadedWeatherPredictions);
     }
 
+
+
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printAllUserWeatherPredictionsMongoDB
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
