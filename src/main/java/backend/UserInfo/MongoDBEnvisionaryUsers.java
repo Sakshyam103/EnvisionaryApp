@@ -4,8 +4,9 @@ import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
 import backend.EntertainmentPredictions.EntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
-import backend.Notifications.Notification;
+import backend.WeatherPredictions.WeatherPrediction;
 import backend.ResolvedPredictions.ResolvedPrediction;
+import backend.Notifications.Notification;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
 
@@ -60,6 +61,33 @@ public class MongoDBEnvisionaryUsers {
                 .codecRegistry(pojoCodecRegistry)
                 .applyConnectionString(mongoUri).build();
         return MongoClients.create(settings);
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // insertIndividualEnvisionaryUser
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static void insertIndividualEnvisionaryUser(String userId, String userEmail) {
+        // Create new EnvisionaryUser using userId
+        EnvisionaryUser envisionaryUser = new EnvisionaryUser(userId, userEmail);
+
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Try inserting UserInfo.EnvisionaryUser
+        try {
+            System.out.println("Inserting UserInfo.EnvisionaryUser: " + envisionaryUser);
+            collection.insertOne(envisionaryUser);
+            System.out.println("Inserted Envisionary UserInfo.User.\n");
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to insert UserInfo.EnvisionaryUser into MongoDB due to an error: " + me);
+            // System.exit(1);
+        }
+
+        // Close the connection when done working with the client
+        mongoClient.close();
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -366,23 +394,23 @@ public class MongoDBEnvisionaryUsers {
         mongoClient.close();
     }
 
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    // retrieveAndDisplayWeatherPredictionsForUser
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    //
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveAndDisplayWeatherPredictionsForUser
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
 //    public static void retrieveAndDisplayWeatherPredictionsForUser(String userID) {
 //        // Connect to MongoDB EnvisionaryUsers collection
 //        MongoClient mongoClient = connectToMongoDB();
 //        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<UserInfo.EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, UserInfo.EnvisionaryUser.class);
+//        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 //
 //        // Set filter for the specified user
 //        Bson userFilter = Filters.eq("userID", userID);
 //
 //        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<UserInfo.EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+//        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
 //            while (cursor.hasNext()) {
-//                UserInfo.EnvisionaryUser currentEnvisionaryUser = cursor.next();
+//                EnvisionaryUser currentEnvisionaryUser = cursor.next();
 //
 //                // Retrieve and print WeatherPredictions
 //                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
@@ -749,45 +777,45 @@ public class MongoDBEnvisionaryUsers {
         return celestialBodyPredictionsList;
     }
 
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    // retrieveUserWeatherPredictions
-//    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-//    //
-//    public static ArrayList<WeatherPrediction> retrieveUserWeatherPredictions(String userID) {
-//        // Connect to MongoDB EnvisionaryUsers collection
-//        MongoClient mongoClient = connectToMongoDB();
-//        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<UserInfo.EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, UserInfo.EnvisionaryUser.class);
-//
-//        // Set filter for the specified user
-//        Bson userFilter = Filters.eq("userID", userID);
-//
-//        // Initialize the list to store WeatherPredictions
-//        ArrayList<WeatherPrediction> weatherPredictionsList = new ArrayList<>();
-//
-//        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<UserInfo.EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
-//            while (cursor.hasNext()) {
-//                UserInfo.EnvisionaryUser currentEnvisionaryUser = cursor.next();
-//
-//                // Retrieve and add WeatherPredictions to the list
-//                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
-//                if (weatherPredictions != null && !weatherPredictions.isEmpty()) {
-//                    weatherPredictionsList.addAll(weatherPredictions);
-//                } else {
-//                    mongoClient.close();
-//                    return null;
-//                }
-//            }
-//        } catch (MongoException me) {
-//            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
-//        }
-//
-//        // Close the connection when done working with the client
-//        mongoClient.close();
-//
-//        return weatherPredictionsList;
-//    }
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserWeatherPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<WeatherPrediction> retrieveUserWeatherPredictions(String userID) {
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Set filter for the specified user
+        Bson userFilter = Filters.eq("userID", userID);
+
+        // Initialize the list to store WeatherPredictions
+        ArrayList<WeatherPrediction> weatherPredictionsList = new ArrayList<>();
+
+        // Try retrieving the collection of EnvisionaryUsers for the user
+        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+            while (cursor.hasNext()) {
+                EnvisionaryUser currentEnvisionaryUser = cursor.next();
+
+                // Retrieve and add WeatherPredictions to the list
+                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
+                if (weatherPredictions != null && !weatherPredictions.isEmpty()) {
+                    weatherPredictionsList.addAll(weatherPredictions);
+                } else {
+                    mongoClient.close();
+                    return null;
+                }
+            }
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+        }
+
+        // Close the connection when done working with the client
+        mongoClient.close();
+
+        return weatherPredictionsList;
+    }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // retrieveUserResolvedPredictions
@@ -1145,33 +1173,33 @@ public class MongoDBEnvisionaryUsers {
     // updateUserWeatherPredictions
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
-//    public static void updateUserWeatherPredictions(String userID, ArrayList<WeatherPrediction> updatedWeatherPredictionsArrayList) {
-//        // Connect to MongoDB WeatherPredictions collection
-//        MongoClient mongoClient = connectToMongoDB();
-//        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<WeatherPrediction> collection = database.getCollection(COLLECTION_NAME, WeatherPrediction.class);
-//
-//        // Set filter for updater
-//        Bson findWeatherPredictions = Filters.eq("userID", userID);
-//        Bson updateFilter = Updates.set("weatherPredictions", updatedWeatherPredictionsArrayList);
-//        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
-//
-//
-//        // Try to update Envisionary UserInfo.User's Weather Predictions
-//        try {
-//            WeatherPrediction updatedWeatherPredictions = collection.findOneAndUpdate(findWeatherPredictions, updateFilter, options);
-//            if (updatedWeatherPredictions == null) {
-//                System.out.println("ERROR - Couldn't find any WeatherPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
-//            } else {
-//                System.out.println("\nUpdated the WeatherPrediction to: " + updatedWeatherPredictions);
-//            }
-//        } catch (MongoException me) {
-//            System.err.println("ERROR - Unable to update any WeatherPredictions due to an error: " + me);
-//        }
-//
-//        // Close the connection when done working with the client
-//        mongoClient.close();
-//    }
+    public static void updateUserWeatherPredictions(String userID, ArrayList<WeatherPrediction> updatedWeatherPredictionsArrayList) {
+        // Connect to MongoDB WeatherPredictions collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<WeatherPrediction> collection = database.getCollection(COLLECTION_NAME, WeatherPrediction.class);
+
+        // Set filter for updater
+        Bson findWeatherPredictions = Filters.eq("userID", userID);
+        Bson updateFilter = Updates.set("weatherPredictions", updatedWeatherPredictionsArrayList);
+        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
+
+
+        // Try to update Envisionary UserInfo.User's Weather Predictions
+        try {
+            WeatherPrediction updatedWeatherPredictions = collection.findOneAndUpdate(findWeatherPredictions, updateFilter, options);
+            if (updatedWeatherPredictions == null) {
+                System.out.println("ERROR - Couldn't find any WeatherPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
+            } else {
+                System.out.println("\nUpdated the WeatherPrediction to: " + updatedWeatherPredictions);
+            }
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to update any WeatherPredictions due to an error: " + me);
+        }
+
+        // Close the connection when done working with the client
+        mongoClient.close();
+    }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // updateUserResolvedPredictions
@@ -1377,6 +1405,29 @@ public class MongoDBEnvisionaryUsers {
 
         // Close the connection when done working with the client
         mongoClient.close();
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // userIdExists
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static boolean userIdExists(String userId) {
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Check if the userId exists in the collection
+        try {
+            long count = collection.countDocuments(Filters.eq("userId", userId));
+            return count > 0;
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to check if userId exists in MongoDB due to an error: " + me);
+            return false;
+        } finally {
+            // Close the connection when done working with the client
+            mongoClient.close();
+        }
     }
 
     public static void main(String[] args) {
