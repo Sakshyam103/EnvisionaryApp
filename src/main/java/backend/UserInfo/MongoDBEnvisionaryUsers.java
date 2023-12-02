@@ -3,13 +3,12 @@ package backend.UserInfo;
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
-//import backend.WeatherPredictions.WeatherPrediction;
+import backend.WeatherPredictions.WeatherPrediction;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.Notifications.Notification;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
 
-import backend.WeatherPredictions.WeatherPrediction;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
