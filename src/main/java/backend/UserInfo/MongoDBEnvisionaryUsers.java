@@ -2,7 +2,7 @@ package backend.UserInfo;
 
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CustomPredictions.CustomPrediction;
-import backend.EntertainmentPredictions.EntertainmentPrediction;
+//import backend.EntertainmentPredictions.EntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.WeatherPredictions.WeatherPrediction;
 import backend.ResolvedPredictions.ResolvedPrediction;
@@ -287,39 +287,39 @@ public class MongoDBEnvisionaryUsers {
 //    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 //    // retrieveAndDisplayEntertainmentPredictionsForUser
 //    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    //
-    public static void retrieveAndDisplayEntertainmentPredictionsForUser(String userID) {
-        // Connect to MongoDB EnvisionaryUsers collection
-        MongoClient mongoClient = connectToMongoDB();
-        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
-
-        // Set filter for the specified user
-        Bson userFilter = Filters.eq("userID", userID);
-
-        // Try retrieving the collection of EnvisionaryUsers for the user
-        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
-            while (cursor.hasNext()) {
-                EnvisionaryUser currentEnvisionaryUser = cursor.next();
-
-                // Retrieve and print EntertainmentPredictions
-                ArrayList<EntertainmentPrediction> entertainmentPredictions = currentEnvisionaryUser.getEntertainmentPredictions();
-                if (entertainmentPredictions != null && !entertainmentPredictions.isEmpty()) {
-                    System.out.println("Entertainment Predictions:");
-                    for (EntertainmentPrediction entertainmentPrediction : entertainmentPredictions) {
-                        System.out.println("   " + entertainmentPrediction.toString());
-                    }
-                } else {
-                    System.out.println("No Entertainment Predictions found for the user.");
-                }
-            }
-        } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
-        }
-
-        // Close the connection when done working with the client
-        mongoClient.close();
-    }
+//    //
+//    public static void retrieveAndDisplayEntertainmentPredictionsForUser(String userID) {
+//        // Connect to MongoDB EnvisionaryUsers collection
+//        MongoClient mongoClient = connectToMongoDB();
+//        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+//        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+//
+//        // Set filter for the specified user
+//        Bson userFilter = Filters.eq("userID", userID);
+//
+//        // Try retrieving the collection of EnvisionaryUsers for the user
+//        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+//            while (cursor.hasNext()) {
+//                EnvisionaryUser currentEnvisionaryUser = cursor.next();
+//
+//                // Retrieve and print EntertainmentPredictions
+//                ArrayList<EntertainmentPrediction> entertainmentPredictions = currentEnvisionaryUser.getEntertainmentPredictions();
+//                if (entertainmentPredictions != null && !entertainmentPredictions.isEmpty()) {
+//                    System.out.println("Entertainment Predictions:");
+//                    for (EntertainmentPrediction entertainmentPrediction : entertainmentPredictions) {
+//                        System.out.println("   " + entertainmentPrediction.toString());
+//                    }
+//                } else {
+//                    System.out.println("No Entertainment Predictions found for the user.");
+//                }
+//            }
+//        } catch (MongoException me) {
+//            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+//        }
+//
+//        // Close the connection when done working with the client
+//        mongoClient.close();
+//    }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // retrieveAndDisplayFootballMatchPredictionsForUser
