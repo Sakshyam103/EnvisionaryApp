@@ -395,7 +395,7 @@ public class v2PrototypeMongoDB {
                             MongoDBEnvisionaryUsers.retrieveAndDisplayCelestialBodyPredictionsForUser(userID);
                             //MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
                             MongoDBEnvisionaryUsers.retrieveAndDisplayFootballMatchPredictionsForUser(userID);
-                            //MongoDBEnvisionaryUsers.retrieveAndDisplayWeatherPredictionsForUser(userID);
+                            MongoDBEnvisionaryUsers.retrieveAndDisplayWeatherPredictionsForUser(userID);
                             userMenuSelection = 0;
                             break;
                         case 5:
