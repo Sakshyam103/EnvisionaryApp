@@ -83,7 +83,7 @@ public class UserDescriptiveStatistics {
     // Method to print the UserStatistics.UserDescriptiveStatistics object details to the console.
     //
     public void printUserDescriptiveStatistics() {
-        System.out.println("BasePredictionsObject.Prediction Count: " + getPredictionCount());
+        System.out.println("Prediction Count: " + getPredictionCount());
         System.out.println("Correct Predictions: " + getCorrectPredictions());
         System.out.println("Incorrect Predictions: " + getIncorrectPredictions());
         System.out.println("Percentage of Correct Predictions: " + getPercentCorrect() + "%");

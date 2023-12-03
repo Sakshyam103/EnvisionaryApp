@@ -73,6 +73,7 @@ public class FunctionExamples {
 
         // ArrayList<CustomPrediction> userCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
         // Returns user's ArrayList<CustomPrediction>
+        System.out.println("Fetching user custom predictions from MongoDB...");
         ArrayList<CustomPrediction> testCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testCustomPredictions != null) {
@@ -80,10 +81,14 @@ public class FunctionExamples {
                 testCustomPrediction.getPrediction().printPredictionDetails();
             }
         }
+        else {
+            System.out.println("No custom predictions available for user.");
+        }
         System.out.println();
 
         // ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
         // Returns user's ArrayList<CelestialBodyPrediction>
+        System.out.println("Fetching user celestial body predictions from MongoDB...");
         ArrayList<CelestialBodyPrediction> testCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testCelestialBodyPredictions != null) {
@@ -91,10 +96,14 @@ public class FunctionExamples {
                 testCelestialBodyPrediction.getPrediction().printPredictionDetails();
             }
         }
+        else {
+            System.out.println("No celestial body predictions available for user.");
+        }
         System.out.println();
 
         // ArrayList<FootballMatchPrediction> userFootballMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userId);
         // Returns user's ArrayList<FootballMatchPrediction>
+        System.out.println("Fetching user football match predictions from MongoDB...");
         ArrayList<FootballMatchPrediction> testFootballMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testFootballMatchPredictions != null) {
@@ -102,10 +111,14 @@ public class FunctionExamples {
                 testFootballMatchPrediction.getPrediction().printPredictionDetails();
             }
         }
+        else {
+            System.out.println("No football match predictions available for user.");
+        }
         System.out.println();
 
         // ArrayList<WeatherPrediction> userWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions(userId);
         // Returns user's ArrayList<WeatherPrediction>
+        System.out.println("Fetching user weather predictions from MongoDB...");
         ArrayList<WeatherPrediction> testWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testWeatherPredictions != null) {
@@ -113,10 +126,14 @@ public class FunctionExamples {
                 testWeatherPrediction.getPrediction().printPredictionDetails();
             }
         }
+        else {
+            System.out.println("No weather predictions available for user.");
+        }
         System.out.println();
 
         // ArrayList<ResolvedPrediction> userResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         // Returns user's ArrayList<ResolvedPrediction>
+        System.out.println("Fetching user resolved predictions from MongoDB...");
         ArrayList<ResolvedPrediction> testResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testResolvedPredictions != null) {
@@ -124,10 +141,14 @@ public class FunctionExamples {
                 testResolvedPrediction.printPredictionDetails();
             }
         }
+        else {
+            System.out.println("No resolved predictions available for user.");
+        }
         System.out.println();
 
         // MongoDBEnvisionaryUsers.retrieveUserNotifications(userId);
         // Returns user's ArrayList<Notification>
+        System.out.println("Fetching user notifications from MongoDB...");
         ArrayList<Notification> testNotifications = MongoDBEnvisionaryUsers.retrieveUserNotifications("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testNotifications != null) {
@@ -135,23 +156,34 @@ public class FunctionExamples {
                 testNotification.printNotification();
             }
         }
+        else {
+            System.out.println("No notifications available for user.");
+        }
         System.out.println();
 
         // MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics(userId);
         // Returns user's UserDescriptiveStatistics Object
+        System.out.println("Fetching user descriptive statistics from MongoDB...");
         UserDescriptiveStatistics testUserDescriptiveStatistics = MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testUserDescriptiveStatistics != null) {
             testUserDescriptiveStatistics.printUserDescriptiveStatistics();
         }
+        else {
+            System.out.println("No descriptive statistics available for user.");
+        }
         System.out.println();
 
         // MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId);
         // Returns user's UserInferentialStatistics Object
+        System.out.println("Fetching user inferential statistics from MongoDB...");
         UserInferentialStatistics testUserInferentialStatistics = MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("bLapointe");
         // HAVE TO ADD NULL CHECKS
         if (testUserInferentialStatistics != null) {
             testUserInferentialStatistics.printUserInferentialStatistics();
+        }
+        else {
+            System.out.println("No inferential statistics available for user.");
         }
         System.out.println();
     }
