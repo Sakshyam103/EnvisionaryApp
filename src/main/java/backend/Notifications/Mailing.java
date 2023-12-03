@@ -6,7 +6,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Mailing {
-    public void  sendMail(String messageToSend, String receiverEmail) {
+    public static void sendMail(String messageToSend, String receiverEmail) {
         //Recipient's email ID needs to be mentioned.
         String to = receiverEmail;
         String from = "envisonaryapp@gmail.com";
