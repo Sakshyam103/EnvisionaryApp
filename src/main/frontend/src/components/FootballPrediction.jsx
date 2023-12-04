@@ -6,6 +6,7 @@ function FootballPrediction() {
   const [result, setResult] = useState('');
   const[buttonPressed, setButtonPressed] = useState(false);
   const[buttonPressed1, setButtonPressed1] = useState(false);
+  const[matchX, setmatchX] = useState(false);
 
   const matchOptions = ['Match 1', 'Match 2', 'Match 3'];
   const teamOptions = ['Team A', 'Team B', 'Team C'];
@@ -29,6 +30,27 @@ function FootballPrediction() {
   };
   
   const handleSubmitMatch = () => {
+
+    fetch("http://localhost:8080/viewMatches", {
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+       },
+      }).then(res => {
+        if(!res.ok){
+          console.error('Request failed with status:' , res.status);
+          return res.text();
+        }
+        return res.text();
+      })
+      .then(data => {
+        console.log(data);
+        setmatchX(data);
+      }).catch(error=>{
+        console.error('Error: ', error);
+      })
+     
+     ;
 
     if (match) {
         setButtonPressed(true);

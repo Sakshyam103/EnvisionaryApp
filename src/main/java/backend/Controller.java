@@ -1,5 +1,7 @@
 package backend;
 
+import backend.FootballMatchPredictions.FootballMatchList;
+import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.GetMapping;
 import backend.ResolvedPredictions.ResolvedPrediction;
@@ -62,9 +64,7 @@ public class Controller {
         System.out.println("view prediction");
         // TODO: Make each category's view prediction and use correct retrieve methods.
         // THIS IS A TEST WITH A HARDCODED USER
-        // ArrayList<ResolvedPrediction> a =
-        // MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
-        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
+        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
         return a;
     }
 
@@ -83,6 +83,13 @@ public class Controller {
         ArrayList<String> a = new ArrayList<>();
         a.add("rice");
         a.add("ball");
+        return a;
+    }
+
+    @RequestMapping(value = "/viewMatches")
+    public FootballMatchList viewMatches() {
+        System.out.println("view matches");
+        FootballMatchList a = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
         return a;
     }
 

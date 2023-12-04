@@ -40,6 +40,10 @@ function Home({user}) {
      
      ;
 
+     <div>
+      {data}
+     </div>
+
   };
 
   const handleViewStatistics = () => {

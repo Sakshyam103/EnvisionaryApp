@@ -38,16 +38,7 @@ function PredictionOptions ({user}) {
 
   return (
     <>
-   {/* <div>
-    {
-      Object.keys(user).length != 0 && (
-        <div>
-          <p>User Information:</p>
-          <pre>{user.sub}</pre>
-        </div>
-      )
-    }
-   </div> */}
+
    <h1>What type of predictions would you like to make?</h1>
     <div style={{ display: 'flex', flexDirection: 'column', height: '50vh' }}>
       <button
