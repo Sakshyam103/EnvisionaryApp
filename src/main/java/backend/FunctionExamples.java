@@ -210,6 +210,5 @@ public class FunctionExamples {
             // TODO: Set the userId within the frontend/backend for the application to interact with the methods
             String userId = userIdentifier;
         }
-
     }
 }
