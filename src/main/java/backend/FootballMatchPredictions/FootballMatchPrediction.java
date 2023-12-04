@@ -79,11 +79,11 @@ public final class FootballMatchPrediction {
     //
     public void printPredictionDetails() {
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("Football Match BasePredictionsObject.Prediction Details:");
-        System.out.println("BasePredictionsObject.Prediction Type: " + prediction.getPredictionType());
-        System.out.println("BasePredictionsObject.Prediction Content: " + prediction.getPredictionContent());
-        System.out.println("BasePredictionsObject.Prediction Made Date: " + prediction.getPredictionMadeDate());
-        System.out.println("BasePredictionsObject.Prediction End Date: " + prediction.getPredictionEndDate());
+        System.out.println("Football Match Prediction Details:");
+        System.out.println("Prediction Type: " + prediction.getPredictionType());
+        System.out.println("Prediction Content: " + prediction.getPredictionContent());
+        System.out.println("Prediction Made Date: " + prediction.getPredictionMadeDate());
+        System.out.println("Prediction End Date: " + prediction.getPredictionEndDate());
         System.out.println("Reminder Frequency: " + prediction.getRemindFrequency());
         System.out.println("-------------------------------");
         System.out.println("Football Match Details:");

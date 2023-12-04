@@ -53,13 +53,11 @@ public class WeatherPrediction {
         System.out.println(
                 "--------------------------------------------------------------------------------" + "\n" +
                         "Weather Prediction Details:" + "\n" +
-                        "BasePredictionsObject.Prediction Type: " + prediction.getPredictionType() + "\n" +
-                        "BasePredictionsObject.Prediction Content: " + prediction.getPredictionContent() + "\n" +
-                        "BasePredictionsObject.Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
-                        "BasePredictionsObject.Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
+                        "Prediction Type: " + prediction.getPredictionType() + "\n" +
+                        "Prediction Content: " + prediction.getPredictionContent() + "\n" +
+                        "Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
+                        "Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
                         "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
-                        "--------------------------------------------------------------------------------" + "\n" +
-                        "Weather Prediction Details:" + "\n" +
                         "Temperature: " + getTemperature() + "\n" +
                         "High Temperature Prediction: " + isHighTempPrediction() + "\n" +
                         "--------------------------------------------------------------------------------"

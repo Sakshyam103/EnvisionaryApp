@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// BasePredictionsObject.Prediction object class
+// Prediction object class
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a prediction made by a user within the Envisionary web app.
 //
 public class Prediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // BasePredictionsObject.Prediction object variables
+    // Prediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     @SerializedName("predictionType")
@@ -30,7 +30,7 @@ public class Prediction {
 
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Getter and setter methods for the BasePredictionsObject.Prediction object variables
+    // Getter and setter methods for the Prediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public String getPredictionType() {
@@ -109,17 +109,17 @@ public class Prediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printPredictionDetails
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to print the BasePredictionsObject.Prediction object details to the console.
+    // Method to print the Prediction object details to the console.
     //
     public void printPredictionDetails() {
-        System.out.println("BasePredictionsObject.Prediction Type: " + predictionType);
-        System.out.println("BasePredictionsObject.Prediction Content: " + predictionContent);
-        System.out.println("BasePredictionsObject.Prediction Made Date: " + predictionMadeDate);
+        System.out.println("Prediction Type: " + predictionType);
+        System.out.println("Prediction Content: " + predictionContent);
+        System.out.println("Prediction Made Date: " + predictionMadeDate);
 
         if (predictionEndDate != null) {
-            System.out.println("BasePredictionsObject.Prediction End Date: " + predictionEndDate);
+            System.out.println("Prediction End Date: " + predictionEndDate);
         } else {
-            System.out.println("BasePredictionsObject.Prediction End Date: Not set");
+            System.out.println("Prediction End Date: Not set");
         }
 
         System.out.println("Reminder Frequency: " + remindFrequency);
@@ -128,7 +128,7 @@ public class Prediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to convert the BasePredictionsObject.Prediction object to JSON.
+    // Method to convert the Prediction object to JSON.
     //
     public String toJson() {
         Gson gson = new GsonBuilder().create();
@@ -138,7 +138,7 @@ public class Prediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // fromJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Static method to create a BasePredictionsObject.Prediction object from JSON.
+    // Static method to create a Prediction object from JSON.
     //
     public static Prediction fromJson(String json) {
         Gson gson = new GsonBuilder().create();
