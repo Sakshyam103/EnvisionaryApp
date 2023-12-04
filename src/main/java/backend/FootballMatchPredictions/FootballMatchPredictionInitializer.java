@@ -16,18 +16,18 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatchPredictionInitializer class - Written by Brandon LaPointe
+// FootballMatchPredictionInitializer class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Initializes the file path and folders needed to save the users' football match predictions. Initializes
 // football match predictions made by the user, removes football match predictions, and displays football
 // match predictions using the String userIdentifier parameter to identify the correct file.
 //
 public class FootballMatchPredictionInitializer {
-    // FootballMatchPredictions.FootballMatchPredictionUpdater Class Constants
+    // FootballMatchPredictionUpdater Class Constants
     private static final String userHome = System.getProperty("user.home");
     private static final String folderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SportsPredictions" + File.separator + "FootballPredictions" + File.separator + "FootballMatchPredictions";
 
-    // FootballMatchPredictions.FootballMatchPrediction Object
+    // FootballMatchPrediction Object
     private static FootballMatchPrediction userMatchPrediction;
 
     // Scanner object for reading user input from keyboard
@@ -54,7 +54,7 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchYesterday
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_yesterday.json for the user to
-    // then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's FootballMatchPredictions.FootballMatch
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
     // data to the selected match.
     //
     public static void getUserChoiceMatchYesterday() {
@@ -96,7 +96,7 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchToday
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_today.json for the user to
-    // then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's FootballMatchPredictions.FootballMatch
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
     // data to the selected match.
     //
     public static void getUserChoiceMatchToday() {
@@ -138,7 +138,7 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchTomorrow
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_tomorrow.json for the user to
-    // then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's FootballMatchPredictions.FootballMatch
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
     // data to the selected match.
     //
     public static void getUserChoiceMatchTomorrow() {
@@ -180,8 +180,8 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchUpcomingWeek1
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_upcoming_week1.json for the
-    // user to then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's
-    // FootballMatchPredictions.FootballMatch data to the selected match.
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
     //
     public static void getUserChoiceMatchUpcomingWeek1() {
         userMatchPrediction = new FootballMatchPrediction();
@@ -222,8 +222,8 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchUpcomingWeek2
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_upcoming_week2.json for the
-    // user to then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's
-    // FootballMatchPredictions.FootballMatch data to the selected match.
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
     //
     public static void getUserChoiceMatchUpcomingWeek2() {
         userMatchPrediction = new FootballMatchPrediction();
@@ -264,8 +264,8 @@ public class FootballMatchPredictionInitializer {
     // getUserChoiceMatchUpcomingWeek3
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_upcoming_week3.json for the
-    // user to then select from before setting the FootballMatchPredictions.FootballMatchPrediction userMatchPrediction's
-    // FootballMatchPredictions.FootballMatch data to the selected match.
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
     //
     public static void getUserChoiceMatchUpcomingWeek3() {
         userMatchPrediction = new FootballMatchPrediction();
@@ -368,7 +368,7 @@ public class FootballMatchPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Validates that the user wants to make a prediction on yesterday's matches and if the user enters a Y,
     // the function calls getUserChoiceMatchTomorrow, getUserMatchPrediction, and then saveMatchPrediction.
-    // Used for testing FootballMatchPredictions.FootballMatchPredictionUpdater to create predictions based off of finished matches.
+    // Used for testing FootballMatchPredictionUpdater to create predictions based off of finished matches.
     //
     public static void createNewFootballMatchYesterdayPrediction(String userIdentifier) {
         boolean valid = true;	// Used for user input validation
@@ -401,7 +401,7 @@ public class FootballMatchPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Validates that the user wants to make a prediction on today's matches and if the user enters a Y,
     // the function calls getUserChoiceMatchTomorrow, getUserMatchPrediction, and then saveMatchPrediction.
-    // Used for testing FootballMatchPredictions.FootballMatchPredictionUpdater to create predictions based off of finished matches.
+    // Used for testing FootballMatchPredictionUpdater to create predictions based off of finished matches.
     //
     public static void createNewFootballMatchTodayPrediction(String userIdentifier) {
         boolean valid = true;	// Used for user input validation
@@ -568,7 +568,7 @@ public class FootballMatchPredictionInitializer {
     //
     public static void saveMatchPrediction(String userIdentifier) {
         // Set prediction type
-        userMatchPrediction.getPrediction().setPredictionType("FootballMatchPredictions.FootballMatch");
+        userMatchPrediction.getPrediction().setPredictionType("FootballMatch");
 
         // Set prediction end date (considering it as UTC)
         DateTimeFormatter matchDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").withZone(ZoneId.of("UTC"));
@@ -581,7 +581,7 @@ public class FootballMatchPredictionInitializer {
         // Initialize boolean flag previouslyPredictedMatch to false
         boolean previouslyPredictedMatch = false;
 
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to load into and save from
+        // Initialize new array list of FootballMatchPrediction to load into and save from
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -631,7 +631,7 @@ public class FootballMatchPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Validates that the user wants to make a prediction on yesterday's matches and if the user enters a Y,
     // the function calls getUserChoiceMatchTomorrow, getUserMatchPrediction, and then saveMatchPrediction.
-    // Used for testing FootballMatchPredictions.FootballMatchPredictionUpdater to create predictions based off of finished matches.
+    // Used for testing FootballMatchPredictionUpdater to create predictions based off of finished matches.
     //
     public static void createNewFootballMatchYesterdayPredictionMongoDB(String userIdentifier) {
         boolean valid = true;	// Used for user input validation
@@ -664,7 +664,7 @@ public class FootballMatchPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Validates that the user wants to make a prediction on today's matches and if the user enters a Y,
     // the function calls getUserChoiceMatchTomorrow, getUserMatchPrediction, and then saveMatchPrediction.
-    // Used for testing FootballMatchPredictions.FootballMatchPredictionUpdater to create predictions based off of finished matches.
+    // Used for testing FootballMatchPredictionUpdater to create predictions based off of finished matches.
     //
     public static void createNewFootballMatchTodayPredictionMongoDB(String userIdentifier) {
         boolean valid = true;	// Used for user input validation
@@ -831,7 +831,7 @@ public class FootballMatchPredictionInitializer {
     //
     public static void saveMatchPredictionMongoDB(String userIdentifier) {
         // Set prediction type
-        userMatchPrediction.getPrediction().setPredictionType("FootballMatchPredictions.FootballMatch");
+        userMatchPrediction.getPrediction().setPredictionType("FootballMatch");
 
         // Set prediction end date (considering it as UTC)
         DateTimeFormatter matchDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").withZone(ZoneId.of("UTC"));
@@ -844,7 +844,7 @@ public class FootballMatchPredictionInitializer {
         // Initialize boolean flag previouslyPredictedMatch to false
         boolean previouslyPredictedMatch = false;
 
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to update
+        // Initialize new array list of FootballMatchPrediction to update
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userIdentifier);
 
         if (loadedMatchPredictions == null) {
@@ -879,12 +879,12 @@ public class FootballMatchPredictionInitializer {
     // Lists the football match predictions stored within the given userIdentifier's football match
     // prediction file with indexes starting at 1 and asks the user to input the index of the football
     // match prediction that they want to remove before confirming and removing the selected football match
-    // prediction from the ArrayList of FootballMatchPredictions.FootballMatchPrediction objects and saving the new list to the file.
+    // prediction from the ArrayList of FootballMatchPrediction objects and saving the new list to the file.
     //
     public static void removeFootballMatchPrediction(String userIdentifier) {
         Scanner scan = new Scanner(System.in);
 
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to load into and save from
+        // Initialize new array list of FootballMatchPrediction to load into and save from
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = new ArrayList<>();
 
         // Load the list of user predictions from the file
@@ -948,7 +948,7 @@ public class FootballMatchPredictionInitializer {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                System.out.println("Prediction removal canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");
@@ -961,12 +961,12 @@ public class FootballMatchPredictionInitializer {
     // Lists the football match predictions stored within the given userIdentifier's football match
     // prediction file with indexes starting at 1 and asks the user to input the index of the football
     // match prediction that they want to remove before confirming and removing the selected football match
-    // prediction from the ArrayList of FootballMatchPredictions.FootballMatchPrediction objects and saving the new list to the file.
+    // prediction from the ArrayList of FootballMatchPrediction objects and saving the new list to the file.
     //
     public static void removeFootballMatchPredictionMongoDB(String userIdentifier) {
         Scanner scan = new Scanner(System.in);
 
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to load into and save from
+        // Initialize new array list of FootballMatchPrediction to load into and save from
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userIdentifier);
 
         if (loadedMatchPredictions == null) {
@@ -1009,7 +1009,7 @@ public class FootballMatchPredictionInitializer {
                 // Save over the old user prediction file
                 MongoDBEnvisionaryUsers.updateUserFootballMatchPredictions(userIdentifier, loadedMatchPredictions);
             } else {
-                System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                System.out.println("Prediction removal canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");
@@ -1023,7 +1023,7 @@ public class FootballMatchPredictionInitializer {
     // prediction file.
     //
     public static void printAllFootballMatchPredictions(String userIdentifier) {
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to load file data into
+        // Initialize new array list of FootballMatchPrediction to load file data into
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -1060,7 +1060,7 @@ public class FootballMatchPredictionInitializer {
     // prediction file.
     //
     public static void printAllFootballMatchPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of FootballMatchPredictions.FootballMatchPrediction to update
+        // Initialize new array list of FootballMatchPrediction to update
         ArrayList<FootballMatchPrediction> loadedMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userIdentifier);
         if (loadedMatchPredictions == null) {
             loadedMatchPredictions = new ArrayList<>();

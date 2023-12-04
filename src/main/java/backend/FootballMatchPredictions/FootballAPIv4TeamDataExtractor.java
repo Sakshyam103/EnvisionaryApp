@@ -5,10 +5,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballAPIv4TeamDataExtractor class - Written by Brandon LaPointe
+// FootballAPIv4TeamDataExtractor class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Formats the incoming String football team data into a JSON object for display onto the console or
-// to return as an ArrayList of FootballMatchPredictions.FootballMatch objects.
+// to return as an ArrayList of FootballMatch objects.
 //
 public class FootballAPIv4TeamDataExtractor {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -49,7 +49,7 @@ public class FootballAPIv4TeamDataExtractor {
     // extractTeamsToArrayList class
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Formats the String football teams data into a JSON file format and returns the list of football
-    // teams as an ArrayList of FootballMatchPredictions.FootballTeam objects.
+    // teams as an ArrayList of FootballTeam objects.
     //
     public static ArrayList<FootballTeam> extractTeamsToArrayList(String jsonData) {
         ArrayList<FootballTeam> footballTeamList = new ArrayList<>();
@@ -62,7 +62,7 @@ public class FootballAPIv4TeamDataExtractor {
             for (int i = 0; i < teams.length(); i++) {
                 JSONObject team = teams.getJSONObject(i);
 
-                // Initialize a new FootballMatchPredictions.FootballTeam
+                // Initialize a new FootballTeam
                 FootballTeam footballTeam = new FootballTeam();
 
                 // Store football team data
@@ -78,7 +78,7 @@ public class FootballAPIv4TeamDataExtractor {
                 footballTeam.setVenue(team.optString("venue", "N/A"));
                 footballTeam.setLastUpdated(team.getString("lastUpdated"));
 
-                // Add current team to array list of FootballMatchPredictions.FootballTeam
+                // Add current team to array list of FootballTeam
                 footballTeamList.add(footballTeam);
             }
         } catch (Exception e) {

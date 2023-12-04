@@ -76,7 +76,7 @@ public final class CustomPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to convert the CustomPredictions.CustomPrediction object to JSON
+    // Method to convert the CustomPrediction object to JSON
     //
     public String toJson() {
         Gson gson = new Gson();
@@ -85,7 +85,7 @@ public final class CustomPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // fromJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Static method to create a CustomPredictions.CustomPrediction object from JSON
+    // Static method to create a CustomPrediction object from JSON
     //
     public static CustomPrediction fromJson(String json) {
         Gson gson = new Gson();

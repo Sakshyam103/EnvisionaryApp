@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatchList object class - Written by Brandon LaPointe
+// FootballMatchList object class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a list of football (soccer) matches to save or load from MongoDB Atlas with a match list
 // time frame of either "Yesterday", "Today", "Tomorrow", "UpcomingWeek1", "UpcomingWeek2", or
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 //
 public class FootballMatchList {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // FootballMatchPredictions.FootballMatchList object variables
+    // FootballMatchList object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     @SerializedName("matchListTimeFrame")
@@ -24,7 +24,7 @@ public class FootballMatchList {
     private ArrayList<FootballMatch> footballMatches;
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Getter and setter methods for the FootballMatchPredictions.FootballMatchList object variables
+    // Getter and setter methods for the FootballMatchList object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public String getMatchListTimeFrame() {
@@ -72,7 +72,7 @@ public class FootballMatchList {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to convert the FootballMatchPredictions.FootballMatchList object to JSON.
+    // Method to convert the FootballMatchList object to JSON.
     //
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -82,7 +82,7 @@ public class FootballMatchList {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // fromJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Static method to create a FootballMatchPredictions.FootballMatchList object from JSON.
+    // Static method to create a FootballMatchList object from JSON.
     //
     public static FootballMatchList fromJson(String json) {
         Gson gson = new Gson();

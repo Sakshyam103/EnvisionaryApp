@@ -29,7 +29,7 @@ public class WeatherPredictionUpdater {
             // Initialize a new array list of celestial body predictions to store predictions that need to be removed
             ArrayList<WeatherPrediction> predictionsToRemove = new ArrayList<>();
 
-            // For each prediction within array list of WeatherPredictions.WeatherPrediction
+            // For each prediction within array list of WeatherPrediction
             for (WeatherPrediction userWeatherPrediction : userWeatherPredictions) {
                 // Initialize remove prediction boolean flag
                 boolean removePrediction = false;
@@ -114,7 +114,7 @@ public class WeatherPredictionUpdater {
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 
-                    // Copy over football WeatherPredictions.Weather prediction values to the new resolved prediction
+                    // Copy over football Weather prediction values to the new resolved prediction
                     resolvedWeatherPrediction.setPredictionType(userWeatherPrediction.getPrediction().getPredictionType());
                     resolvedWeatherPrediction.setPredictionContent(userWeatherPrediction.getPrediction().getPredictionContent());
                     resolvedWeatherPrediction.setPredictionMadeDate(userWeatherPrediction.getPrediction().getPredictionMadeDate());
@@ -147,7 +147,7 @@ public class WeatherPredictionUpdater {
                 }
                 // If removePrediction boolean flag is true
                 if (removePrediction) {
-                    // Add the prediction to the array list of football WeatherPredictions.Weather predictions to remove
+                    // Add the prediction to the array list of football Weather predictions to remove
                     predictionsToRemove.add(userWeatherPrediction);
                 }
             }

@@ -140,7 +140,7 @@ public class WeatherPredictionInitializer {
         // Set prediction made date
         userWeatherPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
 
-        // Initialize new list of WeatherPredictions.WeatherPrediction to load into and save from
+        // Initialize new list of WeatherPrediction to load into and save from
         ArrayList<WeatherPrediction> loadedWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions(userIdentifier);
         if (loadedWeatherPredictions == null) {
             loadedWeatherPredictions = new ArrayList<>();

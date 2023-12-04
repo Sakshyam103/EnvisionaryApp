@@ -19,7 +19,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatchPredictionUpdater class - Written by Brandon LaPointe
+// FootballMatchPredictionUpdater class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Updates the football match predictions when called by loading the list of today's football matches
 // and loading each user's football match prediction file before comparing each football match
@@ -38,7 +38,7 @@ import java.util.ArrayList;
 // due to the football match status.
 //
 public class FootballMatchPredictionUpdater {
-    // FootballMatchPredictions.FootballMatchPredictionUpdater Class Constants & Variables
+    // FootballMatchPredictionUpdater Class Constants & Variables
     private static final String userHome = System.getProperty("user.home");
     private static final String folderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SportsPredictions" + File.separator + "FootballPredictions";
     private static final String resolvedPredictionFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "ResolvedPredictions";
@@ -55,7 +55,7 @@ public class FootballMatchPredictionUpdater {
         // userIdentifier collected from the file path of the current football match prediction file being checked
         String userIdentifier;
 
-        // Initialize array lists of FootballMatchPredictions.FootballMatchPrediction and FootballMatchPredictions.FootballMatch for comparison
+        // Initialize array lists of FootballMatchPrediction and FootballMatch for comparison
         ArrayList<FootballMatchPrediction> loadedUserMatchPredictions = new ArrayList<>();
         ArrayList<FootballMatch> loadedTodaysMatches = new ArrayList<>();
 
@@ -106,7 +106,7 @@ public class FootballMatchPredictionUpdater {
                     // Initialize a new array list of football match prediction to store predictions that need to be removed
                     ArrayList<FootballMatchPrediction> predictionsToRemove = new ArrayList<>();
 
-                    // For each prediction within array list of FootballMatchPredictions.FootballMatchPrediction
+                    // For each prediction within array list of FootballMatchPrediction
                     for (FootballMatchPrediction userMatchPrediction : loadedUserMatchPredictions) {
                         // Initialize remove prediction boolean flag
                         boolean removePrediction = false;

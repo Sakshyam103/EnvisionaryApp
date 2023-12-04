@@ -12,8 +12,8 @@ import java.net.http.HttpResponse;
 //  When trying to call more than 10 requests per minute:
 //
 //  java.io.IOException: Failed to fetch data from the API. Response code: 429
-//	at FootballMatchPredictions.FootballAPIv4.fetchData(FootballMatchPredictions.FootballAPIv4.java:89)
-//	at FootballMatchPredictions.FootballAPIv4.main(FootballMatchPredictions.FootballAPIv4.java:125)
+//	at FootballAPIv4.fetchData(FootballAPIv4.java:89)
+//	at FootballAPIv4.main(FootballAPIv4.java:125)
 //
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 //									API:
@@ -76,7 +76,7 @@ import java.net.http.HttpResponse;
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballAPIv4 class - Written by Brandon LaPointe
+// FootballAPIv4 class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Gets requests from the football-data.org API using the final String API_KEY and a request URL line
 // to finish the BASE_URL final String.

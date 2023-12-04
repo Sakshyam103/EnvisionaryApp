@@ -18,14 +18,14 @@ import java.util.Scanner;
 
 public class CelestialBodyPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // CelestialBodyPredictions.CelestialBodyPredictionUpdater Class Constants
+    // CelestialBodyPredictionUpdater Class Constants
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     private static final String userHome = System.getProperty("user.home");
     private static final String celestialBodyPredictionFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SciencePredictions" + File.separator + "CelestialBodyPredictions";
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // CelestialBodyPredictions.CelestialBodyPrediction Object
+    // CelestialBodyPrediction Object
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     private static CelestialBodyPrediction userCelestialBodyPrediction;
@@ -283,7 +283,7 @@ public class CelestialBodyPredictionInitializer {
                 saveCelestialBodyPrediction(userIdentifier);
             }
             else {
-                System.out.println("ERROR - CelestialBodyPredictions.CelestialBodyPrediction: Celestial body is null.");
+                System.out.println("ERROR - CelestialBodyPrediction: Celestial body is null.");
             }
         }
     }
@@ -313,7 +313,7 @@ public class CelestialBodyPredictionInitializer {
                 saveCelestialBodyPredictionMongoDB(userIdentifier);
             }
             else {
-                System.out.println("ERROR - CelestialBodyPredictions.CelestialBodyPrediction: Celestial body is null.");
+                System.out.println("ERROR - CelestialBodyPrediction: Celestial body is null.");
             }
         }
     }
@@ -344,7 +344,7 @@ public class CelestialBodyPredictionInitializer {
         }
 
         if (loadedCelestialBodyPredictions.isEmpty()) {
-            System.out.println("ERROR - No football CelestialBodyPredictions.CelestialBody predictions available to remove.\n");
+            System.out.println("ERROR - No CelestialBody predictions available to remove.\n");
             return; // Exit the function
         }
 
@@ -389,7 +389,7 @@ public class CelestialBodyPredictionInitializer {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                System.out.println("Prediction removal canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");
@@ -408,7 +408,7 @@ public class CelestialBodyPredictionInitializer {
 
         if (loadedCelestialBodyPredictions == null) {
             loadedCelestialBodyPredictions = new ArrayList<>();
-            System.out.println("ERROR - No CelestialBodyPredictions.CelestialBody predictions available to remove.\n");
+            System.out.println("ERROR - No CelestialBody predictions available to remove.\n");
             return; // Exit the function
         }
 
@@ -445,7 +445,7 @@ public class CelestialBodyPredictionInitializer {
 
                 MongoDBEnvisionaryUsers.updateUserCelestialBodyPredictions(userIdentifier, loadedCelestialBodyPredictions);
             } else {
-                System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                System.out.println("Prediction removal canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");
