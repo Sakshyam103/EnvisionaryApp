@@ -3,9 +3,11 @@ package backend;
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CelestialBodyPredictions.CelestialBodyPredictionInitializer;
 import backend.CustomPredictions.CustomPrediction;
+
 import backend.CustomPredictions.CustomPredictionInitializer;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.FootballMatchPredictions.FootballMatchPredictionInitializer;
+
 import backend.Notifications.Notification;
 import backend.Notifications.NotificationUpdater;
 import backend.ResolvedPredictions.ResolvedPrediction;
@@ -19,6 +21,7 @@ import backend.WeatherPredictions.WeatherPredictionInitializer;
 import java.util.ArrayList;
 
 
+
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // FunctionExamples class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 public class FunctionExamples {
     public static void main(String[] args) {
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
         // METHODS USED TO CREATE / REMOVE / RESOLVE PREDICTIONS WITHIN MONGO DB THAT WILL HAVE TO BE MODIFIED FOR UI INPUT
         //
 //TODO        CustomPredictionInitializer.createNewCustomPredictionMongoDB("TestUser");
@@ -67,9 +71,11 @@ public class FunctionExamples {
 //TODO        NotificationUpdater.removeAllUserNotificationsMongoDB("TestUser");
 //                  Just need some sort of confirmation before removal in case it was an accidental press
 
+
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ALL METHODS USED TO RETURN DATA FROM MONGO DB THAT FETCH DATA FOR VIEWING
         //
+
 
         // ArrayList<CustomPrediction> userCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
         // Returns user's ArrayList<CustomPrediction>
@@ -204,5 +210,6 @@ public class FunctionExamples {
             // TODO: Set the userId within the frontend/backend for the application to interact with the methods
             String userId = userIdentifier;
         }
+
     }
 }
