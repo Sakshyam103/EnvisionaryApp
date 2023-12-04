@@ -25,7 +25,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.MongoDBFootballMatchData class - Written by Brandon LaPointe
+// MongoDBFootballMatchData class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Connects to MongoDB for interaction with Envisionary Football Match data.
 //
@@ -62,7 +62,7 @@ public class MongoDBFootballMatchData {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<FootballMatchList> collection = database.getCollection(COLLECTION_NAME, FootballMatchList.class);
 
-        // Try inserting FootballMatchPredictions.FootballMatch document
+        // Try inserting FootballMatch document
         try {
             collection.insertOne(footballMatchList);
             System.out.println("Inserted document.\n");
@@ -85,7 +85,7 @@ public class MongoDBFootballMatchData {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<FootballMatchList> collection = database.getCollection(COLLECTION_NAME, FootballMatchList.class);
 
-        // Try inserting multiple FootballMatchPredictions.FootballMatchList documents
+        // Try inserting multiple FootballMatchList documents
         try {
             collection.insertMany(footballMatchLists);
             System.out.println("Inserted multiple documents.\n");
@@ -132,13 +132,13 @@ public class MongoDBFootballMatchData {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<FootballMatchList> collection = database.getCollection(COLLECTION_NAME, FootballMatchList.class);
 
-        // Initialize a FootballMatchPredictions.FootballMatchList object to store the retrieved data
+        // Initialize a FootballMatchList object to store the retrieved data
         FootballMatchList footballMatchList = new FootballMatchList();
 
         // Try retrieving the collection of FootballMatchData
         try (MongoCursor<FootballMatchList> cursor = collection.find().iterator()) {
             while (cursor.hasNext()) {
-                // Instead of printing, add the retrieved FootballMatchPredictions.FootballMatchList to the object
+                // Instead of printing, add the retrieved FootballMatchList to the object
                 footballMatchList = cursor.next();
             }
         } catch (MongoException me) {
@@ -148,7 +148,7 @@ public class MongoDBFootballMatchData {
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return the FootballMatchPredictions.FootballMatchList object
+        // Return the FootballMatchList object
         return footballMatchList;
     }
 
@@ -232,13 +232,13 @@ public class MongoDBFootballMatchData {
         // Set filter for "matchListTimeFrame" equals the specified value
         Bson filter = Filters.eq("matchListTimeFrame", timeFrame);
 
-        // Initialize a FootballMatchPredictions.FootballMatchList object to store the retrieved data
+        // Initialize a FootballMatchList object to store the retrieved data
         FootballMatchList footballMatchList = new FootballMatchList();
 
         // Try retrieving the collection of FootballMatchData
         try (MongoCursor<FootballMatchList> cursor = collection.find(filter).iterator()) {
             while (cursor.hasNext()) {
-                // Add the retrieved FootballMatchPredictions.FootballMatchList to the object
+                // Add the retrieved FootballMatchList to the object
                 footballMatchList = cursor.next();
             }
         } catch (MongoException me) {
@@ -248,7 +248,7 @@ public class MongoDBFootballMatchData {
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return the FootballMatchPredictions.FootballMatchList object
+        // Return the FootballMatchList object
         return footballMatchList;
     }
 
@@ -271,16 +271,16 @@ public class MongoDBFootballMatchData {
         // Use upsert option to create a new document if no match is found
         UpdateOptions options = new UpdateOptions().upsert(true);
 
-        // Try to update the current FootballMatchPredictions.FootballMatchList
+        // Try to update the current FootballMatchList
         try {
             UpdateResult updateResult = collection.updateOne(filter, update, options);
             if (updateResult.getModifiedCount() > 0) {
-                System.out.println("Successfully updated FootballMatchPredictions.FootballMatchList for time frame: " + timeFrame);
+                System.out.println("Successfully updated FootballMatchList for time frame: " + timeFrame);
             } else {
-                System.out.println("No changes made for FootballMatchPredictions.FootballMatchList with time frame: " + timeFrame);
+                System.out.println("No changes made for FootballMatchList with time frame: " + timeFrame);
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to update FootballMatchPredictions.FootballMatchList for time frame: " + timeFrame + " due to an error: " + me);
+            System.err.println("ERROR - Unable to update FootballMatchList for time frame: " + timeFrame + " due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -329,16 +329,16 @@ public class MongoDBFootballMatchData {
     public static void main(String[] args) {
         // TODO : (CRUD) CREATE
         // Inserts a football match list into the database
-        //FootballMatchPredictions.FootballMatchList yesterdayFootballMatchList = new FootballMatchPredictions.FootballMatchList("Yesterday", FootballMatchPredictions.FootballMatchUpdater.readAndReturnYesterdayMatchesFile());
+        //FootballMatchList yesterdayFootballMatchList = new FootballMatchList("Yesterday", FootballMatchUpdater.readAndReturnYesterdayMatchesFile());
         //insertIndividualDocument(yesterdayFootballMatchList);
 
-        //FootballMatchPredictions.FootballMatchList todayFootballMatchList = new FootballMatchPredictions.FootballMatchList("Today", FootballMatchPredictions.FootballMatchUpdater.readAndReturnTodayMatchesFile());
-        //FootballMatchPredictions.FootballMatchList tomorrowFootballMatchList = new FootballMatchPredictions.FootballMatchList("Tomorrow", FootballMatchPredictions.FootballMatchUpdater.readAndReturnTomorrowMatchesFile());
-        //FootballMatchPredictions.FootballMatchList upcomingWeek1FootballMatchList = new FootballMatchPredictions.FootballMatchList("UpcomingWeek1", FootballMatchPredictions.FootballMatchUpdater.readAndReturnUpcomingWeek1MatchesFile());
-        //FootballMatchPredictions.FootballMatchList upcomingWeek2FootballMatchList = new FootballMatchPredictions.FootballMatchList("UpcomingWeek2", FootballMatchPredictions.FootballMatchUpdater.readAndReturnUpcomingWeek2MatchesFile());
-        //FootballMatchPredictions.FootballMatchList upcomingWeek3FootballMatchList = new FootballMatchPredictions.FootballMatchList("UpcomingWeek3", FootballMatchPredictions.FootballMatchUpdater.readAndReturnUpcomingWeek3MatchesFile());
+        //FootballMatchList todayFootballMatchList = new FootballMatchList("Today", FootballMatchUpdater.readAndReturnTodayMatchesFile());
+        //FootballMatchList tomorrowFootballMatchList = new FootballMatchList("Tomorrow", FootballMatchUpdater.readAndReturnTomorrowMatchesFile());
+        //FootballMatchList upcomingWeek1FootballMatchList = new FootballMatchList("UpcomingWeek1", FootballMatchUpdater.readAndReturnUpcomingWeek1MatchesFile());
+        //FootballMatchList upcomingWeek2FootballMatchList = new FootballMatchList("UpcomingWeek2", FootballMatchUpdater.readAndReturnUpcomingWeek2MatchesFile());
+        //FootballMatchList upcomingWeek3FootballMatchList = new FootballMatchList("UpcomingWeek3", FootballMatchUpdater.readAndReturnUpcomingWeek3MatchesFile());
 
-        //ArrayList<FootballMatchPredictions.FootballMatchList> footballMatchLists = new ArrayList<>();
+        //ArrayList<FootballMatchList> footballMatchLists = new ArrayList<>();
 
         //footballMatchLists.add(yesterdayFootballMatchList);
         //footballMatchLists.add(todayFootballMatchList);
@@ -355,7 +355,7 @@ public class MongoDBFootballMatchData {
 
         // Retrieve a list of football matches belonging to a specific time frame
         //retrieveCollectionTimeFrameAndDisplay("Tomorrow");
-        //FootballMatchPredictions.FootballMatchList footballMatchArrayList = retrieveCollectionTimeFrameAndReturn("Tomorrow");
+        //FootballMatchList footballMatchArrayList = retrieveCollectionTimeFrameAndReturn("Tomorrow");
         //System.out.println(footballMatchArrayList.toString());
 
         // TODO : (CRUD) UPDATE

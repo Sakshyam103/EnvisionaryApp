@@ -2,6 +2,8 @@ package backend;
 
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.GetMapping;
+import backend.ResolvedPredictions.ResolvedPrediction;
+import backend.UserInfo.MongoDBEnvisionaryUsers;
 import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +33,8 @@ import org.json.*;
 @RestController
 // @RequestMapping("/whee")
 public class Controller {
+    private static String userId;
+    private static String email;
 
     // @GetMapping("/example")
     // public ResponseEntity<String> exampleEndpoint() {
@@ -40,7 +44,7 @@ public class Controller {
     // @Autowired
     // private SignInRequest signInRequest;
 
-    @RequestMapping(value = "/example")
+    @RequestMapping(value = "/login")
     public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) {
         System.out.println("---test");
         SignInRequest signInRequest1 = new SignInRequest();
@@ -52,11 +56,12 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewPrediction")
-    public ArrayList<String> viewPrediction() {
+    public ArrayList<ResolvedPrediction> viewPrediction() {
         System.out.println("view prediction");
-        ArrayList<String> a = new ArrayList<>();
-        a.add("apple");
-        a.add("ball");
+        // TODO: Make each category's view prediction and use correct retrieve methods.
+        //  THIS IS A TEST WITH A HARDCODED USER
+        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
+        //ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         return a;
     }
 
@@ -82,10 +87,10 @@ public class Controller {
         JSONObject jsonObject = new JSONObject(id);
         JSONObject idString = (JSONObject) jsonObject.get("idString");
         // System.out.println(idString);
-        String email = (String) idString.get("email");
+        email = (String) idString.get("email");
         System.out.println("email: " + email);
-        String sub = (String) idString.get("sub");
-        System.out.println(sub);
+        userId = (String) idString.get("sub");
+        System.out.println(userId);
     }
 
     @Component

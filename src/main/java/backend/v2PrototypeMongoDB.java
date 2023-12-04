@@ -15,6 +15,7 @@ import backend.OverallStatistics.MongoDBOverallInferentialStatistics;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.ResolvedPredictions.ResolvedPredictionInitializer;
+import backend.UserInfo.EnvisionaryUser;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserInfo.UserInitializer;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
@@ -205,7 +206,8 @@ public class v2PrototypeMongoDB {
     public static void loginMenu() {
         loginMenuSelection = 0;
         while (loginMenuSelection != 3) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
                     "║                                                                                                  ║\n" +
@@ -268,11 +270,13 @@ public class v2PrototypeMongoDB {
         while (!isValidUser) {
             userID = "";
             password = "";
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                              LOGIN                                               ║\n" +
+                    "║                            Username: TestUser    Password: Password123!                          ║\n" +  // TODO: ERASE THIS LINE EVENTUALLY
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
-                    "║                               Please enter your UserID and Password                              ║\n" +
+                    "║                               Please enter your UserID                                           ║\n" +
                     "║                         Enter \"CANCEL\" to return back to the home screen                         ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -281,9 +285,7 @@ public class v2PrototypeMongoDB {
             if (userID.equalsIgnoreCase("CANCEL")){
                 return;
             }
-            System.out.print(  "                                     Password: ");
-            password = scan.next();
-            isValidUser = UserInitializer.loginMongoDB(userID, password);
+            isValidUser = UserInitializer.loginMongoDB(userID);
         }
         userMenu();
     }
@@ -305,11 +307,12 @@ public class v2PrototypeMongoDB {
             userID = "";
             password = "";
             email = "";
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                       NEW ENVISIONARY USER                                       ║\n" +
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
-                    "║                     Please enter your desired UserID, Password, and Email                        ║\n" +
+                    "║                     Please enter your desired UserID and Email                                   ║\n" +
                     "║                        Enter \"CANCEL\" to return back to the home screen                          ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -323,20 +326,6 @@ public class v2PrototypeMongoDB {
                     return;
                 }
                 validUserID = UserInitializer.isUserIdValidMongoDB(userID);
-            }
-            while (!validPassword) {
-                System.out.println("                           Enter your choice of password:\n" +
-                        "                       Password must be 7 or more characters long.\n" +
-                        "        Must contain at least 1 lowercase, uppercase, number, and special character.");
-                System.out.print("                                   Password: ");
-                password = scan.next();
-                if (password.equalsIgnoreCase("CANCEL")) {
-                    return;
-                }
-                validPassword = UserInitializer.isPasswordValid(password);
-                if (!validPassword) {
-                    System.out.println("ERROR - Password not valid.");
-                }
             }
             while (!validEmail) {
                 System.out.println("                           Enter your email address:\n" +
@@ -352,7 +341,7 @@ public class v2PrototypeMongoDB {
                 }
             }
         }
-        UserInitializer.createNewAccountMongoDB(userID, password, email);
+        UserInitializer.createNewAccountMongoDB(userID, email);
         System.out.println("New Envisionary user successfully created. Login using your account credentials.");
     }
 
@@ -366,7 +355,8 @@ public class v2PrototypeMongoDB {
     public static void userMenu() {
         userMenuSelection = 0;
         while (userMenuSelection != 10) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                            USER MENU                                             ║\n" +
                     "║                                                                                                  ║\n" +
@@ -415,9 +405,9 @@ public class v2PrototypeMongoDB {
                         case 5:
                             MongoDBEnvisionaryUsers.retrieveAndDisplayCustomPredictionsForUser(userID);
                             MongoDBEnvisionaryUsers.retrieveAndDisplayCelestialBodyPredictionsForUser(userID);
-                            MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
+                            //MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
                             MongoDBEnvisionaryUsers.retrieveAndDisplayFootballMatchPredictionsForUser(userID);
-                            //UserInfo.MongoDBEnvisionaryUsers.retrieveAndDisplayWeatherPredictionsForUser(userID);
+                            MongoDBEnvisionaryUsers.retrieveAndDisplayWeatherPredictionsForUser(userID);
                             userMenuSelection = 0;
                             break;
                         case 6:
@@ -464,7 +454,8 @@ public class v2PrototypeMongoDB {
     public static void customPredictionMenu() {
         customPredictionMenuSelection = 0;
         while (customPredictionMenuSelection != 6) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                      CUSTOM PREDICTION MENU                                      ║\n" +
                     "║                                                                                                  ║\n" +
@@ -531,7 +522,8 @@ public class v2PrototypeMongoDB {
     public static void celestialBodyPredictionMenu() {
         celestialBodyPredictionMenuSelection = 0;
         while(celestialBodyPredictionMenuSelection != 6) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                 CELESTIAL BODY PREDICTION MENU                                   ║\n" +
                     "║                                                                                                  ║\n" +
@@ -601,7 +593,8 @@ public class v2PrototypeMongoDB {
     public static void footballMatchPredictionMenu() {
         footballPredictionMenuSelection = 0;
         while(footballPredictionMenuSelection != 9) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                 FOOTBALL MATCH PREDICTION MENU                                   ║\n" +
                     "║                                                                                                  ║\n" +
@@ -685,7 +678,8 @@ public class v2PrototypeMongoDB {
     public static void footballMatchMenu() {
         footballMatchMenuSelection = 0;
         while(footballMatchMenuSelection != 7) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                       FOOTBALL MATCH MENU                                        ║\n" +
                     "║                                                                                                  ║\n" +
@@ -702,7 +696,7 @@ public class v2PrototypeMongoDB {
                     "║                                                                                                  ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.print(  "                                    Selection: ");
+            System.out.print("                                    Selection: ");
             // Menu logic
             try {
                 int input = scan.nextInt();
@@ -814,7 +808,8 @@ public class v2PrototypeMongoDB {
     public static void statisticsMenu() {
         statisticsMenuSelection = 0;
         while (statisticsMenuSelection != 5) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                         STATISTICS MENU                                          ║\n" +
                     "║                                                                                                  ║\n" +

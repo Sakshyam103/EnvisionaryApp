@@ -348,7 +348,7 @@ public class UserInferentialStatistics {
     // Method to print the UserStatistics.UserInferentialStatistics object details to the console.
     //
     public void printUserInferentialStatistics() {
-        System.out.println("-----BasePredictionsObject.Prediction Counts per Category-----\n" +
+        System.out.println("-----Prediction Counts per Category-----\n" +
                            "Custom: " + getCustomPredictionCount() + "\n" +
                            "Sports: " + getSportsPredictionCount()  + "\n" +
                            "Science: " + getSciencePredictionCount() + "\n" +

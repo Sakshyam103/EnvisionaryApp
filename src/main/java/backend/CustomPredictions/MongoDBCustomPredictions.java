@@ -49,7 +49,7 @@ public class MongoDBCustomPredictions {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<CustomPrediction> collection = database.getCollection(COLLECTION_NAME, CustomPrediction.class);
 
-        // Try inserting CustomPredictions.CustomPrediction document
+        // Try inserting CustomPrediction document
         try {
             collection.insertOne(customPrediction);
             System.out.println("Inserted document.\n");
@@ -68,7 +68,7 @@ public class MongoDBCustomPredictions {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<CustomPrediction> collection = database.getCollection(COLLECTION_NAME, CustomPrediction.class);
 
-        // Try inserting multiple CustomPredictions.CustomPrediction documents
+        // Try inserting multiple CustomPrediction documents
         try {
             InsertManyResult result = collection.insertMany(customPredictions);
             System.out.println("Inserted " + result.getInsertedIds().size() + " documents.\n");
@@ -141,7 +141,7 @@ public class MongoDBCustomPredictions {
                 // System.exit(1);
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to update Custom BasePredictionsObject.Prediction in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to update Custom Prediction in MongoDB due to an error: " + me);
             // System.exit(1);
         }
         System.out.println("Document found. IMPLEMENT LOGIC");
@@ -167,7 +167,7 @@ public class MongoDBCustomPredictions {
             if (updatedDocument == null) {
                 System.out.println("ERROR - Couldn't find any Custom Predictions containing " + fieldName + " : " + value + " in MongoDB - Envisionary - CustomPredictions.");
             } else {
-                System.out.println("\nUpdated the Custom BasePredictionsObject.Prediction to: " + updatedDocument);
+                System.out.println("\nUpdated the Custom Prediction to: " + updatedDocument);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update Custom Predictions due to an error: " + me);
@@ -198,7 +198,7 @@ public class MongoDBCustomPredictions {
             if (updatedDocument == null) {
                 System.out.println("ERROR - Couldn't find any Custom Predictions containing " + fieldName1 + " : " + value1 + " / " + fieldName2 + " : " + value2 + " in MongoDB - Envisionary - CustomPredictions.");
             } else {
-                System.out.println("\nUpdated the Custom BasePredictionsObject.Prediction to: " + updatedDocument);
+                System.out.println("\nUpdated the Custom Prediction to: " + updatedDocument);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any Custom Predictions due to an error: " + me);
@@ -277,7 +277,7 @@ public class MongoDBCustomPredictions {
     public static void main(String[] args) {
         // TODO : (CRUD) CREATE
         // Inserts a custom prediction into the database
-        //CustomPredictions.CustomPrediction customPrediction = new CustomPredictions.CustomPrediction(new BasePredictionsObject.Prediction("TestUser1", "Custom", "I predict that the issues with this code will be resolved", ZonedDateTime.now().toString(), ZonedDateTime.now().plusWeeks(2).toString(), "Daily"), "Testing");
+        //CustomPrediction customPrediction = new CustomPrediction(new Prediction("TestUser1", "Custom", "I predict that the issues with this code will be resolved", ZonedDateTime.now().toString(), ZonedDateTime.now().plusWeeks(2).toString(), "Daily"), "Testing");
         //insertIndividualDocument(customPrediction);
 
         // TODO : (CRUD) READ
@@ -302,7 +302,7 @@ public class MongoDBCustomPredictions {
         //deleteDocument("prediction.userID", "TestUser2");
 
         // Deletes the first occurrence of a custom prediction containing the matching predictionContent
-        // (Mix-up between "predictionContent" and "predictionContext" within ResolvedPredictions.ResolvedPredictionInitializer, CustomPredictions.CustomPredictionInitializer, FootballMatchPredictions.FootballMatchPrediction, FootballMatchPredictions.FootballMatchPredictionInitializer, and FootballMatchPredictions.FootballMatchPredictionUpdater)
+        // (Mix-up between "predictionContent" and "predictionContext" within ResolvedPredictions.ResolvedPredictionInitializer, CustomPredictionInitializer, FootballMatchPredictions.FootballMatchPrediction, FootballMatchPredictions.FootballMatchPredictionInitializer, and FootballMatchPredictions.FootballMatchPredictionUpdater)
         //deleteDocument("prediction.predictionContent","I predict that the issues with this code will be resolved");
 
         // Deletes the first occurrence of a custom prediction containing the matching userID and predictionContent

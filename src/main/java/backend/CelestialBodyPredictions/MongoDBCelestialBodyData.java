@@ -25,9 +25,9 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// CelestialBodyPredictions.MongoDBCelestialBodyData class - Written by Brandon LaPointe
+// MongoDBCelestialBodyData class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// Connects to MongoDB for interaction with Envisionary CelestialBodyPredictions.CelestialBody data.
+// Connects to MongoDB for interaction with Envisionary CelestialBody data.
 //
 public class MongoDBCelestialBodyData {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -135,7 +135,7 @@ public class MongoDBCelestialBodyData {
         // Try retrieving the collection of CelestialBodyData
         try (MongoCursor<CelestialBody> cursor = collection.find().iterator()) {
             while (cursor.hasNext()) {
-                // Add the retrieved CelestialBodyPredictions.CelestialBody to the list
+                // Add the retrieved CelestialBody to the list
                 celestialBodyList.add(cursor.next());
             }
         } catch (MongoException me) {
@@ -145,7 +145,7 @@ public class MongoDBCelestialBodyData {
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return the ArrayList of CelestialBodyPredictions.CelestialBody
+        // Return the ArrayList of CelestialBody
         return celestialBodyList;
     }
 
@@ -155,9 +155,9 @@ public class MongoDBCelestialBodyData {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<CelestialBody> collection = database.getCollection(COLLECTION_NAME, CelestialBody.class);
 
-        // Iterate through the list of CelestialBodyPredictions.CelestialBody and update each document
+        // Iterate through the list of CelestialBody and update each document
         for (CelestialBody currentCelestialBody : celestialBodyList) {
-            // Set filter for the current CelestialBodyPredictions.CelestialBody
+            // Set filter for the current CelestialBody
             Bson filter = Filters.eq("celestialBodyType", currentCelestialBody.getCelestialBodyType());
 
             // Create update document with new values
@@ -170,19 +170,19 @@ public class MongoDBCelestialBodyData {
             // Use upsert option to create a new document if no match is found
             UpdateOptions options = new UpdateOptions().upsert(true);
 
-            // Try to update the current CelestialBodyPredictions.CelestialBody
+            // Try to update the current CelestialBody
             try {
                 // Use the setter method to update the celestialBodyType field
                 currentCelestialBody.setCelestialBodyType(currentCelestialBody.getCelestialBodyType());
 
                 UpdateResult updateResult = collection.updateOne(filter, update, options);
                 if (updateResult.getModifiedCount() > 0) {
-                    System.out.println("Successfully updated CelestialBodyPredictions.CelestialBody: " + currentCelestialBody.getCelestialBodyType());
+                    System.out.println("Successfully updated CelestialBody: " + currentCelestialBody.getCelestialBodyType());
                 } else {
-                    System.out.println("No changes made for CelestialBodyPredictions.CelestialBody: " + currentCelestialBody.getCelestialBodyType());
+                    System.out.println("No changes made for CelestialBody: " + currentCelestialBody.getCelestialBodyType());
                 }
             } catch (MongoException me) {
-                System.err.println("ERROR - Unable to update CelestialBodyPredictions.CelestialBody: " + currentCelestialBody.getCelestialBodyType() + " due to an error: " + me);
+                System.err.println("ERROR - Unable to update CelestialBody: " + currentCelestialBody.getCelestialBodyType() + " due to an error: " + me);
             }
         }
 
@@ -213,12 +213,12 @@ public class MongoDBCelestialBodyData {
 
     public static void main(String[] args) {
         // TODO: CRUD CREATE
-        //insertMultipleDocuments(CelestialBodyPredictions.CelestialBodiesAPI.getSortedData(CelestialBodyPredictions.CelestialBodiesAPI.getSpaceData()));
+        //insertMultipleDocuments(CelestialBodiesAPI.getSortedData(CelestialBodiesAPI.getSpaceData()));
 
         // TODO: CRUD READ
         //retrieveCollectionAndDisplay();
 
-        //ArrayList<CelestialBodyPredictions.CelestialBody> celestialBodies = CelestialBodyPredictions.MongoDBCelestialBodyData.retrieveCollection();
+        //ArrayList<CelestialBody> celestialBodies = MongoDBCelestialBodyData.retrieveCollection();
         //System.out.println(celestialBodies);
 
         // TODO: CRUD UPDATE

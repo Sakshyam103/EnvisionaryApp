@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class CelestialBodyPredictionUpdater {
     //*****************************************************************************
-    // CelestialBodyPredictions.CelestialBodyPredictionUpdater Class Constants & Variables
+    // CelestialBodyPredictionUpdater Class Constants & Variables
     private static final String userHome = System.getProperty("user.home");
     private static final String celestialBodiesFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SciencePredictions" + File.separator + "CelestialBodyData";
     private static final String celestialBodyPredictionFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SciencePredictions" + File.separator + "CelestialBodyPredictions";
@@ -33,11 +33,11 @@ public class CelestialBodyPredictionUpdater {
         // userIdentifier collected from the file path of the current football match prediction file being checked
         String userIdentifier;
 
-        // Initialize array lists of CelestialBodyPredictions.CelestialBodyPrediction and CelestialBodyPredictions.CelestialBody for comparison
+        // Initialize array lists of CelestialBodyPrediction and CelestialBody for comparison
         ArrayList<CelestialBodyPrediction> loadedUserCelestialBodyPredictions = new ArrayList<>();
         ArrayList<CelestialBody> loadedCelestialBodyArrayList = new ArrayList<>();
 
-        // Check if the today's CelestialBodyPredictions.CelestialBody file exists before attempting to load it
+        // Check if the today's CelestialBody file exists before attempting to load it
         String celestialBodyFilePath = celestialBodiesFolderPath + File.separator + "celestial_bodies.json";
         File todayCelestialBodyFile = new File(celestialBodyFilePath);
         if (todayCelestialBodyFile.exists()) {
@@ -84,14 +84,14 @@ public class CelestialBodyPredictionUpdater {
                     // Initialize a new array list of celestial body prediction to store predictions that need to be removed
                     ArrayList<CelestialBodyPrediction> predictionsToRemove = new ArrayList<>();
 
-                    // For each prediction within array list of CelestialBodyPredictions.CelestialBodyPrediction
+                    // For each prediction within array list of CelestialBodyPrediction
                     for (CelestialBodyPrediction userCelestialBodyPrediction : loadedUserCelestialBodyPredictions) {
                         // Initialize remove prediction boolean flag
                         boolean removePrediction = false;
 
                         // Compare to each of the loaded CelestialBodies
                         for (CelestialBody celestialBody : loadedCelestialBodyArrayList) {
-                            // If prediction end date == today's date && CelestialBodyPredictions.CelestialBody ID == updated CelestialBodyPredictions.CelestialBody ID && prediction knownCount == updated knownCount
+                            // If prediction end date == today's date && CelestialBody ID == updated CelestialBody ID && prediction knownCount == updated knownCount
                             if (DateTimeConverter.parseZonedDateTimeFromString(userCelestialBodyPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
                                 // Initialize new resolved prediction
                                 ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
@@ -145,13 +145,13 @@ public class CelestialBodyPredictionUpdater {
                                 removePrediction = true;
                             }
 
-                            // If prediction CelestialBodyPredictions.CelestialBody ID == updated CelestialBodyPredictions.CelestialBody ID && knownCount != updated knownCount
+                            // If prediction CelestialBody ID == updated CelestialBody ID && knownCount != updated knownCount
                             if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType() == celestialBody.getCelestialBodyType() && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
 
                                 // Initialize new resolved prediction
                                 ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
 
-                                // Copy over football CelestialBodyPredictions.CelestialBody prediction values to the new resolved prediction
+                                // Copy over football CelestialBody prediction values to the new resolved prediction
                                 resolvedCelestialBodyPrediction.setPredictionType(userCelestialBodyPrediction.getPrediction().getPredictionType());
                                 resolvedCelestialBodyPrediction.setPredictionContent(userCelestialBodyPrediction.getPrediction().getPredictionContent());
                                 resolvedCelestialBodyPrediction.setPredictionMadeDate(userCelestialBodyPrediction.getPrediction().getPredictionMadeDate());
@@ -208,7 +208,7 @@ public class CelestialBodyPredictionUpdater {
                         }
                         // If removePrediction boolean flag is true
                         if (removePrediction) {
-                            // Add the prediction to the array list of football CelestialBodyPredictions.CelestialBody predictions to remove
+                            // Add the prediction to the array list of football CelestialBody predictions to remove
                             predictionsToRemove.add(userCelestialBodyPrediction);
                         }
                     }
@@ -245,14 +245,14 @@ public class CelestialBodyPredictionUpdater {
             // Initialize a new array list of celestial body predictions to store predictions that need to be removed
             ArrayList<CelestialBodyPrediction> predictionsToRemove = new ArrayList<>();
 
-            // For each prediction within array list of CelestialBodyPredictions.CelestialBodyPrediction
+            // For each prediction within array list of CelestialBodyPrediction
             for (CelestialBodyPrediction userCelestialBodyPrediction : userCelestialBodyPredictions) {
                 // Initialize remove prediction boolean flag
                 boolean removePrediction = false;
 
                 // Compare to each of the loaded CelestialBodies
                 for (CelestialBody celestialBody : celestialBodies) {
-                    // If prediction end date == today's date && CelestialBodyPredictions.CelestialBody ID == updated CelestialBodyPredictions.CelestialBody ID && prediction knownCount == updated knownCount
+                    // If prediction end date == today's date && CelestialBody ID == updated CelestialBody ID && prediction knownCount == updated knownCount
                     if (DateTimeConverter.parseZonedDateTimeFromString(userCelestialBodyPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
@@ -289,13 +289,13 @@ public class CelestialBodyPredictionUpdater {
                         OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
                     }
 
-                    // If prediction CelestialBodyPredictions.CelestialBody ID == updated CelestialBodyPredictions.CelestialBody ID && knownCount != updated knownCount
+                    // If prediction CelestialBody ID == updated CelestialBody ID && knownCount != updated knownCount
                     if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType() == celestialBody.getCelestialBodyType() && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
 
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
 
-                        // Copy over football CelestialBodyPredictions.CelestialBody prediction values to the new resolved prediction
+                        // Copy over football CelestialBody prediction values to the new resolved prediction
                         resolvedCelestialBodyPrediction.setPredictionType(userCelestialBodyPrediction.getPrediction().getPredictionType());
                         resolvedCelestialBodyPrediction.setPredictionContent(userCelestialBodyPrediction.getPrediction().getPredictionContent());
                         resolvedCelestialBodyPrediction.setPredictionMadeDate(userCelestialBodyPrediction.getPrediction().getPredictionMadeDate());
@@ -329,7 +329,7 @@ public class CelestialBodyPredictionUpdater {
                 }
                 // If removePrediction boolean flag is true
                 if (removePrediction) {
-                    // Add the prediction to the array list of football CelestialBodyPredictions.CelestialBody predictions to remove
+                    // Add the prediction to the array list of football CelestialBody predictions to remove
                     predictionsToRemove.add(userCelestialBodyPrediction);
                 }
             }

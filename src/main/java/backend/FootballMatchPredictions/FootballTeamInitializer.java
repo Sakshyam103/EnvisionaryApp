@@ -13,10 +13,10 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballTeamInitializer class - Written by Brandon LaPointe
+// FootballTeamInitializer class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Initializes the file path and folders needed to save the football teams data. Updates the team data
-// JSON file, displays the football teams to the console, and returns an ArrayList of FootballMatchPredictions.FootballTeam
+// JSON file, displays the football teams to the console, and returns an ArrayList of FootballTeam
 // objects
 //
 public class FootballTeamInitializer {
@@ -78,7 +78,7 @@ public class FootballTeamInitializer {
             // Fetch team data from football-data.org API
             String teams = fetchData(BASE_URL + "teams");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballTeam> footballTeamList = FootballAPIv4TeamDataExtractor.extractTeamsToArrayList(teams);
 
             // Save the list to a JSON file in the specified directory
@@ -102,7 +102,7 @@ public class FootballTeamInitializer {
     // Reads the data within the football_teams.json file and displays it to the console.
     //
     public static void readFileAndPrintTeams() {
-        // Read the list of FootballMatchPredictions.FootballTeam objects back from the JSON file
+        // Read the list of FootballTeam objects back from the JSON file
         String filePath = folderPath + File.separator + "football_teams.json";
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
@@ -124,10 +124,10 @@ public class FootballTeamInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // readFileAndReturnTeams
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Reads the data within the football_teams.json file and returns an ArrayList of FootballMatchPredictions.FootballTeam objects.
+    // Reads the data within the football_teams.json file and returns an ArrayList of FootballTeam objects.
     //
 	public static ArrayList<FootballTeam> readFileAndReturnTeams() {
-	    // Read the list of FootballMatchPredictions.FootballTeam objects back from the JSON file
+	    // Read the list of FootballTeam objects back from the JSON file
 	    String filePath = folderPath + File.separator + "football_teams.json";
 	    try {
 	        String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
