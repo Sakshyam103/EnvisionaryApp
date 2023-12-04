@@ -55,6 +55,25 @@ public final class CustomPrediction {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // printPredictionDetails
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Method to print the custom prediction details to the console.
+    //
+    public void printPredictionDetails() {
+        System.out.println(
+                "--------------------------------------------------------------------------------" + "\n" +
+                        "Custom Prediction Details:" + "\n" +
+                        "Custom Prediction Sub-Category: " + getCustomSubCategory() + "\n" +
+                        "Prediction Type: " + prediction.getPredictionType() + "\n" +
+                        "Prediction Content: " + prediction.getPredictionContent() + "\n" +
+                        "Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
+                        "Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
+                        "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
+                        "--------------------------------------------------------------------------------" + "\n"
+        );
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Method to convert the CustomPredictions.CustomPrediction object to JSON
