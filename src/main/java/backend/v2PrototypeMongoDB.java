@@ -206,18 +206,18 @@ public class v2PrototypeMongoDB {
         while (loginMenuSelection != 3) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                             1. Existing Envisionary user login                                   ║\n" +
-                    "║                             2. Create a new Envisionary user account                             ║\n" +
-                    "║                             3. Close application                                                 ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                             1. Existing Envisionary user login                                   ║\n" +
+                            "║                             2. Create a new Envisionary user account                             ║\n" +
+                            "║                             3. Close application                                                 ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                        Selection: ");
 
             // Menu logic
@@ -270,13 +270,13 @@ public class v2PrototypeMongoDB {
             password = "";
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                              LOGIN                                               ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                               Please enter your UserID                                           ║\n" +
-                    "║                         Enter \"CANCEL\" to return back to the home screen                         ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                              LOGIN                                               ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                               Please enter your UserID                                           ║\n" +
+                            "║                         Enter \"CANCEL\" to return back to the home screen                         ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                     UserID: ");
             userID = scan.next();
             if (userID.equalsIgnoreCase("CANCEL")){
@@ -306,13 +306,13 @@ public class v2PrototypeMongoDB {
             email = "";
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                       NEW ENVISIONARY USER                                       ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                     Please enter your desired UserID and Email                                   ║\n" +
-                    "║                        Enter \"CANCEL\" to return back to the home screen                          ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                       NEW ENVISIONARY USER                                       ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                     Please enter your desired UserID and Email                                   ║\n" +
+                            "║                        Enter \"CANCEL\" to return back to the home screen                          ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             while (!validUserID) {
                 System.out.println("                              Enter your choice of UserID:\n" +
                         "                         UserID must be 7 or more characters long.\n" +
@@ -354,25 +354,25 @@ public class v2PrototypeMongoDB {
         while (userMenuSelection != 10) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                            USER MENU                                             ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                   1. Custom prediction menu                                      ║\n" +
-                    "║                                   2. Celestial body prediction menu                              ║\n" +
-                    "║                                   3. Football match prediction menu                              ║\n" +
-                    "║                                   4. View all active predictions                                 ║\n" +
-                    "║                                   5. View all resolved predictions                               ║\n" +
-                    "║                                   6. View notifications                                          ║\n" +
-                    "║                                   7. Remove notifications                                        ║\n" +
-                    "║                                   8. Remove all notifications                                    ║\n" +
-                    "║                                   9. Statistics menu                                             ║\n" +
-                    "║                                  10. Log out                                                     ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                            USER MENU                                             ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                   1. Custom prediction menu                                      ║\n" +
+                            "║                                   2. Celestial body prediction menu                              ║\n" +
+                            "║                                   3. Football match prediction menu                              ║\n" +
+                            "║                                   4. View all active predictions                                 ║\n" +
+                            "║                                   5. View all resolved predictions                               ║\n" +
+                            "║                                   6. View notifications                                          ║\n" +
+                            "║                                   7. Remove notifications                                        ║\n" +
+                            "║                                   8. Remove all notifications                                    ║\n" +
+                            "║                                   9. Statistics menu                                             ║\n" +
+                            "║                                  10. Log out                                                     ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                        Selection: ");
 
             // Menu logic
@@ -448,21 +448,21 @@ public class v2PrototypeMongoDB {
         while (customPredictionMenuSelection != 6) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                      CUSTOM PREDICTION MENU                                      ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                 1. Create new custom prediction                                  ║\n" +
-                    "║                                 2. Remove custom prediction                                      ║\n" +
-                    "║                                 3. Resolve custom prediction                                     ║\n" +
-                    "║                                 4. View all active custom predictions                            ║\n" +
-                    "║                                 5. View all resolved custom predictions                          ║\n" +
-                    "║                                 6. Return to main menu                                           ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                      CUSTOM PREDICTION MENU                                      ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                 1. Create new custom prediction                                  ║\n" +
+                            "║                                 2. Remove custom prediction                                      ║\n" +
+                            "║                                 3. Resolve custom prediction                                     ║\n" +
+                            "║                                 4. View all active custom predictions                            ║\n" +
+                            "║                                 5. View all resolved custom predictions                          ║\n" +
+                            "║                                 6. Return to main menu                                           ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                        Selection: ");
 
             // Menu logic
@@ -516,21 +516,21 @@ public class v2PrototypeMongoDB {
         while(celestialBodyPredictionMenuSelection != 6) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                 CELESTIAL BODY PREDICTION MENU                                   ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                     1. View current celestial body data                                          ║\n" +
-                    "║                     2. Make new prediction on a change in the number of celestial bodies         ║\n" +
-                    "║                     3. Remove celestial body prediction                                          ║\n" +
-                    "║                     4. View active celestial body predictions                                    ║\n" +
-                    "║                     5. View resolved celestial body predictions                                  ║\n" +
-                    "║                     6. Return to main menu                                                       ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                 CELESTIAL BODY PREDICTION MENU                                   ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                     1. View current celestial body data                                          ║\n" +
+                            "║                     2. Make new prediction on a change in the number of celestial bodies         ║\n" +
+                            "║                     3. Remove celestial body prediction                                          ║\n" +
+                            "║                     4. View active celestial body predictions                                    ║\n" +
+                            "║                     5. View resolved celestial body predictions                                  ║\n" +
+                            "║                     6. Return to main menu                                                       ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                    Selection: ");
             // Menu logic
             try {
@@ -587,24 +587,24 @@ public class v2PrototypeMongoDB {
         while(footballPredictionMenuSelection != 9) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                 FOOTBALL MATCH PREDICTION MENU                                   ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                     1. Football match menu (View current football match data)                    ║\n" +
-                    "║                     2. Make new prediction on tomorrow's matches                                 ║\n" +
-                    "║                     3. Make new prediction on upcoming week's matches                            ║\n" +
-                    "║                     4. Make new prediction on second upcoming week's matches                     ║\n" +
-                    "║                     5. Make new prediction on third upcoming week's matches                      ║\n" +
-                    "║                     6. Remove football match prediction                                          ║\n" +
-                    "║                     7. View active football match predictions                                    ║\n" +
-                    "║                     8. View resolved football match predictions                                  ║\n" +
-                    "║                     9. Return to main menu                                                       ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                 FOOTBALL MATCH PREDICTION MENU                                   ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                     1. Football match menu (View current football match data)                    ║\n" +
+                            "║                     2. Make new prediction on tomorrow's matches                                 ║\n" +
+                            "║                     3. Make new prediction on upcoming week's matches                            ║\n" +
+                            "║                     4. Make new prediction on second upcoming week's matches                     ║\n" +
+                            "║                     5. Make new prediction on third upcoming week's matches                      ║\n" +
+                            "║                     6. Remove football match prediction                                          ║\n" +
+                            "║                     7. View active football match predictions                                    ║\n" +
+                            "║                     8. View resolved football match predictions                                  ║\n" +
+                            "║                     9. Return to main menu                                                       ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                    Selection: ");
             // Menu logic
             try {
@@ -672,22 +672,22 @@ public class v2PrototypeMongoDB {
         while(footballMatchMenuSelection != 7) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                       FOOTBALL MATCH MENU                                        ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                             1. View yesterday's football matches                                 ║\n" +
-                    "║                             2. View today's football matches                                     ║\n" +
-                    "║                             3. View tomorrow's football matches                                  ║\n" +
-                    "║                             4. View upcoming week's football matches                             ║\n" +
-                    "║                             5. View second upcoming week's football matches                      ║\n" +
-                    "║                             6. View third upcoming week's football matches                       ║\n" +
-                    "║                             7. Return to football match prediction menu                          ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                       FOOTBALL MATCH MENU                                        ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                             1. View yesterday's football matches                                 ║\n" +
+                            "║                             2. View today's football matches                                     ║\n" +
+                            "║                             3. View tomorrow's football matches                                  ║\n" +
+                            "║                             4. View upcoming week's football matches                             ║\n" +
+                            "║                             5. View second upcoming week's football matches                      ║\n" +
+                            "║                             6. View third upcoming week's football matches                       ║\n" +
+                            "║                             7. Return to football match prediction menu                          ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("                                    Selection: ");
             // Menu logic
             try {
@@ -746,20 +746,20 @@ public class v2PrototypeMongoDB {
         while (statisticsMenuSelection != 5) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                         STATISTICS MENU                                          ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                               1. View user descriptive statistics                                ║\n" +
-                    "║                               2. View user inferential statistics                                ║\n" +
-                    "║                               3. View overall descriptive statistics                             ║\n" +
-                    "║                               4. View overall inferential statistics                             ║\n" +
-                    "║                               5. Return to main menu                                             ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "║                                                                                                  ║\n" +
-                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                            "║                                                                                                  ║\n" +
+                            "║                                         STATISTICS MENU                                          ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                               1. View user descriptive statistics                                ║\n" +
+                            "║                               2. View user inferential statistics                                ║\n" +
+                            "║                               3. View overall descriptive statistics                             ║\n" +
+                            "║                               4. View overall inferential statistics                             ║\n" +
+                            "║                               5. Return to main menu                                             ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                        Selection: ");
 
             // Menu logic
