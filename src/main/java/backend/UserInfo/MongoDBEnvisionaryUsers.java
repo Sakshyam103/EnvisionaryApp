@@ -269,7 +269,7 @@ public class MongoDBEnvisionaryUsers {
                 if (customPredictions != null && !customPredictions.isEmpty()) {
                     System.out.println("Custom Predictions:");
                     for (CustomPrediction customPrediction : customPredictions) {
-                        System.out.println(customPrediction.toString());
+                        customPrediction.printPredictionDetails();
                     }
                 } else {
                     System.out.println("No Custom Predictions found for the user.");
@@ -343,7 +343,7 @@ public class MongoDBEnvisionaryUsers {
                 if (footballMatchPredictions != null && !footballMatchPredictions.isEmpty()) {
                     System.out.println("Football Match Predictions:");
                     for (FootballMatchPrediction footballMatchPrediction : footballMatchPredictions) {
-                        System.out.println("   " + footballMatchPrediction.toString());
+                        footballMatchPrediction.printPredictionDetails();
                     }
                 } else {
                     System.out.println("No Football Match Predictions found for the user.");
@@ -397,38 +397,38 @@ public class MongoDBEnvisionaryUsers {
     // retrieveAndDisplayWeatherPredictionsForUser
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
-//    public static void retrieveAndDisplayWeatherPredictionsForUser(String userID) {
-//        // Connect to MongoDB EnvisionaryUsers collection
-//        MongoClient mongoClient = connectToMongoDB();
-//        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
-//
-//        // Set filter for the specified user
-//        Bson userFilter = Filters.eq("userID", userID);
-//
-//        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
-//            while (cursor.hasNext()) {
-//                EnvisionaryUser currentEnvisionaryUser = cursor.next();
-//
-//                // Retrieve and print WeatherPredictions
-//                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
-//                if (weatherPredictions != null && !weatherPredictions.isEmpty()) {
-//                    System.out.println("Weather Predictions:");
-//                    for (WeatherPrediction weatherPrediction : weatherPredictions) {
-//                        System.out.println("   " + weatherPrediction.toString());
-//                    }
-//                } else {
-//                    System.out.println("No Weather Predictions found for the user.");
-//                }
-//            }
-//        } catch (MongoException me) {
-//            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
-//        }
-//
-//        // Close the connection when done working with the client
-//        mongoClient.close();
-//    }
+    public static void retrieveAndDisplayWeatherPredictionsForUser(String userID) {
+        // Connect to MongoDB EnvisionaryUsers collection
+        MongoClient mongoClient = connectToMongoDB();
+        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+        MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
+
+        // Set filter for the specified user
+        Bson userFilter = Filters.eq("userID", userID);
+
+        // Try retrieving the collection of EnvisionaryUsers for the user
+        try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+            while (cursor.hasNext()) {
+                EnvisionaryUser currentEnvisionaryUser = cursor.next();
+
+                // Retrieve and print WeatherPredictions
+                ArrayList<WeatherPrediction> weatherPredictions = currentEnvisionaryUser.getWeatherPredictions();
+                if (weatherPredictions != null && !weatherPredictions.isEmpty()) {
+                    System.out.println("Weather Predictions:");
+                    for (WeatherPrediction weatherPrediction : weatherPredictions) {
+                        weatherPrediction.printPredictionDetails();
+                    }
+                } else {
+                    System.out.println("No Weather Predictions found for the user.");
+                }
+            }
+        } catch (MongoException me) {
+            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+        }
+
+        // Close the connection when done working with the client
+        mongoClient.close();
+    }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // retrieveAndDisplayResolvedPredictionsForUser
