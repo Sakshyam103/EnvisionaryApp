@@ -61,7 +61,8 @@ public class Controller {
         System.out.println("view prediction");
         // TODO: Make each category's view prediction and use correct retrieve methods.
         ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
-        //ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
+        // ArrayList<ResolvedPrediction> a =
+        // MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         return a;
     }
 

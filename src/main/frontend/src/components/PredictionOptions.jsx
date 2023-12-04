@@ -15,16 +15,19 @@ function PredictionOptions ({user}) {
   const handleMoviesPredictions = () => {
     // Handle movies predictions logic here
     console.log('Handling Movies Predictions');
+    navigate('/Home/MakePredictions/Movies');
   };
 
   const handleAstronomyPredictions = () => {
     // Handle astronomy predictions logic here
     console.log('Handling Astronomy Predictions');
+    //navigate('/Home/MakePredictions/Weather');
   };
 
   const handleWeatherPredictions = () => {
     // Handle weather predictions logic here
     console.log('Handling Weather Predictions');
+    navigate('/Home/MakePredictions/Weather');
   };
 
   const handleCustomPredictions = () => {
@@ -67,7 +70,7 @@ function PredictionOptions ({user}) {
           color: 'white',
           border: 'pink',
         }}
-        //onClick={handleMoviesPredictions}
+        onClick={handleMoviesPredictions}
       >
         Movies
       </button>
@@ -91,7 +94,7 @@ function PredictionOptions ({user}) {
           color: 'white',
           border: 'pink',
         }}
-        // onClick={handleWeatherPredictions}
+         onClick={handleWeatherPredictions}
       >
         Weather
       </button>
