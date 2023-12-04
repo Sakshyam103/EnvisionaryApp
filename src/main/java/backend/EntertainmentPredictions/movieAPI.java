@@ -42,7 +42,7 @@ public class movieAPI{
         }
         catch (Exception ex)
         {
-            System.out.println(ex);
+            runEntertainment.canMake = false;
             return null;
         }
 
@@ -52,7 +52,6 @@ public class movieAPI{
     // test case for movie not found
     // array is null, therefore api returned nothing
     private static void movieNotFound(){
-        System.out.println("Sorry but we could not find that movie \n Please try again");
-//        runEntertainment.runEntertainmentPrediction();
+        runEntertainment.exists = false;
     }
 }

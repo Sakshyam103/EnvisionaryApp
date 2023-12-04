@@ -1,5 +1,6 @@
 package backend.EntertainmentPredictions;
 
+import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.v2Prototype;
 
 import javax.json.JsonArray;
@@ -16,46 +17,27 @@ public class runEntertainment {
 
     public static String movieTitle;
     public static int year;
+    public static boolean exists;
+    public static boolean canMake;
+    public static int trueYear;
+    public static boolean resolve;
 
     public static void runEntertainmentPrediction(String userID){
-        if (makeOrBreak()) {
+        canMake = makeOrBreak();
+        if (canMake) {
            checkGood(userID);
-        }
-        else{
-            checkBad(userID);
         }
     }
 
     private static void checkGood(String userID){
         EntertainmentTrigger();
-        getPredictionFromUser();
+        // run entertainment prediction from frontend
+
         JsonArray array = movieAPI.connectToMovie();
         JsonValue movieInfo = parseMovieArray.getCorrectMovie(array);
-        checkUserPrediction(movieInfo);
-        EntertainmentPrediction moviePrediction = buildMoviePrediction();
-        EntertainmentPredictionInitializer.saveEntertainmentPredictionMongoDB(userID, moviePrediction);
+        resolve = checkUserPrediction(movieInfo);
+        ResolvedPrediction moviePrediction = buildMoviePrediction();
+        EntertainmentPredictionInitializer.resolveEntertainmentPrediction(userID, moviePrediction);
         EntertainmentTrigger();
     }
-
-    private static void checkBad(String userID) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("We're sorry, due to restraints your prediction will be unable to be resolved today" +
-                "\nWould you still like to continue?" +
-                "\n1. Yes" +
-                "\n2. No");
-        int response = scanner.nextInt();
-        switch (response) {
-            case 1 -> checkGood(userID);
-            case 2 -> {
-                System.out.println("You will now be returned to the main menu");
-                v2Prototype.userMenu();
-            }
-            default -> {
-                System.out.println("Invalid selection. PLease input 1 or 2.");
-                runEntertainmentPrediction(userID);
-            }
-        }
-    }
-
-
 }

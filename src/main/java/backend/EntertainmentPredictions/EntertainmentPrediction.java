@@ -17,6 +17,9 @@ public final class EntertainmentPrediction {
     @SerializedName("predictedYear")
     private int predictedYear;
 
+    @SerializedName("trueYear")
+    private int trueYear;
+
     // get those variables
 
     public Prediction getPrediction() {return prediction;}
@@ -24,6 +27,8 @@ public final class EntertainmentPrediction {
     public String getMovieTitle() {return movieTitle;}
 
     public int getPredictedYear() {return predictedYear;}
+
+    public int getTrueYear() {return  trueYear;}
 
     // set those variables
 
@@ -33,16 +38,19 @@ public final class EntertainmentPrediction {
 
     public void setPredictedYear(int predictedYear) {this.predictedYear = predictedYear;}
 
+    public void setTrueYear(int trueYear) {this.trueYear = trueYear;}
+
     // the empty one
 
     public EntertainmentPrediction() {}
 
     // the complete one
 
-    public EntertainmentPrediction(Prediction prediction, String movieTitle, int predictedYear){
+    public EntertainmentPrediction(Prediction prediction, String movieTitle, int predictedYear, int trueYear){
         this.prediction = prediction;
         this.movieTitle = movieTitle;
         this.predictedYear = predictedYear;
+        this.trueYear = trueYear;
     }
 
     // to view the movie prediction
