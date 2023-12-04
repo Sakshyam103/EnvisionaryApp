@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.Gson;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatchPrediction object class - Written by Brandon LaPointe
+// FootballMatchPrediction object class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a football (soccer) match prediction made by an Envisionary web app user.
 //
 public final class FootballMatchPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // FootballMatchPredictions.FootballMatchPrediction object variables
+    // FootballMatchPrediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
 	@SerializedName("prediction")
-    private Prediction prediction = new Prediction();				// BasePredictionsObject.Prediction object
+    private Prediction prediction = new Prediction();				// Prediction object
 	@SerializedName("predictionMatch")
     private FootballMatch predictionMatch = new FootballMatch();	// Football match object
 	@SerializedName("predictedMatchTeam")
@@ -24,7 +24,7 @@ public final class FootballMatchPrediction {
     private String predictedMatchOutcome;							// Predicted football match outcome for the team ("win", "loss", "draw")
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Getter and setter methods for the FootballMatchPredictions.FootballMatchPrediction object variables
+    // Getter and setter methods for the FootballMatchPrediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public FootballMatch getPredictionMatch() {
@@ -75,26 +75,25 @@ public final class FootballMatchPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printPredictionDetails
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to print the FootballMatchPredictions.FootballMatchPrediction object details to the console.
+    // Method to print the FootballMatchPrediction object details to the console.
     //
     public void printPredictionDetails() {
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("Football Match BasePredictionsObject.Prediction Details:");
-        System.out.println("BasePredictionsObject.Prediction Type: " + prediction.getPredictionType());
-        System.out.println("BasePredictionsObject.Prediction Content: " + prediction.getPredictionContent());
-        System.out.println("BasePredictionsObject.Prediction Made Date: " + prediction.getPredictionMadeDate());
-        System.out.println("BasePredictionsObject.Prediction End Date: " + prediction.getPredictionEndDate());
+        System.out.println("--------------------------------------------------------------------------------");
+        System.out.println("Football Match Prediction Details:");
+        System.out.println("Prediction Type: " + prediction.getPredictionType());
+        System.out.println("Prediction Content: " + prediction.getPredictionContent());
+        System.out.println("Prediction Made Date: " + prediction.getPredictionMadeDate());
+        System.out.println("Prediction End Date: " + prediction.getPredictionEndDate());
         System.out.println("Reminder Frequency: " + prediction.getRemindFrequency());
-        System.out.println("-------------------------------");
         System.out.println("Football Match Details:");
-        predictionMatch.printMatchDetails();
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        predictionMatch.printKeyMatchDetails();
+        System.out.println("--------------------------------------------------------------------------------");
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to convert the FootballMatchPredictions.FootballMatchPrediction object to JSON.
+    // Method to convert the FootballMatchPrediction object to JSON.
     //
     public String toJson() {
         Gson gson = new Gson();
@@ -104,7 +103,7 @@ public final class FootballMatchPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // fromJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Static method to create a FootballMatchPredictions.FootballMatchPrediction object from JSON.
+    // Static method to create a FootballMatchPrediction object from JSON.
     //
     public static FootballMatchPrediction fromJson(String json) {
         Gson gson = new Gson();

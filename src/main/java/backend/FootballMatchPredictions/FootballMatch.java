@@ -7,14 +7,14 @@ import com.google.gson.GsonBuilder;
 import java.util.Objects;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatch object class - Written by Brandon LaPointe
+// FootballMatch object class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a football (soccer) match given the data supplied by calls to the football-data.org API
 // used within the Envisionary web app.
 //
 public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // FootballMatchPredictions.FootballMatch object variables
+    // FootballMatch object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     @SerializedName("areaName")
@@ -62,7 +62,7 @@ public final class FootballMatch {
 
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Getter and setter methods for the FootballMatchPredictions.FootballMatch object variables
+    // Getter and setter methods for the FootballMatch object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public String getAreaName() {
@@ -221,7 +221,7 @@ public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printMatchDetails
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to print all the FootballMatchPredictions.FootballMatch object details to the console.
+    // Method to print all the FootballMatch object details to the console.
     //
     public void printMatchDetails() {
         System.out.println("Competition Name: " + competitionName);
@@ -248,7 +248,7 @@ public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printKeyMatchDetails
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to print the FootballMatchPredictions.FootballMatch object key details to the console.
+    // Method to print the FootballMatch object key details to the console.
     //
     public void printKeyMatchDetails() {
         System.out.println("Competition Name: " + competitionName);
@@ -267,7 +267,7 @@ public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // toJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to convert the FootballMatchPredictions.FootballMatch object to JSON.
+    // Method to convert the FootballMatch object to JSON.
     //
     public String toJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -277,7 +277,7 @@ public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // fromJson
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Static method to create a FootballMatchPredictions.FootballMatch object from JSON.
+    // Static method to create a FootballMatch object from JSON.
     //
     public static FootballMatch fromJson(String json) {
         Gson gson = new Gson();
@@ -287,7 +287,7 @@ public final class FootballMatch {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // @Override equals
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Method to compare two FootballMatchPredictions.FootballMatch objects
+    // Method to compare two FootballMatch objects
     //
     @Override
     public boolean equals(Object obj) {

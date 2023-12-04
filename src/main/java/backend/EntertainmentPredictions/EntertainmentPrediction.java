@@ -17,6 +17,9 @@
 //    @SerializedName("predictedYear")
 //    private int predictedYear;
 //
+//    @SerializedName("trueYear")
+//    private int trueYear;
+//
 //    // get those variables
 //
 //    public Prediction getPrediction() {return prediction;}
@@ -25,8 +28,9 @@
 //
 //    public int getPredictedYear() {return predictedYear;}
 //
-//    // set those variables
+//    public int getTrueYear() {return  trueYear;}
 //
+//    // set those variables
 //
 //    public void setPrediction(Prediction prediction) {this.prediction = prediction;}
 //
@@ -34,16 +38,19 @@
 //
 //    public void setPredictedYear(int predictedYear) {this.predictedYear = predictedYear;}
 //
+//    public void setTrueYear(int trueYear) {this.trueYear = trueYear;}
+//
 //    // the empty one
 //
 //    public EntertainmentPrediction() {}
 //
 //    // the complete one
 //
-//    public EntertainmentPrediction(Prediction prediction, String movieTitle, int predictedYear){
+//    public EntertainmentPrediction(Prediction prediction, String movieTitle, int predictedYear, int trueYear){
 //        this.prediction = prediction;
 //        this.movieTitle = movieTitle;
 //        this.predictedYear = predictedYear;
+//        this.trueYear = trueYear;
 //    }
 //
 //    // to view the movie prediction

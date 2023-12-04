@@ -24,7 +24,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// CustomPredictions.CustomPredictionInitializer class - Written by Brandon LaPointe
+// CustomPredictionInitializer class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Initializes the file path and folders needed to save the users' custom predictions. Initializes
 // custom predictions made by the user, removes custom predictions, displays custom predictions,
@@ -32,12 +32,12 @@ import java.util.Scanner;
 // file.
 //
 public class CustomPredictionInitializer {
-    // CustomPredictions.CustomPredictionInitializer Class Constants & Variables
+    // CustomPredictionInitializer Class Constants & Variables
     private static final String userHome = System.getProperty("user.home");
     private static final String customPredictionFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "CustomPredictions";
     private static final String resolvedPredictionFolderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "ResolvedPredictions";
 
-    // CustomPredictions.CustomPrediction Object
+    // CustomPrediction Object
     private static CustomPrediction userCustomPrediction;
 
     // Scanner object for reading user input from keyboard
@@ -63,7 +63,7 @@ public class CustomPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // createNewCustomPrediction
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Gathers the inputs from the user to set the prediction variables of the CustomPredictions.CustomPrediction and saves
+    // Gathers the inputs from the user to set the prediction variables of the CustomPrediction and saves
     // to the specified user's custom prediction file
     //
     public static void createNewCustomPrediction(String userIdentifier) {
@@ -77,7 +77,7 @@ public class CustomPredictionInitializer {
 
         Scanner scan = new Scanner(System.in);
 
-        // Initialize a new CustomPredictions.CustomPrediction
+        // Initialize a new CustomPrediction
         userCustomPrediction = new CustomPrediction();
 
         // Gather the inputs for the custom prediction sub-category
@@ -161,7 +161,7 @@ public class CustomPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // createNewCustomPredictionMongoDB
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Gathers the inputs from the user to set the prediction variables of the CustomPredictions.CustomPrediction and saves
+    // Gathers the inputs from the user to set the prediction variables of the CustomPrediction and saves
     // to the specified user's custom prediction file
     //
     public static void createNewCustomPredictionMongoDB(String userIdentifier) {
@@ -175,7 +175,7 @@ public class CustomPredictionInitializer {
 
         Scanner scan = new Scanner(System.in);
 
-        // Initialize a new CustomPredictions.CustomPrediction
+        // Initialize a new CustomPrediction
         userCustomPrediction = new CustomPrediction();
 
         // Gather the inputs for the custom prediction sub-category
@@ -268,7 +268,7 @@ public class CustomPredictionInitializer {
         // Set prediction made date
         userCustomPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
 
-        // Initialize new list of CustomPredictions.CustomPrediction to load into and save from
+        // Initialize new list of CustomPrediction to load into and save from
         ArrayList<CustomPrediction> loadedCustomPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -313,7 +313,7 @@ public class CustomPredictionInitializer {
         // Set prediction made date
         userCustomPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
 
-        // Initialize new list of CustomPredictions.CustomPrediction to load into and save from
+        // Initialize new list of CustomPrediction to load into and save from
         ArrayList<CustomPrediction> loadedCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userIdentifier);
 
         if (loadedCustomPredictions == null) {
@@ -432,12 +432,12 @@ public class CustomPredictionInitializer {
                             FileWriter writer = new FileWriter(filePath);
                             gson.toJson(customPredictions, writer);
                             writer.close();
-                            System.out.println("BasePredictionsObject.Prediction removed and saved successfully.");
+                            System.out.println("Prediction removed and saved successfully.");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     } else {
-                        System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                        System.out.println("Prediction removal canceled.");
                     }
                 } else {
                     System.out.println("ERROR - Invalid prediction number.");
@@ -508,7 +508,7 @@ public class CustomPredictionInitializer {
                 // Save the updated list of custom predictions to the JSON file
                 MongoDBEnvisionaryUsers.updateUserCustomPredictions(userIdentifier, userCustomPredictions);
             } else {
-                System.out.println("BasePredictionsObject.Prediction removal canceled.");
+                System.out.println("Prediction removal canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");
@@ -651,7 +651,7 @@ public class CustomPredictionInitializer {
                             FileWriter resolvedWriter = new FileWriter(resolvedFilePath);
                             gson.toJson(loadedResolvedPredictions, resolvedWriter);
                             resolvedWriter.close();
-                            System.out.println("BasePredictionsObject.Prediction resolved successfully.");
+                            System.out.println("Prediction resolved successfully.");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -664,7 +664,7 @@ public class CustomPredictionInitializer {
                         gson.toJson(customPredictions, customWriter);
                         customWriter.close();
 
-                        System.out.println("BasePredictionsObject.Prediction removed successfully.");
+                        System.out.println("Prediction removed successfully.");
 
                         // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                         UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatistics(userIdentifier);
@@ -673,7 +673,7 @@ public class CustomPredictionInitializer {
                         OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatistics();
 
                     } else {
-                        System.out.println("BasePredictionsObject.Prediction resolution canceled.");
+                        System.out.println("Prediction resolution canceled.");
                     }
                 } else {
                     System.out.println("ERROR - Invalid prediction number.");
@@ -791,7 +791,7 @@ public class CustomPredictionInitializer {
                 // Save the updated user's custom predictions list
                 MongoDBEnvisionaryUsers.updateUserCustomPredictions(userIdentifier, userCustomPredictions);
 
-                System.out.println("BasePredictionsObject.Prediction removed successfully.");
+                System.out.println("Prediction removed successfully.");
 
                 // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                 UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(userIdentifier);
@@ -800,7 +800,7 @@ public class CustomPredictionInitializer {
                 OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
 
             } else {
-                System.out.println("BasePredictionsObject.Prediction resolution canceled.");
+                System.out.println("Prediction resolution canceled.");
             }
         } else {
             System.out.println("ERROR - Invalid prediction number.");

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballMatchUpdater class - Written by Brandon LaPointe
+// FootballMatchUpdater class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Initializes the file path and folders needed to save the football match data. Gets requests from
 // the football-data.org API to gather football match data for yesterday's, today's's, tomorrow's,
@@ -22,11 +22,11 @@ import java.util.ArrayList;
 // data and saves them as JSON files to the given folder/file path.
 //
 public class FootballMatchUpdater {
-    // FootballMatchPredictions.FootballMatchUpdater Class Constants
+    // FootballMatchUpdater Class Constants
     private static final String API_KEY = System.getenv("FOOTBALL-DATA.ORG_API_KEY");		// API authorization key
     private static final String BASE_URL = "https://api.football-data.org/v4/";		            // Base URL used for API Data Access
 
-    // FootballMatchPredictions.FootballMatchUpdater Class Variables
+    // FootballMatchUpdater Class Variables
     private static String userHome = System.getProperty("user.home");
     private static String folderPath = userHome + File.separator + "EnvisionaryApp" + File.separator + "SportsPredictions" + File.separator + "FootballPredictions" + File.separator + "FootballMatchData";
 
@@ -81,7 +81,7 @@ public class FootballMatchUpdater {
         try {
             String yesterdayMatches = fetchData(BASE_URL + "matches?date=YESTERDAY");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football teams from team data extractor array list
@@ -113,7 +113,7 @@ public class FootballMatchUpdater {
         try {
             String todayMatches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -186,7 +186,7 @@ public class FootballMatchUpdater {
         try {
             String tomorrowMatches = fetchData(BASE_URL + "matches?date=TOMORROW");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -247,7 +247,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek1Matches = fetchData(BASE_URL + "matches?dateFrom=" + tomorrow.toString() + "&dateTo=" + weekAfterTomorrow.toString());
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -308,7 +308,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek2Matches = fetchData(BASE_URL + "matches?dateFrom=" + weekAfterTomorrow.toString() + "&dateTo=" + secondWeekAfterTomorrow.toString());
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -369,7 +369,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek3Matches = fetchData(BASE_URL + "matches?dateFrom=" + secondWeekAfterTomorrow.toString() + "&dateTo=" + thirdWeekAfterTomorrow.toString());
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -435,10 +435,10 @@ public class FootballMatchUpdater {
     // console.
     //
     public static void readAndDisplayYesterdayMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_yesterday.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -448,7 +448,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each match's details
@@ -465,10 +465,10 @@ public class FootballMatchUpdater {
     // Reads the data within the football_matches_today.json file and displays it to the console.
     //
     public static void readAndDisplayTodayMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_today.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -478,7 +478,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each match's details
@@ -496,10 +496,10 @@ public class FootballMatchUpdater {
     // console.
     //
     public static void readAndDisplayTomorrowMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_tomorrow.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -509,7 +509,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each match's details
@@ -527,10 +527,10 @@ public class FootballMatchUpdater {
     // the console.
     //
     public static void readAndDisplayUpcomingWeek1MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week1.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -540,7 +540,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each match's details
@@ -558,10 +558,10 @@ public class FootballMatchUpdater {
     // the console.
     //
     public static void readAndDisplayUpcomingWeek2MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week2.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -571,7 +571,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each team's details
@@ -589,10 +589,10 @@ public class FootballMatchUpdater {
     // the console.
     //
     public static void readAndDisplayUpcomingWeek3MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week3.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -602,7 +602,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null) {
             for (FootballMatch match : loadedMatches) {
                 match.printKeyMatchDetails(); // Print each match's details
@@ -617,13 +617,13 @@ public class FootballMatchUpdater {
     // readAndReturnYesterdayMatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_yesterday.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnYesterdayMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_yesterday.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -633,7 +633,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -644,13 +644,13 @@ public class FootballMatchUpdater {
     // readAndReturnTodayMatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_today.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnTodayMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_today.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -660,7 +660,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -671,13 +671,13 @@ public class FootballMatchUpdater {
     // readAndReturnTomorrowMatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_tomorrow.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnTomorrowMatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_tomorrow.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -687,7 +687,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -698,13 +698,13 @@ public class FootballMatchUpdater {
     // readAndReturnUpcomingWeekMatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_upcoming_week1.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnUpcomingWeek1MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week1.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -714,7 +714,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -725,13 +725,13 @@ public class FootballMatchUpdater {
     // readAndReturnUpcomingWeek2MatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_upcoming_week2.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnUpcomingWeek2MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week2.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -741,7 +741,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -752,13 +752,13 @@ public class FootballMatchUpdater {
     // readAndReturnUpcomingWeek3MatchesFile
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Reads the data within the football_matches_upcoming_week3.json file and returns it as an
-    // ArrayList of FootballMatchPredictions.FootballMatch object(s).
+    // ArrayList of FootballMatch object(s).
     //
     public static ArrayList<FootballMatch> readAndReturnUpcomingWeek3MatchesFile() {
-        // Initialize filePath and ArrayList of FootballMatchPredictions.FootballMatch
+        // Initialize filePath and ArrayList of FootballMatch
         String filePath = folderPath + File.separator + "football_matches_upcoming_week3.json";
         ArrayList<FootballMatch> loadedMatches = new ArrayList<>();
-        // Read the list of FootballMatchPredictions.FootballMatch objects back from the file
+        // Read the list of FootballMatch objects back from the file
         try {
             String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(filePath)));
             Gson gson = new Gson();
@@ -768,7 +768,7 @@ public class FootballMatchUpdater {
             e.printStackTrace();
         }
 
-        // If loadedMatches contains the FootballMatchPredictions.FootballMatch objects
+        // If loadedMatches contains the FootballMatch objects
         if (loadedMatches != null)
             return loadedMatches;
         else
@@ -784,7 +784,7 @@ public class FootballMatchUpdater {
         try {
             String yesterdayMatches = fetchData(BASE_URL + "matches?date=YESTERDAY");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football teams from team data extractor array list
@@ -808,7 +808,7 @@ public class FootballMatchUpdater {
         try {
             String todayMatches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -847,7 +847,7 @@ public class FootballMatchUpdater {
         try {
             String tomorrowMatches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballMatch
+            // Initialize a new array list of FootballMatch
             ArrayList<FootballMatch> footballMatchList = FootballAPIv4MatchDataExtractor.extractMatchesToArrayList(tomorrowMatches);
 
             ArrayList<FootballMatch> previousFootballMatches = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Tomorrow").getFootballMatches();
@@ -883,7 +883,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek1Matches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -922,7 +922,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek2Matches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list
@@ -961,7 +961,7 @@ public class FootballMatchUpdater {
         try {
             String upcomingWeek3Matches = fetchData(BASE_URL + "matches");
 
-            // Initialize a new array list of FootballMatchPredictions.FootballTeam
+            // Initialize a new array list of FootballTeam
             ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
             // Add all football matches from match data extractor array list

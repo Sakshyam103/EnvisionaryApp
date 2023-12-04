@@ -168,6 +168,9 @@ public class NotificationUpdater {
 
         // Save notification to user's notification file
         MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
+
+        // Send email to the user
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -199,6 +202,9 @@ public class NotificationUpdater {
 
         // Save notification to user's notification file
         MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
+
+        // Send email to the user
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -336,6 +342,9 @@ public class NotificationUpdater {
 
         // Save notification to user's notification file
         MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
+
+        // Send email to the user
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
 
@@ -371,14 +380,23 @@ public class NotificationUpdater {
 
         // Save notification to user's notification file
         MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
+
+        // Send email to the user
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     public static void newWeatherPredictionResolvedFalseNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
         // TODO
+
+        // Send email to the user
+        //Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     public static void newWeatherPredictionResolvedTrueNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
         // TODO
+
+        // Send email to the user
+        //Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

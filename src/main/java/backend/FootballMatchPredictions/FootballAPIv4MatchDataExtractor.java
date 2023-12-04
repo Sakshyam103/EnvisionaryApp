@@ -5,10 +5,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// FootballMatchPredictions.FootballAPIv4MatchDataExtractor class - Written by Brandon LaPointe
+// FootballAPIv4MatchDataExtractor class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Formats the incoming String football match data into a JSON object for display onto the console or
-// to return as an ArrayList of FootballMatchPredictions.FootballMatch objects.
+// to return as an ArrayList of FootballMatch objects.
 //
 public class FootballAPIv4MatchDataExtractor {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -113,11 +113,11 @@ public class FootballAPIv4MatchDataExtractor {
     // extractMatchesToArrayList class
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Formats the String football match data into a JSON file format and returns the list of football
-    // matches as an ArrayList of FootballMatchPredictions.FootballMatch objects.
+    // matches as an ArrayList of FootballMatch objects.
     //
     public static ArrayList<FootballMatch> extractMatchesToArrayList(String jsonData) {
 
-        // Array list of FootballMatchPredictions.FootballMatch objects to return after extraction of match data
+        // Array list of FootballMatch objects to return after extraction of match data
         ArrayList<FootballMatch> footballMatchList = new ArrayList<>();
 
         try {
@@ -139,7 +139,7 @@ public class FootballAPIv4MatchDataExtractor {
                 JSONObject awayTeam = match.getJSONObject("awayTeam");
                 JSONObject score = match.getJSONObject("score");
 
-                // Initialize a new FootballMatchPredictions.FootballMatch
+                // Initialize a new FootballMatch
                 FootballMatch footballMatch = new FootballMatch();
 
                 // Store match area
@@ -171,7 +171,7 @@ public class FootballAPIv4MatchDataExtractor {
                 footballMatch.setHalfTimeHomeScore(score.getJSONObject("halfTime").optInt("home"));
                 footballMatch.setHalfTimeAwayScore(score.getJSONObject("halfTime").optInt("away"));
 
-                // Add current match to array list of FootballMatchPredictions.FootballMatch
+                // Add current match to array list of FootballMatch
                 footballMatchList.add(footballMatch);
             }
         } catch (Exception e) {

@@ -33,7 +33,6 @@ import org.json.*;
 @RestController
 // @RequestMapping("/whee")
 public class Controller {
-
     private static String userId;
     private static String email;
 
@@ -52,17 +51,20 @@ public class Controller {
         signInRequest1.setIdToken(idString);
         System.out.println(signInRequest1.getIdToken());
         parseId(signInRequest1.getIdToken());
+        if (!MongoDBEnvisionaryUsers.userIdExists(userId)) {
+            MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
+        }
         return "Login successful";
-
     }
 
     @RequestMapping(value = "/viewPrediction")
     public ArrayList<ResolvedPrediction> viewPrediction() {
         System.out.println("view prediction");
         // TODO: Make each category's view prediction and use correct retrieve methods.
-        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
+        // THIS IS A TEST WITH A HARDCODED USER
         // ArrayList<ResolvedPrediction> a =
-        // MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
+        // MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
+        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         return a;
     }
 
