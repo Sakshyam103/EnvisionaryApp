@@ -29,9 +29,9 @@ public class FunctionExamples {
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // METHODS USED TO CREATE / REMOVE / RESOLVE PREDICTIONS WITHIN MONGO DB THAT WILL HAVE TO BE MODIFIED FOR UI INPUT
         //
-//TODO        CustomPredictionInitializer.createNewCustomPredictionMongoDB("bLapointe");
+//TODO        CustomPredictionInitializer.createNewCustomPredictionMongoDB("TestUser");
 //
-//TODO        CustomPredictionInitializer.removeCustomPredictionMongoDB("bLapointe");
+//TODO        CustomPredictionInitializer.removeCustomPredictionMongoDB("TestUser");
 //                  Might have to pull data to frontend first and have user choice be an index value or something to set equality to in order to remove on backend?
 //                  Something like:
 //                      - ArrayList<CustomPrediction> userCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
@@ -39,32 +39,32 @@ public class FunctionExamples {
 //                          - Display these in some sort of selectable list and use removeCustomPredictionMongoDB(index, userId) to remove.
 //                          (I already wrote the method - If you can do this I will write the rest of them like this)
 //
-//TODO        CustomPredictionInitializer.resolveCustomPredictionMongoDB("bLapointe");
+//TODO        CustomPredictionInitializer.resolveCustomPredictionMongoDB("TestUser");
 //                  Same as above
 //
-//TODO        FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek1PredictionMongoDB("bLapointe");
+//TODO        FootballMatchPredictionInitializer.createNewFootballMatchUpcomingWeek1PredictionMongoDB("TestUser");
 //
-//TODO        FootballMatchPredictionInitializer.removeFootballMatchPredictionMongoDB("bLapointe");
+//TODO        FootballMatchPredictionInitializer.removeFootballMatchPredictionMongoDB("TestUser");
 //                  Same as above
 //
-//TODO        CelestialBodyPredictionInitializer.createNewCelestialBodyPredictionMongoDB("bLapointe");
+//TODO        CelestialBodyPredictionInitializer.createNewCelestialBodyPredictionMongoDB("TestUser");
 //
-//TODO        CelestialBodyPredictionInitializer.removeCelestialBodyPredictionMongoDB("bLapointe");
+//TODO        CelestialBodyPredictionInitializer.removeCelestialBodyPredictionMongoDB("TestUser");
 //                  Same as above
 //
-//TODO        WeatherPredictionInitializer.createNewWeatherPredictionMongoDB("bLapointe");
+//TODO        WeatherPredictionInitializer.createNewWeatherPredictionMongoDB("TestUser");
 //
-//TODO        WeatherPredictionIntializer.removeWeatherPredictionMongoDB("bLapointe");
+//TODO        WeatherPredictionIntializer.removeWeatherPredictionMongoDB("TestUser");
 //                  Same as above
 //
 //         Create method for Entertainment Prediction
 //
 //         Remove method for Entertainment Prediction
 //
-//TODO        NotificationUpdater.removeUserNotificationMongoDB("bLapointe");
+//TODO        NotificationUpdater.removeUserNotificationMongoDB("TestUser");
 //                  Same as above
 //
-//TODO        NotificationUpdater.removeAllUserNotificationsMongoDB("bLapointe");
+//TODO        NotificationUpdater.removeAllUserNotificationsMongoDB("TestUser");
 //                  Just need some sort of confirmation before removal in case it was an accidental press
 
         //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -74,7 +74,7 @@ public class FunctionExamples {
         // ArrayList<CustomPrediction> userCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
         // Returns user's ArrayList<CustomPrediction>
         System.out.println("Fetching user custom predictions from MongoDB...");
-        ArrayList<CustomPrediction> testCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("bLapointe");
+        ArrayList<CustomPrediction> testCustomPredictions = MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testCustomPredictions != null) {
             for (CustomPrediction testCustomPrediction : testCustomPredictions) {
@@ -89,7 +89,7 @@ public class FunctionExamples {
         // ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
         // Returns user's ArrayList<CelestialBodyPrediction>
         System.out.println("Fetching user celestial body predictions from MongoDB...");
-        ArrayList<CelestialBodyPrediction> testCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("bLapointe");
+        ArrayList<CelestialBodyPrediction> testCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testCelestialBodyPredictions != null) {
             for (CelestialBodyPrediction testCelestialBodyPrediction : testCelestialBodyPredictions) {
@@ -104,7 +104,7 @@ public class FunctionExamples {
         // ArrayList<FootballMatchPrediction> userFootballMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userId);
         // Returns user's ArrayList<FootballMatchPrediction>
         System.out.println("Fetching user football match predictions from MongoDB...");
-        ArrayList<FootballMatchPrediction> testFootballMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("bLapointe");
+        ArrayList<FootballMatchPrediction> testFootballMatchPredictions = MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testFootballMatchPredictions != null) {
             for (FootballMatchPrediction testFootballMatchPrediction : testFootballMatchPredictions) {
@@ -119,7 +119,7 @@ public class FunctionExamples {
         // ArrayList<WeatherPrediction> userWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions(userId);
         // Returns user's ArrayList<WeatherPrediction>
         System.out.println("Fetching user weather predictions from MongoDB...");
-        ArrayList<WeatherPrediction> testWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("bLapointe");
+        ArrayList<WeatherPrediction> testWeatherPredictions = MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testWeatherPredictions != null) {
             for (WeatherPrediction testWeatherPrediction : testWeatherPredictions) {
@@ -134,7 +134,7 @@ public class FunctionExamples {
         // ArrayList<ResolvedPrediction> userResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         // Returns user's ArrayList<ResolvedPrediction>
         System.out.println("Fetching user resolved predictions from MongoDB...");
-        ArrayList<ResolvedPrediction> testResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("bLapointe");
+        ArrayList<ResolvedPrediction> testResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testResolvedPredictions != null) {
             for (ResolvedPrediction testResolvedPrediction : testResolvedPredictions) {
@@ -149,7 +149,7 @@ public class FunctionExamples {
         // MongoDBEnvisionaryUsers.retrieveUserNotifications(userId);
         // Returns user's ArrayList<Notification>
         System.out.println("Fetching user notifications from MongoDB...");
-        ArrayList<Notification> testNotifications = MongoDBEnvisionaryUsers.retrieveUserNotifications("bLapointe");
+        ArrayList<Notification> testNotifications = MongoDBEnvisionaryUsers.retrieveUserNotifications("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testNotifications != null) {
             for (Notification testNotification : testNotifications) {
@@ -164,7 +164,7 @@ public class FunctionExamples {
         // MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics(userId);
         // Returns user's UserDescriptiveStatistics Object
         System.out.println("Fetching user descriptive statistics from MongoDB...");
-        UserDescriptiveStatistics testUserDescriptiveStatistics = MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics("bLapointe");
+        UserDescriptiveStatistics testUserDescriptiveStatistics = MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testUserDescriptiveStatistics != null) {
             testUserDescriptiveStatistics.printUserDescriptiveStatistics();
@@ -177,7 +177,7 @@ public class FunctionExamples {
         // MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId);
         // Returns user's UserInferentialStatistics Object
         System.out.println("Fetching user inferential statistics from MongoDB...");
-        UserInferentialStatistics testUserInferentialStatistics = MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("bLapointe");
+        UserInferentialStatistics testUserInferentialStatistics = MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("TestUser");
         // HAVE TO ADD NULL CHECKS
         if (testUserInferentialStatistics != null) {
             testUserInferentialStatistics.printUserInferentialStatistics();

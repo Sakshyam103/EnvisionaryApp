@@ -271,6 +271,7 @@ public class v2PrototypeMongoDB {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                              LOGIN                                               ║\n" +
+                    "║                            Username: TestUser    Password: Password123!                          ║\n" +  // TODO: ERASE THIS LINE EVENTUALLY
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
                     "║                               Please enter your UserID                                           ║\n" +
