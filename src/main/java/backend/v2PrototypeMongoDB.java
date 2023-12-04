@@ -4,7 +4,7 @@ import backend.CelestialBodyPredictions.CelestialBodyPredictionInitializer;
 import backend.CelestialBodyPredictions.CelestialBodyUpdater;
 import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
 import backend.CustomPredictions.CustomPredictionInitializer;
-import backend.EntertainmentPredictions.runEntertainment;
+//import backend.EntertainmentPredictions.runEntertainment;
 import backend.FootballMatchPredictions.FootballMatchPredictionInitializer;
 import backend.FootballMatchPredictions.FootballMatchUpdater;
 import backend.FootballMatchPredictions.FootballTeamInitializer;
@@ -769,7 +769,7 @@ public class v2PrototypeMongoDB {
                     entertainmentPredictionMenuSelection = input;
                     switch (entertainmentPredictionMenuSelection) {
                         case 1:
-                            runEntertainment.runEntertainmentPrediction(userID);
+                            //runEntertainment.runEntertainmentPrediction(userID);
                             entertainmentPredictionMenuSelection = 0;
                             break;
                         case 2:
@@ -777,7 +777,7 @@ public class v2PrototypeMongoDB {
                             entertainmentPredictionMenuSelection = 0;
                             break;
                         case 3:
-                            MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
+                            //MongoDBEnvisionaryUsers.retrieveAndDisplayEntertainmentPredictionsForUser(userID);
                             entertainmentPredictionMenuSelection = 0;
                             break;
                         case 4:
