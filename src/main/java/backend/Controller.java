@@ -53,7 +53,7 @@ public class Controller {
         signInRequest1.setIdToken(idString);
         System.out.println(signInRequest1.getIdToken());
         parseId(signInRequest1.getIdToken());
-        if (!MongoDBEnvisionaryUsers.userIdExists(userId)) {
+        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) != null) {
             MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
         }
         return "Login successful";
