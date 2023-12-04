@@ -44,7 +44,6 @@ public class Controller {
     // @Autowired
     // private SignInRequest signInRequest;
 
-
     @RequestMapping(value = "/login")
     public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) {
         System.out.println("---test");
@@ -62,8 +61,9 @@ public class Controller {
     public ArrayList<ResolvedPrediction> viewPrediction() {
         System.out.println("view prediction");
         // TODO: Make each category's view prediction and use correct retrieve methods.
-        //  THIS IS A TEST WITH A HARDCODED USER
-        //ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
+        // THIS IS A TEST WITH A HARDCODED USER
+        // ArrayList<ResolvedPrediction> a =
+        // MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
         ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
         return a;
     }
