@@ -6,6 +6,8 @@ import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 //import org.springframework.web.bind.annotation.GetMapping;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
+import backend.UserInfo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +29,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import org.json.*;
+
+import javax.json.Json;
+import javax.json.JsonReader;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -47,13 +53,13 @@ public class Controller {
     // private SignInRequest signInRequest;
 
     @RequestMapping(value = "/login")
-    public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) {
+    public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) throws JSONException {
         System.out.println("---test");
         SignInRequest signInRequest1 = new SignInRequest();
         signInRequest1.setIdToken(idString);
         System.out.println(signInRequest1.getIdToken());
         parseId(signInRequest1.getIdToken());
-        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) != null) {
+        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) == null) {
             MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
         }
         return "Login successful";
@@ -93,7 +99,9 @@ public class Controller {
         return a;
     }
 
-    public void parseId(String id) {
+
+
+    public void parseId(String id) throws JSONException {
         JSONObject jsonObject = new JSONObject(id);
         JSONObject idString = (JSONObject) jsonObject.get("idString");
         // System.out.println(idString);
