@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.Gson;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// CustomPredictions.CustomPrediction object class - Written by Brandon LaPointe
+// CustomPrediction object class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a custom prediction made by a user of the Envisionary web app
 //
 public final class CustomPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // CustomPredictions.CustomPrediction object variables
+    // CustomPrediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
 	@SerializedName("prediction")
@@ -21,7 +21,7 @@ public final class CustomPrediction {
     private String customSubCategory;								// Custom sub-category input by user
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // Getter and setter methods for the CustomPredictions.CustomPrediction object variables
+    // Getter and setter methods for the CustomPrediction object variables
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public Prediction getPrediction() {
@@ -52,6 +52,25 @@ public final class CustomPrediction {
     public CustomPrediction(Prediction prediction, String customSubCategory) {
         this.prediction = prediction;
         this.customSubCategory = customSubCategory;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // printPredictionDetails
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Method to print the custom prediction details to the console.
+    //
+    public void printPredictionDetails() {
+        System.out.println(
+                "--------------------------------------------------------------------------------" + "\n" +
+                "Custom Prediction Details:" + "\n" +
+                "Custom Prediction Sub-Category: " + getCustomSubCategory() + "\n" +
+                "Prediction Type: " + prediction.getPredictionType() + "\n" +
+                "Prediction Content: " + prediction.getPredictionContent() + "\n" +
+                "Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
+                "Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
+                "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
+                "--------------------------------------------------------------------------------" + "\n"
+        );
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

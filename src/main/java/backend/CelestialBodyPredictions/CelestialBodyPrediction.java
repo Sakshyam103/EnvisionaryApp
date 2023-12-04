@@ -15,7 +15,7 @@ public final class CelestialBodyPrediction {
     private CelestialBody celestialBody = new CelestialBody();
 
     //*****************************************************************************
-    // getter and setter methods for CelestialBodyPredictions.CelestialBodyPrediction object variables
+    // getter and setter methods for CelestialBodyPrediction object variables
     public Prediction getPrediction() {
         return prediction;
     }
@@ -45,18 +45,17 @@ public final class CelestialBodyPrediction {
     public void printPredictionDetails() {
         System.out.println(
                 "--------------------------------------------------------------------------------" + "\n" +
-                        "Celestial Body BasePredictionsObject.Prediction Details:" + "\n" +
-                        "BasePredictionsObject.Prediction Type: " + prediction.getPredictionType() + "\n" +
-                        "BasePredictionsObject.Prediction Content: " + prediction.getPredictionContent() + "\n" +
-                        "BasePredictionsObject.Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
-                        "BasePredictionsObject.Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
-                        "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
-                        "--------------------------------------------------------------------------------" + "\n" +
-                        "Celestial Body Details:" + "\n" +
-                        celestialBody.getCelestialBodyType() + "\n" +
-                        celestialBody.getKnownCount() + "\n" +
-                        celestialBody.getUpdatedDate() + "\n" +
-                        "--------------------------------------------------------------------------------"
+                "Celestial Body Prediction Details:" + "\n" +
+                "Prediction Type: " + prediction.getPredictionType() + "\n" +
+                "Prediction Content: " + prediction.getPredictionContent() + "\n" +
+                "Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
+                "Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
+                "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
+                "Celestial Body Prediction Details:" + "\n" +
+                "Celestial Body Type: " + celestialBody.getCelestialBodyType() + "\n" +
+                "Known Count: " + celestialBody.getKnownCount() + "\n" +
+                "Last Updated: " + celestialBody.getUpdatedDate() + "\n" +
+                "--------------------------------------------------------------------------------"
         );
     }
 

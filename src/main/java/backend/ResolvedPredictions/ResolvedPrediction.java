@@ -93,11 +93,11 @@ public class ResolvedPrediction {
     public void printPredictionDetails() {
         System.out.println(
                 "--------------------------------------------------------------------------------" + "\n" +
-                        "Resolved BasePredictionsObject.Prediction Details:" + "\n" +
-                        "BasePredictionsObject.Prediction Type: " + getPredictionType() + "\n" +
-                        "BasePredictionsObject.Prediction Content: " + getPredictionContent() + "\n" +
-                        "BasePredictionsObject.Prediction Made Date: " + getPredictionMadeDate() + "\n" +
-                        "BasePredictionsObject.Prediction End Date: " + getPredictionEndDate() + "\n" +
+                        "Resolved Prediction Details:" + "\n" +
+                        "Prediction Type: " + getPredictionType() + "\n" +
+                        "Prediction Content: " + getPredictionContent() + "\n" +
+                        "Prediction Made Date: " + getPredictionMadeDate() + "\n" +
+                        "Prediction End Date: " + getPredictionEndDate() + "\n" +
                         "Resolution: " + getResolution() + "\n" +
                         "Resolved Date: " + getResolvedDate() + "\n" +
                         "--------------------------------------------------------------------------------"

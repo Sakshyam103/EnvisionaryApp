@@ -204,7 +204,8 @@ public class v2PrototypeMongoDB {
     public static void loginMenu() {
         loginMenuSelection = 0;
         while (loginMenuSelection != 3) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
                     "║                                                                                                  ║\n" +
@@ -267,7 +268,8 @@ public class v2PrototypeMongoDB {
         while (!isValidUser) {
             userID = "";
             password = "";
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                              LOGIN                                               ║\n" +
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
@@ -302,7 +304,8 @@ public class v2PrototypeMongoDB {
             userID = "";
             password = "";
             email = "";
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                       NEW ENVISIONARY USER                                       ║\n" +
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
@@ -349,7 +352,8 @@ public class v2PrototypeMongoDB {
     public static void userMenu() {
         userMenuSelection = 0;
         while (userMenuSelection != 10) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                            USER MENU                                             ║\n" +
                     "║                                                                                                  ║\n" +
@@ -442,7 +446,8 @@ public class v2PrototypeMongoDB {
     public static void customPredictionMenu() {
         customPredictionMenuSelection = 0;
         while (customPredictionMenuSelection != 6) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                      CUSTOM PREDICTION MENU                                      ║\n" +
                     "║                                                                                                  ║\n" +
@@ -509,7 +514,8 @@ public class v2PrototypeMongoDB {
     public static void celestialBodyPredictionMenu() {
         celestialBodyPredictionMenuSelection = 0;
         while(celestialBodyPredictionMenuSelection != 6) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                 CELESTIAL BODY PREDICTION MENU                                   ║\n" +
                     "║                                                                                                  ║\n" +
@@ -579,7 +585,8 @@ public class v2PrototypeMongoDB {
     public static void footballMatchPredictionMenu() {
         footballPredictionMenuSelection = 0;
         while(footballPredictionMenuSelection != 9) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                 FOOTBALL MATCH PREDICTION MENU                                   ║\n" +
                     "║                                                                                                  ║\n" +
@@ -663,7 +670,8 @@ public class v2PrototypeMongoDB {
     public static void footballMatchMenu() {
         footballMatchMenuSelection = 0;
         while(footballMatchMenuSelection != 7) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                       FOOTBALL MATCH MENU                                        ║\n" +
                     "║                                                                                                  ║\n" +
@@ -680,7 +688,7 @@ public class v2PrototypeMongoDB {
                     "║                                                                                                  ║\n" +
                     "║                                                                                                  ║\n" +
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.print(  "                                    Selection: ");
+            System.out.print("                                    Selection: ");
             // Menu logic
             try {
                 int input = scan.nextInt();
@@ -736,7 +744,8 @@ public class v2PrototypeMongoDB {
     public static void statisticsMenu() {
         statisticsMenuSelection = 0;
         while (statisticsMenuSelection != 5) {
-            System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                                                                                  ║\n" +
                     "║                                         STATISTICS MENU                                          ║\n" +
                     "║                                                                                                  ║\n" +
