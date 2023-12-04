@@ -78,17 +78,16 @@ public final class FootballMatchPrediction {
     // Method to print the FootballMatchPredictions.FootballMatchPrediction object details to the console.
     //
     public void printPredictionDetails() {
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------");
         System.out.println("Football Match Prediction Details:");
         System.out.println("Prediction Type: " + prediction.getPredictionType());
         System.out.println("Prediction Content: " + prediction.getPredictionContent());
         System.out.println("Prediction Made Date: " + prediction.getPredictionMadeDate());
         System.out.println("Prediction End Date: " + prediction.getPredictionEndDate());
         System.out.println("Reminder Frequency: " + prediction.getRemindFrequency());
-        System.out.println("-------------------------------");
         System.out.println("Football Match Details:");
-        predictionMatch.printMatchDetails();
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        predictionMatch.printKeyMatchDetails();
+        System.out.println("--------------------------------------------------------------------------------");
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
