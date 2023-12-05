@@ -124,7 +124,7 @@ public class Controller {
 
     @RequestMapping(value = "/viewCelestialBodyPredictions")
     public ArrayList<CelestialBodyPrediction> viewCelestialBodyPredictions() {
-        System.out.println("view custom predictions");
+        System.out.println("view celestial body predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
@@ -132,7 +132,7 @@ public class Controller {
 
     @RequestMapping(value = "/viewFootballMatchPredictions")
     public ArrayList<FootballMatchPrediction> viewFootballMatchPredictions() {
-        System.out.println("view custom predictions");
+        System.out.println("view football match predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userId);
@@ -148,7 +148,7 @@ public class Controller {
 
 //    @RequestMapping(value = "/viewEntertainmentPredictions")
 //    public ArrayList<EntertainmentPrediction> viewEntertainmentPredictions() {
-//        System.out.println("view custom predictions");
+//        System.out.println("view entertainment predictions");
 //        // THIS IS A TEST WITH A HARDCODED USER
 //        //return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions("TestUser");
 //        return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions(userId);
