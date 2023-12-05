@@ -1,5 +1,6 @@
 package backend.WeatherPredictions;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Temp {
@@ -45,7 +46,7 @@ public class Temp {
 
     public Temp() {}
 
-    public static Temp fromJson(JSONObject json) {
+    public static Temp fromJson(JSONObject json) throws JSONException {
         int day = (int) Math.round(json.getDouble("day"));
         int min = (int) Math.round(json.getDouble("min"));
         int max = (int) Math.round(json.getDouble("max"));

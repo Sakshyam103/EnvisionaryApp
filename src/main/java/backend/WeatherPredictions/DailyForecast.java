@@ -1,5 +1,6 @@
 package backend.WeatherPredictions;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.Instant;
@@ -76,7 +77,7 @@ public class DailyForecast {
         return 1.8 * (k - 273) + 32;
     }
 
-    public static DailyForecast fromJson(JSONObject json) {
+    public static DailyForecast fromJson(JSONObject json) throws JSONException {
         long dt = json.getLong("dt");
         long sunrise = json.getLong("sunrise");
         long sunset = json.getLong("sunset");

@@ -38,7 +38,7 @@ function App() {
       <div className='card'>
         <Routes>
       <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
-    
+
       </Routes>
       </div>
       {!currentUser && (
@@ -54,8 +54,8 @@ function App() {
       ) : (
         <>
         <Navigate to="/" replace />
-        
-        <SignIn onUserLogin={handleUserLogin} /> 
+
+        <SignIn onUserLogin={handleUserLogin} />
         </>
       )}
       />
@@ -66,8 +66,8 @@ function App() {
      ) : (
       <>
       <Navigate to="/" replace />
-    
-      <SignIn onUserLogin={handleUserLogin} /> 
+
+      <SignIn onUserLogin={handleUserLogin} />
       </>
       )
       }/>
@@ -78,7 +78,7 @@ function App() {
      ) : (
       <>
       <Navigate to="/" replace />
-      <SignIn onUserLogin={handleUserLogin} /> 
+      <SignIn onUserLogin={handleUserLogin} />
       </>
       )
       }/>
@@ -89,7 +89,7 @@ function App() {
      ) : (
       <>
       <Navigate to="/" replace />
-      <SignIn onUserLogin={handleUserLogin} /> 
+      <SignIn onUserLogin={handleUserLogin} />
       </>
       )
       }/>
@@ -100,7 +100,7 @@ function App() {
      ) : (
       <>
       <Navigate to="/" replace />
-      <SignIn onUserLogin={handleUserLogin} /> 
+      <SignIn onUserLogin={handleUserLogin} />
       </>
       )
       }/>
@@ -111,13 +111,13 @@ function App() {
      ) : (
       <>
       <Navigate to="/" replace />
-      <SignIn onUserLogin={handleUserLogin} /> 
+      <SignIn onUserLogin={handleUserLogin} />
       </>
       )
       }/>
         </Routes>
       </div>
-      
+
       </Router>
   );
 }

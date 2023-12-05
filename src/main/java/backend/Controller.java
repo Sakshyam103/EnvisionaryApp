@@ -1,12 +1,28 @@
 package backend;
 
+import backend.CelestialBodyPredictions.CelestialBody;
+import backend.CelestialBodyPredictions.CelestialBodyPrediction;
+import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
+import backend.CustomPredictions.CustomPrediction;
+import backend.EntertainmentPredictions.buildEntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchList;
+import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.GetMapping;
+import backend.OverallStatistics.MongoDBOverallDescriptiveStatistics;
+import backend.OverallStatistics.MongoDBOverallInferentialStatistics;
+import backend.OverallStatistics.OverallDescriptiveStatistics;
+import backend.OverallStatistics.OverallInferentialStatistics;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
-import org.springframework.web.bind.annotation.RequestBody;
+import backend.UserInfo.User;
+import backend.UserStatistics.UserDescriptiveStatistics;
+import backend.UserStatistics.UserInferentialStatistics;
+import backend.WeatherPredictions.WeatherPrediction;
+import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,26 +33,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 // import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import org.json.*;
+
+import javax.json.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 // @RequestMapping("/whee")
 public class Controller {
-    private static String userId;
+    public static String userId;
     private static String email;
+    public static Document userDoc;
 
     // @GetMapping("/example")
     // public ResponseEntity<String> exampleEndpoint() {
@@ -47,15 +62,15 @@ public class Controller {
     // private SignInRequest signInRequest;
 
     @RequestMapping(value = "/login")
-    public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) {
-        System.out.println("---test");
+    public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) throws JSONException {
         SignInRequest signInRequest1 = new SignInRequest();
         signInRequest1.setIdToken(idString);
         System.out.println(signInRequest1.getIdToken());
         parseId(signInRequest1.getIdToken());
-        if (!MongoDBEnvisionaryUsers.userIdExists(userId)) {
+        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) == null) {
             MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
         }
+        userDoc = GetUserInfo.getTheDoc();
         return "Login successful";
     }
 
@@ -110,7 +125,188 @@ public class Controller {
 
     }
 
-    public void parseId(String id) {
+    @RequestMapping(value = "/viewCustomPredictions")
+    public ArrayList<CustomPrediction> viewCustomPredictions() {
+        System.out.println("view custom predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
+    }
+
+    @RequestMapping(value = "/viewCelestialBodyPredictions")
+    public ArrayList<CelestialBodyPrediction> viewCelestialBodyPredictions() {
+        System.out.println("view celestial body predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
+    }
+
+    @RequestMapping(value = "/viewFootballMatchPredictions")
+    public ArrayList<FootballMatchPrediction> viewFootballMatchPredictions() {
+        System.out.println("view football match predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userId);
+    }
+
+    @RequestMapping(value = "/viewWeatherPredictions")
+    public ArrayList<WeatherPrediction> viewWeatherPredictions() {
+        System.out.println("view weather predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions(userId);
+    }
+
+//    @RequestMapping(value = "/viewEntertainmentPredictions")
+//    public ArrayList<EntertainmentPrediction> viewEntertainmentPredictions() {
+//        System.out.println("view entertainment predictions");
+//        // THIS IS A TEST WITH A HARDCODED USER
+//        //return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions("TestUser");
+//        return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions(userId);
+//    }
+
+    @RequestMapping(value = "/viewResolvedPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedPredictions() {
+        System.out.println("view resolved predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
+    }
+
+    // These are all the methods to return the specific categories of resolved predictions
+    @RequestMapping(value = "/viewResolvedCustomPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedCustomPredictions() {
+        System.out.println("view resolved custom predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedCustomPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedCustomPredictions(userId);
+    }
+
+    // Same as above
+    @RequestMapping(value = "/viewResolvedCelestialBodyPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedCelestialBodyPredictions() {
+        System.out.println("view resolved celestial body predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedCelestialBodyPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedCelestialBodyPredictions(userId);
+    }
+
+    // Same as above
+    @RequestMapping(value = "/viewResolvedFootballMatchPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedFootballMatchPredictions() {
+        System.out.println("view resolved football match predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedFootballMatchPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedFootballMatchPredictions(userId);
+    }
+
+    // Same as above
+    @RequestMapping(value = "/viewResolvedWeatherPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedWeatherPredictions() {
+        System.out.println("view resolved weather predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedWeatherPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedWeatherPredictions(userId);
+    }
+
+    // Same as above
+    @RequestMapping(value = "/viewResolvedEntertainmentPredictions")
+    public ArrayList<ResolvedPrediction> viewResolvedEntertainmentPredictions() {
+        System.out.println("view resolved entertainment predictions");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
+    }
+
+    // User descriptive statistics
+    @RequestMapping(value = "/viewUserDescriptiveStatistics")
+    public UserDescriptiveStatistics viewUserDescriptiveStatistics() {
+        System.out.println("view user descriptive statistics");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserDescriptiveStatistics(userId);
+    }
+
+    // User inferential statistics - mainly need to display the most and least correct categories for the user - I can explain more in person
+    @RequestMapping(value = "/viewUserInferentialStatistics")
+    public UserInferentialStatistics viewUserInferentialStatistics() {
+        System.out.println("view user inferential statistics");
+        // THIS IS A TEST WITH A HARDCODED USER
+        //return MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("TestUser");
+        return MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId);
+    }
+
+    // Overall descriptive statistics
+    @RequestMapping(value = "/viewOverallDescriptiveStatistics")
+    public OverallDescriptiveStatistics viewOverallDescriptiveStatistics() {
+        System.out.println("view overall descriptive statistics");
+        return MongoDBOverallDescriptiveStatistics.retrieveCollection();
+    }
+
+    // Overall inferential statistics - mainly need to display the most and least correct categories for the user - I can explain more in person
+    @RequestMapping(value = "/viewOverallInferentialStatistics")
+    public OverallInferentialStatistics viewOverallInferentialStatistics() {
+        System.out.println("view overall inferential statistics");
+        return MongoDBOverallInferentialStatistics.retrieveCollection();
+    }
+
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesToday")
+//    public FootballMatchList viewFootballMatchesToday() {
+//        System.out.println("view today's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Today");
+//    }
+//
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesTomorrow")
+//    public FootballMatchList viewFootballMatchesTomorrow() {
+//        System.out.println("view tomorrow's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Tomorrow");
+//    }
+
+    // Just stick to this for the football matches
+    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek1")
+    public FootballMatchList viewFootballMatchesUpcomingWeek1() {
+        System.out.println("view upcoming week's football matches");
+        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
+    }
+
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek2")
+//    public FootballMatchList viewFootballMatchesUpcomingWeek2() {
+//        System.out.println("view second upcoming week's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek2");
+//    }
+//
+//    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek3")
+//    public FootballMatchList viewFootballMatchesUpcomingWeek3() {
+//        System.out.println("view third upcoming week's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek3");
+//    }
+
+    @RequestMapping(value = "/viewCelestialBodies")
+    public ArrayList<CelestialBody> viewCelestialBodies() {
+        System.out.println("view celestial bodies");
+        return MongoDBCelestialBodyData.retrieveCollection();
+    }
+    //******************************************************************************************************************
+
+
+    @RequestMapping(value = "/movies")
+    public @ResponseBody String getUserMovie(@RequestBody(required = false) String data) throws JSONException {
+        System.out.println(data);
+        StringReader stringReader = new StringReader(data);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        buildEntertainmentPrediction.buildMoviePrediction(object, userId);
+        System.out.println("completed");
+        return "Movie Prediction Saved";
+    }
+
+
+
+    public void parseId(String id) throws JSONException {
         JSONObject jsonObject = new JSONObject(id);
         JSONObject idString = (JSONObject) jsonObject.get("idString");
         // System.out.println(idString);
@@ -133,5 +329,4 @@ public class Controller {
         }
 
     }
-
 }
