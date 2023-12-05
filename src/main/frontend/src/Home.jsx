@@ -17,6 +17,16 @@ function Home({user}) {
     navigate('/Home/MakePredictions');
   };
 
+  const getMakePredictions = async () => {
+    const response = await fetch('http://localhost:3000/MakePredictions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userInput: inputValue }),
+    });
+  };
+
   const handleViewPredictions = () => {
     // Logic for 'View Prediction' button
     console.log("View Prediction clicked");

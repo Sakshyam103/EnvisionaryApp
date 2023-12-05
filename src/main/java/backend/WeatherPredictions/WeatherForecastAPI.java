@@ -1,5 +1,6 @@
 package backend.WeatherPredictions;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class WeatherForecastAPI {
             } else {
                 throw new RuntimeException("Failed to fetch weather data. Response code: " + responseCode);
             }
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             throw new RuntimeException("Error connecting to the API", e);
         }
     }

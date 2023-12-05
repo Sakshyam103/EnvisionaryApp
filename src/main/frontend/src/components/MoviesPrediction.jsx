@@ -6,6 +6,30 @@ function MoviesPrediction() {
   
   const years = Array.from({ length: 74 }, (_, index) => (2023 - index).toString());
 
+  function handleCallbackResponse(response) {
+      fetch("http://localhost:8080/movies", {
+        method:"POST",
+        body: response,
+        headers:{
+          "Content-Type": "application/json",
+         },
+        }).then(res => {
+          if(!res.ok){
+            console.error('Request failed with status:' , res.status);
+            return res.text();
+          }
+          return res.text();
+        })
+        .then(response => {
+          console.log(response);
+        }).catch(error=>{
+          console.error('Error: ', error);
+        })
+
+       ;
+
+    }
+
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>
       <h1>I predict</h1>
@@ -34,7 +58,7 @@ function MoviesPrediction() {
       <br />
 
       <button
-        onClick={() => console.log(`Prediction: ${prediction}, Release Year: ${releaseYear}`)}
+        onClick={() => handleCallbackResponse(`{"Prediction": "${movie}", "ReleaseYear": ${releaseYear}}`)}
         style={{
           padding: '10px',
           fontSize: '16px',

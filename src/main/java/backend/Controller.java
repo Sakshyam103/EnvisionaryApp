@@ -1,5 +1,6 @@
 package backend;
 
+import backend.EntertainmentPredictions.buildEntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchList;
 import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 //import org.springframework.http.ResponseEntity;
@@ -7,8 +8,9 @@ import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserInfo.User;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestHeader;
@@ -19,30 +21,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 // import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.StringReader;
 import java.util.ArrayList;
 
 import org.json.*;
 
-import javax.json.Json;
-import javax.json.JsonReader;
+import javax.json.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 // @RequestMapping("/whee")
 public class Controller {
-    private static String userId;
+    public static String userId;
     private static String email;
+    public static Document userDoc;
 
     // @GetMapping("/example")
     // public ResponseEntity<String> exampleEndpoint() {
@@ -54,7 +51,6 @@ public class Controller {
 
     @RequestMapping(value = "/login")
     public @ResponseBody String handleSignIn(@RequestBody(required = false) String idString) throws JSONException {
-        System.out.println("---test");
         SignInRequest signInRequest1 = new SignInRequest();
         signInRequest1.setIdToken(idString);
         System.out.println(signInRequest1.getIdToken());
@@ -62,6 +58,7 @@ public class Controller {
         if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) == null) {
             MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
         }
+        userDoc = GetUserInfo.getTheDoc();
         return "Login successful";
     }
 
@@ -99,6 +96,18 @@ public class Controller {
         return a;
     }
 
+    @RequestMapping(value = "/movies")
+    public @ResponseBody String getUserMovie(@RequestBody(required = false) String data) throws JSONException {
+        System.out.println(data);
+        StringReader stringReader = new StringReader(data);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        buildEntertainmentPrediction.buildMoviePrediction(object, userId);
+        System.out.println("completed");
+        return "Movie Prediction Saved";
+    }
+
 
 
     public void parseId(String id) throws JSONException {
@@ -124,5 +133,4 @@ public class Controller {
         }
 
     }
-
 }

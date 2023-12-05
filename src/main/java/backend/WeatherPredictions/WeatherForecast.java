@@ -1,6 +1,7 @@
 package backend.WeatherPredictions;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class WeatherForecast {
         this.dailyForecasts = dailyForecasts;
     }
 
-    public static WeatherForecast fromJsonString(String jsonString) {
+    public static WeatherForecast fromJsonString(String jsonString) throws JSONException {
         JSONObject json = new JSONObject(jsonString);
 
         double lat = json.getDouble("lat");

@@ -24,6 +24,7 @@ import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertManyResult;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
@@ -594,6 +595,7 @@ public class MongoDBEnvisionaryUsers {
 
         // Try retrieving the collection of EnvisionaryUsers for the user
         try (MongoCursor<EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
@@ -606,6 +608,8 @@ public class MongoDBEnvisionaryUsers {
                 // Return user email
                 return userEmail;
             }
+
+
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }

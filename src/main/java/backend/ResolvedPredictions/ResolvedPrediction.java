@@ -3,12 +3,14 @@ package backend.ResolvedPredictions;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.stereotype.Component;
 
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // ResolvedPredictions.ResolvedPrediction object class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Represents a resolved prediction made by a user within the Envisionary web app.
 //
+@Component
 public class ResolvedPrediction {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // ResolvedPredictions.ResolvedPrediction object variables
