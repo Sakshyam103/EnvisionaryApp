@@ -34,7 +34,7 @@ function MoviesPrediction() {
       <br />
 
       <button
-        onClick={() => console.log(`Prediction: ${prediction}, Release Year: ${releaseYear}`)}
+        onClick={() => console.log(`Prediction: ${movie}, Release Year: ${releaseYear}`)}
         style={{
           padding: '10px',
           fontSize: '16px',

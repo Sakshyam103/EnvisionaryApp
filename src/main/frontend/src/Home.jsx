@@ -34,15 +34,14 @@ function Home({user}) {
       })
       .then(data => {
         console.log(data);
+        setNotification(data);
       }).catch(error=>{
         console.error('Error: ', error);
       })
      
      ;
 
-     <div>
-      {data}
-     </div>
+
 
   };
 
@@ -87,6 +86,7 @@ function Home({user}) {
       })
       .then(data => {
         console.log(data);
+
       }).catch(error=>{
         console.error('Error: ', error);
       })

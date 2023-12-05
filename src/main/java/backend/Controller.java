@@ -90,7 +90,20 @@ public class Controller {
     public FootballMatchList viewMatches() {
         System.out.println("view matches");
         FootballMatchList a = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
+        parseMatches(a.toString());
         return a;
+    }
+
+    public void parseMatches(String a){
+        JSONObject jsonObject = new JSONObject(a);
+        JSONArray footballMatches = (JSONArray) jsonObject.get("footballMatches");
+        for(Object o: footballMatches){
+            JSONObject main = (JSONObject) o;
+            String homeTeam = (String)main.get("homeTeam");
+            String awayTeam = (String) main.get("awayTeam");
+
+
+        }
     }
 
     public void parseId(String id) {
