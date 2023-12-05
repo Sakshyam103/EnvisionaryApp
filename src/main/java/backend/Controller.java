@@ -174,7 +174,7 @@ public class Controller {
     // Same as above
     @RequestMapping(value = "/viewResolvedCelestialBodyPredictions")
     public ArrayList<ResolvedPrediction> viewResolvedCelestialBodyPredictions() {
-        System.out.println("view resolved custom predictions");
+        System.out.println("view resolved celestial body predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedCelestialBodyPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedCelestialBodyPredictions(userId);
@@ -183,7 +183,7 @@ public class Controller {
     // Same as above
     @RequestMapping(value = "/viewResolvedFootballMatchPredictions")
     public ArrayList<ResolvedPrediction> viewResolvedFootballMatchPredictions() {
-        System.out.println("view resolved custom predictions");
+        System.out.println("view resolved football match predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedFootballMatchPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedFootballMatchPredictions(userId);
@@ -192,7 +192,7 @@ public class Controller {
     // Same as above
     @RequestMapping(value = "/viewResolvedWeatherPredictions")
     public ArrayList<ResolvedPrediction> viewResolvedWeatherPredictions() {
-        System.out.println("view resolved custom predictions");
+        System.out.println("view resolved weather predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedWeatherPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedWeatherPredictions(userId);
@@ -201,7 +201,7 @@ public class Controller {
     // Same as above
     @RequestMapping(value = "/viewResolvedEntertainmentPredictions")
     public ArrayList<ResolvedPrediction> viewResolvedEntertainmentPredictions() {
-        System.out.println("view resolved custom predictions");
+        System.out.println("view resolved entertainment predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
