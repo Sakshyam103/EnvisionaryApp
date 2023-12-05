@@ -122,7 +122,6 @@ public class Controller {
         System.out.println("view custom predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
-        //
         return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
     }
 
@@ -243,19 +242,19 @@ public class Controller {
         return MongoDBOverallInferentialStatistics.retrieveCollection();
     }
 
-    // Ignore for now
-    @RequestMapping(value = "/viewFootballMatchesToday")
-    public FootballMatchList viewFootballMatchesToday() {
-        System.out.println("view today's football matches");
-        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Today");
-    }
-
-    // Ignore for now
-    @RequestMapping(value = "/viewFootballMatchesTomorrow")
-    public FootballMatchList viewFootballMatchesTomorrow() {
-        System.out.println("view tomorrow's football matches");
-        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Tomorrow");
-    }
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesToday")
+//    public FootballMatchList viewFootballMatchesToday() {
+//        System.out.println("view today's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Today");
+//    }
+//
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesTomorrow")
+//    public FootballMatchList viewFootballMatchesTomorrow() {
+//        System.out.println("view tomorrow's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("Tomorrow");
+//    }
 
     // Just stick to this for the football matches
     @RequestMapping(value = "/viewFootballMatchesUpcomingWeek1")
@@ -264,31 +263,23 @@ public class Controller {
         return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
     }
 
-    // Ignore for now
-    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek2")
-    public FootballMatchList viewFootballMatchesUpcomingWeek2() {
-        System.out.println("view second upcoming week's football matches");
-        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek2");
-    }
-
-    // Ignore for now
-    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek3")
-    public FootballMatchList viewFootballMatchesUpcomingWeek3() {
-        System.out.println("view third upcoming week's football matches");
-        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek3");
-    }
+//    // Ignore for now
+//    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek2")
+//    public FootballMatchList viewFootballMatchesUpcomingWeek2() {
+//        System.out.println("view second upcoming week's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek2");
+//    }
+//
+//    @RequestMapping(value = "/viewFootballMatchesUpcomingWeek3")
+//    public FootballMatchList viewFootballMatchesUpcomingWeek3() {
+//        System.out.println("view third upcoming week's football matches");
+//        return MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek3");
+//    }
 
     @RequestMapping(value = "/viewCelestialBodies")
     public ArrayList<CelestialBody> viewCelestialBodies() {
         System.out.println("view celestial bodies");
         return MongoDBCelestialBodyData.retrieveCollection();
-    }
-
-    // I don't think that this will be used outside the updater class, but I threw it in just in case.
-    @RequestMapping(value = "/viewOswegoWeather")
-    public DailyForecast viewOswegoWeather() {
-        System.out.println("view today's oswego weather forecast");
-        return MongoDBWeatherData.retrieveCollection();
     }
     //******************************************************************************************************************
 
