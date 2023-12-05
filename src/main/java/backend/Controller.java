@@ -87,23 +87,27 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewMatches")
-    public FootballMatchList viewMatches() {
+    public ArrayList<String> viewMatches() {
         System.out.println("view matches");
         FootballMatchList a = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
-        parseMatches(a.toString());
-        return a;
+    //    System.out.println(a.toString());
+        ArrayList<String> options =parseMatches(a);;
+        return options;
     }
 
-    public void parseMatches(String a){
+    public ArrayList<String> parseMatches(FootballMatchList a){
         JSONObject jsonObject = new JSONObject(a);
         JSONArray footballMatches = (JSONArray) jsonObject.get("footballMatches");
+        ArrayList<String> options = new ArrayList<>();
         for(Object o: footballMatches){
             JSONObject main = (JSONObject) o;
             String homeTeam = (String)main.get("homeTeam");
             String awayTeam = (String) main.get("awayTeam");
-
-
+            String option = homeTeam + " vs " + awayTeam;
+            options.add(option);
         }
+        return options;
+
     }
 
     public void parseId(String id) {
