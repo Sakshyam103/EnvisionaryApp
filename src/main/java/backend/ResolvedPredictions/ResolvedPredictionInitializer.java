@@ -44,7 +44,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedCustomPredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -82,7 +82,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedCustomPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userIdentifier);
         if (loadedResolvedPredictions == null) {
             loadedResolvedPredictions = new ArrayList<>();
@@ -104,7 +104,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved football match predictions to the console.
     //
     public static void printResolvedFootballMatchPredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -141,7 +141,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedFootballMatchPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userIdentifier);
         System.out.println("\n====================================================================================================");
         System.out.println("                                 " + userIdentifier + "'s Resolved FootballMatchPredictions.FootballMatch Predictions");
@@ -160,7 +160,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved science predictions to the console.
     //
     public static void printResolvedSciencePredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -198,7 +198,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedSciencePredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userIdentifier);
         System.out.println("\n====================================================================================================");
         System.out.println("                                 " + userIdentifier + "'s Resolved Science Predictions");
@@ -217,7 +217,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved weather predictions to the console.
     //
     public static void printResolvedWeatherPredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -255,7 +255,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedWeatherPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userIdentifier);
         System.out.println("\n====================================================================================================");
         System.out.println("                                 " + userIdentifier + "'s Resolved Weather Predictions");
@@ -274,7 +274,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved entertainment predictions to the console.
     //
     public static void printResolvedEntertainmentPredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it
@@ -312,7 +312,7 @@ public class ResolvedPredictionInitializer {
     // Prints the given user's resolved custom predictions to the console.
     //
     public static void printResolvedEntertainmentPredictionsMongoDB(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userIdentifier);
         System.out.println("\n====================================================================================================");
         System.out.println("                                 " + userIdentifier + "'s Resolved Entertainment Predictions");
@@ -331,7 +331,7 @@ public class ResolvedPredictionInitializer {
     // Prints all the given user's resolved predictions to the console.
     //
     public static void printAllResolvedPredictions(String userIdentifier) {
-        // Initialize new array list of ResolvedPrediciton to load file data into
+        // Initialize new array list of ResolvedPrediction to load file data into
         ArrayList<ResolvedPrediction> loadedResolvedPredictions = new ArrayList<>();
 
         // Check if the file exists before attempting to load it

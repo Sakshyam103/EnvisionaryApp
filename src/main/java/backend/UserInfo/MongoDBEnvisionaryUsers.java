@@ -39,7 +39,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // FootballMatchPredictions.MongoDBFootballMatchData class - Written by Brandon LaPointe
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// Connects to MongoDB for interaction with Envisionary UserInfo.User data.
+// Connects to MongoDB for interaction with Envisionary User data.
 //
 public class MongoDBEnvisionaryUsers {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -77,13 +77,13 @@ public class MongoDBEnvisionaryUsers {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 
-        // Try inserting UserInfo.EnvisionaryUser
+        // Try inserting EntertainmentEnvisionaryUser
         try {
-            System.out.println("Inserting UserInfo.EnvisionaryUser: " + envisionaryUser);
+            System.out.println("Inserting EnvisionaryUser: " + envisionaryUser);
             collection.insertOne(envisionaryUser);
-            System.out.println("Inserted Envisionary UserInfo.User.\n");
+            System.out.println("Inserted Envisionary User.\n");
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to insert UserInfo.EnvisionaryUser into MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to insert EnvisionaryUser into MongoDB due to an error: " + me);
             // System.exit(1);
         }
 
@@ -101,13 +101,13 @@ public class MongoDBEnvisionaryUsers {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 
-        // Try inserting UserInfo.EnvisionaryUser
+        // Try inserting EntertainmentEnvisionaryUser
         try {
-            System.out.println("Inserting UserInfo.EnvisionaryUser: " + envisionaryUser);
+            System.out.println("Inserting EnvisionaryUser: " + envisionaryUser);
             collection.insertOne(envisionaryUser);
-            System.out.println("Inserted Envisionary UserInfo.User.\n");
+            System.out.println("Inserted Envisionary User.\n");
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to insert UserInfo.EnvisionaryUser into MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to insert EnvisionaryUser into MongoDB due to an error: " + me);
             // System.exit(1);
         }
 
@@ -148,7 +148,7 @@ public class MongoDBEnvisionaryUsers {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 
-        // Initialize an array list of UserInfo.EnvisionaryUser
+        // Initialize an array list of EntertainmentEnvisionaryUser
         ArrayList<EnvisionaryUser> envisionaryUsers = new ArrayList<>();
 
         // Try retreiving the collection of EnvisionaryUsers
@@ -180,7 +180,7 @@ public class MongoDBEnvisionaryUsers {
         try (MongoCursor<EnvisionaryUser> cursor = collection.find().iterator()) {
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
-                System.out.printf("UserInfo.User: %s\n", currentEnvisionaryUser.getUserID());
+                System.out.printf("User: %s\n", currentEnvisionaryUser.getUserID());
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to find any EnvisionaryUsers in MongoDB due to an error: " + me);
@@ -209,7 +209,7 @@ public class MongoDBEnvisionaryUsers {
                 
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -235,13 +235,13 @@ public class MongoDBEnvisionaryUsers {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
                 // Print user email
-                System.out.println("UserInfo.User Email: " + currentEnvisionaryUser.getEmail());
+                System.out.println("User Email: " + currentEnvisionaryUser.getEmail());
 
                 // Close the connection when done working with the client
                 mongoClient.close();
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -278,7 +278,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -315,7 +315,7 @@ public class MongoDBEnvisionaryUsers {
 //                }
 //            }
 //        } catch (MongoException me) {
-//            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+//            System.err.println("ERROR - Unable to find EntertainmentEnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
 //        }
 //
 //        // Close the connection when done working with the client
@@ -352,7 +352,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -389,7 +389,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
         // Close the connection when done working with the client
         mongoClient.close();
@@ -425,7 +425,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -462,7 +462,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -499,7 +499,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -524,21 +524,21 @@ public class MongoDBEnvisionaryUsers {
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
-                // Retrieve and print UserInfo.User Descriptive Statistics
+                // Retrieve and print User Descriptive Statistics
                 UserDescriptiveStatistics descriptiveStatistics = currentEnvisionaryUser.getUserDescriptiveStatistics();
                 if (descriptiveStatistics != null) {
-                    System.out.println("UserInfo.User Descriptive Statistics:");
-                    System.out.println("   BasePredictionsObject.Prediction Count: " + descriptiveStatistics.getPredictionCount());
+                    System.out.println("   User Descriptive Statistics:");
+                    System.out.println("   Prediction Count: " + descriptiveStatistics.getPredictionCount());
                     System.out.println("   Number of Correct Predictions: " + descriptiveStatistics.getCorrectPredictions());
                     System.out.println("   Number of Incorrect Predictions: " + descriptiveStatistics.getIncorrectPredictions());
                     System.out.println("   Percent of Correct Predictions: " + descriptiveStatistics.getPercentCorrect() + "%");
                     System.out.println("   Percent of Incorrect Predictions: " + descriptiveStatistics.getPercentIncorrect() + "%");
                 } else {
-                    System.out.println("No UserInfo.User Descriptive Statistics found for the user.");
+                    System.out.println("No User Descriptive Statistics found for the user.");
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -563,17 +563,17 @@ public class MongoDBEnvisionaryUsers {
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
-                // Retrieve and print UserInfo.User Inferential Statistics
+                // Retrieve and print User Inferential Statistics
                 UserInferentialStatistics inferentialStatistics = currentEnvisionaryUser.getUserInferentialStatistics();
                 if (inferentialStatistics != null) {
-                    System.out.println("UserInfo.User Inferential Statistics:");
+                    System.out.println("User Inferential Statistics:");
                     currentEnvisionaryUser.getUserInferentialStatistics().printUserInferentialStatistics();
                 } else {
-                    System.out.println("No UserInfo.User Inferential Statistics found for the user.");
+                    System.out.println("No User Inferential Statistics found for the user.");
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -611,7 +611,7 @@ public class MongoDBEnvisionaryUsers {
 
 
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -652,7 +652,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -669,7 +669,7 @@ public class MongoDBEnvisionaryUsers {
 //        // Connect to MongoDB EnvisionaryUsers collection
 //        MongoClient mongoClient = connectToMongoDB();
 //        MongoDatabase database = mongoClient.getDatabase(DB_NAME);
-//        MongoCollection<UserInfo.EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, UserInfo.EnvisionaryUser.class);
+//        MongoCollection<EntertainmentEnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EntertainmentEnvisionaryUser.class);
 //
 //        // Set filter for the specified user
 //        Bson userFilter = Filters.eq("userID", userID);
@@ -678,9 +678,9 @@ public class MongoDBEnvisionaryUsers {
 //        ArrayList<EntertainmentPrediction> entertainmentPredictionsList = new ArrayList<>();
 //
 //        // Try retrieving the collection of EnvisionaryUsers for the user
-//        try (MongoCursor<UserInfo.EnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
+//        try (MongoCursor<EntertainmentEnvisionaryUser> cursor = collection.find(userFilter).iterator()) {
 //            while (cursor.hasNext()) {
-//                UserInfo.EnvisionaryUser currentEnvisionaryUser = cursor.next();
+//                EntertainmentEnvisionaryUser currentEnvisionaryUser = cursor.next();
 //
 //                // Retrieve and add EntertainmentPredictions to the list
 //                ArrayList<EntertainmentPrediction> entertainmentPredictions = currentEnvisionaryUser.getEntertainmentPredictions();
@@ -692,7 +692,7 @@ public class MongoDBEnvisionaryUsers {
 //                }
 //            }
 //        } catch (MongoException me) {
-//            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+//            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
 //        }
 //
 //        // Close the connection when done working with the client
@@ -732,7 +732,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -772,7 +772,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -812,7 +812,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -852,13 +852,123 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
         mongoClient.close();
 
         return resolvedPredictionsList;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserResolvedCustomPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedCustomPredictions(String userIdentifier) {
+        // Initialize new array list of ResolvedPrediction to load file data into
+        ArrayList<ResolvedPrediction> loadedResolvedPredictions = retrieveUserResolvedPredictions(userIdentifier);
+        if (loadedResolvedPredictions == null) {
+            loadedResolvedPredictions = new ArrayList<>();
+        }
+        // Initialize new array list of ResolvedPrediction to store Custom predictions
+        ArrayList<ResolvedPrediction> userResolvedCustomPredictions = new ArrayList<>();
+        
+        // For each resolved prediction within the array list of loaded resolved predictions
+        for (ResolvedPrediction resolvedPrediction : loadedResolvedPredictions) {
+            if (resolvedPrediction.getPredictionType().equalsIgnoreCase("Custom")) {
+                userResolvedCustomPredictions.add(resolvedPrediction);
+            }
+        }
+        return userResolvedCustomPredictions;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserResolvedCelestialBodyPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedCelestialBodyPredictions(String userIdentifier) {
+        // Initialize new array list of ResolvedPrediction to load file data into
+        ArrayList<ResolvedPrediction> loadedResolvedPredictions = retrieveUserResolvedPredictions(userIdentifier);
+        if (loadedResolvedPredictions == null) {
+            loadedResolvedPredictions = new ArrayList<>();
+        }
+        // Initialize new array list of ResolvedPrediction to store CelestialBody predictions
+        ArrayList<ResolvedPrediction> userResolvedCelestialBodyPredictions = new ArrayList<>();
+
+        // For each resolved prediction within the array list of loaded resolved predictions
+        for (ResolvedPrediction resolvedPrediction : loadedResolvedPredictions) {
+            if (resolvedPrediction.getPredictionType().equalsIgnoreCase("CelestialBody")) {
+                userResolvedCelestialBodyPredictions.add(resolvedPrediction);
+            }
+        }
+        return userResolvedCelestialBodyPredictions;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserResolvedFootballMatchPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedFootballMatchPredictions(String userIdentifier) {
+        // Initialize new array list of ResolvedPrediction to load file data into
+        ArrayList<ResolvedPrediction> loadedResolvedPredictions = retrieveUserResolvedPredictions(userIdentifier);
+        if (loadedResolvedPredictions == null) {
+            loadedResolvedPredictions = new ArrayList<>();
+        }
+        // Initialize new array list of ResolvedPrediction to store FootballMatch predictions
+        ArrayList<ResolvedPrediction> userResolvedFootballMatchPredictions = new ArrayList<>();
+
+        // For each resolved prediction within the array list of loaded resolved predictions
+        for (ResolvedPrediction resolvedPrediction : loadedResolvedPredictions) {
+            if (resolvedPrediction.getPredictionType().equalsIgnoreCase("FootballMatch")) {
+                userResolvedFootballMatchPredictions.add(resolvedPrediction);
+            }
+        }
+        return userResolvedFootballMatchPredictions;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserResolvedWeatherPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedWeatherPredictions(String userIdentifier) {
+        // Initialize new array list of ResolvedPrediction to load file data into
+        ArrayList<ResolvedPrediction> loadedResolvedPredictions = retrieveUserResolvedPredictions(userIdentifier);
+        if (loadedResolvedPredictions == null) {
+            loadedResolvedPredictions = new ArrayList<>();
+        }
+        // Initialize new array list of ResolvedPrediction to store Weather predictions
+        ArrayList<ResolvedPrediction> userResolvedWeatherPredictions = new ArrayList<>();
+
+        // For each resolved prediction within the array list of loaded resolved predictions
+        for (ResolvedPrediction resolvedPrediction : loadedResolvedPredictions) {
+            if (resolvedPrediction.getPredictionType().equalsIgnoreCase("Weather")) {
+                userResolvedWeatherPredictions.add(resolvedPrediction);
+            }
+        }
+        return userResolvedWeatherPredictions;
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // retrieveUserResolvedEntertainmentPredictions
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedEntertainmentPredictions(String userIdentifier) {
+        // Initialize new array list of ResolvedPrediction to load file data into
+        ArrayList<ResolvedPrediction> loadedResolvedPredictions = retrieveUserResolvedPredictions(userIdentifier);
+        if (loadedResolvedPredictions == null) {
+            loadedResolvedPredictions = new ArrayList<>();
+        }
+        // Initialize new array list of ResolvedPrediction to store Entertainment predictions
+        ArrayList<ResolvedPrediction> userResolvedEntertainmentPredictions = new ArrayList<>();
+
+        // For each resolved prediction within the array list of loaded resolved predictions
+        for (ResolvedPrediction resolvedPrediction : loadedResolvedPredictions) {
+            if (resolvedPrediction.getPredictionType().equalsIgnoreCase("Entertainment")) {
+                userResolvedEntertainmentPredictions.add(resolvedPrediction);
+            }
+        }
+        return userResolvedEntertainmentPredictions;
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -892,7 +1002,7 @@ public class MongoDBEnvisionaryUsers {
                 }
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -919,23 +1029,23 @@ public class MongoDBEnvisionaryUsers {
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
-                // Retrieve UserInfo.User Descriptive Statistics
+                // Retrieve User Descriptive Statistics
                 UserDescriptiveStatistics descriptiveStatistics = currentEnvisionaryUser.getUserDescriptiveStatistics();
 
                 // Close the connection when done working with the client
                 mongoClient.close();
 
-                // Return UserInfo.User Descriptive Statistics
+                // Return User Descriptive Statistics
                 return descriptiveStatistics;
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return null if no UserInfo.User Descriptive Statistics found
+        // Return null if no User Descriptive Statistics found
         return null;
     }
 
@@ -957,23 +1067,23 @@ public class MongoDBEnvisionaryUsers {
             while (cursor.hasNext()) {
                 EnvisionaryUser currentEnvisionaryUser = cursor.next();
 
-                // Retrieve UserInfo.User Inferential Statistics
+                // Retrieve User Inferential Statistics
                 UserInferentialStatistics inferentialStatistics = currentEnvisionaryUser.getUserInferentialStatistics();
 
                 // Close the connection when done working with the client
                 mongoClient.close();
 
-                // Return UserInfo.User Inferential Statistics
+                // Return User Inferential Statistics
                 return inferentialStatistics;
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + userID + " in MongoDB due to an error: " + me);
         }
 
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return null if no UserInfo.User Inferential Statistics found
+        // Return null if no User Inferential Statistics found
         return null;
     }
 
@@ -990,7 +1100,7 @@ public class MongoDBEnvisionaryUsers {
         // Set filter
         Bson findEnvisionaryUser = Filters.eq(fieldName, value);
 
-        // Try to find Envisionary UserInfo.User
+        // Try to find Envisionary User
         try {
             EnvisionaryUser firstEnvisionaryUser = collection.find(findEnvisionaryUser).first();
             if (firstEnvisionaryUser == null) {
@@ -998,10 +1108,11 @@ public class MongoDBEnvisionaryUsers {
                 // System.exit(1);
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find a UserInfo.EnvisionaryUser to update in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find a EnvisionaryUser to update in MongoDB due to an error: " + me);
             // System.exit(1);
         }
-        System.out.println("UserInfo.EnvisionaryUser found. IMPLEMENT LOGIC");
+        System.out.println("EnvisionaryUser found. IMPLEMENT LOGIC");
+
         // TODO : IMPLEMENT LOGIC HERE.
         //  Finding friends to add to notification lists?
         //  Can we utilize this within a search bar?
@@ -1029,13 +1140,13 @@ public class MongoDBEnvisionaryUsers {
         Bson updateFilter = Updates.set(updateVariable, updateValue);
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
-        // Try to update Envisionary UserInfo.User
+        // Try to update Envisionary User
         try {
             EnvisionaryUser updatedEnvisionaryUser = collection.findOneAndUpdate(findEnvisionaryUser, updateFilter, options);
             if (updatedEnvisionaryUser == null) {
                 System.out.println("ERROR - Couldn't find any EnvisionaryUsers containing " + fieldName1 + " : " + value1 + " / " + fieldName2 + " : " + value2 + " in MongoDB - Envisionary - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the UserInfo.EnvisionaryUser to: " + updatedEnvisionaryUser);
+                System.out.println("\nUpdated the EnvisionaryUser to: " + updatedEnvisionaryUser);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any EnvisionaryUsers due to an error: " + me);
@@ -1061,13 +1172,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Custom Predictions
+        // Try to update Envisionary User's Custom Predictions
         try {
             CustomPrediction updatedCustomPredictions = collection.findOneAndUpdate(findCustomPredictions, updateFilter, options);
             if (updatedCustomPredictions == null) {
                 System.out.println("ERROR - Couldn't find any CustomPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the CustomPredictions.CustomPrediction to: " + updatedCustomPredictions);
+                System.out.println("\nUpdated the CustomPrediction to: " + updatedCustomPredictions);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any CustomPredictions due to an error: " + me);
@@ -1093,7 +1204,7 @@ public class MongoDBEnvisionaryUsers {
 //        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 //
 //
-//        // Try to update Envisionary UserInfo.User's Entertainment Predictions
+//        // Try to update Envisionary User's Entertainment Predictions
 //        try {
 //            EntertainmentPrediction updatedEntertainmentPredictions = collection.findOneAndUpdate(findEntertainmentPredictions, updateFilter, options);
 //            if (updatedEntertainmentPredictions == null) {
@@ -1125,13 +1236,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Football Match Predictions
+        // Try to update Envisionary User's Football Match Predictions
         try {
             FootballMatchPrediction updatedFootballMatchPredictions = collection.findOneAndUpdate(findFootballMatchPredictions, updateFilter, options);
             if (updatedFootballMatchPredictions == null) {
                 System.out.println("ERROR - Couldn't find any FootballMatchPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the FootballMatchPredictions.FootballMatchPrediction to: " + updatedFootballMatchPredictions);
+                System.out.println("\nUpdated the FootballMatchPrediction to: " + updatedFootballMatchPredictions);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any FootballMatchPredictions due to an error: " + me);
@@ -1157,13 +1268,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Celestial Body Predictions
+        // Try to update Envisionary User's Celestial Body Predictions
         try {
             CelestialBodyPrediction updatedCelestialBodyPredictions = collection.findOneAndUpdate(findCelestialBodyPredictions, updateFilter, options);
             if (updatedCelestialBodyPredictions == null) {
                 System.out.println("ERROR - Couldn't find any CelestialBodyPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the CelestialBodyPredictions.CelestialBodyPrediction to: " + updatedCelestialBodyPredictions);
+                System.out.println("\nUpdated the CelestialBodyPrediction to: " + updatedCelestialBodyPredictions);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any CelestialBodyPredictions due to an error: " + me);
@@ -1189,7 +1300,7 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Weather Predictions
+        // Try to update Envisionary User's Weather Predictions
         try {
             WeatherPrediction updatedWeatherPredictions = collection.findOneAndUpdate(findWeatherPredictions, updateFilter, options);
             if (updatedWeatherPredictions == null) {
@@ -1221,7 +1332,7 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Resolved Predictions
+        // Try to update Envisionary User's Resolved Predictions
         try {
             ResolvedPrediction updatedResolvedPredictions = collection.findOneAndUpdate(findResolvedPredictions, updateFilter, options);
             if (updatedResolvedPredictions == null) {
@@ -1253,13 +1364,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's Notifications
+        // Try to update Envisionary User's Notifications
         try {
             Notification updatedNotifications = collection.findOneAndUpdate(findNotifications, updateFilter, options);
             if (updatedNotifications == null) {
                 System.out.println("ERROR - Couldn't find any Notifications for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the Notifications.Notification to: " + updatedNotifications);
+                System.out.println("\nUpdated the Notification to: " + updatedNotifications);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update Notifications due to an error: " + me);
@@ -1285,13 +1396,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's UserInfo.User Descriptive Statistics
+        // Try to update Envisionary User's User Descriptive Statistics
         try {
             UserDescriptiveStatistics userDescriptiveStatistics = collection.findOneAndUpdate(findNotifications, updateFilter, options);
             if (updatedUserDescriptiveStatistics == null) {
                 System.out.println("ERROR - Couldn't find any UserStatistics.UserDescriptiveStatistics for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the UserStatistics.UserDescriptiveStatistics to: " + updatedUserDescriptiveStatistics);
+                System.out.println("\nUpdated the UserDescriptiveStatistics to: " + updatedUserDescriptiveStatistics);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update UserStatistics.UserDescriptiveStatistics due to an error: " + me);
@@ -1317,13 +1428,13 @@ public class MongoDBEnvisionaryUsers {
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
 
 
-        // Try to update Envisionary UserInfo.User's UserInfo.User Inferential Statistics
+        // Try to update Envisionary User's User Inferential Statistics
         try {
             UserInferentialStatistics userInferentialStatistics = collection.findOneAndUpdate(findNotifications, updateFilter, options);
             if (updatedUserInferentialStatistics == null) {
                 System.out.println("ERROR - Couldn't find any UserStatistics.UserInferentialStatistics for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the UserStatistics.UserInferentialStatistics to: " + updatedUserInferentialStatistics);
+                System.out.println("\nUpdated the UserInferentialStatistics to: " + updatedUserInferentialStatistics);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update UserStatistics.UserInferentialStatistics due to an error: " + me);
@@ -1346,7 +1457,7 @@ public class MongoDBEnvisionaryUsers {
         // Set filter
         Bson deleteFilter = Filters.in(fieldName, value);
 
-        // Try to remove the Envisionary UserInfo.User
+        // Try to remove the Envisionary User
         try {
             DeleteResult deleteResult = collection.deleteOne(deleteFilter);
             System.out.printf("\nDeleted %d Envisionary Users.\n", deleteResult.getDeletedCount());
@@ -1374,7 +1485,7 @@ public class MongoDBEnvisionaryUsers {
                 Filters.eq(fieldName2, value2)
         );
 
-        // Try to remove the Envisionary UserInfo.User
+        // Try to remove the Envisionary User
         try {
             DeleteResult deleteResult = collection.deleteOne(deleteFilter);
             System.out.printf("\nDeleted %d Envisionary Users.\n", deleteResult.getDeletedCount());
@@ -1421,12 +1532,15 @@ public class MongoDBEnvisionaryUsers {
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<EnvisionaryUser> collection = database.getCollection(COLLECTION_NAME, EnvisionaryUser.class);
 
-        // Check if the userId exists in the collection
+        // Set filter
+        Bson findUserFilter = Filters.eq("userId", userId);
+
+        // Try to find Envisionary User
         try {
-            long count = collection.countDocuments(Filters.eq("userId", userId));
-            return count > 0;
+            EnvisionaryUser user = collection.find(findUserFilter).first();
+            return user.getUserID() != null;
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to check if userId exists in MongoDB due to an error: " + me);
+            System.err.println("Unable to check if EnvisionaryUser exists due to an error: " + me);
             return false;
         } finally {
             // Close the connection when done working with the client
