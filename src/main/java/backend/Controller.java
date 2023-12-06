@@ -6,7 +6,6 @@ import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
 import backend.CelestialBodyPredictions.SavePlanets;
 import backend.CustomPredictions.CustomPrediction;
 import backend.CustomPredictions.SaveCustomPredictions;
-import backend.EntertainmentPredictions.EntertainmentPrediction;
 import backend.EntertainmentPredictions.buildEntertainmentPrediction;
 import backend.FootballMatchPredictions.FootballMatchList;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
@@ -20,13 +19,11 @@ import backend.OverallStatistics.OverallDescriptiveStatistics;
 import backend.OverallStatistics.OverallInferentialStatistics;
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
-import backend.UserInfo.User;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
 import backend.WeatherPredictions.SaveWeatherPredictions;
 import backend.WeatherPredictions.WeatherPrediction;
 import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.RequestHeader;
 //import org.springframework.web.bind.annotation.RequestBody;
@@ -317,7 +314,7 @@ public class Controller {
     // Frontend to Backend
     // Saving the Predictions
     @RequestMapping(value = "/movies")
-    public @ResponseBody boolean getUserMovie(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody boolean saveUserMovie(@RequestBody(required = false) String data) throws JSONException {
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         JsonReaderFactory factory = Json.createReaderFactory(null);
@@ -335,7 +332,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/custom")
-    public @ResponseBody boolean getUserCustom(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody boolean saveUserCustom(@RequestBody(required = false) String data) throws JSONException {
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         JsonReaderFactory factory = Json.createReaderFactory(null);
@@ -405,6 +402,26 @@ public class Controller {
             return success;
         }
     }
+
+    @RequestMapping(value = "/customResolve")
+    public @ResponseBody boolean resolveCustom(@RequestBody(required = false) String data) throws JSONException {
+        System.out.println(data);
+        StringReader stringReader = new StringReader(data);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        boolean success = SaveCustomPredictions.resolveCustomPrediction(object);
+        if(success){
+            System.out.println("Custom Prediction Resolved");
+            return success;
+        }
+        else{
+            System.out.println("Error in saving Custom Prediction Resolved");
+            return success;
+        }
+    }
+
+
 
 
 
