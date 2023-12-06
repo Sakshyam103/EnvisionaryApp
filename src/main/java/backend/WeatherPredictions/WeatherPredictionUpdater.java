@@ -35,7 +35,7 @@ public class WeatherPredictionUpdater {
                 boolean removePrediction = false;
 
                 // If prediction end date == today's date && userWeatherPrediction.getTemperature == todaysWeather.getTemp.getMax
-                if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userWeatherPrediction.isHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMax()) {
+                if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userWeatherPrediction.getHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMax()) {
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 
@@ -72,7 +72,7 @@ public class WeatherPredictionUpdater {
                 }
 
                 // Else if prediction end date == today's date && !userWeatherPrediction.getTemperature == todaysWeather.getTemp.getMin
-                else if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && !userWeatherPrediction.isHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMin()) {
+                else if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && !userWeatherPrediction.getHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMin()) {
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 

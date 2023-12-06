@@ -21,6 +21,7 @@ import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserInfo.User;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
+import backend.WeatherPredictions.SaveWeatherPredictions;
 import backend.WeatherPredictions.WeatherPrediction;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -327,6 +328,24 @@ public class Controller {
         else{
             System.out.println("Error in saving Custom Prediction");
             return "Error Saving Custom Prediction";
+        }
+    }
+
+    @RequestMapping(value = "/weather")
+    public @ResponseBody String saveUserWeather(@RequestBody(required = false) String data) throws JSONException {
+        System.out.println(data);
+        StringReader stringReader = new StringReader(data);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        boolean success = SaveWeatherPredictions.buildWeather(object);
+        if(success){
+            System.out.println("Weather Prediction Saved");
+            return "Weather Prediction Saved";
+        }
+        else{
+            System.out.println("Error in saving Weather Prediction");
+            return "Error Saving Weather Prediction";
         }
     }
 
