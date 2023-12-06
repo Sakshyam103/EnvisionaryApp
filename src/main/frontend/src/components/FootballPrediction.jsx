@@ -7,8 +7,9 @@ function FootballPrediction() {
   const [buttonPressed, setButtonPressed] = useState(false);
   const [buttonPressed1, setButtonPressed1] = useState(false);
   const [matchX, setMatchX] = useState('');
+  const [matchOptions, setMatchOptions] = useState([]);
 
-  const matchOptions = ['Match 1', 'Match 2', 'Match 3'];
+
   const teamOptions = ['Team A', 'Team B', 'Team C'];
   const resultOptions = ['Win', 'Draw', 'Loss'];
 
@@ -29,7 +30,17 @@ function FootballPrediction() {
         })
         .then(data => {
           console.log(data);
-          setMatchX(data);
+
+            // Remove "[" and "]" from the beginning and end of the string
+            const data1 = data.replace(/^\[|\]$/g, '');
+
+            // Remove double quotes from the beginning and end of the string
+            const data2 = data1.replace(/^"(.*)"$/g, '$1');
+
+          setMatchX(data2);
+
+          const matches = data1.split('","');
+          setMatchOptions(matches);
         })
         .catch(error => {
           console.error('Error: ', error);
@@ -64,7 +75,7 @@ function FootballPrediction() {
   return (
       <div style={{ textAlign: 'center' }}>
         {/* Display fetched data */}
-        <p>{matchX}</p>
+        {/*<p>{matchX}</p>*/}
 
         <div style={{ margin: '10px' }}>
           <label>Choose Match </label>

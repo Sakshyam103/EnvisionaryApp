@@ -22,7 +22,7 @@ function PredictionOptions ({user}) {
   const handleAstronomyPredictions = () => {
     // Handle astronomy predictions logic here
     console.log('Handling Astronomy Predictions');
-    //navigate('/Home/MakePredictions/Weather');
+    navigate('/Home/MakePredictions/Astronomy');
   };
 
   const handleWeatherPredictions = () => {
@@ -74,7 +74,7 @@ function PredictionOptions ({user}) {
           color: 'white',
           border: 'pink',
         }}
-        // onClick={handleAstronomyPredictions}
+         onClick={handleAstronomyPredictions}
       >
         Astronomy
       </button>
