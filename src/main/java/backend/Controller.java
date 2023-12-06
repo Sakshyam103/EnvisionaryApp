@@ -95,6 +95,21 @@ public class Controller {
         return a;
     }
 
+    @RequestMapping(value = "/sendMatches")
+    public @ResponseBody String sendMatches(@RequestBody(required = false) String idString) throws JSONException {
+//        SignInRequest signInRequest1 = new SignInRequest();
+//        signInRequest1.setIdToken(idString);
+//        System.out.println(signInRequest1.getIdToken());
+//        parseId(signInRequest1.getIdToken());
+//        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) == null) {
+//            MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
+//        }
+//        userDoc = GetUserInfo.getTheDoc();
+        System.out.println(idString);
+
+        return "";
+    }
+
     @RequestMapping(value = "/viewNotification")
     public ArrayList<String> viewNotification() {
         System.out.println("view notification");
@@ -103,6 +118,8 @@ public class Controller {
         a.add("ball");
         return a;
     }
+
+
 
     @RequestMapping(value = "/viewMatches")
     public ArrayList<String> viewMatches() throws JSONException {
