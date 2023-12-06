@@ -329,7 +329,7 @@ public class NotificationUpdater {
         Notification notification = new Notification();
 
         // Set notification variables
-        notification.setNotificationTitle("Football match prediction was successfully resolved: " + outcome);
+        notification.setNotificationTitle("Celestial body prediction was successfully resolved: " + outcome);
         notification.setPredictionContent(userCelestialBodyPrediction.getPrediction().getPredictionContent());
         notification.setPredictionMadeDate(userCelestialBodyPrediction.getPrediction().getPredictionMadeDate());
         notification.setPredictionEndDate(userCelestialBodyPrediction.getPrediction().getPredictionEndDate());
@@ -363,7 +363,7 @@ public class NotificationUpdater {
         Notification notification = new Notification();
 
         // Set notification variables
-        notification.setNotificationTitle("Football match prediction was successfully resolved: " + outcome);
+        notification.setNotificationTitle("Celestial body prediction was successfully resolved: " + outcome);
         notification.setPredictionContent(userCelestialBodyPrediction.getPrediction().getPredictionContent());
         notification.setPredictionMadeDate(userCelestialBodyPrediction.getPrediction().getPredictionMadeDate());
         notification.setPredictionEndDate(userCelestialBodyPrediction.getPrediction().getPredictionEndDate());
@@ -385,18 +385,64 @@ public class NotificationUpdater {
         Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
-    public static void newWeatherPredictionResolvedFalseNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
-        // TODO
+    public static void newWeatherPredictionResolvedFalseNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userIdentifier) {
+        // Set outcome to false
+        boolean outcome = false;
+
+        // Initialize a new Notifications.Notification
+        Notification notification = new Notification();
+
+        // Set notification variables
+        notification.setNotificationTitle("Weather prediction was successfully resolved: " + outcome);
+        notification.setPredictionContent(userWeatherPrediction.getPrediction().getPredictionContent());
+        notification.setPredictionMadeDate(userWeatherPrediction.getPrediction().getPredictionMadeDate());
+        notification.setPredictionEndDate(userWeatherPrediction.getPrediction().getPredictionEndDate());
+
+        // Initialize a new array list of Notifications.Notification objects
+        ArrayList<Notification> userNotifications = MongoDBEnvisionaryUsers.retrieveUserNotifications(userIdentifier);
+
+        if(userNotifications == null) {
+            userNotifications = new ArrayList<>();
+        }
+
+        // Add notification to list of notifications
+        userNotifications.add(notification);
+
+        // Save notification to user's notification file
+        MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
 
         // Send email to the user
-        //Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
-    public static void newWeatherPredictionResolvedTrueNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userID) {
-        // TODO
+    public static void newWeatherPredictionResolvedTrueNotificationMongoDB(WeatherPrediction userWeatherPrediction, String userIdentifier) {
+        // Set outcome to false
+        boolean outcome = true;
+
+        // Initialize a new Notifications.Notification
+        Notification notification = new Notification();
+
+        // Set notification variables
+        notification.setNotificationTitle("Weather prediction was successfully resolved: " + outcome);
+        notification.setPredictionContent(userWeatherPrediction.getPrediction().getPredictionContent());
+        notification.setPredictionMadeDate(userWeatherPrediction.getPrediction().getPredictionMadeDate());
+        notification.setPredictionEndDate(userWeatherPrediction.getPrediction().getPredictionEndDate());
+
+        // Initialize a new array list of Notifications.Notification objects
+        ArrayList<Notification> userNotifications = MongoDBEnvisionaryUsers.retrieveUserNotifications(userIdentifier);
+
+        if(userNotifications == null) {
+            userNotifications = new ArrayList<>();
+        }
+
+        // Add notification to list of notifications
+        userNotifications.add(notification);
+
+        // Save notification to user's notification file
+        MongoDBEnvisionaryUsers.updateUserNotifications(userIdentifier, userNotifications);
 
         // Send email to the user
-        //Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
+        Mailing.sendMail(notification.getNotificationTitle(), MongoDBEnvisionaryUsers.retrieveUserEmail(userIdentifier));
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
