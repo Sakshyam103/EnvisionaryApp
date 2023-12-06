@@ -9,6 +9,7 @@ import CustomPrediction from './components/CustomPrediction'
 import FootballPrediction from './components/FootballPrediction'
 import MoviesPrediction from './components/MoviesPrediction'
 import WeatherPrediction from './components/WeatherPrediction'
+import AstronomyPrediction from "./components/AstronomyPrediction.jsx";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -115,6 +116,17 @@ function App() {
       </>
       )
       }/>
+          <Route path="/Home/MakePredictions/Astronomy" element={
+              currentUser ? (
+                  <>
+                      <AstronomyPrediction user={currentUser}/></>
+              ) : (
+                  <>
+                      <Navigate to="/" replace />
+                      <SignIn onUserLogin={handleUserLogin} />
+                  </>
+              )
+          }/>
         </Routes>
       </div>
 

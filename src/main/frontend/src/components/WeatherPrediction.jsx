@@ -27,10 +27,36 @@ function WeatherPrediction() {
   const submitPrediction = () => {
     if (temperatureType && temperatureValue !== '' && selectedDate !== '' && error === '') {
       console.log(`Prediction: ${temperatureType} of ${temperatureValue} degrees Fahrenheit on ${selectedDate}`);
+      handleCallbackResponse()
     } else {
       setError('Please fill in all fields with valid values.');
     }
   };
+
+  function handleCallbackResponse() {
+          let response = `{"temperatureType": "${temperatureType}", "temperatureValue": ${temperatureValue}, "ResolveDate": "${selectedDate}"}`
+          fetch("http://localhost:8080/weather", {
+            method:"POST",
+            body: response,
+            headers:{
+              "Content-Type": "application/json",
+             },
+            }).then(res => {
+              if(!res.ok){
+                console.error('Request failed with status:' , res.status);
+                return res.text();
+              }
+              return res.text();
+            })
+            .then(response => {
+              console.log(response);
+            }).catch(error=>{
+              console.error('Error: ', error);
+            })
+
+           ;
+
+        }
 
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>

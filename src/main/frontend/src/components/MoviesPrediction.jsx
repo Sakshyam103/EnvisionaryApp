@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 function MoviesPrediction() {
   const [movie, setMovie] = useState('');
   const [releaseYear, setReleaseYear] = useState('');
+    const [error, setError] = useState('');
   
   const years = Array.from({ length: 74 }, (_, index) => (2023 - index).toString());
 
   function handleCallbackResponse(response) {
+      if (movie && releaseYear) {
       fetch("http://localhost:8080/movies", {
         method:"POST",
         body: response,
@@ -27,12 +29,15 @@ function MoviesPrediction() {
         })
 
        ;
+      } else {
+          setError('Please select movie and date both first!');
+      }
 
-    }
+  }
 
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>
-      <h1>I predict</h1>
+      <h2>I predict</h2>
       <input
         type="text"
         value={movie}
@@ -56,6 +61,11 @@ function MoviesPrediction() {
       </select>
 
       <br />
+        <br />
+
+        {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>}
+
+        <br />
 
       <button
         onClick={() => handleCallbackResponse(`{"Prediction": "${movie}", "ReleaseYear": ${releaseYear}}`)}

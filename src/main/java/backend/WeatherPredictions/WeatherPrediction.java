@@ -30,7 +30,7 @@ public class WeatherPrediction {
         this.temperature = temperature;
     }
 
-    public boolean isHighTempPrediction() {
+    public boolean getHighTempPrediction() {
         return highTempPrediction;
     }
 
@@ -59,7 +59,7 @@ public class WeatherPrediction {
                 "Prediction End Date: " + prediction.getPredictionEndDate() + "\n" +
                 "Reminder Frequency: " + prediction.getRemindFrequency() + "\n" +
                 "Temperature: " + getTemperature() + "\n" +
-                "High Temperature Prediction: " + isHighTempPrediction() + "\n" +
+                "High Temperature Prediction: " + getHighTempPrediction() + "\n" +
                 "--------------------------------------------------------------------------------"
         );
     }

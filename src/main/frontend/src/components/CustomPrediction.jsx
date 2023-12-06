@@ -9,12 +9,13 @@ function CustomPrediction() {
       prediction,
       date: selectedDate,
     }
-
+    handleCallbackResponse()
     const customPrediction = JSON.stringify(customData, null, 2);
     console.log("Generated JSON", customPrediction);
     //console.log(`Prediction: ${prediction}, Date: ${selectedDate}`);
   };
-  function handleCallbackResponse(response) {
+  function handleCallbackResponse() {
+        let response = `{"Prediction": "${prediction}", "ResolveDate": "${selectedDate}"}`
         fetch("http://localhost:8080/custom", {
           method:"POST",
           body: response,
@@ -59,7 +60,7 @@ function CustomPrediction() {
       />
       <br />
       <button
-        onClick={() => handleCallbackResponse(`{"Prediction": "${prediction}", "ResolveDate": "${selectedDate}"}`)}
+        onClick={submitPrediction}
         style={{
           padding: '10px',
           fontSize: '16px',

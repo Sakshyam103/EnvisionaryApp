@@ -21,6 +21,7 @@ import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserInfo.User;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
+import backend.WeatherPredictions.SaveWeatherPredictions;
 import backend.WeatherPredictions.WeatherPrediction;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,21 @@ public class Controller {
         return a;
     }
 
+    @RequestMapping(value = "/sendMatches")
+    public @ResponseBody String sendMatches(@RequestBody(required = false) String idString) throws JSONException {
+//        SignInRequest signInRequest1 = new SignInRequest();
+//        signInRequest1.setIdToken(idString);
+//        System.out.println(signInRequest1.getIdToken());
+//        parseId(signInRequest1.getIdToken());
+//        if (MongoDBEnvisionaryUsers.retrieveUserEmail(userId) == null) {
+//            MongoDBEnvisionaryUsers.insertIndividualEnvisionaryUser(userId, email);
+//        }
+//        userDoc = GetUserInfo.getTheDoc();
+        System.out.println(idString);
+
+        return "";
+    }
+
     @RequestMapping(value = "/viewNotification")
     public ArrayList<String> viewNotification() {
         System.out.println("view notification");
@@ -103,20 +119,23 @@ public class Controller {
         return a;
     }
 
+
+
     @RequestMapping(value = "/viewMatches")
     public ArrayList<String> viewMatches() throws JSONException {
         System.out.println("view matches");
         FootballMatchList a = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
-    //    System.out.println(a.toString());
+        //System.out.println(a.toString());
         ArrayList<String> options = parseMatches(a);;
+
         return options;
     }
 
     public ArrayList<String> parseMatches(FootballMatchList a) throws JSONException {
         JSONObject jsonObject = new JSONObject(a);
-        JsonArray footballMatches = (JsonArray) jsonObject.get("footballMatches");
+        JSONArray footballMatches = (JSONArray) jsonObject.get("footballMatches");
         ArrayList<String> options = new ArrayList<>();
-        for(JsonValue o: footballMatches){
+        for(Object o: footballMatches){
             JSONObject main = (JSONObject) o;
             String homeTeam = (String)main.get("homeTeam");
             String awayTeam = (String) main.get("awayTeam");
@@ -327,6 +346,24 @@ public class Controller {
         else{
             System.out.println("Error in saving Custom Prediction");
             return "Error Saving Custom Prediction";
+        }
+    }
+
+    @RequestMapping(value = "/weather")
+    public @ResponseBody String saveUserWeather(@RequestBody(required = false) String data) throws JSONException {
+        System.out.println(data);
+        StringReader stringReader = new StringReader(data);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        boolean success = SaveWeatherPredictions.buildWeather(object);
+        if(success){
+            System.out.println("Weather Prediction Saved");
+            return "Weather Prediction Saved";
+        }
+        else{
+            System.out.println("Error in saving Weather Prediction");
+            return "Error Saving Weather Prediction";
         }
     }
 
