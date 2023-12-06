@@ -54,14 +54,13 @@ public final class EntertainmentPrediction {
     }
 
     // to view the movie prediction
-
     public void printPredictionDetails() {
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("Entertainment BasePredictionsObject.Prediction Details");
-        System.out.println("BasePredictionsObject.Prediction Type: " + prediction.getPredictionType());
-        System.out.println("BasePredictionsObject.Prediction Content: " + prediction.getPredictionContent());
-        System.out.println("BasePredictionsObject.Prediction Made Date: " + prediction.getPredictionMadeDate());
-        System.out.println("BasePredictionsObject.Prediction End Date: " + prediction.getPredictionEndDate());
+        System.out.println("Entertainment Prediction Details");
+        System.out.println("Prediction Type: " + prediction.getPredictionType());
+        System.out.println("Prediction Content: " + prediction.getPredictionContent());
+        System.out.println("Prediction Made Date: " + prediction.getPredictionMadeDate());
+        System.out.println("Prediction End Date: " + prediction.getPredictionEndDate());
         System.out.println("Reminder Frequency: " + prediction.getRemindFrequency());
         System.out.println("-------------------------------");
         System.out.println("Entertainment Prediction Details:");
