@@ -21,7 +21,7 @@ public class buildEntertainmentPrediction {
 
     public static String userID;
 
-    public static void buildMoviePrediction(JsonObject json, String ID) throws JSONException {
+    public static boolean buildMoviePrediction(JsonObject json, String ID) throws JSONException {
 
         userID = ID;
 
@@ -41,7 +41,7 @@ public class buildEntertainmentPrediction {
 
         prediction.setResolvedDate(ZonedDateTime.now().toString());
 
-        resolveEntertainmentPrediction(userID, prediction);
+        return resolveEntertainmentPrediction(userID, prediction);
     }
 
     private static void setPrediction(JsonObject json) throws JSONException {
