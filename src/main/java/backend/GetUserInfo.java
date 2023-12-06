@@ -32,7 +32,7 @@ public class GetUserInfo {
                 userInfo = cursor.next();
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to find UserInfo.EnvisionaryUser: " + Controller.userId + " in MongoDB due to an error: " + me);
+            System.err.println("ERROR - Unable to find EnvisionaryUser: " + Controller.userId + " in MongoDB due to an error: " + me);
         }
         return userInfo;
     }
