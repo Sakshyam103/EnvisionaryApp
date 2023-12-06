@@ -108,16 +108,17 @@ public class Controller {
     public ArrayList<String> viewMatches() throws JSONException {
         System.out.println("view matches");
         FootballMatchList a = MongoDBFootballMatchData.retrieveDocumentsWithinTimeFrameAndReturn("UpcomingWeek1");
-    //    System.out.println(a.toString());
+        //System.out.println(a.toString());
         ArrayList<String> options = parseMatches(a);;
+
         return options;
     }
 
     public ArrayList<String> parseMatches(FootballMatchList a) throws JSONException {
         JSONObject jsonObject = new JSONObject(a);
-        JsonArray footballMatches = (JsonArray) jsonObject.get("footballMatches");
+        JSONArray footballMatches = (JSONArray) jsonObject.get("footballMatches");
         ArrayList<String> options = new ArrayList<>();
-        for(JsonValue o: footballMatches){
+        for(Object o: footballMatches){
             JSONObject main = (JSONObject) o;
             String homeTeam = (String)main.get("homeTeam");
             String awayTeam = (String) main.get("awayTeam");

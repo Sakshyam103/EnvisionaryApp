@@ -8,9 +8,10 @@ function FootballPrediction() {
   const [buttonPressed1, setButtonPressed1] = useState(false);
   const [matchX, setMatchX] = useState('');
   const [matchOptions, setMatchOptions] = useState([]);
+  const [teamOptions, setTeamOptions] = useState('');
+  const [teamTwo, setTeamTwo] = useState('')
 
 
-  const teamOptions = ['Team A', 'Team B', 'Team C'];
   const resultOptions = ['Win', 'Draw', 'Loss'];
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function FootballPrediction() {
 
           setMatchX(data2);
 
-          const matches = data1.split('","');
+          const matches = data2.split('","');
           setMatchOptions(matches);
         })
         .catch(error => {
@@ -67,6 +68,7 @@ function FootballPrediction() {
   const handleSubmitMatch = () => {
     if (match) {
       setButtonPressed(true);
+      setTeamOptions(match.split(' vs '));
     } else {
       alert('Please select Match first!');
     }

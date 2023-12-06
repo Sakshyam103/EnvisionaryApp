@@ -32,7 +32,7 @@ function MoviesPrediction() {
 
   return (
     <div style={{ textAlign: 'center', margin: '20px' }}>
-      <h1>I predict</h1>
+      <h2>I predict</h2>
       <input
         type="text"
         value={movie}
