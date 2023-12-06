@@ -31,7 +31,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class EntertainmentPredictionInitializer {
 
-    public static void resolveEntertainmentPrediction(String userIdentifier, ResolvedPrediction prediction) {
+    public static boolean resolveEntertainmentPrediction(String userIdentifier, ResolvedPrediction prediction) {
         Bson filter = Filters.eq("userID", Controller.userId);
 
         Document newResolved = new Document("predictionContent", prediction.getPredictionContent())
@@ -42,12 +42,21 @@ public class EntertainmentPredictionInitializer {
                 .append("resolvedDate", prediction.getResolvedDate());
         Bson update = Updates.push("resolvedPredictions", newResolved);
 
-        GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
 
-        // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
-        UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(userIdentifier);
-        UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB(userIdentifier);
-        OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
-        OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
+
+        try{
+            GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
+
+            // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
+            UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(userIdentifier);
+            UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB(userIdentifier);
+            OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
+            OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
+            return true;
+        }
+        catch(Exception error){
+            error.printStackTrace();
+            return false;
+        }
     }
 }
