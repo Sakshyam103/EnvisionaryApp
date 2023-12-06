@@ -49,6 +49,7 @@ function FootballPrediction() {
 
   const submitPredictions = () => {
     if (team && result) {
+      handleCallbackResponse()
       setButtonPressed1(true);
 
         const footballData = {
@@ -98,6 +99,31 @@ function FootballPrediction() {
     }
 
   };
+
+  function handleCallbackResponse() {
+            let response = `{"match": "${match}", "team": "${team}", "result": "${result}"}`
+            fetch("http://localhost:8080/football", {
+              method:"POST",
+              body: response,
+              headers:{
+                "Content-Type": "application/json",
+               },
+              }).then(res => {
+                if(!res.ok){
+                  console.error('Request failed with status:' , res.status);
+                  return res.text();
+                }
+                return res.text();
+              })
+              .then(response => {
+                console.log(response);
+              }).catch(error=>{
+                console.error('Error: ', error);
+              })
+
+             ;
+
+          }
 
   return (
       <div style={{ textAlign: 'center' }}>

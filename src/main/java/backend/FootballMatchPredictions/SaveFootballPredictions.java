@@ -1,12 +1,12 @@
-package backend.WeatherPredictions;
+package backend.FootballMatchPredictions;
 
 import backend.Controller;
-import backend.CustomPredictions.CustomPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
+import backend.WeatherPredictions.WeatherPrediction;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
@@ -16,27 +16,28 @@ import javax.json.JsonObject;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class SaveWeatherPredictions {
-    private static final WeatherPrediction prediction = new WeatherPrediction();
+public class SaveFootballPredictions {
+    private static final FootballMatchPrediction prediction = new FootballMatchPrediction();
 
-    public static boolean buildWeather(JsonObject input){
+    public static boolean buildFootball(JsonObject input){
         prediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
-        prediction.getPrediction().setPredictionType("Weather");
-        prediction.getPrediction().setPredictionContent("I predict that there will be a "
-        + input.getString("temperatureType").toLowerCase()+ " of " + input.getInt("temperatureValue")+
-                " F on " + input.getString("ResolveDate"));
-        prediction.getPrediction().setPredictionEndDate(input.getString("ResolveDate"));
-        prediction.setTemperature(input.getInt("temperatureValue"));
-        if(input.getString("temperatureType").equalsIgnoreCase("High")){
-            prediction.setHighTempPrediction(true);
+        prediction.getPrediction().setPredictionType("Football");
+        if(input.getString("result").equalsIgnoreCase("draw")){
+            prediction.getPrediction().setPredictionContent("I predict that " + input.getString("team") +
+                    " will have a draw the game on " + input.getJsonObject("match").getString("utcDate"));
         }
         else{
-            prediction.setHighTempPrediction(false);
+            prediction.getPrediction().setPredictionContent("I predict that " + input.getString("team") +
+                    " will " + input.getString("result") + " the game on " + input.getString("match"));
         }
-        return saveNewWeatherToMongo();
+        prediction.getPrediction().setPredictionEndDate(input.getJsonObject("match").getString("utcDate"));
+        prediction.setPredictedMatchOutcome(input.getString("result"));
+        prediction.setPredictedMatchTeam(input.getString("team"));
+
+        return saveNewFootballToMongo();
     }
 
-    private static boolean saveNewWeatherToMongo(){
+    private static boolean saveNewFootballToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
 
@@ -46,11 +47,12 @@ public class SaveWeatherPredictions {
                 .append("createDate", prediction.getPrediction().getPredictionMadeDate())
                 .append("resolveDate", prediction.getPrediction().getPredictionEndDate());
 
-        Document weatherObject = new Document("highTemp", prediction.getHighTempPrediction())
-                .append("predictedTemp", prediction.getTemperature())
+        Document weatherObject = new Document("match", prediction.getPredictionMatch())
+                .append("team", prediction.getPredictedMatchTeam())
+                .append("result", prediction.getPredictedMatchOutcome())
                 .append("prediction", predictionObject);
 
-        Bson update = Updates.push("weatherPredictions", weatherObject);
+        Bson update = Updates.push("footballMatchPredictions", weatherObject);
 
 
         try{
@@ -64,9 +66,9 @@ public class SaveWeatherPredictions {
 
     }
 
-    public static boolean resolveWeatherPrediction(JsonObject data){
+    public static boolean resolveFootballPrediction(JsonObject data){
         String content = data.getString("predictionContent");
-        WeatherPrediction active = getWeatherFromMongo(content);
+        FootballMatchPrediction active = getFootballFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
 
 
@@ -81,7 +83,7 @@ public class SaveWeatherPredictions {
 
         try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
-            boolean delete = DeleteStaleWeatherPrediction(active);
+            boolean delete = DeleteStaleFootballPrediction(active);
             // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
             UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(Controller.userId);
             UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB(Controller.userId);
@@ -95,19 +97,20 @@ public class SaveWeatherPredictions {
         }
     }
 
-    private static boolean DeleteStaleWeatherPrediction(WeatherPrediction active) {
+    private static boolean DeleteStaleFootballPrediction(FootballMatchPrediction active) {
         Document removal = new Document();
-        return Controller.userDoc.getList("weatherPredictions", WeatherPrediction.class).remove(active);
+        return Controller.userDoc.getList("footballMatchPredictions", FootballMatchPrediction.class).remove(active);
     }
 
-    private static WeatherPrediction getWeatherFromMongo(String content){
-        WeatherPrediction current = new WeatherPrediction();
-        List<WeatherPrediction> activeWeather = Controller.userDoc.getList("weatherPredictions", WeatherPrediction.class);
-        for(WeatherPrediction prediction : activeWeather){
+    private static FootballMatchPrediction getFootballFromMongo(String content){
+        FootballMatchPrediction current = new FootballMatchPrediction();
+        List<FootballMatchPrediction> activeFootball = Controller.userDoc.getList("footballMatchPredictions", FootballMatchPrediction.class);
+        for(FootballMatchPrediction prediction : activeFootball){
             if(prediction.getPrediction().getPredictionContent().equalsIgnoreCase(content)){
                 current = prediction;
             }
         }
         return current;
     }
+
 }

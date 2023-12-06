@@ -62,7 +62,7 @@ public class SaveCustomPredictions {
                 .append("endDate", active.getPrediction().getPredictionEndDate())
                 .append("resolution", data.getBoolean("resolution"))
                 .append("resolvedDate", ZonedDateTime.now().toString());
-        Bson update = Updates.push("customPredictions", newResolved);
+        Bson update = Updates.push("resolvedPredictions", newResolved);
 
         try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);

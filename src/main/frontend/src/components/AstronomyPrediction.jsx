@@ -7,6 +7,7 @@ const AstronomyPrediction = () => {
     const [selectedDate, setSelectedDate] = useState('');
 
     const predict = () => {
+        handleCallbackResponse()
         // Display the prediction
         return(
             <div>
@@ -15,6 +16,31 @@ const AstronomyPrediction = () => {
         )
         // alert(`I predict that there will be a change in the number of ${selectedNumber} by ${selectedDate}.`);
     };
+
+    function handleCallbackResponse() {
+                let response = `{"planet": "${selectedNumber}", "resolveDate": "${selectedDate}"}`
+                fetch("http://localhost:8080/space", {
+                  method:"POST",
+                  body: response,
+                  headers:{
+                    "Content-Type": "application/json",
+                   },
+                  }).then(res => {
+                    if(!res.ok){
+                      console.error('Request failed with status:' , res.status);
+                      return res.text();
+                    }
+                    return res.text();
+                  })
+                  .then(response => {
+                    console.log(response);
+                  }).catch(error=>{
+                    console.error('Error: ', error);
+                  })
+
+                 ;
+
+              }
 
     return (
         <div>
