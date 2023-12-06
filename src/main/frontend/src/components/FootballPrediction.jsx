@@ -6,9 +6,10 @@ function FootballPrediction() {
   const [result, setResult] = useState('');
   const [buttonPressed, setButtonPressed] = useState(false);
   const [buttonPressed1, setButtonPressed1] = useState(false);
-  const [matchX, setMatchX] = useState('');
   const [matchOptions, setMatchOptions] = useState([]);
   const [teamOptions, setTeamOptions] = useState('');
+  const [error, setError] = useState('');
+
   const [teamTwo, setTeamTwo] = useState('');
   const [footballMatchPrediction, setFootballMatchPrediction] = useState('');
 
@@ -38,8 +39,6 @@ function FootballPrediction() {
             // Remove double quotes from the beginning and end of the string
             const data2 = data1.replace(/^"(.*)"$/g, '$1');
 
-          setMatchX(data2);
-
           const matches = data2.split('","');
           setMatchOptions(matches);
         })
@@ -51,19 +50,43 @@ function FootballPrediction() {
   const submitPredictions = () => {
     if (team && result) {
       setButtonPressed1(true);
+
+        const footballData = {
+            match,
+            team,
+            result,
+        };
+        //
+        // const footballMatchPrediction1 = JSON.stringify(footballData, null, 2);
+        // console.log(footballMatchPrediction);
+        // setFootballMatchPrediction(footballMatchPrediction1);
+
+        let data = {footballData};  //json
+        fetch("http://localhost:8080/sendMatches", {
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                "Content-Type": "application/json",
+            },
+        }).then(res => {
+            if(!res.ok){
+                console.error('Request failed with status:' , res.status);
+                return res.text();
+            }
+            return res.text();
+        })
+            .then(data => {
+                console.log(data);
+            }).catch(error=>{
+            console.error('Error: ', error);
+        })
+
+        ;
     } else {
-      alert('Please select Team and Result before submitting predictions.');
+      setError('Please select Team and Result before submitting predictions.');
     }
 
-    const footballData = {
-      match,
-      team,
-      result,
-    };
 
-    const footballMatchPrediction1 = JSON.stringify(footballData, null, 2);
-    console.log(footballMatchPrediction);
-    setFootballMatchPrediction(footballMatchPrediction1)
   };
 
   const handleSubmitMatch = () => {
@@ -71,29 +94,9 @@ function FootballPrediction() {
       setButtonPressed(true);
       setTeamOptions(match.split(' vs '));
     } else {
-      alert('Please select Match first!');
+      setError('Please select Match first!');
     }
-      let data = {idString: footballMatchPrediction};  //json
-      fetch("http://localhost:8080/sendMatches", {
-          method:"POST",
-          body: JSON.stringify(data),
-          headers:{
-              "Content-Type": "application/json",
-          },
-      }).then(res => {
-          if(!res.ok){
-              console.error('Request failed with status:' , res.status);
-              return res.text();
-          }
-          return res.text();
-      })
-          .then(data => {
-              console.log(data);
-          }).catch(error=>{
-          console.error('Error: ', error);
-      })
 
-      ;
   };
 
   return (
@@ -102,7 +105,7 @@ function FootballPrediction() {
         {/*<p>{matchX}</p>*/}
 
         <div style={{ margin: '10px' }}>
-          <label>Choose Match </label>
+          <h2>Choose Match </h2>
           <select
               value={match}
               onChange={(e) => setMatch(e.target.value)}
@@ -130,9 +133,11 @@ function FootballPrediction() {
           </button>
         </div>
 
+
+
         {buttonPressed && (
             <div style={{ margin: '10px' }}>
-              <label>I predict that Team </label>
+              <h2>I predict that Team </h2>
               <select
                   value={team}
                   onChange={(e) => setTeam(e.target.value)}
@@ -145,7 +150,7 @@ function FootballPrediction() {
                     </option>
                 ))}
               </select>
-              <label>Is going to </label>
+              <label> is going to </label>
               <select
                   value={result}
                   onChange={(e) => setResult(e.target.value)}
@@ -160,6 +165,11 @@ function FootballPrediction() {
               </select>
 
               <br />
+                <br/>
+
+                {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>}
+
+                <br/>
 
               <button
                   onClick={submitPredictions}
