@@ -17,6 +17,39 @@ function Home({user}) {
     navigate('/Home/MakePredictions');
   };
 
+  const JsonTable = ({data}) => {
+    if(!Array.isArray(data) || data.length < 1){
+      return <p>Insufficient data to display the table.</p>
+    }
+    if(!data || data.length ===0){
+      return <p>No data available.</p>
+    }
+    return(
+        <div style={{textAlign: 'center'}}>
+          {/*{setNotification(data)}*/}
+          {/*<p>{data}</p>*/}
+          <table>
+            <thead>
+            <tr>
+              {Object.keys(data[0]).map((header)=>(
+                  <th key={header}>{header}</th>
+              ))}
+            </tr>
+            </thead>
+            <tbody>
+            {data.map((item,index)=>(
+                <tr key = {index}>
+                  {Object.keys(item).map((key)=>(
+                      <td key={key}>{item[key]}</td>
+                  ))}
+                </tr>
+            ))}
+            </tbody>
+          </table>
+        </div>
+    );
+  };
+
   const getMakePredictions = async () => {
     const response = await fetch('http://localhost:3000/MakePredictions', {
       method: 'POST',
@@ -40,11 +73,12 @@ function Home({user}) {
           console.error('Request failed with status:' , res.status);
           return res.text();
         }
-        return res.text();
+        return res.json();
+
       })
       .then(data => {
         console.log(data);
-        setNotification(data);
+        setNotification(<JsonTable data = {data} />);
       }).catch(error=>{
         console.error('Error: ', error);
       })
