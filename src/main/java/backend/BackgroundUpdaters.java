@@ -114,85 +114,73 @@ public class BackgroundUpdaters {
 
         // Define the task to be executed every X minutes
         Runnable updateEveryXMinutes = () -> {
-//            boolean updateTodayFootballMatches = false;
-//
-//            // Display update on console
-//            System.out.print("Updating FootballMatch files...");
-//
-//            // Call the external method to update the files
-//            FootballMatchUpdater.updateYesterdayMatchesMongoDB();
-//            updateTodayFootballMatches = FootballMatchUpdater.updateTodayMatchesMongoDB();
-//            FootballMatchUpdater.updateTomorrowMatchesMongoDB();
-//
-//            // Display on server that a file update occurred
-//            //System.out.println("Yesterday's, today's, & tomorrow's football match files updated at: " + ZonedDateTime.now());
-//
-//            // Call the methods to update the matches
-//            FootballMatchUpdater.updateUpcomingWeek1MatchesMongoDB();
-//            FootballMatchUpdater.updateUpcomingWeek2MatchesMongoDB();
-//            FootballMatchUpdater.updateUpcomingWeek3MatchesMongoDB();
-//
-//            // Display that all the files have updated for testing
-//            System.out.println("FootballMatch files have been updated at: " + ZonedDateTime.now());
-//
-//            // If there was an update to today's matches, call FootballMatchPredictions.FootballMatchPredictionUpdater
-//            if (updateTodayFootballMatches) {
-//                // Display update on console
-//                System.out.print("Updating FootballMatchPrediction files...");
-//
-//                // Call the FootballMatchPredictions.FootballMatchPredictionUpdater to update all users' match predictions based on the newly updated match files
-//                FootballMatchPredictionUpdater.updateFootballMatchPredictionsMongoDB();
-//
-//                // Display that all the files have updated for testing
-//                System.out.println("FootballMatchPrediction files have been updated at: " + ZonedDateTime.now());
-//            } else {
-//                System.out.println("No updates to today's match file. Skipping FootballMatchPrediction file updates.");
-//            }
-//            // Call the CelestialBodyUpdater to update the saved list of CelestialBody objects
-//            CelestialBodyUpdater.updateCelestialBodiesMongoDB();
-//
-//            // Call the CelestialBodyPredictionUpdater to update all users' celestial body predictions
-//            CelestialBodyPredictionUpdater.updateCelestialBodyPredictionsMongoDB();
-//
-//            // Call the WeatherUpdater to update today's DailyForecast data
-//            try {
-//                WeatherUpdater.updateWeatherMongoDB();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            boolean updateTodayFootballMatches = false;
 
+            // Display update on console
+            System.out.print("Updating FootballMatch files...");
+
+            // Call the external method to update the files
+            FootballMatchUpdater.updateYesterdayMatchesMongoDB();
+            updateTodayFootballMatches = FootballMatchUpdater.updateTodayMatchesMongoDB();
+            FootballMatchUpdater.updateTomorrowMatchesMongoDB();
+
+            // Display on server that a file update occurred
+            //System.out.println("Yesterday's, today's, & tomorrow's football match files updated at: " + ZonedDateTime.now());
+
+            // Call the methods to update the matches
+            FootballMatchUpdater.updateUpcomingWeek1MatchesMongoDB();
+            FootballMatchUpdater.updateUpcomingWeek2MatchesMongoDB();
+            FootballMatchUpdater.updateUpcomingWeek3MatchesMongoDB();
+
+            // Display that all the files have updated for testing
+            System.out.println("FootballMatch files have been updated at: " + ZonedDateTime.now());
+
+            // If there was an update to today's matches, call FootballMatchPredictions.FootballMatchPredictionUpdater
+            if (updateTodayFootballMatches) {
+                // Display update on console
+                System.out.print("Updating FootballMatchPrediction files...");
+
+                // Call the FootballMatchPredictions.FootballMatchPredictionUpdater to update all users' match predictions based on the newly updated match files
+                FootballMatchPredictionUpdater.updateFootballMatchPredictionsMongoDB();
+
+                // Display that all the files have updated for testing
+                System.out.println("FootballMatchPrediction files have been updated at: " + ZonedDateTime.now());
+            } else {
+                System.out.println("No updates to today's match file. Skipping FootballMatchPrediction file updates.");
+            }
         };
 
         // Define the task to be executed every hour
         Runnable updateHourly = () -> {
+            // TODO : Fill with updater methods that need running every hour
 
         };
 
         // Define the task to be executed every day
         Runnable updateDaily = () -> {
-//            // Call the CelestialBodyUpdater to update the saved list of CelestialBody objects
-//            CelestialBodyUpdater.updateCelestialBodiesMongoDB();
-//
-//            // Call the CelestialBodyPredictionUpdater to update all users' celestial body predictions
-//            CelestialBodyPredictionUpdater.updateCelestialBodyPredictionsMongoDB();
-//
-//            // Call the WeatherUpdater to update today's DailyForecast data
-//            try {
-//                WeatherUpdater.updateWeatherMongoDB();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            // Call the CelestialBodyUpdater to update the saved list of CelestialBody objects
+            CelestialBodyUpdater.updateCelestialBodiesMongoDB();
+
+            // Call the CelestialBodyPredictionUpdater to update all users' celestial body predictions
+            CelestialBodyPredictionUpdater.updateCelestialBodyPredictionsMongoDB();
+
+            // Call the WeatherUpdater to update today's DailyForecast data
+            try {
+                WeatherUpdater.updateWeatherMongoDB();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             // Call the WeatherPredictionUpdater to update all users' weather predictions
             WeatherPredictionUpdater.updateWeatherPredictionsMongoDB();
         };
 
         // Schedule the task to run every X minutes with an initial delay of 0
-        //xMinutesExecutor.scheduleAtFixedRate(updateEveryXMinutes, 0, X, TimeUnit.MINUTES);
+        xMinutesExecutor.scheduleAtFixedRate(updateEveryXMinutes, 0, X, TimeUnit.MINUTES);
         // Schedule the task to run every hour with an initial delay of 0
         //hourlyExecutor.scheduleAtFixedRate(updateHourly, 0, 1, TimeUnit.HOURS);
         // Schedule the task to run every day with an initial delay of 0
-        dailyExecutor.scheduleAtFixedRate(updateDaily, 0, 1, TimeUnit.DAYS);
+        dailyExecutor.scheduleAtFixedRate(updateDaily, 1, 3600, TimeUnit.MINUTES);
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
