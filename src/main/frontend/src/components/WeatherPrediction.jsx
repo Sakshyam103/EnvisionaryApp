@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+//import {useNavigate} from "react-router-dom";
 
 function WeatherPrediction() {
   const [temperatureType, setTemperatureType] = useState('');
   const [temperatureValue, setTemperatureValue] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [error, setError] = useState('');
+  //const navigate = useNavigate();
 
   const temperatureTypes = ['High', 'Low'];
 

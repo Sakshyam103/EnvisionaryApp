@@ -26,6 +26,7 @@ function App() {
       setLoading(false);
     }
   };
+
   return (
     <Router>
     <div className="app-container">

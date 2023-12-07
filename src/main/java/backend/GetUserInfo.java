@@ -37,7 +37,7 @@ public class GetUserInfo {
         return userInfo;
     }
 
-    private static MongoClient connectToMongoDB() {
+    public static MongoClient connectToMongoDB() {
         Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         ConnectionString mongoUri = new ConnectionString("mongodb+srv://BrandonLaPointe:L5AMM7CiM1F2qjz@envisionarycluster.19uobkz.mongodb.net/?retryWrites=true&w=majority");
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),

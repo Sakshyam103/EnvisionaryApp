@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 function CustomPrediction() {
   const [prediction, setPrediction] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+  const[error, setError] = useState('');
+    const navigate = useNavigate();
 
   const submitPrediction = () => {
-    const customData = {
-      prediction,
-      date: selectedDate,
-    }
-    handleCallbackResponse()
-    const customPrediction = JSON.stringify(customData, null, 2);
-    console.log("Generated JSON", customPrediction);
-    //console.log(`Prediction: ${prediction}, Date: ${selectedDate}`);
-  };
+
+      if (prediction && selectedDate) {
+      const customData = {
+          prediction,
+          date: selectedDate,
+      }
+      handleCallbackResponse()
+      alert('Prediction Made! Redirecting to home<3');
+      navigate('/Home');}
+      else {
+          setError('Please enter prediction first!')
+      }
+  }
+
   function handleCallbackResponse() {
         let response = `{"Prediction": "${prediction}", "ResolveDate": "${selectedDate}"}`
         fetch("http://localhost:8080/custom", {
@@ -41,7 +49,7 @@ function CustomPrediction() {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>I predict</h1>
+      <h2>I predict</h2>
       <input
         type="text"
         placeholder="Enter your prediction"
@@ -50,7 +58,7 @@ function CustomPrediction() {
         style={{ padding: '10px', margin: '10px', fontSize: '16px' }}
       />
       <br />
-      <label htmlFor="datePicker">will happen on</label>
+      <label htmlFor="datePicker"> on </label>
       <input
         type="date"
         id="datePicker"
@@ -59,6 +67,7 @@ function CustomPrediction() {
         style={{ padding: '10px', margin: '10px', fontSize: '16px' }}
       />
       <br />
+        {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>}
       <button
         onClick={submitPrediction}
         style={{

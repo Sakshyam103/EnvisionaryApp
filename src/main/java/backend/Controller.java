@@ -7,6 +7,7 @@ import backend.CelestialBodyPredictions.SavePlanets;
 import backend.CustomPredictions.CustomPrediction;
 import backend.CustomPredictions.SaveCustomPredictions;
 import backend.EntertainmentPredictions.buildEntertainmentPrediction;
+import backend.EntertainmentPredictions.entertainmentAmountCheck;
 import backend.FootballMatchPredictions.FootballMatchList;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.FootballMatchPredictions.MongoDBFootballMatchData;
@@ -183,6 +184,7 @@ public class Controller {
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
+
     }
 
     @RequestMapping(value = "/viewResolvedPredictions")
@@ -314,21 +316,13 @@ public class Controller {
     // Frontend to Backend
     // Saving the Predictions
     @RequestMapping(value = "/movies")
-    public @ResponseBody boolean saveUserMovie(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody String saveUserMovie(@RequestBody(required = false) String data) throws JSONException {
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         JsonReaderFactory factory = Json.createReaderFactory(null);
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
-        boolean success = buildEntertainmentPrediction.buildMoviePrediction(object, userId);
-        if(success){
-            System.out.println("Movie Prediction Saved");
-            return success;
-        }
-        else{
-            System.out.println("Error Saving Movie Prediction");
-            return success;
-        }
+        return buildEntertainmentPrediction.buildMoviePrediction(object, userId);
     }
 
     @RequestMapping(value = "/custom")
@@ -368,7 +362,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/football")
-    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) throws JsonException {
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         JsonReaderFactory factory = Json.createReaderFactory(null);
@@ -420,10 +414,11 @@ public class Controller {
             return success;
         }
     }
-
-
-
-
+    @RequestMapping(value = "/movieCheck")
+    public @ResponseBody boolean checkMovie() throws JSONException {
+//        return entertainmentAmountCheck.makeOrBreak();
+        return true;
+    }
 
     public void parseId(String id) throws JSONException {
         JSONObject jsonObject = new JSONObject(id);
