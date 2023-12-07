@@ -198,10 +198,70 @@ public class v2PrototypeMongoDB {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // loginMenuLocal
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Gathers input from the user to either login as an existing Envisionary user, create a new
+    // Envisionary user account, or close the application using the localized json file prototype.
+    //
+    public static void loginMenuLocal() {
+        loginMenuSelection = 0;
+        while (loginMenuSelection != 3) {
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                             1. Existing Envisionary user login                                   ║\n" +
+                            "║                             2. Create a new Envisionary user account                             ║\n" +
+                            "║                             3. Close application                                                 ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "║                                                                                                  ║\n" +
+                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print(  "                                        Selection: ");
+
+            // Menu logic
+            try {
+                int input = scan.nextInt();
+
+                if (input >= 1 && input <= 3) {
+                    loginMenuSelection = input;
+                    switch (loginMenuSelection) {
+                        case 1:
+                            File userFilesFolder = new File(userFilePath);
+                            if (userFilesFolder.exists()) {
+                                login();
+                            } else {
+                                System.out.println("ERROR - UserInfo.User files folder does not exist. Create the first Envisionary user to initialize!");
+                            }
+                            loginMenuSelection = 0;
+                            break;
+                        case 2:
+                            createNewAccount();
+                            loginMenuSelection = 0;
+                            break;
+                        case 3:
+                            System.out.println("                 THANK YOU FOR USING THE ENVISIONARY PROTOTYPE APPLICATION!\n"
+                                    + "                                  Shutting program down...");
+                            System.exit(0);
+                    }
+                } else {
+                    System.out.println("Invalid selection. Please enter a valid menu option (1-3).");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid menu option (1-3).");
+                scan.next(); // Clear the invalid input
+            }
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // loginMenu
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Gathers input from the user to either login as an existing Envisionary user, create a new
-    // Envisionary user account, or close the application.
+    // Envisionary user account, or close the application using MongoDB - Envisionary.
     //
     public static void loginMenu() {
         loginMenuSelection = 0;
@@ -230,12 +290,7 @@ public class v2PrototypeMongoDB {
                     loginMenuSelection = input;
                     switch (loginMenuSelection) {
                         case 1:
-                            File userFilesFolder = new File(userFilePath);
-                            if (userFilesFolder.exists()) {
-                                login();
-                            } else {
-                                System.out.println("ERROR - UserInfo.User files folder does not exist. Create the first Envisionary user to initialize!");
-                            }
+                            login();
                             loginMenuSelection = 0;
                             break;
                         case 2:
@@ -626,7 +681,8 @@ public class v2PrototypeMongoDB {
                             footballPredictionMenuSelection = 0;
                             break;
                         case 2:
-                            FootballMatchPredictionInitializer.createNewFootballMatchTomorrowPredictionMongoDB(userID);        // TEST USING YESTERDAY'S MATCHES
+                            //TODO : Change back to tomorrow match prediction after testing
+                            FootballMatchPredictionInitializer.createNewFootballMatchTodayPredictionMongoDB(userID);
                             footballPredictionMenuSelection = 0;
                             break;
                         case 3:
