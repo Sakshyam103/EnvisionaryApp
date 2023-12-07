@@ -1,4 +1,5 @@
 package backend.CelestialBodyPredictions;
+
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.Notifications.NotificationUpdater;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
@@ -244,6 +245,9 @@ public class CelestialBodyPredictionUpdater {
 
         // For each Envisionary UserInfo.User
         for (EnvisionaryUser user : envisionaryUsers) {
+            // Initialize a new boolean predictionRemoved flag for each Envisionary User
+            boolean removedPredictions = false;
+
             // Initialize an array list of the user's celestial body predictions
             ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = user.getCelestialBodyPredictions();
 
@@ -289,6 +293,7 @@ public class CelestialBodyPredictionUpdater {
 
                         // Set remove prediction flag to true
                         removePrediction = true;
+                        removedPredictions = true;
 
                         // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                         UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -323,11 +328,12 @@ public class CelestialBodyPredictionUpdater {
                         // Save the resolved prediction to the user's resolved prediction list
                         MongoDBEnvisionaryUsers.updateUserResolvedPredictions(user.getUserID(), userResolvedPredictions);
 
-                        // Send a notification to the user
+                        // Save a notification within the user's account and send an email notification to the user
                         NotificationUpdater.newCelestialBodyPredictionResolvedTrueNotificationMongoDB(userCelestialBodyPrediction, user.getUserID());
 
                         // Set removePrediction boolean flag to true
                         removePrediction = true;
+                        removedPredictions = true;
 
                         // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                         UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -342,11 +348,13 @@ public class CelestialBodyPredictionUpdater {
                     predictionsToRemove.add(userCelestialBodyPrediction);
                 }
             }
-            // Remove the resolved and cancelled predictions
-            userCelestialBodyPredictions.removeAll(predictionsToRemove);
+            if (removedPredictions) {
+                // Remove the resolved and cancelled predictions
+                userCelestialBodyPredictions.removeAll(predictionsToRemove);
 
-            // Save the updated list to the user's prediction file
-            MongoDBEnvisionaryUsers.updateUserCelestialBodyPredictions(user.getUserID(), userCelestialBodyPredictions);
+                // Save the updated list to the user's prediction file
+                MongoDBEnvisionaryUsers.updateUserCelestialBodyPredictions(user.getUserID(), userCelestialBodyPredictions);
+            }
         }
     }
 }
