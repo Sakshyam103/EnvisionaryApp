@@ -68,7 +68,7 @@ public class CustomPredictionInitializer {
     //
     public static void createNewCustomPrediction(String userIdentifier) {
         // Local variables
-        String customSubCategory;
+//        String customSubCategory;
         String userPrediction;
         int endDateMonth = 0;
         int endDateDay = 0;
@@ -80,18 +80,18 @@ public class CustomPredictionInitializer {
         // Initialize a new CustomPrediction
         userCustomPrediction = new CustomPrediction();
 
-        // Gather the inputs for the custom prediction sub-category
-        System.out.println("Please enter your choice of sub-category of your custom prediction or CANCEL to exit:");
-        customSubCategory = scan.nextLine();
-
-        // Check if the user wants to cancel
-        if (customSubCategory.equalsIgnoreCase("CANCEL")) {
-            System.out.println("Custom prediction creation canceled.");
-            return; // Exit the method
-        }
-
-        // Set custom sub category
-        userCustomPrediction.setCustomSubCategory(customSubCategory);
+//        // Gather the inputs for the custom prediction sub-category
+//        System.out.println("Please enter your choice of sub-category of your custom prediction or CANCEL to exit:");
+//        customSubCategory = scan.nextLine();
+//
+//        // Check if the user wants to cancel
+//        if (customSubCategory.equalsIgnoreCase("CANCEL")) {
+//            System.out.println("Custom prediction creation canceled.");
+//            return; // Exit the method
+//        }
+//
+//        // Set custom sub category
+//        userCustomPrediction.setCustomSubCategory(customSubCategory);
 
         // Gather the inputs for the prediction
         System.out.println("I predict that (PREDICTION) on (END-DATE).");
@@ -178,18 +178,18 @@ public class CustomPredictionInitializer {
         // Initialize a new CustomPrediction
         userCustomPrediction = new CustomPrediction();
 
-        // Gather the inputs for the custom prediction sub-category
-        System.out.println("Please enter your choice of sub-category of your custom prediction or CANCEL to exit:");
-        customSubCategory = scan.nextLine();
-
-        // Check if the user wants to cancel
-        if (customSubCategory.equalsIgnoreCase("CANCEL")) {
-            System.out.println("Custom prediction creation canceled.");
-            return; // Exit the method
-        }
-
-        // Set custom sub category
-        userCustomPrediction.setCustomSubCategory(customSubCategory);
+//        // Gather the inputs for the custom prediction sub-category
+//        System.out.println("Please enter your choice of sub-category of your custom prediction or CANCEL to exit:");
+//        customSubCategory = scan.nextLine();
+//
+//        // Check if the user wants to cancel
+//        if (customSubCategory.equalsIgnoreCase("CANCEL")) {
+//            System.out.println("Custom prediction creation canceled.");
+//            return; // Exit the method
+//        }
+//
+//        // Set custom sub category
+//        userCustomPrediction.setCustomSubCategory(customSubCategory);
 
         // Gather the inputs for the prediction
         System.out.println("I predict that (PREDICTION) on (END-DATE).");
