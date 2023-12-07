@@ -183,6 +183,7 @@ public class Controller {
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
+
     }
 
     @RequestMapping(value = "/viewResolvedPredictions")
@@ -368,7 +369,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/football")
-    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) throws JsonException {
         System.out.println(data);
         StringReader stringReader = new StringReader(data);
         JsonReaderFactory factory = Json.createReaderFactory(null);
@@ -420,8 +421,6 @@ public class Controller {
             return success;
         }
     }
-
-
 
 
 
