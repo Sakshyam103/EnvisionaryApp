@@ -208,18 +208,18 @@ public class v2PrototypeMongoDB {
         while (loginMenuSelection != 3) {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
-                            "║                                                                                                  ║\n" +
-                            "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
-                            "║                                                                                                  ║\n" +
-                            "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
-                            "║                                                                                                  ║\n" +
-                            "║                                                                                                  ║\n" +
-                            "║                             1. Existing Envisionary user login                                   ║\n" +
-                            "║                             2. Create a new Envisionary user account                             ║\n" +
-                            "║                             3. Close application                                                 ║\n" +
-                            "║                                                                                                  ║\n" +
-                            "║                                                                                                  ║\n" +
-                            "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+                    "║                                                                                                  ║\n" +
+                    "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                             1. Existing Envisionary user login                                   ║\n" +
+                    "║                             2. Create a new Envisionary user account                             ║\n" +
+                    "║                             3. Close application                                                 ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print(  "                                        Selection: ");
 
             // Menu logic
@@ -328,7 +328,6 @@ public class v2PrototypeMongoDB {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                              LOGIN                                               ║\n" +
-                    "║                            Username: TestUser    Password: Password123!                          ║\n" +  // TODO: ERASE THIS LINE EVENTUALLY
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
                     "║                               Please enter your UserID                                           ║\n" +
@@ -427,7 +426,7 @@ public class v2PrototypeMongoDB {
                     "║                                   7. View notifications                                          ║\n" +
                     "║                                   8. Remove notifications                                        ║\n" +
                     "║                                   9. Remove all notifications                                    ║\n" +
-                    "║                                   10. Statistics menu                                             ║\n" +
+                    "║                                  10. Statistics menu                                             ║\n" +
                     "║                                  11. Log out                                                     ║\n" +
                     "║                                                                                                  ║\n" +
                     "║                                                                                                  ║\n" +
