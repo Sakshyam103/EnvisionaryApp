@@ -17,8 +17,8 @@ public final class CustomPrediction {
     //
 	@SerializedName("prediction")
     private Prediction prediction = new Prediction();				// BasePredictionsObject.Prediction object
-	@SerializedName("customSubCategory")
-    private String customSubCategory;								// Custom sub-category input by user
+//	@SerializedName("customSubCategory")
+//    private String customSubCategory;								// Custom sub-category input by user
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Getter and setter methods for the CustomPrediction object variables
@@ -31,12 +31,12 @@ public final class CustomPrediction {
         this.prediction = prediction;
     }
 
-    public String getCustomSubCategory() {
-        return customSubCategory;
-    }
-    public void setCustomSubCategory(String customSubCategory) {
-        this.customSubCategory = customSubCategory;
-    }
+//    public String getCustomSubCategory() {
+//        return customSubCategory;
+//    }
+//    public void setCustomSubCategory(String customSubCategory) {
+//        this.customSubCategory = customSubCategory;
+//    }
 
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -51,7 +51,7 @@ public final class CustomPrediction {
     //
     public CustomPrediction(Prediction prediction, String customSubCategory) {
         this.prediction = prediction;
-        this.customSubCategory = customSubCategory;
+//        this.customSubCategory = customSubCategory;
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -63,7 +63,7 @@ public final class CustomPrediction {
         System.out.println(
                 "--------------------------------------------------------------------------------" + "\n" +
                 "Custom Prediction Details:" + "\n" +
-                "Custom Prediction Sub-Category: " + getCustomSubCategory() + "\n" +
+//                "Custom Prediction Sub-Category: " + getCustomSubCategory() + "\n" +
                 "Prediction Type: " + prediction.getPredictionType() + "\n" +
                 "Prediction Content: " + prediction.getPredictionContent() + "\n" +
                 "Prediction Made Date: " + prediction.getPredictionMadeDate() + "\n" +
