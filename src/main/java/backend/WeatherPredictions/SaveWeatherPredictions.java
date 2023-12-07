@@ -33,25 +33,24 @@ public class SaveWeatherPredictions {
         else{
             prediction.setHighTempPrediction(false);
         }
+        prediction.getPrediction().setRemindFrequency("Standard");
         return saveNewWeatherToMongo();
     }
 
     private static boolean saveNewWeatherToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
-
         Document predictionObject = new Document("predictionType", prediction.getPrediction().getPredictionType())
                 .append("predictionContent", prediction.getPrediction().getPredictionContent())
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
-                .append("createDate", prediction.getPrediction().getPredictionMadeDate())
-                .append("resolveDate", prediction.getPrediction().getPredictionEndDate());
+                .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
+                .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
 
-        Document weatherObject = new Document("highTemp", prediction.getHighTempPrediction())
-                .append("predictedTemp", prediction.getTemperature())
+        Document weatherObject = new Document("highTempPrediction", prediction.getHighTempPrediction())
+                .append("temperature", prediction.getTemperature())
                 .append("prediction", predictionObject);
 
         Bson update = Updates.push("weatherPredictions", weatherObject);
-
 
         try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);

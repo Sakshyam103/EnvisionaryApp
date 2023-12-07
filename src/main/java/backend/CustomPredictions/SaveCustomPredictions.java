@@ -24,18 +24,19 @@ public class SaveCustomPredictions {
         prediction.getPrediction().setPredictionType("Custom");
         prediction.getPrediction().setPredictionContent(input.getString("Prediction"));
         prediction.getPrediction().setPredictionEndDate(input.getString("ResolveDate"));
+        prediction.getPrediction().setRemindFrequency("Standard");
         return saveNewCustomToMongo();
     }
 
     private static boolean saveNewCustomToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
-        Document newResolved = new Document("predictionType", prediction.getPrediction().getPredictionType())
+        Document customPredictionDocument = new Document("predictionType", prediction.getPrediction().getPredictionType())
                 .append("predictionContent", prediction.getPrediction().getPredictionContent())
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
-                .append("createDate", prediction.getPrediction().getPredictionMadeDate())
-                .append("resolveDate", prediction.getPrediction().getPredictionEndDate());
-        Bson update = Updates.push("customPredictions", newResolved);
+                .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
+                .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
+        Bson update = Updates.push("customPredictions", customPredictionDocument);
 
 
         try{

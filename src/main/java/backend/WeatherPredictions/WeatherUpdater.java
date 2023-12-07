@@ -6,7 +6,7 @@ public class WeatherUpdater {
     public static void updateWeatherMongoDB() throws IOException {
         DailyForecast todaysWeather = WeatherForecastAPI.getTodaysWeather();
         DailyForecast previousWeatherData = MongoDBWeatherData.retrieveCollection();
-        if(previousWeatherData == null){
+        if(previousWeatherData == null) {
             System.out.println("Initial update to today's weather data.");
             MongoDBWeatherData.insertIndividualDocument(todaysWeather);
         }

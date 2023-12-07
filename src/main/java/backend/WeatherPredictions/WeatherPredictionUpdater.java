@@ -1,6 +1,5 @@
 package backend.WeatherPredictions;
 
-import backend.DateTimeConverter.DateTimeConverter;
 import backend.Notifications.NotificationUpdater;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
@@ -10,6 +9,7 @@ import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
@@ -20,9 +20,13 @@ public class WeatherPredictionUpdater {
 
         // Retrieve today's weather data
         DailyForecast todaysWeather = MongoDBWeatherData.retrieveCollection();
+        todaysWeather.displayDailyForecast();
 
         // For each Envisionary UserInfo.User
         for (EnvisionaryUser user : envisionaryUsers) {
+            // Initialize removedPredictions boolean flag to false
+            boolean removedPredictions = false;
+
             // Initialize an array list of the user's weather predictions
             ArrayList<WeatherPrediction> userWeatherPredictions = user.getWeatherPredictions();
 
@@ -34,8 +38,14 @@ public class WeatherPredictionUpdater {
                 // Initialize remove prediction boolean flag
                 boolean removePrediction = false;
 
-                // If prediction end date == today's date && userWeatherPrediction.getTemperature == todaysWeather.getTemp.getMax
-                if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userWeatherPrediction.getHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMax()) {
+                // String date from the userWeatherPrediction
+                String predictionDateString = userWeatherPrediction.getPrediction().getPredictionEndDate();
+
+                // If prediction end date equals today's date && userWeatherPrediction is a high temperature prediction && userWeatherPrediction is equal to today's weather forecast max temperature
+                if (predictionDateString.equals(LocalDate.now().toString()) &&
+                        userWeatherPrediction.getHighTempPrediction() &&
+                        userWeatherPrediction.getTemperature() == todaysWeather.getMaxTemp()) {
+
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 
@@ -63,6 +73,7 @@ public class WeatherPredictionUpdater {
 
                     // Set remove prediction flag to true
                     removePrediction = true;
+                    removedPredictions = true;
 
                     // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                     UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -70,9 +81,11 @@ public class WeatherPredictionUpdater {
                     OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
                     OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
                 }
+                // Else if prediction end date equals today's date && userWeatherPrediction is a low temperature prediction && userWeatherPrediction is equal to today's weather forecast min temperature
+                else if (predictionDateString.equals(LocalDate.now().toString()) &&
+                        !userWeatherPrediction.getHighTempPrediction() &&
+                        userWeatherPrediction.getTemperature() == todaysWeather.getMinTemp()) {
 
-                // Else if prediction end date == today's date && !userWeatherPrediction.getTemperature == todaysWeather.getTemp.getMin
-                else if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && !userWeatherPrediction.getHighTempPrediction() && userWeatherPrediction.getTemperature() == todaysWeather.getTemp().getMin()) {
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 
@@ -98,8 +111,9 @@ public class WeatherPredictionUpdater {
                     // Send notification to the user
                     NotificationUpdater.newWeatherPredictionResolvedTrueNotificationMongoDB(userWeatherPrediction, user.getUserID());
 
-                    // Set remove prediction flag to true
+                    // Set remove prediction flag and removed predictions flag to true
                     removePrediction = true;
+                    removedPredictions = true;
 
                     // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                     UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -107,10 +121,10 @@ public class WeatherPredictionUpdater {
                     OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
                     OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
                 }
-
-                // Else if  prediction end date == today's date
-                else if (DateTimeConverter.parseZonedDateTimeFromString(userWeatherPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString())) {
-
+                // Else if prediction end date equals today's date & above if statements haven't been triggered
+                else if (predictionDateString.equals(LocalDate.now().toString())) {
+                    System.out.println("\n\nDEBUG LINE\n\n");
+                    System.out.println(userWeatherPredictions.size());
                     // Initialize new resolved prediction
                     ResolvedPrediction resolvedWeatherPrediction = new ResolvedPrediction();
 
@@ -138,6 +152,7 @@ public class WeatherPredictionUpdater {
 
                     // Set removePrediction boolean flag to true
                     removePrediction = true;
+                    removedPredictions = true;
 
                     // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                     UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -151,11 +166,15 @@ public class WeatherPredictionUpdater {
                     predictionsToRemove.add(userWeatherPrediction);
                 }
             }
-            // Remove the resolved and cancelled predictions
-            userWeatherPredictions.removeAll(predictionsToRemove);
+            if (removedPredictions) {
+                System.out.println(userWeatherPredictions.size());
 
-            // Save the updated list to the user's prediction file
-            MongoDBEnvisionaryUsers.updateUserWeatherPredictions(user.getUserID(), userWeatherPredictions);
+                // Remove the resolved and cancelled predictions
+                userWeatherPredictions.removeAll(predictionsToRemove);
+
+                // Save the updated list to the user's prediction file
+                MongoDBEnvisionaryUsers.updateUserWeatherPredictions(user.getUserID(), userWeatherPredictions);
+            }
         }
     }
 }

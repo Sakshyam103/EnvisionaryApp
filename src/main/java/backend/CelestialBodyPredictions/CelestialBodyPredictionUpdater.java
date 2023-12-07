@@ -1,5 +1,4 @@
 package backend.CelestialBodyPredictions;
-
 import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.Notifications.NotificationUpdater;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
@@ -17,8 +16,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+
 
 public class CelestialBodyPredictionUpdater {
     //*****************************************************************************
@@ -231,6 +233,9 @@ public class CelestialBodyPredictionUpdater {
 
     //*****************************************************************************
     public static void updateCelestialBodyPredictionsMongoDB() {
+        // Get the current date time using LocalDate.now()
+        LocalDate currentDate = LocalDate.now();
+
         // Retrieve collection of EnvisionaryUsers
         ArrayList<EnvisionaryUser> envisionaryUsers = MongoDBEnvisionaryUsers.retrieveCollection();
 
@@ -253,7 +258,10 @@ public class CelestialBodyPredictionUpdater {
                 // Compare to each of the loaded CelestialBodies
                 for (CelestialBody celestialBody : celestialBodies) {
                     // If prediction end date == today's date && CelestialBody ID == updated CelestialBody ID && prediction knownCount == updated knownCount
-                    if (DateTimeConverter.parseZonedDateTimeFromString(userCelestialBodyPrediction.getPrediction().getPredictionEndDate()).toLocalDate().toString().equals(ZonedDateTime.now().toLocalDate().toString()) && userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
+                    if (userCelestialBodyPrediction.getPrediction().getPredictionEndDate().equals(currentDate.toString()) &&
+                        userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) &&
+                        userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
+
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
 
@@ -290,7 +298,8 @@ public class CelestialBodyPredictionUpdater {
                     }
 
                     // If prediction CelestialBody ID == updated CelestialBody ID && knownCount != updated knownCount
-                    if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType() == celestialBody.getCelestialBodyType() && userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
+                    if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) &&
+                        userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
 
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();

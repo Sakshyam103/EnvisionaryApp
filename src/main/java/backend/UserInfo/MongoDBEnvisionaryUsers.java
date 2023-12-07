@@ -1306,7 +1306,7 @@ public class MongoDBEnvisionaryUsers {
             if (updatedWeatherPredictions == null) {
                 System.out.println("ERROR - Couldn't find any WeatherPredictions for user: " + userID + " within MongoDB - EnvisionaryUsers.");
             } else {
-                System.out.println("\nUpdated the WeatherPrediction to: " + updatedWeatherPredictions);
+                System.out.println("\nUpdated the WeatherPrediction for user: " + userID);
             }
         } catch (MongoException me) {
             System.err.println("ERROR - Unable to update any WeatherPredictions due to an error: " + me);
@@ -1553,7 +1553,7 @@ public class MongoDBEnvisionaryUsers {
 
         // TODO : (CRUD) READ
         // Retreive the entire collection of Envisionary Users and display
-        retrieveCollection();
+        retrieveCollectionAndPrint();
 
         // TODO : (CRUD) UPDATE
 
