@@ -1,12 +1,22 @@
 package backend.CelestialBodyPredictions;
 
-import backend.BasePredictionObject.Prediction;
+import backend.Controller;
 import backend.EntertainmentPredictions.runEntertainment;
+import backend.GetUserInfo;
+import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
+import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 
+import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
+import backend.UserStatistics.UserInferentialStatisticsUpdater;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.json.JSONException;
+
 import javax.json.JsonObject;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,8 +28,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static backend.EntertainmentPredictions.EntertainmentPredictionInitializer.resolveEntertainmentPrediction;
 
 public class CelestialBodyPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -513,36 +521,51 @@ public class CelestialBodyPredictionInitializer {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // buildPrediction
+    // buildCelestialBodyPrediction
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
-//    public static void buildPrediction(JsonObject json, String userId) throws JSONException {
-//        // Initialize a new celestialBodyPrediction
-//        CelestialBodyPrediction newCelestialBodyPrediction = new CelestialBodyPrediction();
-//
-//        // Set the variables from incoming JsonObject
-//        newCelestialBodyPrediction.getCelestialBody().setCelestialBodyType(json.getString("CelestialBodyType"));
-//        newCelestialBodyPrediction.getCelestialBody().setKnownCount("date");
-//
-//        newCelestialBodyPrediction.getPrediction().setPredictionType("Science");
-//
-//        newCelestialBodyPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
-//
-//        // Change
-//        newCelestialBodyPrediction.getPrediction().setPredictionContent("I predict that " + runEntertainment.movieTitle + " was released in " + runEntertainment.year);
-//
-//        newCelestialBodyPrediction.getPrediction().setPredictionEndDate(ZonedDateTime.now().toString());
-//
-//        newCelestialBodyPrediction.getPrediction().setPredictionMadeDate("");
-//
-//        ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
-//
-//        for (CelestialBodyPrediction prediction : userCelestialBodyPredictions) {
-//            if (prediction.getCelestialBody().getCelestialBodyType().equals(newCelestialBodyPrediction.getCelestialBody().getCelestialBodyType())) {
-//
-//            }
-//        }
-//
-//        MongoDBEnvisionaryUsers.updateUserCelestialBodyPredictions(userId, userCelestialBodyPredictions);
-//    }
+    public static boolean buildCelestialBodyPrediction(JsonObject json, String userIdentifier) throws JSONException {
+        CelestialBodyPrediction newCelestialBodyPrediction = new CelestialBodyPrediction();
+
+        // Set prediction variables
+        newCelestialBodyPrediction.getPrediction().setPredictionType("Science");
+        newCelestialBodyPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
+        newCelestialBodyPrediction.getPrediction().setRemindFrequency("Standard");
+
+        // Set prediction and celestial body variables from incoming json data
+        newCelestialBodyPrediction.getPrediction().setPredictionContent("I predict that there will be a change in the number of " + json.getString("CelestialBodyType") + " on " + json.getString("EndDate"));
+        newCelestialBodyPrediction.getCelestialBody().setCelestialBodyType(json.getString("CelestialBodyType"));
+        newCelestialBodyPrediction.getCelestialBody().setKnownCount(json.getInt("KnownCount")); // I need a return of the celestial body known count as int
+        newCelestialBodyPrediction.getCelestialBody().setUpdatedDate(json.getString("UpdatedDate")); // I need a return of the celestial body updated date as String
+
+        // Pull
+        Bson filter = Filters.eq("userID", Controller.userId);
+
+        // Create a document for the new celestialBodyPrediction
+        Document newPrediction = new Document("celestialBody", new Document()
+                        .append("celestialBodyType", newCelestialBodyPrediction.getCelestialBody().getCelestialBodyType())
+                        .append("knownCount", newCelestialBodyPrediction.getCelestialBody().getKnownCount())
+                        .append("updatedDate", newCelestialBodyPrediction.getCelestialBody().getUpdatedDate()))
+                .append("prediction", new Document()
+                        .append("predictionContent", newCelestialBodyPrediction.getPrediction().getPredictionContent())
+                        .append("predictionEndDate", newCelestialBodyPrediction.getPrediction().getPredictionEndDate())
+                        .append("predictionMadeDate", newCelestialBodyPrediction.getPrediction().getPredictionMadeDate())
+                        .append("predictionType", newCelestialBodyPrediction.getPrediction().getPredictionType()));
+        Bson update = Updates.push("celestialBodyPredictions", newPrediction);
+
+        try{
+            GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
+
+            // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
+            UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(userIdentifier);
+            UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB(userIdentifier);
+            OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
+            OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
+            return true;
+        }
+        catch(Exception error){
+            error.printStackTrace();
+            return false;
+        }
+    }
 }
