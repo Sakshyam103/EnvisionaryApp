@@ -26,23 +26,23 @@ public class SavePlanets {
         prediction.getCelestialBody().setCelestialBodyType(input.getString("planet"));
         prediction.getPrediction().setPredictionContent("I predict that " + input.getString("planet") +
                 " will have a new amount by " + input.getString("resolveDate"));
+        prediction.getPrediction().setRemindFrequency("Standard");
         return saveNewSpaceToMongo();
     }
 
     private static boolean saveNewSpaceToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
-
         Document predictionObject = new Document("predictionType", prediction.getPrediction().getPredictionType())
                 .append("predictionContent", prediction.getPrediction().getPredictionContent())
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
-                .append("createDate", prediction.getPrediction().getPredictionMadeDate())
-                .append("resolveDate", prediction.getPrediction().getPredictionEndDate());
+                .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
+                .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
 
-        Document weatherObject = new Document("match", prediction.getCelestialBody().getCelestialBodyType())
+        Document celestialBodyPredictionDocument = new Document("match", prediction.getCelestialBody().getCelestialBodyType())
                 .append("prediction", predictionObject);
 
-        Bson update = Updates.push("celestialBodyPredictions", weatherObject);
+        Bson update = Updates.push("celestialBodyPredictions", celestialBodyPredictionDocument);
 
 
         try{
@@ -60,8 +60,6 @@ public class SavePlanets {
         String content = data.getString("predictionContent");
         CelestialBodyPrediction active = getSpaceFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
-
-
 
         Document newResolved = new Document("predictionType", active.getPrediction().getPredictionType())
                 .append("predictionContent", active.getPrediction().getPredictionContent())

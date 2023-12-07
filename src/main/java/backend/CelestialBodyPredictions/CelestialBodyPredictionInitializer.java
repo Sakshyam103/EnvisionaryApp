@@ -1,10 +1,13 @@
 package backend.CelestialBodyPredictions;
 
+import backend.BasePredictionObject.Prediction;
+import backend.EntertainmentPredictions.runEntertainment;
 import backend.UserInfo.MongoDBEnvisionaryUsers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
+import org.json.JSONException;
+import javax.json.JsonObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +18,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static backend.EntertainmentPredictions.EntertainmentPredictionInitializer.resolveEntertainmentPrediction;
 
 public class CelestialBodyPredictionInitializer {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -506,4 +511,38 @@ public class CelestialBodyPredictionInitializer {
         }
         System.out.println();
     }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // buildPrediction
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    //
+//    public static void buildPrediction(JsonObject json, String userId) throws JSONException {
+//        // Initialize a new celestialBodyPrediction
+//        CelestialBodyPrediction newCelestialBodyPrediction = new CelestialBodyPrediction();
+//
+//        // Set the variables from incoming JsonObject
+//        newCelestialBodyPrediction.getCelestialBody().setCelestialBodyType(json.getString("CelestialBodyType"));
+//        newCelestialBodyPrediction.getCelestialBody().setKnownCount("date");
+//
+//        newCelestialBodyPrediction.getPrediction().setPredictionType("Science");
+//
+//        newCelestialBodyPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
+//
+//        // Change
+//        newCelestialBodyPrediction.getPrediction().setPredictionContent("I predict that " + runEntertainment.movieTitle + " was released in " + runEntertainment.year);
+//
+//        newCelestialBodyPrediction.getPrediction().setPredictionEndDate(ZonedDateTime.now().toString());
+//
+//        newCelestialBodyPrediction.getPrediction().setPredictionMadeDate("");
+//
+//        ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
+//
+//        for (CelestialBodyPrediction prediction : userCelestialBodyPredictions) {
+//            if (prediction.getCelestialBody().getCelestialBodyType().equals(newCelestialBodyPrediction.getCelestialBody().getCelestialBodyType())) {
+//
+//            }
+//        }
+//
+//        MongoDBEnvisionaryUsers.updateUserCelestialBodyPredictions(userId, userCelestialBodyPredictions);
+//    }
 }

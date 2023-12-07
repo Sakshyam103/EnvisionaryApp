@@ -33,6 +33,7 @@ public class SaveFootballPredictions {
         prediction.getPrediction().setPredictionEndDate(input.getJsonObject("match").getString("utcDate"));
         prediction.setPredictedMatchOutcome(input.getString("result"));
         prediction.setPredictedMatchTeam(input.getString("team"));
+        prediction.getPrediction().setRemindFrequency("Standard");
 
         return saveNewFootballToMongo();
     }
@@ -41,18 +42,18 @@ public class SaveFootballPredictions {
         Bson filter = Filters.eq("userID", Controller.userId);
 
 
-        Document predictionObject = new Document("predictionType", prediction.getPrediction().getPredictionType())
+        Document predictionDocument = new Document("predictionType", prediction.getPrediction().getPredictionType())
                 .append("predictionContent", prediction.getPrediction().getPredictionContent())
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
-                .append("createDate", prediction.getPrediction().getPredictionMadeDate())
-                .append("resolveDate", prediction.getPrediction().getPredictionEndDate());
+                .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
+                .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
 
-        Document weatherObject = new Document("match", prediction.getPredictionMatch())
+        Document footballMatchPredictionDocument = new Document("match", prediction.getPredictionMatch())
                 .append("team", prediction.getPredictedMatchTeam())
                 .append("result", prediction.getPredictedMatchOutcome())
-                .append("prediction", predictionObject);
+                .append("prediction", predictionDocument);
 
-        Bson update = Updates.push("footballMatchPredictions", weatherObject);
+        Bson update = Updates.push("footballMatchPredictions", footballMatchPredictionDocument);
 
 
         try{
@@ -70,8 +71,6 @@ public class SaveFootballPredictions {
         String content = data.getString("predictionContent");
         FootballMatchPrediction active = getFootballFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
-
-
 
         Document newResolved = new Document("predictionType", active.getPrediction().getPredictionType())
                 .append("predictionContent", active.getPrediction().getPredictionContent())

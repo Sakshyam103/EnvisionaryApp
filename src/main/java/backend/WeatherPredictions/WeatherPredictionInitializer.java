@@ -153,8 +153,6 @@ public class WeatherPredictionInitializer {
         MongoDBEnvisionaryUsers.updateUserWeatherPredictions(userIdentifier, loadedWeatherPredictions);
     }
 
-
-
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // printAllUserWeatherPredictionsMongoDB
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -173,11 +171,5 @@ public class WeatherPredictionInitializer {
             System.out.println(weatherPrediction.getPrediction().getPredictionContent() + " by " + weatherPrediction.getPrediction().getPredictionEndDate());
         }
         System.out.println();
-    }
-
-    public static void main(String[] args){
-        ArrayList<WeatherPrediction> emptyList = new ArrayList<>();
-        MongoDBEnvisionaryUsers.updateUserWeatherPredictions("bLapointe", emptyList);
-        createNewWeatherPredictionMongoDB("bLapointe");
     }
 }
