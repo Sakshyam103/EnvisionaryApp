@@ -416,8 +416,7 @@ public class Controller {
     }
     @RequestMapping(value = "/movieCheck")
     public @ResponseBody boolean checkMovie() throws JSONException {
-//        return entertainmentAmountCheck.makeOrBreak();
-        return true;
+        return entertainmentAmountCheck.makeOrBreak();
     }
 
     public void parseId(String id) throws JSONException {

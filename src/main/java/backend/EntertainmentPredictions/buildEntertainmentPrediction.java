@@ -22,8 +22,7 @@ public class buildEntertainmentPrediction {
 
         setPrediction(json);
 
-//        boolean check = entertainmentAmountCheck.makeOrBreak();
-        boolean check = true;
+        boolean check = entertainmentAmountCheck.makeOrBreak();
 
         boolean success = false;
 
