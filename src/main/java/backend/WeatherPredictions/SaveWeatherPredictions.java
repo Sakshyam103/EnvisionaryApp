@@ -1,5 +1,6 @@
 package backend.WeatherPredictions;
 
+import backend.BasePredictionObject.Prediction;
 import backend.Controller;
 import backend.CustomPredictions.CustomPrediction;
 import backend.GetUserInfo;
@@ -12,8 +13,11 @@ import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import javax.json.JsonObject;
+import javax.json.*;
+import java.awt.*;
+import java.io.StringReader;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SaveWeatherPredictions {
@@ -108,5 +112,27 @@ public class SaveWeatherPredictions {
             }
         }
         return current;
+    }
+
+    public static ArrayList<Prediction> getAllWeatherFromMongo(){
+        String jsonDoc = Controller.userDoc.toJson();
+        StringReader stringReader = new StringReader(jsonDoc);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("weatherPredictions");
+        ArrayList<Prediction> predictions = new ArrayList<>();
+
+        for(JsonValue value : array){
+            Prediction sample = new Prediction();
+            sample.setPredictionMadeDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionMadeDate"));
+            sample.setPredictionType(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionEndDate"));
+            sample.setRemindFrequency(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("remindFrequency"));
+
+            predictions.add(sample);
+        }
+        return predictions;
     }
 }

@@ -7,7 +7,7 @@ import NavigationBar from './components/NavigationBar.jsx';
 import PredictionOptions from './components/PredictionOptions.jsx'
 import CustomPrediction from './components/CustomPrediction.jsx'
 import FootballPrediction from './components/FootballPrediction.jsx'
-import MoviesPrediction from "./components/MoviePrediction.jsx";
+import MoviesPrediction from './components/MoviesPrediction.jsx'
 import WeatherPrediction from './components/WeatherPrediction.jsx'
 import AstronomyPrediction from "./components/AstronomyPrediction.jsx";
 import ViewPredictions from "./components/ViewPredictions.jsx";

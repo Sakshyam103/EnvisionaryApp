@@ -1,5 +1,6 @@
 package backend;
 
+import backend.BasePredictionObject.Prediction;
 import backend.CelestialBodyPredictions.CelestialBody;
 import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
@@ -147,35 +148,36 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewCustomPredictions")
-    public ArrayList<CustomPrediction> viewCustomPredictions() {
+    public ArrayList<Prediction> viewCustomPredictions() {
         System.out.println("view custom predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions(userId);
+        return SaveCustomPredictions.getAllCustomFromMongo();
     }
 
-    @RequestMapping(value = "/viewCelestialBodyPredictions")
-    public ArrayList<CelestialBodyPrediction> viewCelestialBodyPredictions() {
+    @RequestMapping(value = "/viewSpacePredictions")
+    public ArrayList<Prediction> viewCelestialBodyPredictions() {
         System.out.println("view celestial body predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserCelestialBodyPredictions(userId);
+        return SavePlanets.getAllPlanetsFromMongo();
     }
 
-    @RequestMapping(value = "/viewFootballMatchPredictions")
-    public ArrayList<FootballMatchPrediction> viewFootballMatchPredictions() {
+    @RequestMapping(value = "/viewFootballPredictions")
+    public ArrayList<Prediction> viewFootballMatchPredictions() {
         System.out.println("view football match predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserFootballMatchPredictions(userId);
+        ArrayList<Prediction> test = SaveFootballPredictions.getAllFootballFromMongo();
+        return test;
     }
 
     @RequestMapping(value = "/viewWeatherPredictions")
-    public ArrayList<WeatherPrediction> viewWeatherPredictions() {
+    public ArrayList<Prediction> viewWeatherPredictions() {
         System.out.println("view weather predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserWeatherPredictions(userId);
+        return SaveWeatherPredictions.getAllWeatherFromMongo();
     }
 
     @RequestMapping(value = "/viewEntertainmentPredictions")
@@ -319,7 +321,9 @@ public class Controller {
         JsonReaderFactory factory = Json.createReaderFactory(null);
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
-        return buildEntertainmentPrediction.buildMoviePrediction(object, userId);
+        String success = buildEntertainmentPrediction.buildMoviePrediction(object, userId);
+        userDoc = GetUserInfo.getTheDoc();
+        return success;
     }
 
     @RequestMapping(value = "/custom")
@@ -330,6 +334,7 @@ public class Controller {
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         boolean success = SaveCustomPredictions.buildCustom(object);
+        userDoc = GetUserInfo.getTheDoc();
         if(success){
             System.out.println("Custom Prediction Saved");
             return success;
@@ -348,6 +353,7 @@ public class Controller {
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         boolean success = SaveWeatherPredictions.buildWeather(object);
+        userDoc = GetUserInfo.getTheDoc();
         if(success){
             System.out.println("Weather Prediction Saved");
             return success;
@@ -366,6 +372,7 @@ public class Controller {
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         boolean success = SaveFootballPredictions.buildFootball(object);
+        userDoc = GetUserInfo.getTheDoc();
         if(success){
             System.out.println("Football Prediction Saved");
             return success;
@@ -384,6 +391,7 @@ public class Controller {
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         boolean success = SavePlanets.buildSpace(object);
+        userDoc = GetUserInfo.getTheDoc();
         if(success){
             System.out.println("Space Prediction Saved");
             return success;

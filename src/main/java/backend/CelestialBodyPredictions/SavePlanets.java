@@ -1,6 +1,8 @@
 package backend.CelestialBodyPredictions;
 
+import backend.BasePredictionObject.Prediction;
 import backend.Controller;
+import backend.CustomPredictions.CustomPrediction;
 import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
@@ -12,8 +14,10 @@ import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import javax.json.JsonObject;
+import javax.json.*;
+import java.io.StringReader;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SavePlanets {
@@ -23,8 +27,8 @@ public class SavePlanets {
         prediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
         prediction.getPrediction().setPredictionType("CelestialBody");
         prediction.getPrediction().setPredictionEndDate(input.getString("resolveDate"));
-        prediction.getCelestialBody().setCelestialBodyType(input.getString("planet"));
-        prediction.getPrediction().setPredictionContent("I predict that " + input.getString("planet") +
+        prediction.getCelestialBody().setCelestialBodyType(input.getString("value"));
+        prediction.getPrediction().setPredictionContent("I predict that " + input.getString("value") +
                 " will have a new amount by " + input.getString("resolveDate"));
         prediction.getPrediction().setRemindFrequency("Standard");
         return saveNewSpaceToMongo();
@@ -101,5 +105,27 @@ public class SavePlanets {
             }
         }
         return current;
+    }
+
+    public static ArrayList<Prediction> getAllPlanetsFromMongo(){
+        String jsonDoc = Controller.userDoc.toJson();
+        StringReader stringReader = new StringReader(jsonDoc);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("celestialBodyPredictions");
+        ArrayList<Prediction> predictions = new ArrayList<>();
+
+        for(JsonValue value : array){
+            Prediction sample = new Prediction();
+            sample.setPredictionMadeDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionMadeDate"));
+            sample.setPredictionType(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionEndDate"));
+            sample.setRemindFrequency(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("remindFrequency"));
+
+            predictions.add(sample);
+        }
+        return predictions;
     }
 }

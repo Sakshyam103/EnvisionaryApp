@@ -1,17 +1,23 @@
 package backend.CustomPredictions;
 
+import backend.BasePredictionObject.Prediction;
 import backend.Controller;
+import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
+import backend.ResolvedPredictions.ResolvedPrediction;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import javax.json.JsonObject;
+
+import javax.json.*;
+import java.io.StringReader;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -96,6 +102,27 @@ public class SaveCustomPredictions {
         }
         return current;
     }
+
+    public static ArrayList<Prediction> getAllCustomFromMongo(){
+        String jsonDoc = Controller.userDoc.toJson();
+        StringReader stringReader = new StringReader(jsonDoc);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("customPredictions");
+        ArrayList<Prediction> predictions = new ArrayList<>();
+        for(JsonValue value : array){
+
+            Prediction sample = new Prediction();
+            sample.setPredictionMadeDate(value.asJsonObject().getString("createDate"));
+            sample.setPredictionType(value.asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getString("resolveDate"));
+            predictions.add(sample);
+        }
+        return predictions;
+    }
+
 
 }
 
