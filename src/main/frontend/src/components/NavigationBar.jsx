@@ -20,7 +20,7 @@ function NavigationBar({children}) {
     };
 
     const handleNotifications = () => {
-        navigate('Home/ViewNotifications');
+        navigate('/Home/ViewNotifications');
     };
 
     const handleResolvePredictions = () => {
@@ -28,12 +28,16 @@ function NavigationBar({children}) {
         navigate('/Home/ResolvePredictions');
     };
 
+    const handleAbout = () => {
+        navigate('/Home/AboutUs');
+    }
+
     return (
         <div>
         <nav className="navbar">
             <ul>
                 <li>
-                    <button className="logo-button" onClick={handleMakePredictions}
+                    <button className="logo-button" onClick={handleAbout}
                             style={{textAlign: 'center', color:'white'}}
 
                     >
@@ -41,6 +45,7 @@ function NavigationBar({children}) {
                         NVISIONARY
                     </button>
                 </li>
+
                 <li>
                     <button className="nav-button" onClick={handleMakePredictions}>
                         Make Predictions

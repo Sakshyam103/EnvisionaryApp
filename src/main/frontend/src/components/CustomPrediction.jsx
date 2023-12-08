@@ -6,6 +6,9 @@ function CustomPrediction() {
   const [selectedDate, setSelectedDate] = useState('');
   const[error, setError] = useState('');
     const navigate = useNavigate();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    const tomorrowX = tomorrow.toISOString().split('T')[0];
 
   const submitPrediction = () => {
 
@@ -70,6 +73,7 @@ function CustomPrediction() {
         value={selectedDate}
         onChange={(e) => setSelectedDate(e.target.value)}
         style={{ padding: '10px', margin: '10px', fontSize: '16px' }}
+        min={tomorrowX}
       />
       <br />
         {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>}
@@ -83,6 +87,7 @@ function CustomPrediction() {
           border: 'none',
           cursor: 'pointer',
         }}
+
       >
         Submit Prediction
       </button>

@@ -54,37 +54,37 @@ function FootballPrediction() {
       handleCallbackResponse()
       setButtonPressed1(true);
 
-        const footballData = {
-            match,
-            team,
-            result,
-        };
+        // const footballData = {
+        //     match,
+        //     team,
+        //     result,
+        // };
         //
         // const footballMatchPrediction1 = JSON.stringify(footballData, null, 2);
         // console.log(footballMatchPrediction);
         // setFootballMatchPrediction(footballMatchPrediction1);
 
-        let data = {footballData};  //json
-        fetch("http://localhost:8080/sendMatches", {
-            method:"POST",
-            body:JSON.stringify(data),
-            headers:{
-                "Content-Type": "application/json",
-            },
-        }).then(res => {
-            if(!res.ok){
-                console.error('Request failed with status:' , res.status);
-                return res.text();
-            }
-            return res.text();
-        })
-            .then(data => {
-                console.log(data);
-            }).catch(error=>{
-            console.error('Error: ', error);
-        })
-
-        ;
+        // let data = {footballData};  //json
+        // fetch("http://localhost:8080/sendMatches", {
+        //     method:"POST",
+        //     body:JSON.stringify(data),
+        //     headers:{
+        //         "Content-Type": "application/json",
+        //     },
+        // }).then(res => {
+        //     if(!res.ok){
+        //         console.error('Request failed with status:' , res.status);
+        //         return res.text();
+        //     }
+        //     return res.text();
+        // })
+        //     .then(data => {
+        //         console.log(data);
+        //     }).catch(error=>{
+        //     console.error('Error: ', error);
+        // })
+        //
+        // ;
     } else {
       setError('Please select Team and Result before submitting predictions.');
     }

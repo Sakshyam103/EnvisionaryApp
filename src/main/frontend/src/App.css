@@ -9,8 +9,8 @@
   padding: 0.5em;
   will-change: filter;
   transition: filter 300ms;
-  height: max-content;
-  width: max-content;
+  height: 30%;
+  width: 30%;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #e039aeaa);
@@ -32,8 +32,7 @@
 }
 
 .app-container {
-  background-color: #e756ec; 
-  position: fixed;
+  background-color: #e756ec;
   top: 0;
   left: 0;
   width: 100%;
@@ -45,5 +44,6 @@
 
 .header-container {
   display: flex;
-  align-items: center; 
+  align-items: center;
+  margin-left: -10%;
 }
