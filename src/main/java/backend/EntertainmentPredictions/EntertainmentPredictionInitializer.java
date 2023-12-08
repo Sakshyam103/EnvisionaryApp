@@ -1,6 +1,7 @@
 package backend.EntertainmentPredictions;
 
 import backend.Controller;
+import backend.CustomPredictions.CustomPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
@@ -22,6 +23,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,5 +60,32 @@ public class EntertainmentPredictionInitializer {
             error.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean saveNewCustomMovieToMongo(ResolvedPrediction prediction){
+        Bson filter = Filters.eq("userID", Controller.userId);
+        CustomPrediction newPrediction = new CustomPrediction();
+
+        newPrediction.getPrediction().setPredictionType("Custom");
+        newPrediction.getPrediction().setPredictionContent(prediction.getPredictionContent());
+        newPrediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
+
+        Document newResolved = new Document("predictionType", newPrediction.getPrediction().getPredictionType())
+                .append("predictionContent", newPrediction.getPrediction().getPredictionContent())
+                .append("remindFrequency", newPrediction.getPrediction().getRemindFrequency())
+                .append("createDate", newPrediction.getPrediction().getPredictionMadeDate())
+                .append("resolveDate", newPrediction.getPrediction().getPredictionEndDate());
+        Bson update = Updates.push("customPredictions", newResolved);
+
+
+        try{
+            GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
+            return true;
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+
     }
 }

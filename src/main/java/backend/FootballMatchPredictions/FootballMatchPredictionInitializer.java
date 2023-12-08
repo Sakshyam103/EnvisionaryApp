@@ -93,6 +93,48 @@ public class FootballMatchPredictionInitializer {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchYesterdayMongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from the MongoDB football data collection for the user to
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
+    // data to the selected match.
+    //
+    public static void getUserChoiceMatchYesterdayMongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> yesterdaysMatches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("Yesterday");
+        // Gather user selection
+        if (!yesterdaysMatches.isEmpty()) {
+            for (FootballMatch match : yesterdaysMatches) {
+                System.out.println(yesterdaysMatches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of yesterday's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > yesterdaysMatches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(yesterdaysMatches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // getUserChoiceMatchToday
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_today.json for the user to
@@ -104,6 +146,48 @@ public class FootballMatchPredictionInitializer {
 
         // Display list of tomorrow's matches for user to select from
         ArrayList<FootballMatch> todayMatches = FootballMatchUpdater.readAndReturnTodayMatchesFile();
+        // Gather user selection
+        if (!todayMatches.isEmpty()) {
+            for (FootballMatch match : todayMatches) {
+                System.out.println(todayMatches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of today's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > todayMatches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(todayMatches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchTodayMongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from the MongoDB football data collection for the user to
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
+    // data to the selected match.
+    //
+    public static void getUserChoiceMatchTodayMongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> todayMatches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("Today");
         // Gather user selection
         if (!todayMatches.isEmpty()) {
             for (FootballMatch match : todayMatches) {
@@ -177,6 +261,48 @@ public class FootballMatchPredictionInitializer {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchTomorrowMongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from the MongoDB football data collection for the user to
+    // then select from before setting the FootballMatchPrediction userMatchPrediction's FootballMatch
+    // data to the selected match.
+    //
+    public static void getUserChoiceMatchTomorrowMongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> tomorrowMatches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("Tomorrow");
+        // Gather user selection
+        if (!tomorrowMatches.isEmpty()) {
+            for (FootballMatch match : tomorrowMatches) {
+                System.out.println(tomorrowMatches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of tomorrow's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > tomorrowMatches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(tomorrowMatches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // getUserChoiceMatchUpcomingWeek1
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_upcoming_week1.json for the
@@ -188,6 +314,48 @@ public class FootballMatchPredictionInitializer {
 
         // Display list of tomorrow's matches for user to select from
         ArrayList<FootballMatch> upcomingWeek1Matches = FootballMatchUpdater.readAndReturnUpcomingWeek1MatchesFile();
+        // Gather user selection
+        if (!upcomingWeek1Matches.isEmpty()) {
+            for (FootballMatch match : upcomingWeek1Matches) {
+                System.out.println(upcomingWeek1Matches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of the upcoming week's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > upcomingWeek1Matches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(upcomingWeek1Matches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchUpcomingWeek1MongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from the MongoDB football data collection for the
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
+    //
+    public static void getUserChoiceMatchUpcomingWeek1MongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> upcomingWeek1Matches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("UpcomingWeek1");
         // Gather user selection
         if (!upcomingWeek1Matches.isEmpty()) {
             for (FootballMatch match : upcomingWeek1Matches) {
@@ -261,6 +429,48 @@ public class FootballMatchPredictionInitializer {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchUpcomingWeek2MongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from MongoDB football data collection for the
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
+    //
+    public static void getUserChoiceMatchUpcomingWeek2MongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> upcomingWeek2Matches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("UpcomingWeek2");
+        // Gather user selection
+        if (!upcomingWeek2Matches.isEmpty()) {
+            for (FootballMatch match : upcomingWeek2Matches) {
+                System.out.println(upcomingWeek2Matches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of the second upcoming week's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > upcomingWeek2Matches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(upcomingWeek2Matches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // getUserChoiceMatchUpcomingWeek3
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Displays a list of the football matches from the file football_matches_upcoming_week3.json for the
@@ -272,6 +482,48 @@ public class FootballMatchPredictionInitializer {
 
         // Display list of tomorrow's matches for user to select from
         ArrayList<FootballMatch> upcomingWeek3Matches = FootballMatchUpdater.readAndReturnUpcomingWeek3MatchesFile();
+        // Gather user selection
+        if (!upcomingWeek3Matches.isEmpty()) {
+            for (FootballMatch match : upcomingWeek3Matches) {
+                System.out.println(upcomingWeek3Matches.indexOf(match)+1 + " : " + match.getHomeTeam() + " vs. " + match.getAwayTeam());
+            }
+            // Initialize selectedMatchIndex to 0
+            int selectedMatchIndex = 0;
+
+            // Initialize valid boolean flag to true
+            boolean valid = true;
+
+            // Get user input of match selection
+            do {
+                System.out.println("Select a match number from the list of the third upcoming week's matches:");
+                try {
+                    selectedMatchIndex = scan.nextInt();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    valid = false;
+                }
+            } while (!valid && selectedMatchIndex == 0 || selectedMatchIndex-1 < 0 || selectedMatchIndex > upcomingWeek3Matches.size());
+
+            // Set predictionMatch to the selected match
+            userMatchPrediction.setPredictionMatch(upcomingWeek3Matches.get(selectedMatchIndex-1));
+        } else {
+            //System.out.println("The list of matches for tomorrow is currently empty.");
+            userMatchPrediction.setPredictionMatch(null);
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // getUserChoiceMatchUpcomingWeek3MongoDB
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Displays a list of the football matches from from MongoDB football data collection for the
+    // user to then select from before setting the FootballMatchPrediction userMatchPrediction's
+    // FootballMatch data to the selected match.
+    //
+    public static void getUserChoiceMatchUpcomingWeek3MongoDB() {
+        userMatchPrediction = new FootballMatchPrediction();
+
+        // Display list of tomorrow's matches for user to select from
+        ArrayList<FootballMatch> upcomingWeek3Matches = MongoDBFootballMatchData.retrieveCollectionTimeFrameAndReturn("UpcomingWeek3");
         // Gather user selection
         if (!upcomingWeek3Matches.isEmpty()) {
             for (FootballMatch match : upcomingWeek3Matches) {
@@ -648,7 +900,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchYesterday();
+            getUserChoiceMatchYesterdayMongoDB();
             if (userMatchPrediction.getPredictionMatch() != null) {
                 getUserMatchPrediction();
                 saveMatchPredictionMongoDB(userIdentifier);
@@ -681,7 +933,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchToday();
+            getUserChoiceMatchTodayMongoDB();
             if (userMatchPrediction.getPredictionMatch() != null) {
                 getUserMatchPrediction();
                 saveMatchPredictionMongoDB(userIdentifier);
@@ -713,7 +965,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchTomorrow();
+            getUserChoiceMatchTomorrowMongoDB();
             if (userMatchPrediction.getPredictionMatch() != null) {
                 getUserMatchPrediction();
                 saveMatchPredictionMongoDB(userIdentifier);
@@ -745,7 +997,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchUpcomingWeek1();
+            getUserChoiceMatchUpcomingWeek1MongoDB();
             if (userMatchPrediction.getPredictionMatch() != null) {
                 getUserMatchPrediction();
                 saveMatchPredictionMongoDB(userIdentifier);
@@ -778,7 +1030,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchUpcomingWeek2();
+            getUserChoiceMatchUpcomingWeek2MongoDB();
             if (userMatchPrediction.getPredictionMatch() != null) {
                 getUserMatchPrediction();
                 saveMatchPredictionMongoDB(userIdentifier);
@@ -810,7 +1062,7 @@ public class FootballMatchPredictionInitializer {
             }
         } while (!valid && !userInput.equalsIgnoreCase("Y") && !userInput.equalsIgnoreCase("N"));
         if (userInput.equalsIgnoreCase("Y")) {
-            getUserChoiceMatchUpcomingWeek3();
+            getUserChoiceMatchUpcomingWeek3MongoDB();
             // If there is not already a prediction on the selected match
             if (userMatchPrediction.getPredictionMatch() != null) {
                 // Gather the football match prediction from the user and save to file

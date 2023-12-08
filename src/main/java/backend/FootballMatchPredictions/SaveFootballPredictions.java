@@ -6,12 +6,10 @@ import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
-import backend.WeatherPredictions.WeatherPrediction;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-
 import javax.json.JsonObject;
 import java.time.ZonedDateTime;
 import java.util.List;

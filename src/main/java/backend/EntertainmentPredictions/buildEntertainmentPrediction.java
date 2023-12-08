@@ -2,16 +2,11 @@ package backend.EntertainmentPredictions;
 
 import backend.ResolvedPredictions.ResolvedPrediction;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
-import java.io.StringReader;
 import java.time.ZonedDateTime;
 
 import static backend.EntertainmentPredictions.EntertainmentPredictionInitializer.resolveEntertainmentPrediction;
+import static backend.EntertainmentPredictions.EntertainmentPredictionInitializer.saveNewCustomMovieToMongo;
 
 public class buildEntertainmentPrediction {
 
@@ -21,13 +16,15 @@ public class buildEntertainmentPrediction {
 
     public static String userID;
 
-    public static boolean buildMoviePrediction(JsonObject json, String ID) throws JSONException {
+    public static String buildMoviePrediction(JsonObject json, String ID) throws JSONException {
 
         userID = ID;
 
         setPrediction(json);
 
-        runEntertainment.runEntertainmentPrediction(userID);
+        boolean check = entertainmentAmountCheck.makeOrBreak();
+
+        boolean success = false;
 
         prediction.setPredictionType("Entertainment");
 
@@ -37,11 +34,30 @@ public class buildEntertainmentPrediction {
 
         prediction.setPredictionEndDate(ZonedDateTime.now().toString());
 
+        if(!check){
+            success = saveNewCustomMovieToMongo(prediction);
+            if(success){
+                return "Custom Prediction Saved";
+            }
+            else{
+                return "Error Saving Custom Prediction";
+            }
+        }
+
+        runEntertainment.runEntertainmentPrediction(userID);
+
         prediction.setResolution(runEntertainment.resolve);
 
         prediction.setResolvedDate(ZonedDateTime.now().toString());
 
-        return resolveEntertainmentPrediction(userID, prediction);
+        success = resolveEntertainmentPrediction(userID, prediction);
+
+        if(success){
+            return String.valueOf(prediction.getResolution());
+        }
+        else{
+            return "Error Saving Movie Prediction";
+        }
     }
 
     private static void setPrediction(JsonObject json) throws JSONException {

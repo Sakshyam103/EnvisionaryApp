@@ -17,9 +17,9 @@ public class movieAPI{
 
 
     public static JsonArray connectToMovie(){
-
+        String formatMovieTitle = runEntertainment.movieTitle.trim().replace(" ", "%20");
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://streaming-availability.p.rapidapi.com/search/title?title=" + runEntertainment.movieTitle +"&country=us&show_type=all&output_language=en"))
+                .uri(URI.create("https://streaming-availability.p.rapidapi.com/search/title?title=" + formatMovieTitle +"&country=us&show_type=all&output_language=en"))
                 .header("X-RapidAPI-Key", "9807f0692amsh360071520bd07f5p1528bejsn9375a7f9f3fd")
                 .header("X-RapidAPI-Host", "streaming-availability.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())

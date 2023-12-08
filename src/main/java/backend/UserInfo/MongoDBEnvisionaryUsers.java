@@ -271,7 +271,7 @@ public class MongoDBEnvisionaryUsers {
                 if (customPredictions != null && !customPredictions.isEmpty()) {
                     System.out.println("Custom Predictions:");
                     for (CustomPrediction customPrediction : customPredictions) {
-                        System.out.println(customPrediction.toString());
+                        customPrediction.printPredictionDetails();
                     }
                 } else {
                     System.out.println("No Custom Predictions found for the user.");
@@ -418,7 +418,7 @@ public class MongoDBEnvisionaryUsers {
                 if (weatherPredictions != null && !weatherPredictions.isEmpty()) {
                     System.out.println("Weather Predictions:");
                     for (WeatherPrediction weatherPrediction : weatherPredictions) {
-                        System.out.println("   " + weatherPrediction.toString());
+                        weatherPrediction.printPredictionDetails();
                     }
                 } else {
                     System.out.println("No Weather Predictions found for the user.");

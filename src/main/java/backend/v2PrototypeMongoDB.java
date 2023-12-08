@@ -198,12 +198,12 @@ public class v2PrototypeMongoDB {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-    // loginMenu
+    // loginMenuLocal
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Gathers input from the user to either login as an existing Envisionary user, create a new
-    // Envisionary user account, or close the application.
+    // Envisionary user account, or close the application using the localized json file prototype.
     //
-    public static void loginMenu() {
+    public static void loginMenuLocal() {
         loginMenuSelection = 0;
         while (loginMenuSelection != 3) {
             System.out.println(
@@ -258,6 +258,61 @@ public class v2PrototypeMongoDB {
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // loginMenu
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+    // Gathers input from the user to either login as an existing Envisionary user, create a new
+    // Envisionary user account, or close the application using MongoDB - Envisionary.
+    //
+    public static void loginMenu() {
+        loginMenuSelection = 0;
+        while (loginMenuSelection != 3) {
+            System.out.println(
+                    "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                             WELCOME TO THE ENVISIONARY APP PROTOTYPE                             ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                             1. Existing Envisionary user login                                   ║\n" +
+                    "║                             2. Create a new Envisionary user account                             ║\n" +
+                    "║                             3. Close application                                                 ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "║                                                                                                  ║\n" +
+                    "╚══════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print(  "                                        Selection: ");
+
+            // Menu logic
+            try {
+                int input = scan.nextInt();
+
+                if (input >= 1 && input <= 3) {
+                    loginMenuSelection = input;
+                    switch (loginMenuSelection) {
+                        case 1:
+                            login();
+                            loginMenuSelection = 0;
+                            break;
+                        case 2:
+                            createNewAccount();
+                            loginMenuSelection = 0;
+                            break;
+                        case 3:
+                            System.out.println("                 THANK YOU FOR USING THE ENVISIONARY PROTOTYPE APPLICATION!\n"
+                                    + "                                  Shutting program down...");
+                            System.exit(0);
+                    }
+                } else {
+                    System.out.println("Invalid selection. Please enter a valid menu option (1-3).");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid menu option (1-3).");
+                scan.next(); // Clear the invalid input
+            }
+        }
+    }
+
+    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // login
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // Gathers input from the user to login as an existing Envisionary user. If a valid UserInfo.User is found
@@ -273,7 +328,6 @@ public class v2PrototypeMongoDB {
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
                     "║                                              LOGIN                                               ║\n" +
-                    "║                            Username: TestUser    Password: Password123!                          ║\n" +  // TODO: ERASE THIS LINE EVENTUALLY
                     "╠══════════════════════════════════════════════════════════════════════════════════════════════════╣\n" +
                     "║                                                                                                  ║\n" +
                     "║                               Please enter your UserID                                           ║\n" +
@@ -372,7 +426,7 @@ public class v2PrototypeMongoDB {
                     "║                                   7. View notifications                                          ║\n" +
                     "║                                   8. Remove notifications                                        ║\n" +
                     "║                                   9. Remove all notifications                                    ║\n" +
-                    "║                                   10. Statistics menu                                             ║\n" +
+                    "║                                  10. Statistics menu                                             ║\n" +
                     "║                                  11. Log out                                                     ║\n" +
                     "║                                                                                                  ║\n" +
                     "║                                                                                                  ║\n" +
@@ -626,7 +680,8 @@ public class v2PrototypeMongoDB {
                             footballPredictionMenuSelection = 0;
                             break;
                         case 2:
-                            FootballMatchPredictionInitializer.createNewFootballMatchTomorrowPredictionMongoDB(userID);        // TEST USING YESTERDAY'S MATCHES
+                            //TODO : Change back to tomorrow match prediction after testing
+                            FootballMatchPredictionInitializer.createNewFootballMatchTodayPredictionMongoDB(userID);
                             footballPredictionMenuSelection = 0;
                             break;
                         case 3:

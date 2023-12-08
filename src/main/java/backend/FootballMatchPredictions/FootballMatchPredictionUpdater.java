@@ -239,6 +239,8 @@ public class FootballMatchPredictionUpdater {
 
         // For each Envisionary UserInfo.User
         for (EnvisionaryUser user : envisionaryUsers) {
+            // Initialize a new boolean predictionRemoved flag for each Envisionary User
+            boolean removedPredictions = false;
 
             // Initialize an array list of the user's football match predictions
             ArrayList<FootballMatchPrediction> userFootballMatchPredictions = user.getFootballMatchPredictions();
@@ -258,6 +260,7 @@ public class FootballMatchPredictionUpdater {
 
                         // Set remove prediction flag to true
                         removePrediction = true;
+                        removedPredictions = true;
                     }
 
                     // If prediction match ID == today's match ID && status == FINISHED
@@ -305,6 +308,7 @@ public class FootballMatchPredictionUpdater {
 
                         // Set removePrediction boolean flag to true
                         removePrediction = true;
+                        removedPredictions = true;
 
                         // Calculate statistics of user and update UserStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
                         UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(user.getUserID());
@@ -319,11 +323,13 @@ public class FootballMatchPredictionUpdater {
                     predictionsToRemove.add(userFootballMatchPrediction);
                 }
             }
-            // Remove the resolved and cancelled predictions
-            userFootballMatchPredictions.removeAll(predictionsToRemove);
+            if (removedPredictions) {
+                // Remove the resolved and cancelled predictions
+                userFootballMatchPredictions.removeAll(predictionsToRemove);
 
-            // Save the updated user's football match predictions list
-            MongoDBEnvisionaryUsers.updateUserFootballMatchPredictions(user.getUserID(), userFootballMatchPredictions);
+                // Save the updated user's football match predictions list
+                MongoDBEnvisionaryUsers.updateUserFootballMatchPredictions(user.getUserID(), userFootballMatchPredictions);
+            }
         }
     }
 }

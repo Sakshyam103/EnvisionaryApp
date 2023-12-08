@@ -16,14 +16,12 @@ import org.bson.BsonValue;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
-import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
-import org.springframework.boot.autoconfigure.jersey.JerseyProperties;
 
 import java.time.ZonedDateTime;
-import java.util.logging.Filter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static backend.GetUserInfo.connectToMongoDB;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -35,8 +33,8 @@ public class entertainmentAmountCheck {
 
     public static boolean makeOrBreak(){
         boolean value = true;
-        connectToMongoDB();
-        EntertainmentLimit limit = parseLimitDoc(getLimitDoc());
+        Document mongoInfo = getLimitDoc();
+        EntertainmentLimit limit = parseLimitDoc(mongoInfo);
         value = availability(limit);
         return value;
     }
@@ -49,26 +47,13 @@ public class entertainmentAmountCheck {
         return limit;
     }
 
-    private static MongoClient connectToMongoDB() {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
-        ConnectionString mongoUri = new ConnectionString("mongodb+srv://BrandonLaPointe:L5AMM7CiM1F2qjz@envisionarycluster.19uobkz.mongodb.net/?retryWrites=true&w=majority");
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .codecRegistry(pojoCodecRegistry)
-                .applyConnectionString(mongoUri).build();
-        return MongoClients.create(settings);
-    }
-
     private static Document getLimitDoc(){
         MongoClient client = connectToMongoDB();
-        MongoDatabase database = client.getDatabase(System.getenv("MONGO_DATABASE"));
+        MongoDatabase database = client.getDatabase(DB_NAME);
         MongoCollection<Document> collection = database.getCollection("EntertainmentLimit");
         Document limit = new Document("userID", id);
         return collection.find(limit).first();
     }
-
-
 
     private static boolean availability(EntertainmentLimit limit){
         if(limit.getDate().equalsIgnoreCase("null")){
@@ -78,9 +63,6 @@ public class entertainmentAmountCheck {
         if(ZonedDateTime.parse(limit.getDate()).isAfter(ZonedDateTime.parse(limit.getDate()).plusMonths(1))){
             UpdateDoc(limit, 0);
             return true;
-        }
-        if(limit.getActive()){
-            return false;
         }
         if(limit.getCounter() >= 100){
             UpdateDoc(limit, 1);
