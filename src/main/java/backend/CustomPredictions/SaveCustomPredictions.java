@@ -67,12 +67,10 @@ public class SaveCustomPredictions {
         CustomPrediction active = getCustomFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
 
-
-
         Document newResolved = new Document("predictionType", active.getPrediction().getPredictionType())
                 .append("predictionContent", active.getPrediction().getPredictionContent())
-                .append("createDate", active.getPrediction().getPredictionMadeDate())
-                .append("endDate", active.getPrediction().getPredictionEndDate())
+                .append("predictionMadeDate", active.getPrediction().getPredictionMadeDate())
+                .append("predictionEndDate", active.getPrediction().getPredictionEndDate())
                 .append("resolution", data.getBoolean("resolution"))
                 .append("resolvedDate", ZonedDateTime.now().toString());
         Bson update = Updates.push("resolvedPredictions", newResolved);
@@ -109,22 +107,21 @@ public class SaveCustomPredictions {
         return current;
     }
 
-    public static ArrayList<Prediction> getAllCustomFromMongo(){
+    public static ArrayList<CustomPrediction> getAllCustomFromMongo(){
         String jsonDoc = Controller.userDoc.toJson();
         StringReader stringReader = new StringReader(jsonDoc);
         JsonReaderFactory factory = Json.createReaderFactory(null);
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         JsonArray array = object.getJsonArray("customPredictions");
-        ArrayList<Prediction> predictions = new ArrayList<>();
+        ArrayList<CustomPrediction> predictions = new ArrayList<>();
         for(JsonValue value : array){
-
-            Prediction sample = new Prediction();
-            sample.setPredictionMadeDate(value.asJsonObject().getString("createDate"));
-            sample.setPredictionType(value.asJsonObject().getString("predictionType"));
-            sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
-            sample.setPredictionEndDate(value.asJsonObject().getString("resolveDate"));
-            predictions.add(sample);
+            CustomPrediction newCustomPrediction = new CustomPrediction();
+            newCustomPrediction.getPrediction().setPredictionType(value.asJsonObject().getString("predictionType"));
+            newCustomPrediction.getPrediction().setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            newCustomPrediction.getPrediction().setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
+            newCustomPrediction.getPrediction().setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
+            predictions.add(newCustomPrediction);
         }
         return predictions;
     }
@@ -138,17 +135,15 @@ public class SaveCustomPredictions {
         JsonArray array = object.getJsonArray("resolvedPredictions");
         ArrayList<ResolvedPrediction> predictions = new ArrayList<>();
         for(JsonValue value : array){
-            ResolvedPrediction sample = new ResolvedPrediction();
-            sample.setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
-            sample.setPredictionType(value.asJsonObject().getString("predictionType"));
-            sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
-            sample.setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
-            predictions.add(sample);
+            ResolvedPrediction newResolvedCustomPrediction = new ResolvedPrediction();
+            newResolvedCustomPrediction.setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
+            newResolvedCustomPrediction.setPredictionType(value.asJsonObject().getString("predictionType"));
+            newResolvedCustomPrediction.setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            newResolvedCustomPrediction.setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
+            predictions.add(newResolvedCustomPrediction);
         }
         return predictions;
     }
-
-
 }
 
 
