@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import myLogo from './assets/myLogo.png'
 import './App.css'
 import SignIn from './components/oauth'
 import Home from './Home'
+import NavigationBar from './components/NavigationBar';
 import PredictionOptions from './components/PredictionOptions'
 import CustomPrediction from './components/CustomPrediction'
 import FootballPrediction from './components/FootballPrediction'
-import MoviesPrediction from './components/MoviesPrediction'
+import MoviesPrediction from './components/1.jsx'
 import WeatherPrediction from './components/WeatherPrediction'
 import AstronomyPrediction from "./components/AstronomyPrediction.jsx";
+import ViewPredictions from "./components/ViewPredictions.jsx";
+import ViewStatistics from "./components/ViewStatistics.jsx";
+//import home from "./Home";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,52 +30,106 @@ function App() {
       setLoading(false);
     }
   };
+
+    const handleMakePredictions = () => {
+        alert('Please sign in first!')
+
+    }
+    const handleViewPredictions = () => {
+        alert('Please sign in first!')
+
+    }
+    const handleViewStatistics = () => {
+        alert('Please sign in first!')
+
+    }
+    const handleNotifications = () => {
+        alert('Please sign in first!')
+
+    }
+    const handleResolvePredictions = () => {
+        alert('Please sign in first!')
+
+    }
   return (
     <Router>
     <div className="app-container">
-    {!currentUser && (
-      <div className='header-container'>
-         <div className='logo'> <img src={myLogo} className="logo" alt="My logo" /></div>
-          <h3>nvisionary</h3>
-      </div>)}
+
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className='card'>
-        <Routes>
-      <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
 
-      </Routes>
-      </div>
       {!currentUser && (
       <div >
+          {/*<div>*/}
+          {/*    <NavigationBar*/}
+          {/*        handleMakePredictions={handleMakePredictions}*/}
+          {/*        handleViewPredictions={handleViewPredictions}*/}
+          {/*        handleViewStatistics={handleViewStatistics}*/}
+          {/*        handleResolvePredictions={handleResolvePredictions}*/}
+          {/*        handleNotifications={handleNotifications}*/}
+          {/*    />*/}
+          {/*</div>*/}
+          <div className='card'>
+              <Routes>
+                  <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
+              </Routes>
+          </div>
           <h1>Sign in to make predictions!</h1>
       </div>)}
+
       <Routes>
-      <Route
-      path="/Home"
-      element={
-      currentUser ? (
-        <Home user={currentUser} />
+      <Route path="/Home" element={currentUser ? (
+        <NavigationBar user={currentUser} />
       ) : (
         <>
         <Navigate to="/" replace />
-
         <SignIn onUserLogin={handleUserLogin} />
         </>
       )}
       />
-     <Route path="/Home/MakePredictions" element={
-     currentUser ? (
-      <>
-      <PredictionOptions user={currentUser}/></>
-     ) : (
-      <>
-      <Navigate to="/" replace />
+          <Route path="/Home/MakePredictions" element={currentUser ? (
+              <PredictionOptions user={currentUser} />
+          ) : (
+              <>
+                  <Navigate to="/" replace />
+                  <SignIn onUserLogin={handleUserLogin} />
+              </>
+          )}
+          />
+     {/*<Route path="/Home/MakePredictions" element={*/}
+     {/*currentUser ? (*/}
+     {/* <PredictionOptions user={currentUser}/></>*/}
+     {/*) : (*/}
+     {/* <Navigate to="/" replace />*/}
+     {/*    <>*/}
+     {/* <SignIn onUserLogin={handleUserLogin} />*/}
+     {/* )*/}
+     {/* }/>*/}
+          <Route path="/Home/ViewPredictions" element={
+              currentUser ? (
+                  <>
+                      <ViewPredictions user={currentUser}/></>
+              ) : (
+                  <>
+                      <Navigate to="/" replace />
 
-      <SignIn onUserLogin={handleUserLogin} />
-      </>
-      )
-      }/>
+                      <SignIn onUserLogin={handleUserLogin} />
+                  </>
+              )
+          }/>
+
+          <Route path="/Home/ViewStatistics" element={
+              currentUser ? (
+                  <>
+                      <ViewStatistics user={currentUser}/></>
+              ) : (
+                  <>
+                      <Navigate to="/" replace />
+
+                      <SignIn onUserLogin={handleUserLogin} />
+                  </>
+              )
+          }/>
       <Route path="/Home/MakePredictions/Custom" element={
      currentUser ? (
       <>

@@ -30,6 +30,8 @@ function SignIn({ onUserLogin }) {
       })
       .then(data => {
         console.log(data);
+        alert(data);
+        navigate('/Home')
       }).catch(error=>{
         console.error('Error: ', error);
       })
@@ -75,17 +77,18 @@ function SignIn({ onUserLogin }) {
     <div className="SignIn">
       <div id="signInDiv"></div>
 
-  {Object.keys(user).length !== 0 && (
-  <div>
-    <img src={user.picture} alt={user.name} />
-    <h3>{user.name}</h3>
-    <h4>
-      Hey {user.given_name}! You are logged in. Go{' '}
-      <Link to="/Home"> make predictions!</Link>
-    </h4>
-    
-  </div>
-)}
+      {Object.keys(user).length !== 0 && navigate('/Home')}
+
+  {/*    // <div>*/}
+  {/*//   <img src={user.picture} alt={user.name} />*/}
+  {/*//   <h3>{user.name}</h3>*/}
+  {/*//   <h4>*/}
+  {/*//     Hey {user.given_name}! You are logged in. Go{' '}*/}
+  {/*//     <Link to="/Home"> make predictions!</Link>*/}
+  {/*//   </h4>*/}
+  {/*//*/}
+  {/*// </div>*/}
+
     </div>
 
   );

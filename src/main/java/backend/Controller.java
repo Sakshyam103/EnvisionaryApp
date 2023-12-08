@@ -180,10 +180,7 @@ public class Controller {
     @RequestMapping(value = "/viewEntertainmentPredictions")
     public ArrayList<ResolvedPrediction> viewEntertainmentPredictions() {
         System.out.println("view entertainment predictions");
-        // THIS IS A TEST WITH A HARDCODED USER
-        //return MongoDBEnvisionaryUsers.retrieveUserEntertainmentPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
-
     }
 
     @RequestMapping(value = "/viewResolvedPredictions")
