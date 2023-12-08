@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-//import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 function MoviesPrediction() {
   const [movie, setMovie] = useState('');
   const [releaseYear, setReleaseYear] = useState('');
     const [error, setError] = useState('');
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
   
   const years = Array.from({ length: 74 }, (_, index) => (2023 - index).toString());
+
 
   function handleCallbackResponse(response) {
       if (movie && releaseYear) {
@@ -26,6 +28,18 @@ function MoviesPrediction() {
         })
         .then(response => {
           console.log(response);
+          if(response = "true"){
+            alert('Correct! Great Job!');
+            navigate('/Home');}
+          else if (response = "false"){
+            setError('Sorry, that was incorrect!');
+            navigate('/Home');}
+          else if (response = "Custom Prediction Saved"){
+            alert('Due to an overflow of predictions, your prediction was saved in the custom category! Please see resolve predictions to resolve it!')
+            navigate('/Home')}
+          else{
+          setError('Sorry, there was an error saving your prediction, please try again.');
+          }
         }).catch(error=>{
           console.error('Error: ', error);
         })

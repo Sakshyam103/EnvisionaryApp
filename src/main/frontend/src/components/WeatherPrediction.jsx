@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-//import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function WeatherPrediction() {
   const [temperatureType, setTemperatureType] = useState('');
   const [temperatureValue, setTemperatureValue] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [error, setError] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const temperatureTypes = ['High', 'Low'];
 
@@ -52,6 +52,11 @@ function WeatherPrediction() {
             })
             .then(response => {
               console.log(response);
+              if(response = true){
+                                  alert('Prediction Made! Redirecting to home<3');
+                                  navigate('/Home');}
+                                  else{
+                                  setError('Please select the options first')}
             }).catch(error=>{
               console.error('Error: ', error);
             })

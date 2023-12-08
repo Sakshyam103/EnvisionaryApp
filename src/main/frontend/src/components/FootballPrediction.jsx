@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from "react-router-dom";
 
 function FootballPrediction() {
   const [match, setMatch] = useState('');
@@ -9,6 +10,7 @@ function FootballPrediction() {
   const [matchOptions, setMatchOptions] = useState([]);
   const [teamOptions, setTeamOptions] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const [teamTwo, setTeamTwo] = useState('');
   const [footballMatchPrediction, setFootballMatchPrediction] = useState('');
@@ -117,6 +119,11 @@ function FootballPrediction() {
               })
               .then(response => {
                 console.log(response);
+                if(response = true){
+                                    alert('Prediction Made! Redirecting to home<3');
+                                    navigate('/Home');}
+                                    else{
+                                    setError('Sorry there was an error saving your prediction!')}
               }).catch(error=>{
                 console.error('Error: ', error);
               })

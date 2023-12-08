@@ -39,6 +39,11 @@ function CustomPrediction() {
           })
           .then(response => {
             console.log(response);
+            if(response = true){
+                                alert('Prediction Made! Redirecting to home<3');
+                                navigate('/Home');}
+                                else{
+                                setError('Please select the options first')}
           }).catch(error=>{
             console.error('Error: ', error);
           })

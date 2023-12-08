@@ -34,10 +34,18 @@ public class entertainmentAmountCheck {
     public static boolean makeOrBreak(){
         boolean value = true;
         Document mongoInfo = getLimitDoc();
-        EntertainmentLimit limit = parseLimitDoc(mongoInfo);
-        value = availability(limit);
-        return value;
+        try{
+            EntertainmentLimit limit = parseLimitDoc(mongoInfo);
+            value = availability(limit);
+            return value;
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+
     }
+
 
     private static EntertainmentLimit parseLimitDoc(Document limitDoc) {
         EntertainmentLimit limit = new EntertainmentLimit();
@@ -51,7 +59,7 @@ public class entertainmentAmountCheck {
         MongoClient client = connectToMongoDB();
         MongoDatabase database = client.getDatabase(DB_NAME);
         MongoCollection<Document> collection = database.getCollection("EntertainmentLimit");
-        Document limit = new Document("userID", id);
+        Document limit = new Document("active", true);
         return collection.find(limit).first();
     }
 
@@ -75,7 +83,7 @@ public class entertainmentAmountCheck {
     private static void UpdateDoc(EntertainmentLimit limit, int identifier){
         EntertainmentLimit newLimit = new EntertainmentLimit();
         MongoClient client = connectToMongoDB();
-        MongoDatabase database = client.getDatabase(System.getenv("MONGO_DATABASE"));
+        MongoDatabase database = client.getDatabase(DB_NAME);
         MongoCollection<Document> collection = database.getCollection("EntertainmentLimit");
         Document oldLimit = new Document("userID", id);
         switch (identifier){
@@ -104,7 +112,7 @@ public class entertainmentAmountCheck {
                 newLimit.setCounter(limit.getCounter());
             }
         }
-        collection.updateOne(Filters.eq("userID", id), Updates.combine(
+        collection.updateOne(Filters.eq("active", true), Updates.combine(
                     Updates.set("active", newLimit.getActive()),
                             Updates.set("date", newLimit.getDate()),
                             Updates.set("counter", newLimit.getCounter())
