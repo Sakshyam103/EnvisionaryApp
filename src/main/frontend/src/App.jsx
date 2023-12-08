@@ -3,13 +3,16 @@ import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-do
 import myLogo from './assets/myLogo.png'
 import './App.css'
 import SignIn from './components/oauth'
-import Home from './Home'
-import PredictionOptions from './components/PredictionOptions'
-import CustomPrediction from './components/CustomPrediction'
-import FootballPrediction from './components/FootballPrediction'
-import MoviesPrediction from './components/MoviesPrediction'
-import WeatherPrediction from './components/WeatherPrediction'
+import NavigationBar from './components/NavigationBar.jsx';
+import PredictionOptions from './components/PredictionOptions.jsx'
+import CustomPrediction from './components/CustomPrediction.jsx'
+import FootballPrediction from './components/FootballPrediction.jsx'
+import MoviesPrediction from "./components/MoviePrediction.jsx";
+import WeatherPrediction from './components/WeatherPrediction.jsx'
 import AstronomyPrediction from "./components/AstronomyPrediction.jsx";
+import ViewPredictions from "./components/ViewPredictions.jsx";
+import ViewStatistics from "./components/ViewStatistics.jsx";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,7 +29,6 @@ function App() {
       setLoading(false);
     }
   };
-
   return (
     <Router>
     <div className="app-container">
@@ -48,31 +50,50 @@ function App() {
           <h1>Sign in to make predictions!</h1>
       </div>)}
       <Routes>
-      <Route
-      path="/Home"
-      element={
-      currentUser ? (
-        <Home user={currentUser} />
+      <Route path="/Home" element={currentUser ? (
+        <NavigationBar user={currentUser} />
       ) : (
         <>
         <Navigate to="/" replace />
-
         <SignIn onUserLogin={handleUserLogin} />
         </>
       )}
       />
-     <Route path="/Home/MakePredictions" element={
-     currentUser ? (
-      <>
-      <PredictionOptions user={currentUser}/></>
-     ) : (
-      <>
-      <Navigate to="/" replace />
+          <Route path="/Home/MakePredictions" element={currentUser ? (
+              <PredictionOptions user={currentUser} />
+          ) : (
+              <>
+                  <Navigate to="/" replace />
+                  <SignIn onUserLogin={handleUserLogin} />
+              </>
+          )}
+          />
 
-      <SignIn onUserLogin={handleUserLogin} />
-      </>
-      )
-      }/>
+          <Route path="/Home/ViewPredictions" element={
+              currentUser ? (
+                  <>
+                      <ViewPredictions user={currentUser}/></>
+              ) : (
+                  <>
+                      <Navigate to="/" replace />
+
+                      <SignIn onUserLogin={handleUserLogin} />
+                  </>
+              )
+          }/>
+
+          <Route path="/Home/ViewStatistics" element={
+              currentUser ? (
+                  <>
+                      <ViewStatistics user={currentUser}/></>
+              ) : (
+                  <>
+                      <Navigate to="/" replace />
+
+                      <SignIn onUserLogin={handleUserLogin} />
+                  </>
+              )
+          }/>
       <Route path="/Home/MakePredictions/Custom" element={
      currentUser ? (
       <>
@@ -130,9 +151,10 @@ function App() {
           }/>
         </Routes>
       </div>
-
       </Router>
+
   );
+
 }
 
 export default App

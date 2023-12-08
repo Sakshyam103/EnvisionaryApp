@@ -1,110 +1,106 @@
 import React from 'react';
-import Home from '../Home';
-import {Link, useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import NavigationBar from "./NavigationBar.jsx";
 
-function PredictionOptions ({user}) {
-  const navigate = useNavigate();
+function PredictionOptions({ user }) {
+    const navigate = useNavigate();
 
-  const handleFootballPredictions = () => {
-    // Handle football predictions logic here
+    const handleFootballPredictions = () => {
+        console.log('Handling Football Predictions');
+        navigate('/Home/MakePredictions/Football');
+    };
 
-    console.log('Handling Custom Predictions');
-    navigate('/Home/MakePredictions/Football');
+    const handleMoviesPredictions = () => {
+        console.log('Handling Movies Predictions');
+        navigate('/Home/MakePredictions/Movies');
+    };
 
-  };
+    const handleAstronomyPredictions = () => {
+        console.log('Handling Astronomy Predictions');
+        navigate('/Home/MakePredictions/Astronomy');
+    };
 
-  const handleMoviesPredictions = () => {
-    // Handle movies predictions logic here
-    console.log('Handling Movies Predictions');
-    navigate('/Home/MakePredictions/Movies');
-  };
+    const handleWeatherPredictions = () => {
+        console.log('Handling Weather Predictions');
+        navigate('/Home/MakePredictions/Weather');
+    };
 
-  const handleAstronomyPredictions = () => {
-    // Handle astronomy predictions logic here
-    console.log('Handling Astronomy Predictions');
-    navigate('/Home/MakePredictions/Astronomy');
-  };
+    const handleCustomPredictions = () => {
+        console.log('Handling Custom Predictions');
+        navigate('/Home/MakePredictions/Custom');
+    };
 
-  const handleWeatherPredictions = () => {
-    // Handle weather predictions logic here
-    console.log('Handling Weather Predictions');
-    navigate('/Home/MakePredictions/Weather');
-  };
-
-  const handleCustomPredictions = () => {
-    // Handle custom predictions logic here
-    console.log('Handling Custom Predictions');
-    navigate('/Home/MakePredictions/Custom');
-  };
-
-  return (
-    <>
-
-   <h1>What type of predictions would you like to make?</h1>
-    <div style={{ display: 'flex', flexDirection: 'column', height: '50vh' }}>
-      <button
-        style={{
-          flex: 1,
-          fontSize: '2em',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'pink',
-        }}
-        onClick={handleFootballPredictions}
-      >
-        Football Matches
-      </button>
-      <button
-        style={{
-          flex: 1,
-          fontSize: '2em',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'pink',
-        }}
-        onClick={handleMoviesPredictions}
-      >
-        Movies
-      </button>
-      <button
-        style={{
-          flex: 1,
-          fontSize: '2em',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'pink',
-        }}
-         onClick={handleAstronomyPredictions}
-      >
-        Astronomy
-      </button>
-      <button
-        style={{
-          flex: 1,
-          fontSize: '2em',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'pink',
-        }}
-         onClick={handleWeatherPredictions}
-      >
-        Weather
-      </button>
-      <button
-        style={{
-          flex: 1,
-          fontSize: '2em',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'pink',
-        }}
-        onClick={handleCustomPredictions}
-      >
-        Custom
-      </button>
-    </div>
-    </>
-  );
-};
+    return (
+        <div>
+        <NavigationBar>
+            <div>
+                <h1>What type of predictions would you like to make?</h1>
+                <div style={{ display: 'flex', flexDirection: 'column', height: '50vh' }}>
+                    <button
+                        style={{
+                            flex: 1,
+                            fontSize: '2em',
+                            backgroundColor: '#9F2B68',
+                            color: 'white',
+                            border: 'pink',
+                        }}
+                        onClick={handleFootballPredictions}
+                    >
+                        Football Matches
+                    </button>
+                    <button
+                        style={{
+                            flex: 1,
+                            fontSize: '2em',
+                            backgroundColor: '#9F2B68',
+                            color: 'white',
+                            border: 'pink',
+                        }}
+                        onClick={handleMoviesPredictions}
+                    >
+                        Movies
+                    </button>
+                    <button
+                        style={{
+                            flex: 1,
+                            fontSize: '2em',
+                            backgroundColor: '#9F2B68',
+                            color: 'white',
+                            border: 'pink',
+                        }}
+                        onClick={handleAstronomyPredictions}
+                    >
+                        Astronomy
+                    </button>
+                    <button
+                        style={{
+                            flex: 1,
+                            fontSize: '2em',
+                            backgroundColor: '#9F2B68',
+                            color: 'white',
+                            border: 'pink',
+                        }}
+                        onClick={handleWeatherPredictions}
+                    >
+                        Weather
+                    </button>
+                    <button
+                        style={{
+                            flex: 1,
+                            fontSize: '2em',
+                            backgroundColor: '#9F2B68',
+                            color: 'white',
+                            border: 'pink',
+                        }}
+                        onClick={handleCustomPredictions}
+                    >
+                        Custom
+                    </button>
+                </div>
+            </div>
+        </NavigationBar>
+        </div>
+    );
+}
 
 export default PredictionOptions;

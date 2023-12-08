@@ -7,7 +7,7 @@ function MoviesPrediction() {
   const [releaseYear, setReleaseYear] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-  
+
   const years = Array.from({ length: 74 }, (_, index) => (2023 - index).toString());
 
 
