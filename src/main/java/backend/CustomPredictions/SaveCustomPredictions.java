@@ -24,7 +24,6 @@ import static backend.UserInfo.MongoDBEnvisionaryUsers.retrieveUserResolvedPredi
 
 
 public class SaveCustomPredictions {
-
     private static final CustomPrediction prediction = new CustomPrediction();
 
     public static boolean buildCustom(JsonObject input){
@@ -39,11 +38,16 @@ public class SaveCustomPredictions {
     private static boolean saveNewCustomToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
-        Document customPredictionDocument = new Document("predictionType", prediction.getPrediction().getPredictionType())
+        Document predictionDocument = new Document()
+                .append("predictionType", prediction.getPrediction().getPredictionType())
                 .append("predictionContent", prediction.getPrediction().getPredictionContent())
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
                 .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
                 .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
+
+        Document customPredictionDocument = new Document()
+                .append("prediction", predictionDocument);
+
         Bson update = Updates.push("customPredictions", customPredictionDocument);
 
 
