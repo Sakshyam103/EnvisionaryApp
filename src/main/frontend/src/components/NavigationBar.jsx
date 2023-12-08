@@ -33,8 +33,12 @@ function NavigationBar({children}) {
         <nav className="navbar">
             <ul>
                 <li>
-                    <button className="logo-button" onClick={handleMakePredictions}>
-                        <img src={myLogo} alt="logo" className="MyLogo" />
+                    <button className="logo-button" onClick={handleMakePredictions}
+                            style={{textAlign: 'center', color:'white'}}
+
+                    >
+                        <img src={myLogo} alt="logo" className="MyLogo" style={{ marginTop:'-12%', marginBottom:'-12%', marginRight:'-3%'}} />
+                        NVISIONARY
                     </button>
                 </li>
                 <li>

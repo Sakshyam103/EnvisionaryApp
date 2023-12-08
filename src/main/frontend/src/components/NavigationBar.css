@@ -13,15 +13,16 @@
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
 }
 
 .navbar li {
   margin-right: 10px;
+  align-items: center;
 }
 
 .navbar button {
-  color: #fff;
+  color: #ffffff;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
