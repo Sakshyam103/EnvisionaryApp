@@ -78,13 +78,12 @@ public class Controller {
         return "Login successful";
     }
 
-    @RequestMapping(value = "/viewPrediction")
+    @RequestMapping(value = "/viewResolvedPrediction")
     public ArrayList<ResolvedPrediction> viewPrediction() {
         System.out.println("view prediction");
         // TODO: Make each category's view prediction and use correct retrieve methods.
         // THIS IS A TEST WITH A HARDCODED USER
-        ArrayList<ResolvedPrediction> a = MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
-        return a;
+        return SaveCustomPredictions.retrieveUserResolvedPredictions();
     }
 
     @RequestMapping(value = "/viewStatistics")
@@ -238,6 +237,7 @@ public class Controller {
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions("TestUser");
         return MongoDBEnvisionaryUsers.retrieveUserResolvedEntertainmentPredictions(userId);
     }
+
 
     // User descriptive statistics
     @RequestMapping(value = "/viewUserDescriptiveStatistics")

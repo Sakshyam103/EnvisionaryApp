@@ -125,6 +125,29 @@ const ButtonPanel = ({ onButtonClick }) => {
             }
         };
 
+     const handleViewResolved = async () => {
+                try {
+                    const res = await fetch("http://localhost:8080/viewResolvedPrediction", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    if (!res.ok) {
+                        console.error('Request failed with status:', res.status);
+                        const errorText = await res.text();
+                        throw new Error(errorText);
+                    }
+
+                    const data = await res.json();
+                    setPredictionData(data)
+                    console.log(data);
+                    onButtonClick(predictionData);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            };
 
     return (
         <div style={{display: 'flex', flex:'left', flexDirection: 'column' }}>
@@ -134,6 +157,7 @@ const ButtonPanel = ({ onButtonClick }) => {
             <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewSpace}>View Astronomy Prediction</button>
             <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewWeather}>View Weather Prediction</button>
             <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewCustom}>View Custom Prediction</button>
+            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewResolved}>View Resolved Predictions</button>
         </div>
     );
 };

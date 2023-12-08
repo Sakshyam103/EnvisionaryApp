@@ -20,6 +20,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static backend.UserInfo.MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions;
+
 
 public class SaveCustomPredictions {
 
@@ -118,6 +120,25 @@ public class SaveCustomPredictions {
             sample.setPredictionType(value.asJsonObject().getString("predictionType"));
             sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
             sample.setPredictionEndDate(value.asJsonObject().getString("resolveDate"));
+            predictions.add(sample);
+        }
+        return predictions;
+    }
+
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedPredictions(){
+        String jsonDoc = Controller.userDoc.toJson();
+        StringReader stringReader = new StringReader(jsonDoc);
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("resolvedPredictions");
+        ArrayList<ResolvedPrediction> predictions = new ArrayList<>();
+        for(JsonValue value : array){
+            ResolvedPrediction sample = new ResolvedPrediction();
+            sample.setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
+            sample.setPredictionType(value.asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
             predictions.add(sample);
         }
         return predictions;
