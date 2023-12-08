@@ -18,7 +18,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
@@ -250,6 +249,9 @@ public class CelestialBodyPredictionUpdater {
 
             // Initialize an array list of the user's celestial body predictions
             ArrayList<CelestialBodyPrediction> userCelestialBodyPredictions = user.getCelestialBodyPredictions();
+            if (userCelestialBodyPredictions == null) {
+                userCelestialBodyPredictions = new ArrayList<>();
+            }
 
             // Initialize a new array list of celestial body predictions to store predictions that need to be removed
             ArrayList<CelestialBodyPrediction> predictionsToRemove = new ArrayList<>();
@@ -263,8 +265,8 @@ public class CelestialBodyPredictionUpdater {
                 for (CelestialBody celestialBody : celestialBodies) {
                     // If prediction end date == today's date && CelestialBody ID == updated CelestialBody ID && prediction knownCount == updated knownCount
                     if (userCelestialBodyPrediction.getPrediction().getPredictionEndDate().equals(currentDate.toString()) &&
-                        userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) &&
-                        userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
+                        userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().toString().equalsIgnoreCase(celestialBody.getCelestialBodyType().toString()) &&
+                        userCelestialBodyPrediction.getCelestialBody().getKnownCount() == celestialBody.getKnownCount()) {
 
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
@@ -281,6 +283,9 @@ public class CelestialBodyPredictionUpdater {
 
                         // Initialize new array list of ResolvedPredictions.ResolvedPrediction to update
                         ArrayList<ResolvedPrediction> userResolvedPredictions = user.getResolvedPredictions();
+                        if (userResolvedPredictions == null) {
+                            userResolvedPredictions = new ArrayList<>();
+                        }
 
                         // Add the new resolved prediction to the list
                         userResolvedPredictions.add(resolvedCelestialBodyPrediction);
@@ -302,9 +307,9 @@ public class CelestialBodyPredictionUpdater {
                         OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
                     }
 
-                    // If prediction CelestialBody ID == updated CelestialBody ID && knownCount != updated knownCount
-                    if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().equalsIgnoreCase(celestialBody.getCelestialBodyType()) &&
-                        userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
+                    // Else if prediction CelestialBody ID == updated CelestialBody ID && knownCount != updated knownCount
+                    else if (userCelestialBodyPrediction.getCelestialBody().getCelestialBodyType().toString().equals(celestialBody.getCelestialBodyType().toString()) &&
+                            userCelestialBodyPrediction.getCelestialBody().getKnownCount() != celestialBody.getKnownCount()) {
 
                         // Initialize new resolved prediction
                         ResolvedPrediction resolvedCelestialBodyPrediction = new ResolvedPrediction();
