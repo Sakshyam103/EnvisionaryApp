@@ -69,14 +69,16 @@ const JsonTable = ({ data }) => {
                 </tr>
                 </thead>
                 <tbody>
-                {data.map((item, index) => (
-                    <tr key={index} style={tableRowStyle}>
-                        {Object.keys(item).map((key) => (
-                            <td key={key} style={tableCellStyle}>
-                                {item[key]}
-                            </td>
-                        ))}
-                    </tr>
+                  {data.map((row, index) => (
+                   <tr key={index}>
+                     {Object.values(row).map((value, i) => (
+                                                 <td key={i}>
+                                                    {typeof value === 'boolean' ? value.toString() : value}
+                                                 </td>
+                                                ))}
+                                           </tr>
+                                            ))}
+
                 ))}
                 </tbody>
             </table>
