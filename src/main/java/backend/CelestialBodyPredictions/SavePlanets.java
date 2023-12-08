@@ -39,7 +39,9 @@ public class SavePlanets {
                 .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
                 .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
 
-        Document celestialBodyPredictionDocument = new Document("match", prediction.getCelestialBody().getCelestialBodyType())
+        Document celestialBodyPredictionDocument = new Document("celestialBodyType", prediction.getCelestialBody().getCelestialBodyType())
+                .append("knownCount", prediction.getCelestialBody().getKnownCount())
+                .append("updatedDate", prediction.getCelestialBody().getUpdatedDate())
                 .append("prediction", predictionObject);
 
         Bson update = Updates.push("celestialBodyPredictions", celestialBodyPredictionDocument);
@@ -56,7 +58,7 @@ public class SavePlanets {
 
     }
 
-    public static boolean resolveFootballPrediction(JsonObject data){
+    public static boolean resolvePlanetPredictions(JsonObject data){
         String content = data.getString("predictionContent");
         CelestialBodyPrediction active = getSpaceFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
