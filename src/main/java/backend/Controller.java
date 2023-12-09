@@ -151,7 +151,8 @@ public class Controller {
         System.out.println("view custom predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
-        return SaveCustomPredictions.getAllCustomFromMongo();
+        ArrayList<Prediction> predictions = SaveCustomPredictions.getAllCustomFromMongo();
+        return predictions;
     }
 
     @RequestMapping(value = "/viewSpacePredictions")
