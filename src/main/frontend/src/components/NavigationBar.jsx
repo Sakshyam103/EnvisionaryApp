@@ -38,7 +38,7 @@ function NavigationBar({children}) {
             <ul>
                 <li>
                     <button className="logo-button" onClick={handleAbout}
-                            style={{textAlign: 'center', color:'white'}}
+                            style={{textAlign: 'center', color:'black'}}
 
                     >
                         <img src={myLogo} alt="logo" className="MyLogo" style={{ marginTop:'-12%', marginBottom:'-12%', marginRight:'-3%'}} />
@@ -47,27 +47,28 @@ function NavigationBar({children}) {
                 </li>
 
                 <li>
-                    <button className="nav-button" onClick={handleMakePredictions}>
+                    <button className="nav-button" onClick={handleMakePredictions} style={{backgroundColor:'black'}}
+                    >
                         Make Predictions
                     </button>
                 </li>
                 <li>
-                    <button className="nav-button" onClick={handleViewPredictions}>
+                    <button className="nav-button" onClick={handleViewPredictions} style={{backgroundColor:'black'}}>
                         View Predictions
                     </button>
                 </li>
                 <li>
-                    <button className="nav-button" onClick={handleViewStatistics}>
+                    <button className="nav-button" onClick={handleViewStatistics} style={{backgroundColor:'black'}}>
                         View Statistics
                     </button>
                 </li>
                 <li>
-                    <button className="nav-button" onClick={handleResolvePredictions}>
+                    <button className="nav-button" onClick={handleResolvePredictions} style={{backgroundColor:'black'}}>
                         Resolve Predictions
                     </button>
                 </li>
                 <li>
-                    <button className="nav-button" onClick={handleNotifications}>
+                    <button className="nav-button" onClick={handleNotifications} style={{backgroundColor:'black'}}>
                         Notifications
                     </button>
                 </li>

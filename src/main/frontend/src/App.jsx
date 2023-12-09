@@ -15,8 +15,6 @@ import ViewStatistics from "./components/ViewStatistics.jsx";
 import ViewNotifications from "./components/ViewNotifications.jsx";
 import ResolvePredictions from "./components/ResolvePredictions.jsx";
 import AboutUs from "./components/AboutUs.jsx";
-import Particles from "react-tsparticles";
-import {loadSlim} from "@tsparticles/slim";
 import ParticlesBackground from "./components/ParticlesBackground.jsx";
 
 
@@ -24,16 +22,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const particlesOptions = {
-      particles: {
-          number: {
-              value:100,
-          },
-          size: {
-              value:3,
-          },
-      },
-  };
 
   const handleUserLogin = (user) => {
     try {
