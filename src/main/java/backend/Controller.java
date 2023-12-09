@@ -190,7 +190,7 @@ public class Controller {
         System.out.println("view resolved predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions(userId);
+        return SaveCustomPredictions.retrieveUserResolvedPredictions();
     }
 
     // These are all the methods to return the specific categories of resolved predictions
