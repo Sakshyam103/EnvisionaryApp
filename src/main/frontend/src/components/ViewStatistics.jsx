@@ -6,7 +6,7 @@ import JsonTable from "./JsonTable.jsx";
 const ButtonPanel = ({onButtonClick})=> {
     const [statisticsData, setStatisticsData] = useState([]);
 
-    const handleDescriptivePrediction = async () => {
+    const handleDescriptiveStatistics = async () => {
         try {
             const res = await fetch("http://localhost:8080/viewUserDescriptiveStatistics", {
                 method: "GET",
@@ -30,7 +30,7 @@ const ButtonPanel = ({onButtonClick})=> {
         }
     };
 
-const handleInferentialPrediction = async () => {
+const handleInferentialStatistics = async () => {
     try {
         const res = await fetch("http://localhost:8080/viewUserInferentialStatistics", {
             method: "GET",
@@ -53,7 +53,7 @@ const handleInferentialPrediction = async () => {
     }
 };
 
-    const handleOverallDescriptivePrediction = async () => {
+    const handleOverallDescriptiveStatistics = async () => {
         try {
             const res = await fetch("http://localhost:8080/viewOverallDescriptiveStatistics", {
                 method: "GET",
@@ -76,7 +76,7 @@ const handleInferentialPrediction = async () => {
         }
     };
 
-    const handleOverallInferentialPrediction = async () => {
+    const handleOverallInferentialStatistics = async () => {
         try {
             const res = await fetch("http://localhost:8080/viewOverallInferentialStatistics",{
                 method: "GET",
@@ -102,10 +102,10 @@ const handleInferentialPrediction = async () => {
 
     return (
         <div style={{display: 'flex', flex:'left', flexDirection:'column'}}>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%', marginTop: "40px"}} onClick={handleDescriptivePrediction}>View Descriptive Statistics</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleInferentialPrediction}>View Inferential Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallDescriptivePrediction}>View Overall Descriptive Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallInferentialPrediction}>View Overall Inferential Prediction</button>
+            <button style={{marginBottom:'5px', padding:'8px', width:'15%', marginTop: "40px"}} onClick={handleDescriptiveStatistics}>View Descriptive Statistics</button>
+            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleInferentialStatistics}>View Inferential Statistics</button>
+            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallDescriptiveStatistics}>View Overall Descriptive Statistics</button>
+            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallInferentialStatistics}>View Overall Inferential Statistics</button>
         </div>
     );
 };
@@ -162,8 +162,8 @@ const handleInferentialPrediction = async () => {
     //     );
     // };
 
-const PredictionStatsTable = ({ predictionStats }) => {
-    if (predictionStats === null || predictionStats === undefined) {
+const StatisticsStatsTable = ({ StatisticsStats }) => {
+    if (StatisticsStats === null || StatisticsStats === undefined) {
         return(<p> no value to display</p>);
 
     } else {
@@ -177,7 +177,7 @@ const PredictionStatsTable = ({ predictionStats }) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {Object.entries(predictionStats).map(([key, value]) => (
+                    {Object.entries(StatisticsStats).map(([key, value]) => (
                         <tr key={key}>
                             <td>{key}</td>
                             <td>{value !== null ? value : "No value"}</td>
@@ -287,7 +287,7 @@ const tableHeaderStyle = {
 
 const MainContent = ({content})=>(
     <div style={{ flex:'right', marginLeft:'300px', marginTop:'-14%' }}>
-        {<PredictionStatsTable predictionStats={content}/> }
+        {<StatisticsStatsTable StatisticsStats={content}/> }
 
     </div>
 );
