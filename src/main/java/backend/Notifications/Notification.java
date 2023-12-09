@@ -78,12 +78,12 @@ public class Notification {
     // Method to print the Notification object details to the console.
     //
     public void printNotification() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String[] date1 = predictionEndDate.split("T");
         System.out.println("Notification Title: " + notificationTitle);
         System.out.println("Prediction Content: " + predictionContent);
         System.out.println("Prediction Made Date: " + ZonedDateTime.parse(predictionMadeDate).toString());
-        System.out.println("Prediction End Date: " + LocalDate.parse(predictionEndDate).toString());
+        System.out.println("Prediction End Date: " + LocalDate.parse(date1[0]).toString());
     }
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
