@@ -17,6 +17,7 @@ import ResolvePredictions from "./components/ResolvePredictions.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import Particles from "react-tsparticles";
 import {loadSlim} from "@tsparticles/slim";
+import ParticlesBackground from "./components/ParticlesBackground.jsx";
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
   return (
     <Router>
     <div className="app-container">
-        <Particles options={particlesOptions}/>
+        <ParticlesBackground/>
     {!currentUser && (
       <div className='header-container'>
          <div className='logo'> <img src={myLogo} className="logo" alt="My logo" /></div>
