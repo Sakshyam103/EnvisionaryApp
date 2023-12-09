@@ -11,7 +11,6 @@ import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -45,8 +44,7 @@ public class SaveCustomPredictions {
                 .append("remindFrequency", prediction.getPrediction().getRemindFrequency())
                 .append("predictionMadeDate", prediction.getPrediction().getPredictionMadeDate())
                 .append("predictionEndDate", prediction.getPrediction().getPredictionEndDate());
-        Document prediction = new Document("prediction", customPredictionDocument);
-        Bson update = Updates.push("customPredictions", prediction);
+        Bson update = Updates.push("customPredictions", customPredictionDocument);
 
 
         try{
@@ -77,18 +75,23 @@ public class SaveCustomPredictions {
 
         try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
-            UpdateResult delete = GetUserInfo.envisionaryUsersCollection.updateOne(filter, new Document("$pull", new Document("customPredictions", new Document("predictionContent", content))));
+            boolean delete = DeleteStaleCustomPrediction(active);
             // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
             UserDescriptiveStatisticsUpdater.calculateAndSaveUserDescriptiveStatisticsMongoDB(Controller.userId);
             UserInferentialStatisticsUpdater.calculateAndSaveUserInferentialStatisticsMongoDB(Controller.userId);
             OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
             OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
-            return delete.wasAcknowledged();
+            return delete;
         }
         catch(Exception e){
             e.printStackTrace();
             return false;
         }
+    }
+
+    private static boolean DeleteStaleCustomPrediction(CustomPrediction active) {
+        Document removal = new Document();
+        return Controller.userDoc.getList("customPredictions", CustomPrediction.class).remove(active);
     }
 
     private static CustomPrediction getCustomFromMongo(String content){
@@ -113,10 +116,10 @@ public class SaveCustomPredictions {
         for(JsonValue value : array){
 
             Prediction sample = new Prediction();
-            sample.setPredictionMadeDate(value.asJsonObject().getJsonObject("prediction").getString("predictionMadeDate"));
-            sample.setPredictionType(value.asJsonObject().getJsonObject("prediction").getString("predictionType"));
-            sample.setPredictionContent(value.asJsonObject().getJsonObject("prediction").getString("predictionContent"));
-            sample.setPredictionEndDate(value.asJsonObject().getJsonObject("prediction").getString("predictionEndDate"));
+            sample.setPredictionMadeDate(value.asJsonObject().getString("createDate"));
+            sample.setPredictionType(value.asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getString("resolveDate"));
             predictions.add(sample);
         }
         return predictions;
