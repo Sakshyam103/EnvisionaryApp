@@ -9,68 +9,62 @@ const AboutUs = () => {
         <div>
             <NavigationBar>
                 <h2>Who are we?</h2>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginLeft:'-50%' }}>
                         <h3>Kritika Parajuli</h3>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p>
                             <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/kritika-parajuli-517b46248/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/kritika-parajuli-517b46248/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Kritika Parajuli
                             </a>
                         </p>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/kparajul" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/kparajul" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 kparajul
                             </a>
                         </p>
-                    </div>
-                    <div>
                         <h3>Sakshyam Sarki</h3>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/sakshyam-sarki-baa47123b/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/sakshyam-sarki-baa47123b/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Sakshyam Sarki
                             </a>
                         </p>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/Sakshyam103" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/Sakshyam103" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Sakshyam103
                             </a>
                         </p>
                     </div>
-                    <div>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginRight:'-50%', marginTop:'-32%'}}>
                         <h3>Molly Morano</h3>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/molly-morano/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/molly-morano/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Molly Morano
                             </a>
                         </p>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/mmorano401" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/mmorano401" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 mmorano401
                             </a>
                         </p>
-                    </div>
-                    <div>
                         <h3>Brandon LaPointe</h3>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/brandon-lapointe-414427273/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/brandon-lapointe-414427273/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Brandon LaPointe
                             </a>
                         </p>
-                        <p style={{ display: 'flex', alignItems: 'center' }}>
+                        <p >
                             <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/Brandomon" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/Brandomon" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
                                 Brandomon
                             </a>
                         </p>
                     </div>
-                </div>
                 {/*<h4>Details to be posted later:)</h4>*/}
             </NavigationBar>
         </div>
