@@ -2,8 +2,7 @@ package backend.EntertainmentPredictions;
 
 import backend.ResolvedPredictions.ResolvedPrediction;
 import org.json.JSONException;
-import org.json.JSONObject;
-
+import javax.json.JsonObject;
 import java.time.ZonedDateTime;
 
 import static backend.EntertainmentPredictions.EntertainmentPredictionInitializer.resolveEntertainmentPrediction;
@@ -17,7 +16,7 @@ public class buildEntertainmentPrediction {
 
     public static String userID;
 
-    public static String buildMoviePrediction(JSONObject json, String ID) throws JSONException {
+    public static String buildMoviePrediction(JsonObject json, String ID) throws JSONException {
 
         userID = ID;
 
@@ -35,11 +34,12 @@ public class buildEntertainmentPrediction {
 
         prediction.setPredictionEndDate(ZonedDateTime.now().toString());
 
-        if (!check) {
+        if(!check){
             success = saveNewCustomMovieToMongo(prediction);
-            if (success) {
+            if(success){
                 return "Custom Prediction Saved";
-            } else {
+            }
+            else{
                 return "Error Saving Custom Prediction";
             }
         }
@@ -52,15 +52,17 @@ public class buildEntertainmentPrediction {
 
         success = resolveEntertainmentPrediction(userID, prediction);
 
-        if (success) {
+        if(success){
             return String.valueOf(prediction.getResolution());
-        } else {
+        }
+        else{
             return "Error Saving Movie Prediction";
         }
     }
 
-    private static void setPrediction(JSONObject json) throws JSONException {
+    private static void setPrediction(JsonObject json) throws JSONException {
         runEntertainment.movieTitle = json.getString("Prediction");
         runEntertainment.year = json.getInt("ReleaseYear");
     }
 }
+

@@ -2,21 +2,19 @@ package backend.CelestialBodyPredictions;
 
 import backend.BasePredictionObject.Prediction;
 import backend.Controller;
+import backend.CustomPredictions.CustomPrediction;
+import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
 import backend.UserStatistics.UserDescriptiveStatisticsUpdater;
 import backend.UserStatistics.UserInferentialStatisticsUpdater;
-import org.bson.Document;
-import org.bson.conversions.Bson;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
+import javax.json.*;
 import java.io.StringReader;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import java.util.List;
 public class SavePlanets {
     private static final CelestialBodyPrediction prediction = new CelestialBodyPrediction();
 
-    public static boolean buildSpace(JSONObject input) {
+    public static boolean buildSpace(JsonObject input){
         prediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
         prediction.getPrediction().setPredictionType("CelestialBody");
         prediction.getPrediction().setPredictionEndDate(input.getString("resolveDate"));
@@ -36,7 +34,7 @@ public class SavePlanets {
         return saveNewSpaceToMongo();
     }
 
-    private static boolean saveNewSpaceToMongo() {
+    private static boolean saveNewSpaceToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
         Document predictionObject = new Document("predictionType", prediction.getPrediction().getPredictionType())
@@ -52,16 +50,19 @@ public class SavePlanets {
 
         Bson update = Updates.push("celestialBodyPredictions", celestialBodyPredictionDocument);
 
-        try {
+
+        try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
             return true;
-        } catch (Exception ex) {
+        }
+        catch(Exception ex){
             ex.printStackTrace();
             return false;
         }
+
     }
 
-    public static boolean resolvePlanetPredictions(JSONObject data) {
+    public static boolean resolvePlanetPredictions(JsonObject data){
         String content = data.getString("predictionContent");
         CelestialBodyPrediction active = getSpaceFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
@@ -74,7 +75,7 @@ public class SavePlanets {
                 .append("resolvedDate", ZonedDateTime.now().toString());
         Bson update = Updates.push("resolvedPredictions", newResolved);
 
-        try {
+        try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
             boolean delete = DeleteStaleSpacePrediction(active);
             // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
@@ -83,7 +84,8 @@ public class SavePlanets {
             OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
             OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
             return delete;
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
             return false;
         }
@@ -91,43 +93,39 @@ public class SavePlanets {
 
     private static boolean DeleteStaleSpacePrediction(CelestialBodyPrediction active) {
         Document removal = new Document();
-        return Controller.userDoc.getList("celestialBodyPredictions", CelestialBodyPrediction.class).remove(active);
+        return Controller.userDoc.getList("celestialBodyPredictions", FootballMatchPrediction.class).remove(active);
     }
 
-    private static CelestialBodyPrediction getSpaceFromMongo(String content) {
+    private static CelestialBodyPrediction getSpaceFromMongo(String content){
         CelestialBodyPrediction current = new CelestialBodyPrediction();
         List<CelestialBodyPrediction> activeSpace = Controller.userDoc.getList("celestialBodyPredictions", CelestialBodyPrediction.class);
-        for (CelestialBodyPrediction prediction : activeSpace) {
-            if (prediction.getPrediction().getPredictionContent().equalsIgnoreCase(content)) {
+        for(CelestialBodyPrediction prediction : activeSpace){
+            if(prediction.getPrediction().getPredictionContent().equalsIgnoreCase(content)){
                 current = prediction;
             }
         }
         return current;
     }
 
-    public static ArrayList<Prediction> getAllPlanetsFromMongo() {
+    public static ArrayList<Prediction> getAllPlanetsFromMongo(){
         String jsonDoc = Controller.userDoc.toJson();
         StringReader stringReader = new StringReader(jsonDoc);
-        try {
-            JSONObject object = new JSONObject(new JSONTokener(stringReader));
-            JSONArray array = object.getJSONArray("celestialBodyPredictions");
-            ArrayList<Prediction> predictions = new ArrayList<>();
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("celestialBodyPredictions");
+        ArrayList<Prediction> predictions = new ArrayList<>();
 
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject value = array.getJSONObject(i);
-                Prediction sample = new Prediction();
-                sample.setPredictionMadeDate(value.getJSONObject("prediction").getString("predictionMadeDate"));
-                sample.setPredictionType(value.getJSONObject("prediction").getString("predictionType"));
-                sample.setPredictionContent(value.getJSONObject("prediction").getString("predictionContent"));
-                sample.setPredictionEndDate(value.getJSONObject("prediction").getString("predictionEndDate"));
-                sample.setRemindFrequency(value.getJSONObject("prediction").getString("remindFrequency"));
+        for(JsonValue value : array){
+            Prediction sample = new Prediction();
+            sample.setPredictionMadeDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionMadeDate"));
+            sample.setPredictionType(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionType"));
+            sample.setPredictionContent(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionContent"));
+            sample.setPredictionEndDate(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("predictionEndDate"));
+            sample.setRemindFrequency(value.asJsonObject().getJsonObject("prediction").asJsonObject().getString("remindFrequency"));
 
-                predictions.add(sample);
-            }
-            return predictions;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            predictions.add(sample);
         }
+        return predictions;
     }
 }

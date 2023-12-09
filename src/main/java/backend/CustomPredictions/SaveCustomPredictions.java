@@ -2,6 +2,7 @@ package backend.CustomPredictions;
 
 import backend.BasePredictionObject.Prediction;
 import backend.Controller;
+import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.GetUserInfo;
 import backend.OverallStatistics.OverallDescriptiveStatisticsUpdater;
 import backend.OverallStatistics.OverallInferentialStatisticsUpdater;
@@ -12,11 +13,8 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
+import javax.json.*;
 import java.io.StringReader;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -24,10 +22,11 @@ import java.util.List;
 
 import static backend.UserInfo.MongoDBEnvisionaryUsers.retrieveUserResolvedPredictions;
 
+
 public class SaveCustomPredictions {
     private static final CustomPrediction prediction = new CustomPrediction();
 
-    public static boolean buildCustom(JSONObject input) {
+    public static boolean buildCustom(JsonObject input){
         prediction.getPrediction().setPredictionMadeDate(ZonedDateTime.now().toString());
         prediction.getPrediction().setPredictionType("Custom");
         prediction.getPrediction().setPredictionContent(input.getString("Prediction"));
@@ -36,7 +35,7 @@ public class SaveCustomPredictions {
         return saveNewCustomToMongo();
     }
 
-    private static boolean saveNewCustomToMongo() {
+    private static boolean saveNewCustomToMongo(){
         Bson filter = Filters.eq("userID", Controller.userId);
 
         Document predictionDocument = new Document()
@@ -51,16 +50,19 @@ public class SaveCustomPredictions {
 
         Bson update = Updates.push("customPredictions", customPredictionDocument);
 
-        try {
+
+        try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
             return true;
-        } catch (Exception ex) {
+        }
+        catch(Exception ex){
             ex.printStackTrace();
             return false;
         }
+
     }
 
-    public static boolean resolveCustomPrediction(JSONObject data) {
+    public static boolean resolveCustomPrediction(JsonObject data){
         String content = data.getString("predictionContent");
         CustomPrediction active = getCustomFromMongo(content);
         Bson filter = Filters.eq("userID", Controller.userId);
@@ -73,7 +75,7 @@ public class SaveCustomPredictions {
                 .append("resolvedDate", ZonedDateTime.now().toString());
         Bson update = Updates.push("resolvedPredictions", newResolved);
 
-        try {
+        try{
             GetUserInfo.envisionaryUsersCollection.updateOne(filter, update);
             boolean delete = DeleteStaleCustomPrediction(active);
             // Update UserStatistics.UserDescriptiveStatistics, UserStatistics.UserInferentialStatistics, and OverallStatistics
@@ -82,7 +84,8 @@ public class SaveCustomPredictions {
             OverallDescriptiveStatisticsUpdater.calculateAndSaveOverallDescriptiveStatisticsMongoDB();
             OverallInferentialStatisticsUpdater.calculateAndSaveOverallInferentialStatisticsMongoDB();
             return delete;
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
             return false;
         }
@@ -93,60 +96,55 @@ public class SaveCustomPredictions {
         return Controller.userDoc.getList("customPredictions", CustomPrediction.class).remove(active);
     }
 
-    private static CustomPrediction getCustomFromMongo(String content) {
+    private static CustomPrediction getCustomFromMongo(String content){
         CustomPrediction current = new CustomPrediction();
         List<CustomPrediction> activeCustom = Controller.userDoc.getList("customPredictions", CustomPrediction.class);
-        for (CustomPrediction prediction : activeCustom) {
-            if (prediction.getPrediction().getPredictionContent().equalsIgnoreCase(content)) {
+        for(CustomPrediction prediction : activeCustom){
+            if(prediction.getPrediction().getPredictionContent().equalsIgnoreCase(content)){
                 current = prediction;
             }
         }
         return current;
     }
 
-    public static ArrayList<CustomPrediction> getAllCustomFromMongo() {
+    public static ArrayList<CustomPrediction> getAllCustomFromMongo(){
         String jsonDoc = Controller.userDoc.toJson();
         StringReader stringReader = new StringReader(jsonDoc);
-        try {
-            JSONObject object = new JSONObject(new JSONTokener(stringReader));
-            JSONArray array = object.getJSONArray("customPredictions");
-            ArrayList<CustomPrediction> predictions = new ArrayList<>();
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject value = array.getJSONObject(i);
-                CustomPrediction newCustomPrediction = new CustomPrediction();
-                newCustomPrediction.getPrediction().setPredictionType(value.getString("predictionType"));
-                newCustomPrediction.getPrediction().setPredictionContent(value.getString("predictionContent"));
-                newCustomPrediction.getPrediction().setPredictionMadeDate(value.getString("predictionMadeDate"));
-                newCustomPrediction.getPrediction().setPredictionEndDate(value.getString("predictionEndDate"));
-                predictions.add(newCustomPrediction);
-            }
-            return predictions;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("customPredictions");
+        ArrayList<CustomPrediction> predictions = new ArrayList<>();
+        for(JsonValue value : array){
+            CustomPrediction newCustomPrediction = new CustomPrediction();
+            newCustomPrediction.getPrediction().setPredictionType(value.asJsonObject().getString("predictionType"));
+            newCustomPrediction.getPrediction().setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            newCustomPrediction.getPrediction().setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
+            newCustomPrediction.getPrediction().setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
+            predictions.add(newCustomPrediction);
         }
+        return predictions;
     }
 
-    public static ArrayList<ResolvedPrediction> retrieveUserResolvedPredictions() {
+    public static ArrayList<ResolvedPrediction> retrieveUserResolvedPredictions(){
         String jsonDoc = Controller.userDoc.toJson();
         StringReader stringReader = new StringReader(jsonDoc);
-        try {
-            JSONObject object = new JSONObject(new JSONTokener(stringReader));
-            JSONArray array = object.getJSONArray("resolvedPredictions");
-            ArrayList<ResolvedPrediction> predictions = new ArrayList<>();
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject value = array.getJSONObject(i);
-                ResolvedPrediction newResolvedCustomPrediction = new ResolvedPrediction();
-                newResolvedCustomPrediction.setPredictionMadeDate(value.getString("predictionMadeDate"));
-                newResolvedCustomPrediction.setPredictionType(value.getString("predictionType"));
-                newResolvedCustomPrediction.setPredictionContent(value.getString("predictionContent"));
-                newResolvedCustomPrediction.setPredictionEndDate(value.getString("predictionEndDate"));
-                predictions.add(newResolvedCustomPrediction);
-            }
-            return predictions;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+        JsonReaderFactory factory = Json.createReaderFactory(null);
+        JsonReader reader = factory.createReader(stringReader);
+        JsonObject object = reader.readObject();
+        JsonArray array = object.getJsonArray("resolvedPredictions");
+        ArrayList<ResolvedPrediction> predictions = new ArrayList<>();
+        for(JsonValue value : array){
+            ResolvedPrediction newResolvedCustomPrediction = new ResolvedPrediction();
+            newResolvedCustomPrediction.setPredictionMadeDate(value.asJsonObject().getString("predictionMadeDate"));
+            newResolvedCustomPrediction.setPredictionType(value.asJsonObject().getString("predictionType"));
+            newResolvedCustomPrediction.setPredictionContent(value.asJsonObject().getString("predictionContent"));
+            newResolvedCustomPrediction.setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
+            predictions.add(newResolvedCustomPrediction);
         }
+        return predictions;
     }
 }
+
+
+
