@@ -9,7 +9,7 @@ const ResolvePredictions = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:8080/viewEntertainmentPredictions", {
+                const res = await fetch("http://localhost:8080/viewCustomPredictions", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
