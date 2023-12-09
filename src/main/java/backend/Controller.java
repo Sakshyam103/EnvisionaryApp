@@ -2,7 +2,6 @@ package backend;
 
 import backend.BasePredictionObject.Prediction;
 import backend.CelestialBodyPredictions.CelestialBody;
-import backend.CelestialBodyPredictions.CelestialBodyPrediction;
 import backend.CelestialBodyPredictions.MongoDBCelestialBodyData;
 import backend.CelestialBodyPredictions.SavePlanets;
 import backend.CustomPredictions.CustomPrediction;
@@ -10,11 +9,9 @@ import backend.CustomPredictions.SaveCustomPredictions;
 import backend.EntertainmentPredictions.buildEntertainmentPrediction;
 import backend.EntertainmentPredictions.entertainmentAmountCheck;
 import backend.FootballMatchPredictions.FootballMatchList;
-import backend.FootballMatchPredictions.FootballMatchPrediction;
 import backend.FootballMatchPredictions.MongoDBFootballMatchData;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.GetMapping;
 import backend.FootballMatchPredictions.SaveFootballPredictions;
+import backend.Notifications.Notification;
 import backend.OverallStatistics.MongoDBOverallDescriptiveStatistics;
 import backend.OverallStatistics.MongoDBOverallInferentialStatistics;
 import backend.OverallStatistics.OverallDescriptiveStatistics;
@@ -24,30 +21,14 @@ import backend.UserInfo.MongoDBEnvisionaryUsers;
 import backend.UserStatistics.UserDescriptiveStatistics;
 import backend.UserStatistics.UserInferentialStatistics;
 import backend.WeatherPredictions.SaveWeatherPredictions;
-import backend.WeatherPredictions.WeatherPrediction;
 import org.bson.Document;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.bind.annotation.RequestHeader;
-//import org.springframework.web.bind.annotation.RequestBody;
-// import org.springframework.web.bind.annotation.RequestHeader;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.context.annotation.Bean;
-// import org.springframework.context.annotation.Configuration;
-// import org.springframework.http.MediaType;
-// import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-// import org.springframework.stereotype.Service;
-//import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.StringReader;
 import java.util.ArrayList;
 
 import org.json.*;
-
-import javax.json.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -111,12 +92,9 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewNotification")
-    public ArrayList<String> viewNotification() {
+    public ArrayList<Notification> viewNotification() {
         System.out.println("view notification");
-        ArrayList<String> a = new ArrayList<>();
-        a.add("rice");
-        a.add("ball");
-        return a;
+        return MongoDBEnvisionaryUsers.retrieveUserNotifications(userId);
     }
 
 
@@ -147,7 +125,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewCustomPredictions")
-    public ArrayList<Prediction> viewCustomPredictions() {
+    public ArrayList<CustomPrediction> viewCustomPredictions() {
         System.out.println("view custom predictions");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserCustomPredictions("TestUser");
@@ -314,109 +292,110 @@ public class Controller {
 
     // Frontend to Backend
     // Saving the Predictions
-    @RequestMapping(value = "/movies")
-    public @ResponseBody String saveUserMovie(@RequestBody(required = false) String data) throws JSONException {
-        System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
-        String success = buildEntertainmentPrediction.buildMoviePrediction(object, userId);
-        userDoc = GetUserInfo.getTheDoc();
-        return success;
+    @PostMapping(value = "/movies")
+    public @ResponseBody String saveUserMovie(@RequestBody(required = false) String data) {
+        try {
+            System.out.println(data);
+            JSONObject object = new JSONObject(data);
+            String success = buildEntertainmentPrediction.buildMoviePrediction(object, userId);
+            userDoc = GetUserInfo.getTheDoc();
+            return success;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error in saving Movie Prediction";
+        }
     }
 
     @RequestMapping(value = "/custom")
-    public @ResponseBody boolean saveUserCustom(@RequestBody(required = false) String data) throws JSONException {
+    public @ResponseBody boolean saveUserCustom(@RequestBody(required = false) String data) {
         System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
+
+        JSONObject object = new JSONObject(data);
+
         boolean success = SaveCustomPredictions.buildCustom(object);
         userDoc = GetUserInfo.getTheDoc();
-        if(success){
+
+        if (success) {
             System.out.println("Custom Prediction Saved");
-            return success;
-        }
-        else{
+        } else {
             System.out.println("Error in saving Custom Prediction");
+        }
+
+        return success;
+    }
+
+    @PostMapping(value = "/weather")
+    public @ResponseBody boolean saveUserWeather(@RequestBody(required = false) String data) {
+        try {
+            System.out.println(data);
+            JSONObject object = new JSONObject(data);
+            boolean success = SaveWeatherPredictions.buildWeather(object);
+            userDoc = GetUserInfo.getTheDoc();
+            if (success) {
+                System.out.println("Weather Prediction Saved");
+            } else {
+                System.out.println("Error in saving Weather Prediction");
+            }
             return success;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    @RequestMapping(value = "/weather")
-    public @ResponseBody boolean saveUserWeather(@RequestBody(required = false) String data) throws JSONException {
-        System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
-        boolean success = SaveWeatherPredictions.buildWeather(object);
-        userDoc = GetUserInfo.getTheDoc();
-        if(success){
-            System.out.println("Weather Prediction Saved");
+    @PostMapping(value = "/football")
+    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) {
+        try {
+            System.out.println(data);
+            JSONObject object = new JSONObject(data);
+            boolean success = SaveFootballPredictions.buildFootball(object);
+            userDoc = GetUserInfo.getTheDoc();
+            if (success) {
+                System.out.println("Football Prediction Saved");
+            } else {
+                System.out.println("Error in saving Football Prediction");
+            }
             return success;
-        }
-        else{
-            System.out.println("Error in saving Weather Prediction");
-            return success;
-        }
-    }
-
-    @RequestMapping(value = "/football")
-    public @ResponseBody boolean saveUserFootball(@RequestBody(required = false) String data) throws JsonException {
-        System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
-        boolean success = SaveFootballPredictions.buildFootball(object);
-        userDoc = GetUserInfo.getTheDoc();
-        if(success){
-            System.out.println("Football Prediction Saved");
-            return success;
-        }
-        else{
-            System.out.println("Error in saving Football Prediction");
-            return success;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    @RequestMapping(value = "/space")
-    public @ResponseBody boolean saveUserSpace(@RequestBody(required = false) String data) throws JSONException {
-        System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
-        boolean success = SavePlanets.buildSpace(object);
-        userDoc = GetUserInfo.getTheDoc();
-        if(success){
-            System.out.println("Space Prediction Saved");
+    @PostMapping(value = "/space")
+    public @ResponseBody boolean saveUserSpace(@RequestBody(required = false) String data) {
+        try {
+            System.out.println(data);
+            JSONObject object = new JSONObject(data);
+            boolean success = SavePlanets.buildSpace(object);
+            userDoc = GetUserInfo.getTheDoc();
+            if (success) {
+                System.out.println("Space Prediction Saved");
+            } else {
+                System.out.println("Error in saving Space Prediction");
+            }
             return success;
-        }
-        else{
-            System.out.println("Error in saving Space Prediction");
-            return success;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
     @RequestMapping(value = "/customResolve")
-    public @ResponseBody boolean resolveCustom(@RequestBody(required = false) String data) throws JSONException {
-        System.out.println(data);
-        StringReader stringReader = new StringReader(data);
-        JsonReaderFactory factory = Json.createReaderFactory(null);
-        JsonReader reader = factory.createReader(stringReader);
-        JsonObject object = reader.readObject();
-        boolean success = SaveCustomPredictions.resolveCustomPrediction(object);
-        if(success){
-            System.out.println("Custom Prediction Resolved");
+    public @ResponseBody boolean resolveCustom(@RequestBody(required = false) String data) {
+        try {
+            System.out.println(data);
+            JSONObject object = new JSONObject(data);
+            boolean success = SaveCustomPredictions.resolveCustomPrediction(object);
+            if (success) {
+                System.out.println("Custom Prediction Resolved");
+            } else {
+                System.out.println("Error in saving Custom Prediction Resolved");
+            }
             return success;
-        }
-        else{
-            System.out.println("Error in saving Custom Prediction Resolved");
-            return success;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
     @RequestMapping(value = "/movieCheck")

@@ -1,6 +1,5 @@
 package backend;
 
-import backend.UserInfo.EnvisionaryUser;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
@@ -39,7 +38,7 @@ public class GetUserInfo {
 
     public static MongoClient connectToMongoDB() {
         Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
-        ConnectionString mongoUri = new ConnectionString("mongodb+srv://BrandonLaPointe:L5AMM7CiM1F2qjz@envisionarycluster.19uobkz.mongodb.net/?retryWrites=true&w=majority");
+        ConnectionString mongoUri = new ConnectionString("mongodb+srv://" + System.getenv("MONGO_USER") + ":" + System.getenv("MONGO_DB_PASSWORD") + "@" + System.getenv("MONGO_CLUSTER") + ".19uobkz.mongodb.net/?retryWrites=true&w=majority");
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
         MongoClientSettings settings = MongoClientSettings.builder()
