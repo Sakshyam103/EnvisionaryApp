@@ -49,7 +49,7 @@ function ViewNotifications() {
     // Return the component JSX
     return (
         <div>
-
+            <NavigationBar>
                 <p>{notificationData}</p>
                 {/*{notificationData.map((item, index) => (*/}
                 {/*    <JsonTable key={index} data={item} />*/}
@@ -57,7 +57,7 @@ function ViewNotifications() {
 
                 {/* Render the JsonTable component with the notificationData */}
                 {/*<JsonTable data={notificationData} />*/}
-
+            </NavigationBar>
         </div>
     );
 }
