@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between; /* Align items with space in-between */
   align-items: center; /* Center items vertically */
+  opacity: 1;
 }
 
 .navbar ul {
@@ -14,24 +15,29 @@
   padding: 0;
   display: flex;
   align-items: center;
+  opacity: 1;
 }
 
 .navbar li {
   margin-right: 10px;
   align-items: center;
+  opacity: 1;
 }
 
 .navbar button {
-  color: #ffffff;
+  color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  z-index: 2;
+  opacity: 1;
 }
 
 .navbar button:hover {
   background-color: #b929a8;
+  opacity: 0.8;
 }
 
 .logo-button {
@@ -39,10 +45,14 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  opacity: 1;
 }
 
 .MyLogo {
   width: 60px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   margin-right: 10px; /* Adjust the margin to control the space between the logo and buttons */
+  opacity: 1;
 }
+
+
