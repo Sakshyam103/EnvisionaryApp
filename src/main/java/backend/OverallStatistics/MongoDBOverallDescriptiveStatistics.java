@@ -24,7 +24,7 @@ public class MongoDBOverallDescriptiveStatistics {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     private static final String DB_NAME = "Envisionary";
-    private static String COLLECTION_NAME = "OverallStatistics.OverallDescriptiveStatistics";
+    private static String COLLECTION_NAME = "OverallDescriptiveStatistics";
 
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     // connectToMongoDB
@@ -69,12 +69,12 @@ public class MongoDBOverallDescriptiveStatistics {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static void retrieveCollectionAndDisplay() {
-        // Connect to MongoDB OverallStatistics.OverallDescriptiveStatistics collection
+        // Connect to MongoDB OverallDescriptiveStatistics collection
         MongoClient mongoClient = connectToMongoDB();
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<OverallDescriptiveStatistics> collection = database.getCollection(COLLECTION_NAME, OverallDescriptiveStatistics.class);
 
-        // Try retrieving the collection of OverallStatistics.OverallDescriptiveStatistics
+        // Try retrieving the collection of OverallDescriptiveStatistics
         try (MongoCursor<OverallDescriptiveStatistics> cursor = collection.find().iterator()) {
             while (cursor.hasNext()) {
                 OverallDescriptiveStatistics currentOverallDescriptiveStatistics = cursor.next();
@@ -94,18 +94,18 @@ public class MongoDBOverallDescriptiveStatistics {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static OverallDescriptiveStatistics retrieveCollection() {
-        // Connect to MongoDB OverallStatistics.OverallDescriptiveStatistics collection
+        // Connect to MongoDB OverallDescriptiveStatistics collection
         MongoClient mongoClient = connectToMongoDB();
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<OverallDescriptiveStatistics> collection = database.getCollection(COLLECTION_NAME, OverallDescriptiveStatistics.class);
 
-        // Initialize a new OverallStatistics.OverallDescriptiveStatistics object to store the retrieved data
+        // Initialize a new OverallDescriptiveStatistics object to store the retrieved data
         OverallDescriptiveStatistics overallDescriptiveStatistics = null;
 
-        // Try retrieving the collection of OverallStatistics.OverallDescriptiveStatistics
+        // Try retrieving the collection of OverallDescriptiveStatistics
         try (MongoCursor<OverallDescriptiveStatistics> cursor = collection.find().iterator()) {
             while (cursor.hasNext()) {
-                // Add the retrieved OverallStatistics.OverallDescriptiveStatistics to the list
+                // Add the retrieved OverallDescriptiveStatistics to the list
                 overallDescriptiveStatistics = cursor.next();
             }
         } catch (MongoException me) {
@@ -115,7 +115,7 @@ public class MongoDBOverallDescriptiveStatistics {
         // Close the connection when done working with the client
         mongoClient.close();
 
-        // Return the ArrayList of OverallStatistics.OverallDescriptiveStatistics
+        // Return the ArrayList of OverallDescriptiveStatistics
         return overallDescriptiveStatistics;
     }
 
@@ -124,7 +124,7 @@ public class MongoDBOverallDescriptiveStatistics {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static void updateDocument(OverallDescriptiveStatistics overallDescriptiveStatistics) {
-        // Connect to MongoDB OverallStatistics.OverallDescriptiveStatistics collection
+        // Connect to MongoDB OverallDescriptiveStatistics collection
         MongoClient mongoClient = connectToMongoDB();
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<OverallDescriptiveStatistics> collection = database.getCollection(COLLECTION_NAME, OverallDescriptiveStatistics.class);
@@ -148,16 +148,16 @@ public class MongoDBOverallDescriptiveStatistics {
                 //,Updates.set("updatedDate", ZonedDateTime.now()) // Add and update an "updatedDate" field with the current ZonedDateTime to keep track of updates
         );
 
-        // Try to update the current OverallStatistics.OverallDescriptiveStatistics
+        // Try to update the current OverallDescriptiveStatistics
         try {
             UpdateResult updateResult = collection.updateOne(filter, update);
             if (updateResult.getModifiedCount() > 0) {
-                System.out.println("Successfully updated OverallStatistics.OverallDescriptiveStatistics");
+                System.out.println("Successfully updated OverallDescriptiveStatistics");
             } else {
-                System.out.println("No changes made for OverallStatistics.OverallDescriptiveStatistics");
+                System.out.println("No changes made for OverallDescriptiveStatistics");
             }
         } catch (MongoException me) {
-            System.err.println("ERROR - Unable to update OverallStatistics.OverallDescriptiveStatistics due to an error: " + me);
+            System.err.println("ERROR - Unable to update OverallDescriptiveStatistics due to an error: " + me);
         }
 
         // Close the connection when done working with the client
@@ -169,7 +169,7 @@ public class MongoDBOverallDescriptiveStatistics {
     //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
     //
     public static void deleteAllDocuments() {
-        // Connect to MongoDB OverallStatistics.OverallDescriptiveStatistics collection
+        // Connect to MongoDB OverallDescriptiveStatistics collection
         MongoClient mongoClient = connectToMongoDB();
         MongoDatabase database = mongoClient.getDatabase(DB_NAME);
         MongoCollection<OverallDescriptiveStatistics> collection = database.getCollection(COLLECTION_NAME, OverallDescriptiveStatistics.class);
@@ -188,16 +188,16 @@ public class MongoDBOverallDescriptiveStatistics {
 
     public static void main(String[] args) {
         // TODO: CRUD CREATE
-        //insertIndividualDocument(OverallStatistics.OverallDescriptiveStatisticsUpdater.loadOverallDescriptiveStatistics());
+        //insertIndividualDocument(OverallDescriptiveStatisticsUpdater.loadOverallDescriptiveStatistics());
 
         // TODO: CRUD READ
         //retrieveCollectionAndDisplay();
 
-        //OverallStatistics.OverallDescriptiveStatistics overallDescriptiveStatistics = OverallStatistics.MongoDBOverallDescriptiveStatistics.retrieveCollection();
+        //OverallDescriptiveStatistics overallDescriptiveStatistics = MongoDBOverallDescriptiveStatistics.retrieveCollection();
         //overallDescriptiveStatistics.printOverallDescriptiveStatistics();
 
         // TODO: CRUD UPDATE
-        //updateDocument(OverallStatistics.OverallDescriptiveStatisticsUpdater.loadOverallDescriptiveStatistics());
+        //updateDocument(OverallDescriptiveStatisticsUpdater.loadOverallDescriptiveStatistics());
 
         // TODO CRUD DELETE
         //deleteAllDocuments();
