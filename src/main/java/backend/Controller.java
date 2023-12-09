@@ -15,6 +15,7 @@ import backend.FootballMatchPredictions.MongoDBFootballMatchData;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.GetMapping;
 import backend.FootballMatchPredictions.SaveFootballPredictions;
+import backend.Notifications.Notification;
 import backend.OverallStatistics.MongoDBOverallDescriptiveStatistics;
 import backend.OverallStatistics.MongoDBOverallInferentialStatistics;
 import backend.OverallStatistics.OverallDescriptiveStatistics;
@@ -44,6 +45,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.json.*;
 
@@ -86,14 +88,14 @@ public class Controller {
         return SaveCustomPredictions.retrieveUserResolvedPredictions();
     }
 
-    @RequestMapping(value = "/viewStatistics")
-    public ArrayList<String> viewStatistics() {
-        System.out.println("view statistics");
-        ArrayList<String> a = new ArrayList<>();
-        a.add("eat");
-        a.add("ball");
-        return a;
-    }
+//    @RequestMapping(value = "/viewStatistics")
+//    public ArrayList<String> viewStatistics() {
+//        System.out.println("view statistics");
+//        ArrayList<String> a = new ArrayList<>();
+//        a.add("eat");
+//        a.add("ball");
+//        return a;
+//    }
 
     @RequestMapping(value = "/sendMatches")
     public @ResponseBody String sendMatches(@RequestBody(required = false) String idString) throws JSONException {
@@ -111,12 +113,18 @@ public class Controller {
     }
 
     @RequestMapping(value = "/viewNotification")
-    public ArrayList<String> viewNotification() {
+    public ArrayList<Notification> viewNotification() {
         System.out.println("view notification");
-        ArrayList<String> a = new ArrayList<>();
-        a.add("rice");
-        a.add("ball");
-        return a;
+       // ArrayList<String> a = new ArrayList<>();
+        if(MongoDBEnvisionaryUsers.retrieveUserNotifications("TestUser")!=null){
+        for(Notification a: Objects.requireNonNull(MongoDBEnvisionaryUsers.retrieveUserNotifications("TestUser"))){
+            a.printNotification();
+        }
+        //System.out.println(MongoDBEnvisionaryUsers.retrieveUserNotifications(userId));
+        return MongoDBEnvisionaryUsers.retrieveUserNotifications("TestUser");}
+        else{
+            return new ArrayList<Notification>();
+        }
     }
 
 
@@ -254,14 +262,23 @@ public class Controller {
         System.out.println("view user inferential statistics");
         // THIS IS A TEST WITH A HARDCODED USER
         //return MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics("TestUser");
-        return MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId);
+        if(MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId)!=null){
+        return MongoDBEnvisionaryUsers.retrieveUserInferentialStatistics(userId);}
+        else {
+            return new UserInferentialStatistics();
+        }
     }
 
     // Overall descriptive statistics
     @RequestMapping(value = "/viewOverallDescriptiveStatistics")
     public OverallDescriptiveStatistics viewOverallDescriptiveStatistics() {
         System.out.println("view overall descriptive statistics");
-        return MongoDBOverallDescriptiveStatistics.retrieveCollection();
+        System.out.println(MongoDBOverallDescriptiveStatistics.retrieveCollection());
+        if(MongoDBOverallDescriptiveStatistics.retrieveCollection()!=null){
+        return MongoDBOverallDescriptiveStatistics.retrieveCollection();}
+        else {
+            return new OverallDescriptiveStatistics();
+        }
     }
 
     // Overall inferential statistics - mainly need to display the most and least correct categories for the user - I can explain more in person

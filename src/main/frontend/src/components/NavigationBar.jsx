@@ -47,8 +47,7 @@ function NavigationBar({children}) {
                 </li>
 
                 <li>
-                    <button className="nav-button" onClick={handleMakePredictions}
-                    >
+                    <button className="nav-button" onClick={handleMakePredictions}>
                         Make Predictions
                     </button>
                 </li>

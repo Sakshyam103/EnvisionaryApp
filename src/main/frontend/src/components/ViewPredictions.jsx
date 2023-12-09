@@ -233,6 +233,7 @@ const MainContent = ({ content }) => (
 const ViewPredictions = () => {
     const [displayedContent, setDisplayedContent] = useState('');
 
+
     const handleButtonClick = (content) => {
         setDisplayedContent(content);
     };
