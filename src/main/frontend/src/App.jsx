@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import myLogo from './assets/myLogo.png'
-import particles from "./components/Particles.jsx";
 import './App.css'
 import SignIn from './components/oauth'
 import NavigationBar from './components/NavigationBar.jsx';
@@ -16,13 +15,24 @@ import ViewStatistics from "./components/ViewStatistics.jsx";
 import ViewNotifications from "./components/ViewNotifications.jsx";
 import ResolvePredictions from "./components/ResolvePredictions.jsx";
 import AboutUs from "./components/AboutUs.jsx";
-import ParticlesBackground from "./components/ParticlesBackground.jsx";
+import Particles from "react-tsparticles";
+import {loadSlim} from "@tsparticles/slim";
 
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const particlesOptions = {
+      particles: {
+          number: {
+              value:100,
+          },
+          size: {
+              value:3,
+          },
+      },
+  };
 
   const handleUserLogin = (user) => {
     try {
@@ -35,16 +45,13 @@ function App() {
     }
   };
   return (
-      <>
-      <ParticlesBackground/>
     <Router>
     <div className="app-container">
-
-        {currentUser && <NavigationBar/>}
-        {!currentUser && (
+        <Particles options={particlesOptions}/>
+    {!currentUser && (
       <div className='header-container'>
          <div className='logo'> <img src={myLogo} className="logo" alt="My logo" /></div>
-          <h2 style={{marginLeft:'-11%'}}>NVISIONARY</h2>
+          <h2 style={{marginLeft:'-11%'}}>nvisionary</h2>
       </div>)}
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -194,15 +201,10 @@ function App() {
               )
           }/>
         </Routes>
-
       </div>
       </Router>
-      </>
 
   );
-
-
-
 
 }
 

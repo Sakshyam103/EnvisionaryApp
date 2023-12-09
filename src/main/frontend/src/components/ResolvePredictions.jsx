@@ -37,7 +37,9 @@ const ResolvePredictions = () => {
 
     return (
         <div>
+            <NavigationBar>
                 {loading ? <p>Loading...</p> : <JsonTable data={predictionData} />}
+            </NavigationBar>
         </div>
     );
 };
