@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavigationBar from "./NavigationBar.jsx";
 
 function PredictionOptions({ user }) {
     const navigate = useNavigate();
@@ -32,7 +31,6 @@ function PredictionOptions({ user }) {
 
     return (
         <div>
-        <NavigationBar>
             <div>
                 <h1>What type of predictions would you like to make?</h1>
                 <div style={{ display: 'flex', flexDirection: 'column', height: '50vh' }}>
@@ -98,7 +96,7 @@ function PredictionOptions({ user }) {
                     </button>
                 </div>
             </div>
-        </NavigationBar>
+
         </div>
     );
 }

@@ -166,7 +166,6 @@ const ViewStatistics = () => {
     }, []);
 
     return (
-        <NavigationBar>
         <div>
 
             <p>{viewDeferential}</p>
@@ -179,7 +178,6 @@ const ViewStatistics = () => {
             {/*    </div>*/}
             {/*)}*/}
         </div>
-        </NavigationBar>
     );
 };
 

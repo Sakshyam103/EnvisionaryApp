@@ -31,7 +31,7 @@ function SignIn({ onUserLogin }) {
       .then(data => {
         console.log(data);
         alert(data);
-        navigate('/Home')
+        navigate('/Home/AboutUs')
       }).catch(error=>{
         console.error('Error: ', error);
       })
@@ -77,7 +77,7 @@ function SignIn({ onUserLogin }) {
     <div className="SignIn">
       <div id="signInDiv"></div>
 
-      {Object.keys(user).length !== 0 && navigate('/Home')}
+      {/*{Object.keys(user).length !== 0 && navigate('/AboutUs')}*/}
 
   {/*    // <div>*/}
   {/*//   <img src={user.picture} alt={user.name} />*/}

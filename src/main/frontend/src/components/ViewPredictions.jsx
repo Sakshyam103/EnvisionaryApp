@@ -238,12 +238,12 @@ const ViewPredictions = () => {
     };
 
     return (
-        <NavigationBar>
+
             <div style={{ height: '100vh', overflowY: 'auto' }}>
                 <ButtonPanel onButtonClick={handleButtonClick} />
                 <MainContent content={displayedContent} />
             </div>
-        </NavigationBar>
+
     );
 };
 
