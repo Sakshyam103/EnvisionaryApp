@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps:{
-    main: 'src/main/frontend/src/main.jsx'
+      entries: ['src/main/frontend/src/main.jsx'],
   },
   server: {
     port: 3000
