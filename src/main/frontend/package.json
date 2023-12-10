@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run custom-builf && npm run vite-build",
+    "build": "npm run custom-build && npm run vite-build && npm audit fix",
     "start": "vite preview",
     "run": "npm run dev",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
