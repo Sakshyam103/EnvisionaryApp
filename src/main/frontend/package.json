@@ -1,14 +1,12 @@
 {
-  "framework": "vite",
-  "builds" : [{"src": "vite.config.js","use" :  "@vercel/node"}],
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite preview",
-    "build": "vite build",
     "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
     "run": "npm run dev",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -36,6 +34,6 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
-    "vite": "^5.0.2"
+    "vite": "^5.0.7"
   }
 }
