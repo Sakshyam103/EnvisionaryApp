@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';
+import NavigationBar from "./NavigationBar.jsx";
 
 
 function MoviesPrediction() {
@@ -7,6 +9,12 @@ function MoviesPrediction() {
   const [releaseYear, setReleaseYear] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+  function isDisabled() {
+    if(movie !== '' && releaseYear !== ''){
+    return false;}
+    else{return true;}
+  }
 
   const years = Array.from({ length: 74 }, (_, index) => (2023 - index).toString());
 
@@ -52,52 +60,68 @@ function MoviesPrediction() {
   }
 
   return (
-    <div style={{ textAlign: 'center', margin: '20px' }}>
-      <h2>I predict</h2>
-      <input
-        type="text"
-        value={movie}
-        onChange={(e) => setMovie(e.target.value)}
-        placeholder="Enter a movie"
-        style={{ padding: '10px', fontSize: '16px' }}
-      />
+  <NavigationBar>
+    <div className="container-fluid d-flex flex-column align-items-center justify-content-center">
+      <div className="row mb-3">
+        <h1>I predict...</h1>
+      </div>
 
-      <h2>was released in</h2>
-      <select
-        value={releaseYear}
-        onChange={(e) => setReleaseYear(e.target.value)}
-        style={{ padding: '10px', fontSize: '16px' }}
-      >
-        <option value="" disabled>Select release year</option>
-        {years.map((year, index) => (
-          <option key={index} value={year}>
-            {year}
-          </option>
-        ))}
-      </select>
+      <div className="row mb-3 justify-content-center">
+        <div className="col-12">
+          <div className="form">
+            <input
+              className="form-control form-control-lg"
+              id="movieTitle"
+              placeholder="Movie Title"
+              onChange={(e) => setMovie(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
 
-      <br />
-        <br />
+      <div className="row mb-3">
+        <div className="col-12">
+          <h1>was released in...</h1>
+        </div>
+      </div>
 
-        {error && <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>}
+      <div className="container-fluid d-flex justify-content-center align-items-center">
+        <div className="row mb-3 d-flex justify-content-center align-items-center">
+          <div className="col-10 mb-3">
+            <select
+              className="form-select form-select-lg"
+              aria-label="Default select example"
+              value={releaseYear}
+              onChange={(e) => setReleaseYear(e.target.value)}
+            >
+              <option selected disabled>
+                Choose Release Year
+              </option>
+              {years.map((year, index) => (
+                <option key={index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
 
-        <br />
-
-      <button
-        onClick={() => handleCallbackResponse(`{"Prediction": "${movie}", "ReleaseYear": ${releaseYear}}`)}
-        style={{
-          padding: '10px',
-          fontSize: '16px',
-          backgroundColor: '#9F2B68',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-          marginTop: '20px',
-        }}
-      >
-        Submit Prediction
-      </button>
+      <div className="row mb-3">
+        <div className="col-12 col-md-5">
+          <button
+            type="button"
+            className="btn btn-large btn-custom-primary"
+            disabled={isDisabled()}
+            onClick={() => handleCallbackResponse(`{"Prediction": "${movie}", "ReleaseYear": ${releaseYear}}`)}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
+</NavigationBar>
+
   );
 }
 

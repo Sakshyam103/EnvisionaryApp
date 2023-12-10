@@ -8,64 +8,126 @@ const AboutUs = () => {
     return (
         <div>
             <NavigationBar>
-                <h2>Who are we?</h2>
-                    <div style={{ display: 'flex', flexDirection: 'column', marginLeft:'-50%' }}>
-                        <h3>Kritika Parajuli</h3>
-                        <p>
-                            <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/kritika-parajuli-517b46248/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Kritika Parajuli
+                <div className="container-fluid">
+                  <div className="col-md-6 g-2">
+                    <table className="table table-dark text-center">
+                      <thead>
+                        <tr>
+                          <td>
+                            <h3>Kritika Parajuli</h3>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="{linkedInLogo}" alt="LinkedIn Logo" />
+                            <a href="https://www.linkedin.com/in/kritika-parajuli-517b46248/" target="_blank" rel="noopener noreferrer">
+                              Kritika Parajuli
+                            </a></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="{githubLogo}" alt="GitHub Logo" />
+                            <a href="https://github.com/kparajul" target="_blank" rel="noopener noreferrer">
+                              kparajul
                             </a>
-                        </p>
-                        <p >
-                            <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/kparajul" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                kparajul
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-md-6 g-2">
+                    <table className="table table-dark text-center">
+                      <thead>
+                        <tr>
+                          <td>
+                            <h3>Sakshyam Sarki</h3>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="{linkedInLogo}" alt="LinkedIn Logo" />
+                            <a href="https://www.linkedin.com/in/sakshyam-sarki-baa47123b/" target="_blank" rel="noopener noreferrer">
+                              Sakshyam Sarki
                             </a>
-                        </p>
-                        <h3>Sakshyam Sarki</h3>
-                        <p >
-                            <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/sakshyam-sarki-baa47123b/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Sakshyam Sarki
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="{githubLogo}" alt="GitHub Logo" />
+                            <a href="https://github.com/Sakshyam103" target="_blank" rel="noopener noreferrer">
+                              Sakshyam103
                             </a>
-                        </p>
-                        <p >
-                            <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/Sakshyam103" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Sakshyam103
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-md-6 g-2">
+                    <table className="table table-dark text-center">
+                      <thead>
+                        <tr>
+                          <td>
+                            <h3>Molly Morano</h3>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="{githubLogo}" alt="GitHub Logo" />
+                            <a href="https://github.com/mmorano401" target="_blank" rel="noopener noreferrer">
+                              mmorano401
                             </a>
-                        </p>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', marginRight:'-50%', marginTop:'-32%'}}>
-                        <h3>Molly Morano</h3>
-                        <p >
-                            <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/molly-morano/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Molly Morano
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="{linkedInLogo}" alt="LinkedIn Logo" />
+                            <a href="https://www.linkedin.com/in/molly-morano/" target="_blank" rel="noopener noreferrer">
+                              Molly Morano
                             </a>
-                        </p>
-                        <p >
-                            <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/mmorano401" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                mmorano401
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-md-6 g-2">
+                    <table className="table table-dark text-center">
+                      <thead>
+                        <tr>
+                          <td>
+                            <h3>Brandon LaPointe</h3>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img src="{linkedInLogo}" alt="LinkedIn Logo" />
+                            <a href="https://www.linkedin.com/in/brandon-lapointe-414427273/" target="_blank" rel="noopener noreferrer">
+                              Brandon LaPointe
                             </a>
-                        </p>
-                        <h3>Brandon LaPointe</h3>
-                        <p >
-                            <img src={linkedInLogo} alt="LinkedIn Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://www.linkedin.com/in/brandon-lapointe-414427273/" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Brandon LaPointe
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="{githubLogo}" alt="GitHub Logo" />
+                            <a href="https://github.com/Brandomon" target="_blank" rel="noopener noreferrer">
+                              Brandomon
                             </a>
-                        </p>
-                        <p >
-                            <img src={githubLogo} alt="GitHub Logo" style={{ marginRight: '8px' }} />
-                            <a href="https://github.com/Brandomon" target="_blank" rel="noopener noreferrer" style={{color:'pink'}}>
-                                Brandomon
-                            </a>
-                        </p>
-                    </div>
-                {/*<h4>Details to be posted later:)</h4>*/}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+
             </NavigationBar>
         </div>
     );

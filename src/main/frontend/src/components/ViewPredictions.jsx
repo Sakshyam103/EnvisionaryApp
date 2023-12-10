@@ -185,7 +185,7 @@ const ViewPredictions = () => {
 
     return (
         <NavigationBar>
-            <div style={{ height: '100vh', overflowY: 'auto' }}>
+            <div className="container-fluid">
                 <ButtonPanel onButtonClick={handleButtonClick} />
                 <MainContent content={displayedContent} />
             </div>

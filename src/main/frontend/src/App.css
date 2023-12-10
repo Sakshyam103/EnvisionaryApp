@@ -48,3 +48,40 @@
   align-items: center;
   margin-left: -10%;
 }
+
+h1 {
+  color: #ff0080 !important;
+}
+
+h2 {
+  color: #ff0080 !important;
+}
+
+h3 {
+  color: #ff0080 !important;
+}
+
+h4 {
+  color: #ff0080 !important;
+}
+
+.custom-btn {
+      background-color: #ff0080;
+      color: #0f0f0f;
+    }
+.btn-custom-primary {
+      background-color: #ff0080 !important;
+      color: #0f0f0f !important;
+      border-color: #ff0080 !important;
+    }
+
+.btn-custom-primary:disabled,
+    .btn-custom-primary:disabled:hover {
+      background-color: #cc83cb !important;
+      color: #ff0080 !important;
+    }
+.custom-rounded-container {
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 20px;
+    }

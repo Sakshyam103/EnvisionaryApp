@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
+import NavigationBar from "./NavigationBar.jsx";
 
 const AstronomyPrediction = () => {
-    const [selectedValue, setSelectedValue] = useState('1');
+    const [selectedValue, setSelectedValue] = useState('');
     const [selectedDate, setSelectedDate] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -21,6 +22,14 @@ const AstronomyPrediction = () => {
             setError('Please select the options first')
         }
     };
+
+    function isDisabled() {
+    if(selectedValue !== '0' && selectedDate !== ''){
+    return false;}
+    else{return true;}
+    }
+
+
 
     function handleCallbackResponse() {
                 let response = `{"value": "${selectedValue}", "resolveDate": "${selectedDate}"}`
@@ -56,39 +65,45 @@ const AstronomyPrediction = () => {
 
 
     return (
-        <div>
-            <h2>I predict that the number of </h2>
-            {/*<label htmlFor="celestialBodySelect">Select Celestial Body:</label>*/}
-            <select id="celestialBodySelect"
-                    value={selectedValue}
-                    onChange={(e) => setSelectedValue(e.target.value)}
-                    style={
-                            {width: '200px', height: '30px', fontSize: '90%'}}
-            >
-                <option value="planet">Planet</option>
-                <option value="dwarfPlanet">Dwarf Planet</option>
-                <option value="asteroid">Asteroid</option>
-                <option value="comet">Comet</option>
-                <option value="moonsPlanet">Moons Planet</option>
-                <option value="moonsDwarfPlanet">Moons Dwarf Planet</option>
-                <option value="moonsAsteroid">Moons Asteroid</option>
-                {/* Add more celestial bodies as needed */}
-            </select>
+   <NavigationBar>
+   <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
+   <div>
+           <div className="row mt-4">
+           <h1>I predict that the number of </h1>
+           </div>
+           <div className="row mt-4 justify-content-center">
+           <select id="celestialBodySelect" className="form-select form-select-lg"
+                                  value={selectedValue}
+                                  onChange={(e) => setSelectedValue(e.target.value)}
+                                  style={
+                                          {width: '200px', height: '30px', fontSize: '90%'}}
+                          >
+                              <option selected disabled>Select Planetary Object</option>
+                              <option value="planet">Planet</option>
+                              <option value="dwarfPlanet">Dwarf Planet</option>
+                              <option value="asteroid">Asteroid</option>
+                              <option value="comet">Comet</option>
+                              <option value="moonsPlanet">Moons Planet</option>
+                              <option value="moonsDwarfPlanet">Moons Dwarf Planet</option>
+                              <option value="moonsAsteroid">Moons Asteroid</option>
+                          </select>
+           </div>
+           <div className="row mt-4">
+           <h1> will change by </h1>
+           </div>
+           <div className="row mt-4 justify-content-center">
+           <input type="date" id="dateInput" className="form-control"
+           value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}style={  {width: '200px', fontSize: '90%'}} min={tomorrowX}/>
+           </div>
+           <br /><br />{error && <div style={{ color: 'red' }}>{error}</div>}<br />
+           <div className="justify-content-center">
+            <button className="btn btn-sm btn-custom-primary" disabled={isDisabled()} onClick={predict}>Predict</button>
+           </div>
 
-            <h2> will change by </h2>
-            <input type="date" id="dateInput" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
-                   style={
-                       {width: '200px', height: '30px', fontSize: '90%'}}
-                   min={tomorrowX}
-            />
+           </div>
+   </div>
 
-            <br />
-            <br />
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            <br />
-
-            <button onClick={predict}>Predict</button>
-        </div>
+        </NavigationBar>
     );
 };
 
