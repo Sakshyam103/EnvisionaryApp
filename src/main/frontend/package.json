@@ -1,4 +1,5 @@
 {
+  "location": "src/main/frontend",
   "framework": "vite",
   "builds" : [{"src": "vite.config.js","use" :  "@vercel/node"}],
   "name": "frontend",
