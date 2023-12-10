@@ -127,7 +127,7 @@ const ButtonPanel = ({ onButtonClick }) => {
 
      const handleViewResolved = async () => {
                 try {
-                    const res = await fetch("http://localhost:8080/viewResolvedPrediction", {
+                    const res = await fetch("http://localhost:8080/viewResolvedPredictions", {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",

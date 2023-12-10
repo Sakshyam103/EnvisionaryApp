@@ -28,13 +28,13 @@ function MoviesPrediction() {
         })
         .then(response => {
           console.log(response);
-          if(response = "true"){
+          if(response === "true"){
             alert('Correct! Great Job!');
             navigate('/Home');}
-          else if (response = "false"){
+          else if (response === "false"){
             setError('Sorry, that was incorrect!');
             navigate('/Home');}
-          else if (response = "Custom Prediction Saved"){
+          else if (response === "Custom Prediction Saved"){
             alert('Due to an overflow of predictions, your prediction was saved in the custom category! Please see resolve predictions to resolve it!')
             navigate('/Home')}
           else{
@@ -45,39 +45,6 @@ function MoviesPrediction() {
         })
 
        ;
-
-          //
-          // console.log("Prediction resolving");
-          // fetch("http://localhost:8080/resolveMoviePrediction", {
-          //     method:"GET",
-          //     headers:{
-          //         "Content-Type": "application/json",
-          //     },
-          // }).then(res => {
-          //     if(!res.ok){
-          //         console.error('Request failed with status:' , res.status);
-          //         return res.text();
-          //     }
-          //     return res.json();
-          //
-          // })
-          //     .then(data => {
-          //         console.log(data);
-          //     }).catch(error=>{
-          //     console.error('Error: ', error);
-          // })
-          //
-          // ;
-          //
-          // if(data == true){
-          //     alert('Prediction made and you were so right! Go make other predictions now pookie<3');
-          //     navigate('/Home');
-          // }else{
-          //     alert('Prediction made and unfortunately you were not right. Try again pookie<3');
-          //     navigate('/Home');
-          // }
-
-
       } else {
           setError('Please select movie and date both first!');
       }

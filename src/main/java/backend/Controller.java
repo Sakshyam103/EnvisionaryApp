@@ -201,6 +201,12 @@ public class Controller {
         return SaveCustomPredictions.retrieveUserResolvedPredictions();
     }
 
+    @RequestMapping(value = "/viewCustomContent")
+    public ArrayList<String> viewCustomPredictionContent() {
+        System.out.println("view resolved predictions");
+        return SaveCustomPredictions.getCustomContent();
+    }
+
     // These are all the methods to return the specific categories of resolved predictions
     @RequestMapping(value = "/viewResolvedCustomPredictions")
     public ArrayList<ResolvedPrediction> viewResolvedCustomPredictions() {
@@ -427,6 +433,7 @@ public class Controller {
         JsonReader reader = factory.createReader(stringReader);
         JsonObject object = reader.readObject();
         boolean success = SaveCustomPredictions.resolveCustomPrediction(object);
+        userDoc = GetUserInfo.getTheDoc();
         if(success){
             System.out.println("Custom Prediction Resolved");
             return success;
