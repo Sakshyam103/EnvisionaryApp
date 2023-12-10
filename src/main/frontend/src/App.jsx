@@ -44,7 +44,7 @@ function App() {
       </div>)}
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className='card'>
+      <div className='card' style={{backgroundColor: '#111111', justifyContent: 'center'}}>
         <Routes>
       <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
 

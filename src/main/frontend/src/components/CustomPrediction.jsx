@@ -17,9 +17,7 @@ function CustomPrediction() {
           prediction,
           date: selectedDate,
       }
-      handleCallbackResponse()
-      alert('Prediction Made! Redirecting to home<3');
-      navigate('/Home');}
+      handleCallbackResponse();}
       else {
           setError('Please enter prediction first!')
       }

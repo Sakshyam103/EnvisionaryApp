@@ -1,0 +1,11 @@
+.custom-center-align {
+      text-align: left !important;
+    }
+
+.custom-btn-spacing-right {
+    margin-right: 10px !important;
+}
+
+.custom-btn-spacing-left {
+    margin-left: 10px !important;
+}

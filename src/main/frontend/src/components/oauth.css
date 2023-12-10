@@ -1,0 +1,6 @@
+/* Example CSS to override Google Sign-In button styles */
+.g-signin2 {
+  background-color: #111111 !important;
+  match: true;
+  /* Add any other styles to match your webpage */
+}

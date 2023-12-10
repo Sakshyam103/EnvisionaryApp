@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import NavigationBar from "./NavigationBar.jsx";
+import ViewPredictionsTable from './JsonTableHeader/ViewPredictionTable.jsx';
+import ViewResolvedPredictions from './JsonTableHeader/ViewResolvedPredictions.jsx';
 
 const ButtonPanel = ({ onButtonClick }) => {
 
     const [predictionData, setPredictionData] = useState([]);
+    const [resolved, setResolved] = useState(false);
 
-
-    // Define handlers for each button
     const handleViewMovie = async () => {
+        setResolved(false);
         try {
             const res = await fetch("http://localhost:8080/viewEntertainmentPredictions", {
                 method: "GET",
@@ -31,6 +33,7 @@ const ButtonPanel = ({ onButtonClick }) => {
         }
     };
     const handleViewFootball = async () => {
+    setResolved(false);
             try {
                 const res = await fetch("http://localhost:8080/viewFootballPredictions", {
                     method: "GET",
@@ -54,6 +57,7 @@ const ButtonPanel = ({ onButtonClick }) => {
             }
     };
     const handleViewWeather = async () => {
+    setResolved(false);
             try {
                 const res = await fetch("http://localhost:8080/viewWeatherPredictions", {
                     method: "GET",
@@ -78,6 +82,7 @@ const ButtonPanel = ({ onButtonClick }) => {
     };
 
     const handleViewSpace = async () => {
+    setResolved(false);
             try {
                 const res = await fetch("http://localhost:8080/viewSpacePredictions", {
                     method: "GET",
@@ -102,6 +107,7 @@ const ButtonPanel = ({ onButtonClick }) => {
     };
 
     const handleViewCustom = async () => {
+    setResolved(false);
             try {
                 const res = await fetch("http://localhost:8080/viewCustomPredictions", {
                     method: "GET",
@@ -126,6 +132,7 @@ const ButtonPanel = ({ onButtonClick }) => {
         };
 
      const handleViewResolved = async () => {
+     setResolved(true);
                 try {
                     const res = await fetch("http://localhost:8080/viewResolvedPredictions", {
                         method: "GET",
@@ -150,83 +157,21 @@ const ButtonPanel = ({ onButtonClick }) => {
             };
 
     return (
-        <div style={{display: 'flex', flex:'left', flexDirection: 'column' }}>
-            {/* Render five buttons with their respective click handlers */}
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%', marginTop:'40px'}} onClick={handleViewFootball}>View Football Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewMovie}>View Movies Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewSpace}>View Astronomy Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewWeather}>View Weather Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewCustom}>View Custom Prediction</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleViewResolved}>View Resolved Predictions</button>
+        <div className="container-fluid">
+            <button className="btn btn-dark" onClick={handleViewFootball}>View Football Prediction</button>
+            <button className="btn btn-dark" onClick={handleViewMovie}>View Movies Prediction</button>
+            <button className="btn btn-dark" onClick={handleViewSpace}>View Astronomy Prediction</button>
+            <button className="btn btn-dark" onClick={handleViewWeather}>View Weather Prediction</button>
+            <button className="btn btn-dark" onClick={handleViewCustom}>View Custom Prediction</button>
+            <button className="btn btn-dark" onClick={handleViewResolved}>View Resolved Predictions</button>
         </div>
     );
 };
 
-const JsonTable = ({ data }) => {
-    if (!Array.isArray(data) || data.length < 1) {
-        return <p>Insufficient data to display the table.</p>;
-    }
-    if (!data || data.length === 0) {
-        return <p>No data available.</p>;
-    }
-          const formatValue = (value) => {
-            if (typeof value === 'boolean') {
-              return value.toString();
-            } else if (typeof value === 'string' && value.includes('America/New_York')) {
-              return value.slice(0, 10);
-            } else if( value === null){
-            return 'Standard';}
-            else {
-              return value;
-            }
-          };
-
-    return (
-        <div style={{ textAlign: 'center' }}>
-            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-                <thead>
-                <tr>
-                    {Object.keys(data[0]).map((header) => (
-                        <th key={header} style={tableHeaderStyle}>
-                            {header}
-                        </th>
-                    ))}
-                </tr>
-                </thead>
-                <tbody>
-                  {data.map((row, index) => (
-                   <tr key={index}>
-                     {Object.values(row).map((value, i) => (
-                         <td key={i}>{formatValue(value)}</td>
-                         ))}
-                         </tr>
-                         ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
-// CSS styles for the table
-const tableHeaderStyle = {
-    border: '1px solid #ddd',
-    padding: '8px',
-    background: 'black',
-};
-
-const tableRowStyle = {
-    border: '1px solid #ddd',
-};
-
-const tableCellStyle = {
-    border: '1px solid #ddd',
-    padding: '8px',
-};
-
-const MainContent = ({ content }) => (
-    <div style={{ flex:'right', marginLeft:'300px', marginTop:'-14%' }}>
-        {<JsonTable data = {content}/>}
-        {/*<p>{content}</p>*/}
+const MainContent = ({ content, resolved }) => (
+    <div className="container-fluid">
+        {resolved && <ViewPredictionsTable data={content} />}
+        {!resolved && <ViewResolvedPredictions data={content} />}
     </div>
 );
 
