@@ -1,5 +1,6 @@
 {
   "location": "src/main/frontend",
+  "install": "npm install",
   "framework": "vite",
   "builds" : [{"src": "vite.config.js","use" :  "@vercel/node"}],
   "name": "frontend",
@@ -10,6 +11,7 @@
     "start": "vite preview",
     "build": "vite build",
     "dev": "vite",
+    "run": "npm run dev",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
