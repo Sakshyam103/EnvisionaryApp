@@ -159,6 +159,7 @@ public class SaveCustomPredictions {
             sample.setPredictionType(value.asJsonObject().getString("predictionType"));
             sample.setPredictionContent(value.asJsonObject().getString("predictionContent"));
             sample.setPredictionEndDate(value.asJsonObject().getString("predictionEndDate"));
+            sample.setResolution(value.asJsonObject().getBoolean("resolution"));
             predictions.add(sample);
         }
         return predictions;

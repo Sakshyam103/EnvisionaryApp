@@ -32,12 +32,16 @@ function NavigationBar({children}) {
         navigate('/Home/AboutUs');
     }
 
+    const handleHowTo = () => {
+        navigate('/Home');
+    }
+
     return (
         <div>
         <nav className="navbar">
             <ul>
                 <li>
-                    <button className="logo-button" onClick={handleAbout}
+                    <button className="logo-button" onClick={handleHowTo}
                             style={{textAlign: 'center', color:'black'}}
 
                     >
@@ -67,10 +71,16 @@ function NavigationBar({children}) {
                         Resolve Predictions
                     </button>
                 </li>
+
                 <li>
                     <button className="nav-button" onClick={handleNotifications} style={{backgroundColor:'black'}}>
                         Notifications
                     </button>
+                </li>
+                <li>
+                   <button className="nav-button" onClick={handleAbout} style={{backgroundColor:'black'}}>
+                       About Us
+                   </button>
                 </li>
             </ul>
         </nav>

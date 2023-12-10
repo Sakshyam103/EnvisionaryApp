@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from "react-router-dom";
+import NavigationBar from "./NavigationBar.jsx";
 
 function FootballPrediction() {
   const [match, setMatch] = useState('');
@@ -131,71 +132,94 @@ function FootballPrediction() {
              ;
 
           }
+  function isDisabledMatch() {
+      if(match !== ''){
+      return false;}
+      else{return true;}
+    }
+  function isDisabled() {
+    if(match !== '' && team !== '' && result !== ''){
+    return false;}
+    else{return true;}
+  }
 
   return (
+  <NavigationBar>
       <div style={{ textAlign: 'center' }}>
-        {/* Display fetched data */}
-        {/*<p>{matchX}</p>*/}
+        <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
+                          <div className="row mt-4">
+                            <h1>Choose your match</h1>
+                          </div>
+                          <div className="row mt-4">
+                            <div className="col-8">
+                              <select className="form-select form-select-lg" value={match} onChange={(e) => setMatch(e.target.value)}>
+                                <option selected disabled>Select Match</option>
+                                {matchOptions.map((matchOption, index) => (
+                                                <option key={index} value={matchOption}>
+                                                  {matchOption}
+                                                </option>
+                                            ))}
+                              </select>
+                            </div>
+                            <div className="col">
+                              <button
+                                 type="button"
+                                 className="btn btn-sm btn-custom-primary"
+                                 disabled={isDisabledMatch()}
+                                 onClick={handleSubmitMatch}>
+                                    Submit Match
+                                 </button>
+                            </div>
+                          </div>
+                        </div>
 
-        <div style={{ margin: '10px' }}>
-          <h2>Choose Match </h2>
-          <select
-              value={match}
-              onChange={(e) => setMatch(e.target.value)}
-              style={{ padding: '10px', fontSize: '16px' }}
-          >
-            <option value="" disabled>Select Match</option>
-            {matchOptions.map((matchOption, index) => (
-                <option key={index} value={matchOption}>
-                  {matchOption}
-                </option>
-            ))}
-          </select>
-          <button
-              onClick={handleSubmitMatch}
-              style={{
-                padding: '10px',
-                fontSize: '16px',
-                backgroundColor: '#9F2B68',
-                color: 'white',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-          >
-            Submit Match
-          </button>
-        </div>
 
 
 
         {buttonPressed && (
-            <div style={{ margin: '10px' }}>
-              <h2>I predict that Team </h2>
-              <select
-                  value={team}
-                  onChange={(e) => setTeam(e.target.value)}
-                  style={{ padding: '10px', fontSize: '16px' }}
-              >
-                <option value="" disabled>Select Team</option>
-                {teamOptions.map((teamOption, index) => (
-                    <option key={index} value={teamOption}>
-                      {teamOption}
-                    </option>
-                ))}
-              </select>
-              <label> is going to </label>
-              <select
-                  value={result}
-                  onChange={(e) => setResult(e.target.value)}
-                  style={{ padding: '10px', fontSize: '16px' }}
-              >
-                <option value="" disabled>Result</option>
-                {resultOptions.map((resultOption, index) => (
-                    <option key={index} value={resultOption}>
-                      {resultOption}
-                    </option>
-                ))}
-              </select>
+            <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
+            <div class="row mt-4">
+                <h1>I predict that Team </h1>
+            </div>
+            <div className="row mt-4">
+                <div className="col">
+                <select className="form-select form-select-lg"
+                                  value={team}
+                                  onChange={(e) => setTeam(e.target.value)}
+                              >
+                                <option value="" disabled>Select Team</option>
+                                {teamOptions.map((teamOption, index) => (
+                                    <option key={index} value={teamOption}>
+                                      {teamOption}
+                                    </option>
+                                ))}
+                              </select>
+                </div>
+                <div className="row mt-4">
+                <div className="col">
+                                <h1>is going to</h1>
+                                </div>
+                </div>
+                <div className="row mt-4">
+                <div classname="col">
+                                <select className="form-select form-select-lg"
+                                                  value={result}
+                                                  onChange={(e) => setResult(e.target.value)}
+                                              >
+                                                <option value="" disabled>Result</option>
+                                                {resultOptions.map((resultOption, index) => (
+                                                    <option key={index} value={resultOption}>
+                                                      {resultOption}
+                                                    </option>
+                                                ))}
+                                              </select>
+                                </div>
+                </div>
+
+
+            </div>
+
+
 
               <br />
                 <br/>
@@ -206,20 +230,14 @@ function FootballPrediction() {
 
               <button
                   onClick={submitPredictions}
-                  style={{
-                    padding: '10px',
-                    fontSize: '16px',
-                    backgroundColor: '#9F2B68',
-                    color: 'white',
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
-              >
-                Submit Predictions
+                  className="btn btn-sm btn-custom-primary"
+                  disabled={isDisabled()}
+                  >Submit Predictions
               </button>
             </div>
         )}
       </div>
+</NavigationBar>
   );
 }
 

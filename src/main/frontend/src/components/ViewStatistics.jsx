@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import NavigationBar from "./NavigationBar.jsx";
 import JsonTable from "./JsonTable.jsx";
+import './JsonTableHeader/custom.css';
 
 const ButtonPanel = ({onButtonClick})=> {
     const [statisticsData, setStatisticsData] = useState([]);
@@ -101,12 +102,14 @@ const handleInferentialStatistics = async () => {
     };
 
     return (
-        <div style={{display: 'flex', flex:'left', flexDirection:'column'}}>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%', marginTop: "40px"}} onClick={handleDescriptiveStatistics}>View Descriptive Statistics</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleInferentialStatistics}>View Inferential Statistics</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallDescriptiveStatistics}>View Overall Descriptive Statistics</button>
-            <button style={{marginBottom:'5px', padding:'8px', width:'15%'}} onClick={handleOverallInferentialStatistics}>View Overall Inferential Statistics</button>
-        </div>
+    <div className="container-fluid">
+    <button className="btn btn-dark" onClick={handleDescriptiveStatistics}>View Descriptive Statistics</button>
+                <button className="btn btn-dark" onClick={handleInferentialStatistics}>View Inferential Statistics</button>
+                <button className="btn btn-dark" onClick={handleOverallDescriptiveStatistics}>View Overall Descriptive Statistics</button>
+                <button className="btn btn-dark" onClick={handleOverallInferentialStatistics}>View Overall Inferential Statistics</button>
+    </div>
+
+
     );
 };
 
@@ -161,15 +164,20 @@ const handleInferentialStatistics = async () => {
     //         </div>
     //     );
     // };
-
+const formatValue = (value) => {
+return value
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+              };
 const StatisticsStatsTable = ({ StatisticsStats }) => {
     if (StatisticsStats === null || StatisticsStats === undefined) {
         return(<p> no value to display</p>);
 
     } else {
         return (
-            <div style={{textAlign: 'center'}}>
-                <table style={{borderCollapse: "collapse", width: "100%"}}>
+            <div className="container-fluid mt-4">
+                <table className="table table-dark table-hover text-center">
                     <thead>
                     <tr>
                         <th style={tableHeaderStyle}>Statistic</th>
@@ -178,8 +186,8 @@ const StatisticsStatsTable = ({ StatisticsStats }) => {
                     </thead>
                     <tbody>
                     {Object.entries(StatisticsStats).map(([key, value]) => (
-                        <tr key={key}>
-                            <td>{key}</td>
+                        <tr key={key} className="custom-center-align">
+                            <td>{formatValue(key)}</td>
                             <td>{value !== null ? value : "No value"}</td>
                         </tr>
                     ))}
@@ -286,9 +294,8 @@ const tableHeaderStyle = {
 };
 
 const MainContent = ({content})=>(
-    <div style={{ flex:'right', marginLeft:'300px', marginTop:'-14%' }}>
+    <div className="container-fluid mt-4">
         {<StatisticsStatsTable StatisticsStats={content}/> }
-
     </div>
 );
 
@@ -306,11 +313,9 @@ const MainContent = ({content})=>(
 
     return (
         <NavigationBar>
-        <div style={{height:'100vh' , overflowY: 'auto'}}>
+        <div className="container-fluid mt-4">
              <ButtonPanel onButtonClick={handleButtonClick}/>
-            <MainContent content={displayedContent}/>
-            {/*<p>{viewDeferential}</p>*/}
-            {/*<p>{viewInferential}</p>*/}
+             <MainContent content={displayedContent}/>
         </div>
         </NavigationBar>
     );

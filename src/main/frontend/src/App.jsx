@@ -16,6 +16,7 @@ import ViewNotifications from "./components/ViewNotifications.jsx";
 import ResolvePredictions from "./components/ResolvePredictions.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import ParticlesBackground from "./components/ParticlesBackground.jsx";
+import HowTo from "./components/HowToPage.jsx";
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
       </div>)}
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className='card'>
+      <div className='card' style={{backgroundColor: '#111111', justifyContent: 'center'}}>
         <Routes>
       <Route path="/" element = {<SignIn onUserLogin={handleUserLogin}/>} />
 
@@ -56,7 +57,7 @@ function App() {
       </div>)}
       <Routes>
       <Route path="/Home" element={currentUser ? (
-        <NavigationBar user={currentUser} />
+        <HowTo user={currentUser}/>
       ) : (
         <>
         <Navigate to="/" replace />
@@ -123,6 +124,18 @@ function App() {
                   </>
               )
           }/>
+          <Route path="/Home/AboutUs" element={
+                        currentUser ? (
+                            <>
+                                <AboutUs user={currentUser}/></>
+                        ) : (
+                            <>
+                                <Navigate to="/" replace />
+
+                                <SignIn onUserLogin={handleUserLogin} />
+                            </>
+                        )
+                    }/>
       <Route path="/Home/MakePredictions/Custom" element={
      currentUser ? (
       <>
