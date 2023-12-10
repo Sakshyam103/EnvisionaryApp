@@ -1,4 +1,6 @@
 {
+  "framework": "vite",
+  "builds" : [{"src": "vite.config.js","use" :  "@vercel/node"}],
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
