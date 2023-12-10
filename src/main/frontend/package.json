@@ -1,6 +1,4 @@
 {
-  "location": "src/main/frontend",
-  "install": "npm install",
   "framework": "vite",
   "builds" : [{"src": "vite.config.js","use" :  "@vercel/node"}],
   "name": "frontend",
