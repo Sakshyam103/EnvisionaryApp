@@ -12,9 +12,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "graceful-fs": "^2.0.3",
-    "minimatch": "^3.0.2",
-    "@tsparticles/react": "^latest",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.6.2",
@@ -30,6 +27,9 @@
     "tsparticles": "^3.0.2"
   },
   "devDependencies": {
+    "graceful-fs": "^2.0.3",
+    "minimatch": "^3.0.2",
+    "@tsparticles/react": "^latest",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
